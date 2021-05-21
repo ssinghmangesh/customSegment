@@ -4,10 +4,6 @@ export default [
     name: 'apps-calendar',
     component: () => import('@/views/apps/calendar/Calendar.vue'),
   },
-
-  // *===============================================---*
-  // *--------- EMAIL & IT'S FILTERS N LABELS -------------------------------*
-  // *===============================================---*
   {
     path: '/apps/email',
     name: 'apps-email',
