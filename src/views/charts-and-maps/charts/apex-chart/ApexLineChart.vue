@@ -4,16 +4,16 @@
       <!-- title and subtitle -->
       <div>
         <b-card-title class="mb-1">
-          Balance
+          {{ title }}
         </b-card-title>
-        <b-card-sub-title>Commercial networks & enterprises</b-card-sub-title>
+        <b-card-sub-title>{{ subtitle }}</b-card-sub-title>
       </div>
       <!--/ title and subtitle -->
 
       <!-- badge -->
       <div class="d-flex align-items-center flex-wrap mt-sm-0 mt-1">
         <h5 class="font-weight-bolder mb-0 mr-1">
-          $ 100,000
+          $ {{ balance }}
         </h5>
         <b-badge variant="light-secondary">
           <feather-icon
@@ -21,7 +21,7 @@
             size="16"
             class="text-danger mr-25"
           />
-          <span class="align-middle">20%</span>
+          <span class="align-middle">{{ change }}%</span>
         </b-badge>
       </div>
       <!--/ badge -->
@@ -31,8 +31,8 @@
       <vue-apex-charts
         type="line"
         height="400"
-        :options="apexChatData.lineChartSimple.chartOptions"
-        :series="apexChatData.lineChartSimple.series"
+        :options="data.chartOptions"
+        :series="data.series"
       />
     </b-card-body>
   </b-card>
@@ -54,6 +54,28 @@ export default {
     BCardBody,
     BCardTitle,
     BCardSubTitle,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    subtitle: {
+      type: String,
+      default: () => '',
+    },
+    balance: {
+      type: Number,
+      default: () => 0,
+    },
+    change: {
+      type: Number,
+      default: () => 0,
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

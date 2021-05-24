@@ -3,7 +3,7 @@
     <b-card-header>
       <!-- title and legend -->
       <h4 class="card-title mb-50">
-        New Technologies Data
+        {{ title }}
       </h4>
       <!--/ title and legend -->
 
@@ -35,8 +35,8 @@
       <vue-apex-charts
         type="scatter"
         height="400"
-        :options="apexChatData.scatterChart.chartOptions"
-        :series="apexChatData.scatterChart.series"
+        :options="data.chartOptions"
+        :series="data.series"
       />
     </b-card-body>
   </b-card>
@@ -61,6 +61,16 @@ export default {
   },
   directives: {
     Ripple,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

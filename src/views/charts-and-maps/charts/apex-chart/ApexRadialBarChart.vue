@@ -2,7 +2,7 @@
   <b-card no-body>
     <b-card-header>
       <b-card-title class="mb-sm-0 mb-1">
-        Statistics
+        {{ title }}
       </b-card-title>
     </b-card-header>
 
@@ -10,8 +10,8 @@
       <vue-apex-charts
         type="radialBar"
         height="400"
-        :options="apexChatData.radialBarChart.chartOptions"
-        :series="apexChatData.radialBarChart.series"
+        :options="data.chartOptions"
+        :series="data.series"
       />
     </b-card-body>
   </b-card>
@@ -31,6 +31,16 @@ export default {
     BCardTitle,
     BCardBody,
     BCardHeader,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
