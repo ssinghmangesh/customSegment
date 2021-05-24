@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 // Routes
 import { canNavigate } from '@/libs/acl/routeProtection'
 import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
+import custompage from './routes/custompage'
 import customers from './routes/customers'
 import orders from './routes/orders'
 import apps from './routes/apps'
@@ -26,6 +27,7 @@ const router = new VueRouter({
     { path: '/', redirect: { name: 'dashboard-ecommerce' } },
     ...customers,
     ...orders,
+    ...custompage,
     ...apps,
     ...dashboard,
     ...pages,

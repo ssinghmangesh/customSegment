@@ -11,7 +11,7 @@
       >
         <div class="d-sm-flex justify-content-between align-items-center mb-3">
           <h4 class="card-title mb-50 mb-sm-0">
-            Revenue Report
+            {{ title }}
           </h4>
           <div class="d-flex align-items-center">
             <div class="d-flex align-items-center mr-2">

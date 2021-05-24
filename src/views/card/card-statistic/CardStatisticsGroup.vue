@@ -6,7 +6,7 @@
     <b-card-header>
       <b-card-title>Statistics</b-card-title>
       <b-card-text class="mr-25 mb-0">
-        Updated 1 month ago
+        Updated 12 month ago
       </b-card-text>
     </b-card-header>
     <b-card-body class="statistics-body">
