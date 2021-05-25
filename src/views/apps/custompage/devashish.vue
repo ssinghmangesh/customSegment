@@ -23,17 +23,80 @@ export default {
     pageDefination() {
       return [
         {
-          type: 'line-area-chart',
+          type: 'apex-line-area-chart',
           col: {
-            default: 6,
-            md: 4,
+            default: 12,
+            md: 6,
           },
         },
         {
-          type: 'line-chart',
+          type: 'apex-scatter-chart',
           col: {
-            default: 6,
-            md: 4,
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'apex-line-chart',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'apex-bar-chart',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'apex-radial-bar-chart',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'apex-donut-chart',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'echart-line',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'echart-stacked-area',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'echart-area',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'echart-doughnut',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'echart-scatter',
+          col: {
+            default: 12,
+            md: 6,
           },
         },
       ]

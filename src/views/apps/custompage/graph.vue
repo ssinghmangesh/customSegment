@@ -1,49 +1,52 @@
 <template>
-  <b-col :cols="defaultCol" :md="mdCol">
+  <b-col
+    :cols="defaultCol"
+    :md="mdCol"
+  >
     <statistics
       v-if="graphType === 'statistics'"
       :data="statisticsItems"
       title="Customer counts"
     />
-    <line-area-chart
-      v-else-if="graphType === 'line-area-chart'"
+    <apex-line-area-chart
+      v-else-if="graphType === 'apex-line-area-chart'"
       title="Apex Line Area Chart"
       :data="lineAreaChart"
       :range-picker="rangePicker"
     />
-    <scatter-chart
-      v-else-if="graphType === 'scatter-chart'"
+    <apex-scatter-chart
+      v-else-if="graphType === 'apex-scatter-chart'"
       title="Apex Scatter Chart"
       :data="scatterChart"
     />
-    <line-chart
-      v-else-if="graphType === 'line-chart'"
+    <apex-line-chart
+      v-else-if="graphType === 'apex-line-chart'"
       title="Apex Line Chart"
       subtitle="Apex Line Chart"
       balance="100"
       change="10"
       :data="lineChart"
     />
-    <bar-chart
-      v-else-if="graphType === 'scatter-chart'"
+    <apex-bar-chart
+      v-else-if="graphType === 'apex-bar-chart'"
       title="Apex Bar Chart"
       subtitle="Apex Bar Chart"
       :data="barChart"
       :range-picker="rangePicker"
     />
-    <radial-bar-chart
-      v-else-if="graphType === 'scatter-chart'"
+    <apex-radial-bar-chart
+      v-else-if="graphType === 'apex-radial-bar-chart'"
       title="Apex Radial Bar Chart"
       :data="radialBarChart"
     />
-    <donut-chart
-      v-else-if="graphType === 'scatter-chart'"
+    <apex-donut-chart
+      v-else-if="graphType === 'apex-donut-chart'"
       title="Apex Donut Chart"
       subtitle="Apex Donut Chart"
       :data="donutChart"
     />
     <echart-line
-      v-else-if="graphType === 'scatter-chart'"
+      v-else-if="graphType === 'echart-line'"
       title="Echart Line"
       subtitle="Echart Line"
       balance="100"
@@ -51,29 +54,42 @@
       :data="echartLine"
     />
     <echart-stacked-area
-      v-else-if="graphType === 'scatter-chart'"
+      v-else-if="graphType === 'echart-stacked-area'"
       title="Echart Stacked Area"
       :data="echartStackedArea"
     />
     <echart-area
-      v-else-if="graphType === 'scatter-chart'"
+      v-else-if="graphType === 'echart-area'"
       title="Echart Area"
       :data="echartArea"
+    />
+    <echart-doughnut
+      v-else-if="graphType === 'echart-doughnut'"
+      title="Echart Doughnut"
+      total="45623"
+      :data="echartDoughnut"
+    />
+    <echart-scatter
+      v-else-if="graphType === 'echart-scatter'"
+      title="Echart Scatter"
+      :data="echartScatter"
     />
   </b-col>
 </template>
 
 <script>
 import Statistics from '@/views/sharedcomponents/Statistics.vue'
-import LineAreaChart from '@/views/sharedcomponents/LineAreaChart.vue'
-import ScatterChart from '@/views/sharedcomponents/ScatterChart.vue'
-import LineChart from '@/views/sharedcomponents/LineChart.vue'
-import BarChart from '@/views/sharedcomponents/BarChart.vue'
-import RadialBarChart from '@/views/sharedcomponents/RadialBarChart.vue'
-import DonutChart from '@/views/sharedcomponents/DonutChart.vue'
-import EchartLine from '@/views/sharedcomponents/EchartLine.vue'
-import EchartStackedArea from '@/views/sharedcomponents/EchartStackedArea.vue'
-import EchartArea from '@/views/sharedcomponents/EchartArea.vue'
+import ApexLineAreaChart from '@/views/charts-and-maps/charts/apex-chart/ApexLineAreaChart.vue'
+import ApexScatterChart from '@/views/charts-and-maps/charts/apex-chart/ApexScatterChart.vue'
+import ApexLineChart from '@/views/charts-and-maps/charts/apex-chart/ApexLineChart.vue'
+import ApexBarChart from '@/views/charts-and-maps/charts/apex-chart/ApexBarChart.vue'
+import ApexRadialBarChart from '@/views/charts-and-maps/charts/apex-chart/ApexRadialBarChart.vue'
+import ApexDonutChart from '@/views/charts-and-maps/charts/apex-chart/ApexDonutChart.vue'
+import EchartLine from '@/views/charts-and-maps/charts/echart/EchartLine.vue'
+import EchartStackedArea from '@/views/charts-and-maps/charts/echart/EchartStackedArea.vue'
+import EchartArea from '@/views/charts-and-maps/charts/echart/EchartArea.vue'
+import EchartDoughnut from '@/views/charts-and-maps/charts/echart/EchartDoughnut.vue'
+import EchartScatter from '@/views/charts-and-maps/charts/echart/EchartScatter.vue'
 import { BCol } from 'bootstrap-vue'
 import { $themeColors } from '@themeConfig'
 
@@ -104,16 +120,18 @@ const chartColors = {
 export default {
   components: {
     Statistics,
-    LineAreaChart,
-    ScatterChart,
-    LineChart,
-    BarChart,
-    RadialBarChart,
-    DonutChart,
+    ApexLineAreaChart,
+    ApexScatterChart,
+    ApexLineChart,
+    ApexBarChart,
+    ApexRadialBarChart,
+    ApexDonutChart,
     EchartLine,
     EchartStackedArea,
     EchartArea,
     BCol,
+    EchartDoughnut,
+    EchartScatter,
   },
   props: {
     item: {
@@ -122,6 +140,70 @@ export default {
     },
   },
   computed: {
+    echartScatter() {
+      return {
+        selected: 'radio1',
+        radioOption: [
+          { text: 'Daily', value: 'radio1' },
+          { text: 'Monthly', value: 'radio2' },
+          { text: 'Yearly', value: 'radio4' },
+        ],
+        option: {
+          series: [
+            {
+              name: 'iPhone',
+              symbolSize: 10,
+              data: [[72, 225], [81, 270], [90, 230], [103, 305], [103, 245], [108, 275], [110, 290], [111, 315], [109, 350], [116, 340], [113, 260], [117, 275], [117, 295], [126, 280], [127, 340], [133, 330],
+              ],
+              type: 'scatter',
+            },
+            {
+              name: 'Samsung Note',
+              symbolSize: 10,
+              data: [[13, 95], [22, 105], [17, 115], [19, 130], [21, 125], [35, 125], [13, 155], [21, 165], [25, 155], [18, 190], [26, 180], [43, 180], [53, 202], [61, 165], [67, 225],
+              ],
+              type: 'scatter',
+              itemStyle: {
+                color: '#FF9F43',
+              },
+            },
+            {
+              name: 'OnePlus',
+              symbolSize: 10,
+              data: [[70, 195], [72, 270], [98, 255], [100, 215], [87, 240], [94, 280], [99, 300], [102, 290], [110, 275], [111, 250], [94, 280], [92, 340], [100, 335], [108, 330]],
+              type: 'scatter',
+              itemStyle: {
+                color: '#00CFE8',
+              },
+            },
+          ],
+        },
+      }
+    },
+    echartDoughnut() {
+      return {
+        series: [
+          {
+            name: 'Visit source',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+              show: false,
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              { value: 335, name: 'Point One' },
+              { value: 310, name: 'Point Two' },
+              { value: 234, name: 'Point Three' },
+              { value: 435, name: 'Point Four' },
+            ],
+          },
+        ],
+      }
+    },
     defaultCol() {
       return this.item.col.default
     },
