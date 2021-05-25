@@ -236,7 +236,7 @@ export default {
     fetch() {
       this.$http.post('/analytics-manager/table', {
         TABLE_NAME: 'order',
-        workspaceId: 9,
+        workspaceId: 333,
         orderBykey: 'created_at',
         limit: this.pageLength,
         skipRowby: this.currentPage * this.pageLength,
