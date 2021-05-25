@@ -4,10 +4,10 @@
       <!-- title and subtitle -->
       <div>
         <b-card-sub-title class="mb-25">
-          Balance
+          {{ title }}
         </b-card-sub-title>
         <b-card-title class="font-weight-bolder">
-          $74,382.72
+          {{ subtitle }}
         </b-card-title>
       </div>
       <!--/ title and subtitle -->
@@ -32,8 +32,8 @@
       <vue-apex-charts
         type="bar"
         height="350"
-        :options="apexChatData.barChart.chartOptions"
-        :series="apexChatData.barChart.series"
+        :options="data.chartOptions"
+        :series="data.series"
       />
     </b-card-body>
   </b-card>
@@ -57,10 +57,27 @@ export default {
     BCardSubTitle,
     BCardTitle,
   },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    subtitle: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
+    rangePicker: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
       apexChatData,
-      rangePicker: ['2019-05-01', '2019-05-10'],
     }
   },
 }

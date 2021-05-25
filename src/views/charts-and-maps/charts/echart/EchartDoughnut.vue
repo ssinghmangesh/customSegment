@@ -1,14 +1,14 @@
 <template>
-  <b-card title="Doughnut Chart">
+  <b-card :title="title">
     <div class="pie-text text-center">
       <h2 class="font-weight-bolder">
-        $23,994
+        ${{ total }}
       </h2>
       <span class="font-weight-bold">Total</span>
     </div>
 
     <!-- echart -->
-    <app-echart-doughnut :series="series" />
+    <app-echart-doughnut :series="data.series" />
 
   </b-card>
 </template>
@@ -21,6 +21,20 @@ export default {
   components: {
     BCard,
     AppEchartDoughnut,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    total: {
+      type: Number,
+      default: () => 0,
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

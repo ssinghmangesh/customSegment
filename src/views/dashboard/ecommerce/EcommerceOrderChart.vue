@@ -3,9 +3,9 @@
     v-if="data"
     body-class="pb-50"
   >
-    <h6>Orders</h6>
+    <h6>{{ title }}</h6>
     <h2 class="font-weight-bolder mb-1">
-      2,76k
+      {{ total }}
     </h2>
     <!-- chart -->
     <vue-apex-charts
@@ -29,6 +29,14 @@ export default {
     VueApexCharts,
   },
   props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    total: {
+      type: String,
+      default: () => '',
+    },
     data: {
       type: Object,
       default: () => {},
@@ -95,6 +103,9 @@ export default {
         },
       },
     }
+  },
+  mounted() {
+    console.log(this.data)
   },
 }
 </script>

@@ -1,17 +1,17 @@
 <template>
   <b-card>
     <b-card-title class="mb-1">
-      Expense Ratio
+      {{ title }}
     </b-card-title>
     <b-card-sub-title class="mb-2">
-      Spending on various categories
+      {{ subtitle }}
     </b-card-sub-title>
 
     <vue-apex-charts
       type="donut"
       height="350"
-      :options="apexChatData.donutChart.chartOptions"
-      :series="apexChatData.donutChart.series"
+      :options="data.chartOptions"
+      :series="series"
     />
   </b-card>
 </template>
@@ -29,6 +29,24 @@ export default {
     BCard,
     BCardTitle,
     BCardSubTitle,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
+    subtitle: {
+      type: String,
+      default: () => '',
+    },
+    series: {
+      type: [Array],
+      default: () => [],
+    },
   },
   data() {
     return {

@@ -1,14 +1,14 @@
 <template>
-  <b-card title="New Technologies Data">
+  <b-card :title="title">
 
     <!-- switch buttons -->
     <div class="switch-button float-sm-right">
       <b-form-group>
         <b-form-radio-group
           id="btn-radios-1"
-          v-model="selected"
+          v-model="data.selected"
           button-variant="outline-primary"
-          :options="radioOption"
+          :options="data.radioOption"
           buttons
           size="sm"
           name="radios-btn-default"
@@ -17,7 +17,7 @@
     </div>
 
     <!-- echart -->
-    <app-echart-scatter :option-data="option" />
+    <app-echart-scatter :option-data="data.option" />
   </b-card>
 </template>
 
@@ -31,6 +31,16 @@ export default {
     AppEchartScatter,
     BFormRadioGroup,
     BFormGroup,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

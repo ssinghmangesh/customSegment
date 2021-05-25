@@ -144,6 +144,9 @@ export default {
         },
       ]
     },
+    chartjsData() {
+      return chartjsDataTest
+    },
   },
 }
 

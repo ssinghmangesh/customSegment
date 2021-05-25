@@ -1,12 +1,12 @@
 <template>
-  <b-card title="Balance">
+  <b-card :title="title">
     <div class="d-flex justify-content-between flex-wrap">
       <div class="mb-1 mb-sm-0">
-        <span class="text-muted">Commercial networks and enterprises</span>
+        <span class="text-muted">{{ subtitle }}</span>
       </div>
       <div class="d-flex align-content-center mb-1 mb-sm-0">
         <h1 class="font-weight-bolder ">
-          $ 183,382
+          ${{ balance }}
         </h1>
         <div class="pt-25 ml-75">
           <b-badge variant="light-secondary">
@@ -15,14 +15,14 @@
               size="12"
               class="text-danger align-middle"
             />
-            <span class="font-weight-bolder align-middle"> 24%</span>
+            <span class="font-weight-bolder align-middle"> {{ change }}%</span>
           </b-badge>
         </div>
       </div>
     </div>
 
     <!-- echart -->
-    <app-echart-line :option-data="option" />
+    <app-echart-line :option-data="data.option" />
 
   </b-card>
 </template>
@@ -36,6 +36,28 @@ export default {
     BCard,
     AppEchartLine,
     BBadge,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    subtitle: {
+      type: String,
+      default: () => '',
+    },
+    balance: {
+      type: Number,
+      default: () => 0,
+    },
+    change: {
+      type: Number,
+      default: () => 0,
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

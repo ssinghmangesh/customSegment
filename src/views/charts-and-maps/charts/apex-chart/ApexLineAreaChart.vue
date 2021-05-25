@@ -4,7 +4,7 @@
       <!-- title and subtitle -->
       <div>
         <b-card-title class="mb-1">
-          Line Chart
+          {{ title }}
         </b-card-title>
         <b-card-sub-title>Commercial networks</b-card-sub-title>
       </div>
@@ -30,8 +30,8 @@
       <vue-apex-charts
         type="area"
         height="400"
-        :options="apexChatData.lineAreaChartSpline.chartOptions"
-        :series="apexChatData.lineAreaChartSpline.series"
+        :options="data.chartOptions"
+        :series="data.series"
       />
     </b-card-body>
   </b-card>
@@ -55,10 +55,23 @@ export default {
     BCardSubTitle,
     flatPickr,
   },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
+    rangePicker: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
       apexChatData,
-      rangePicker: ['2019-05-01', '2019-05-10'],
     }
   },
 }

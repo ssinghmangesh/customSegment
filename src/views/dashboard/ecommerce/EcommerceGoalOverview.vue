@@ -5,7 +5,7 @@
   >
     <b-card-header>
       <h4 class="mb-0">
-        Goal Overview
+        {{ title }}
       </h4>
       <b-card-text class="font-medium-5 mb-0">
         <feather-icon
@@ -74,6 +74,10 @@ export default {
   props: {
     data: {
       type: Object,
+      default: () => {},
+    },
+    title: {
+      type: String,
       default: () => {},
     },
   },
