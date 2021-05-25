@@ -1,6 +1,6 @@
 <template>
-  <b-card title="Area Chart">
-    <app-echart-stacked-area :option-data="option" />
+  <b-card :title="title">
+    <app-echart-stacked-area :option-data="data.option" />
 
   </b-card>
 </template>
@@ -13,6 +13,16 @@ export default {
   components: {
     BCard,
     AppEchartStackedArea,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

@@ -35,6 +35,21 @@
       subtitle="Apex Donut Chart"
       :data="donutChart"
     />
+    <echart-line
+      title="Echart Line"
+      subtitle="Echart Line"
+      balance="100"
+      change="10"
+      :data="echartLine"
+    />
+    <echart-stacked-area
+      title="Echart Stacked Area"
+      :data="echartStackedArea"
+    />
+    <echart-area
+      title="Echart Area"
+      :data="echartArea"
+    />
   </div>
 </template>
 
@@ -46,6 +61,9 @@ import LineChart from '@/views/sharedcomponents/LineChart.vue'
 import BarChart from '@/views/sharedcomponents/BarChart.vue'
 import RadialBarChart from '@/views/sharedcomponents/RadialBarChart.vue'
 import DonutChart from '@/views/sharedcomponents/DonutChart.vue'
+import EchartLine from '@/views/sharedcomponents/EchartLine.vue'
+import EchartStackedArea from '@/views/sharedcomponents/EchartStackedArea.vue'
+import EchartArea from '@/views/sharedcomponents/EchartArea.vue'
 import { $themeColors } from '@themeConfig'
 
 const chartColors = {
@@ -81,8 +99,115 @@ export default {
     BarChart,
     RadialBarChart,
     DonutChart,
+    EchartLine,
+    EchartStackedArea,
+    EchartArea,
   },
   computed: {
+    echartArea() {
+      return {
+        option: {
+          xAxisData: ['7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '13/12', '14/12', '15/12', '16/12', '17/12', '18/12', '19/12', '20/12'],
+          series: [
+            {
+              name: 'Point One',
+              type: 'line',
+              stack: 'Total',
+              areaStyle: {
+                color: '#84d0ff',
+              },
+              color: '#84d0ff',
+              showSymbol: false,
+              smooth: 0.4,
+              lineStyle: {
+                width: 0,
+              },
+              data: [120, 432, 281, 434, 590, 330, 210, 150, 110, 150, 420, 650, 560, 250],
+            },
+            {
+              name: 'Point Two',
+              type: 'line',
+              stack: 'Total',
+              areaStyle: {
+                color: '#299aff',
+              },
+              color: '#299aff',
+              showSymbol: false,
+              smooth: 0.4,
+              lineStyle: {
+                width: 0,
+              },
+              data: [20, 32, 281, 634, 490, 430, 310, 450, 900, 1250, 1180, 750, 560, 550],
+            },
+            {
+              name: 'Point Three',
+              type: 'line',
+              stack: 'Total',
+              areaStyle: {
+                color: '#eef1f4',
+              },
+              color: '#eef1f4',
+              showSymbol: false,
+              smooth: 0.4,
+              lineStyle: {
+                width: 0,
+              },
+              data: [120, 132, 981, 134, 100, 80, 410, 550, 50, 0, 0, 0, 80, 550],
+            },
+          ],
+        },
+      }
+    },
+    echartStackedArea() {
+      return {
+        option: {
+          xAxisData: ['7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '13/12', '14/12', '15/12', '16/12', '17/12', '18/12', '19/12', '20/12'],
+          series: [
+            {
+              name: 'Point One',
+              type: 'line',
+              stack: 'Total',
+              areaStyle: {},
+              showSymbol: false,
+              lineStyle: {
+                width: 0,
+              },
+              data: [220, 332, 281, 334, 290, 430, 310, 350, 510, 550, 720, 650, 760, 850],
+            },
+            {
+              name: 'Point Two',
+              type: 'line',
+              stack: 'Total',
+              showSymbol: false,
+              areaStyle: {},
+              lineStyle: {
+                width: 0,
+              },
+              data: [220, 282, 191, 534, 290, 430, 350, 300, 580, 463, 380, 600, 560, 840],
+            },
+            {
+              name: 'Point Three',
+              type: 'line',
+              stack: 'Total',
+              showSymbol: false,
+              areaStyle: {},
+              lineStyle: {
+                width: 0,
+              },
+              data: [750, 232, 601, 154, 390, 330, 410, 510, 420, 320, 580, 690, 650, 800],
+            },
+          ],
+        },
+      }
+    },
+    echartLine() {
+      return {
+        option: {
+          xAxisData: ['7/12', '8/12', '9/12', '10/12', '11/12', '12/12', '13/12', '14/12', '15/12', '16/12', '17/12', '18/12', '19/12', '20/12'],
+          series: ['290', '200', '210', '190', '250', '220', '80', '90', '200', '150', '160', '100', '140', '100', '30'],
+        },
+      }
+    },
     donutChart() {
       return {
         series: [85, 16, 50, 50],
