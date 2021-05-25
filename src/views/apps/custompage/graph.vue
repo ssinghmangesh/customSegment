@@ -120,7 +120,6 @@ import EcommerceOrderChart from '@/views/dashboard/ecommerce/EcommerceOrderChart
 import EcommerceProfitChart from '@/views/dashboard/ecommerce/EcommerceProfitChart.vue'
 import EcommerceEarningsChart from '@/views/dashboard/ecommerce/EcommerceEarningsChart.vue'
 import EcommerceGoalOverview from '@/views/dashboard/ecommerce/EcommerceGoalOverview.vue'
-import axios from 'axios'
 
 const chartColors = {
   column: {
@@ -176,6 +175,8 @@ export default {
     return {
       data: {},
       series: [],
+      labels: [],
+      colors: [],
     }
   },
   computed: {
@@ -365,18 +366,11 @@ export default {
             fontSize: '14px',
             fontFamily: 'Montserrat',
           },
-          colors: [
-            chartColors.donut.series1,
-            chartColors.donut.series5,
-            chartColors.donut.series3,
-            chartColors.donut.series2,
-            chartColors.donut.series4,
-          ],
+          colors: this.colors,
           dataLabels: {
             enabled: true,
             formatter(val) {
-            // eslint-disable-next-line radix
-              return `${parseInt(val)}%`
+              return `${parseInt(val, 10)}%`
             },
           },
           plotOptions: {
@@ -399,16 +393,16 @@ export default {
                   total: {
                     show: true,
                     fontSize: '1.5rem',
-                    label: 'Operational',
+                    label: this.labels && this.labels[0] ? this.labels[0] : '',
                     formatter() {
-                      return '31%'
+                      return this.series && this.series[0] ? this.series[0] : 0
                     },
                   },
                 },
               },
             },
           },
-          labels: ['Paid', 'Partially Paid', 'Partially Refunded', 'Refunded', 'Pending'],
+          labels: this.labels,
           responsive: [
             {
               breakpoint: 992,
@@ -544,7 +538,19 @@ export default {
       return {
         series: [
           {
-            data: [280, 200, 220, 180, 270, 250, 70, 90, 200, 150, 160, 100, 150, 100, 50],
+            type: this.item.graphCatergory,
+            data: [{
+              x: 1,
+              y: 10,
+            },
+            {
+              x: 2,
+              y: 9,
+            },
+            {
+              x: 3,
+              y: 17,
+            }],
           },
         ],
         chartOptions: {
@@ -582,28 +588,6 @@ export default {
                 data.series[data.seriesIndex][data.dataPointIndex]
               }%</span></div>`
             },
-          },
-          xaxis: {
-            categories: [
-              '7/12',
-              '8/12',
-              '9/12',
-              '10/12',
-              '11/12',
-              '12/12',
-              '13/12',
-              '14/12',
-              '15/12',
-              '16/12',
-              '17/12',
-              '18/12',
-              '19/12',
-              '20/12',
-              '21/12',
-            ],
-          },
-          yaxis: {
-            // opposite: isRtl,
           },
         },
       }
@@ -814,24 +798,25 @@ export default {
       }
     },
   },
-  created() {
-    // data
-    const data = {
-      table: 'order',
-      workspaceId: 1,
-      columnname: 'financial_status',
-      startdate: '2000-01-01 11:49:40.765997+05:30',
-      enddate: '2021-05-13 11:49:40.765997+05:30',
-    }
-    if (this.graphType === 'apex-donut-chart') {
-      axios.post('http://localhost:3000/analytics-manager/pieChart', data)
-        .then(response => {
-          console.log(typeof response.data)
-          response.data.data.map(value => this.series.push(parseInt(value.count, 10)))
-          console.log(this.series)
-          this.data = response.data
+  async created() {
+    await this.update()
+  },
+  methods: {
+    async update() {
+      if (this.graphType === 'apex-donut-chart') {
+        const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
+        console.log('response : ', response.data)
+        response.data.forEach((d, index) => {
+          this.series.push(Number(d.count))
+          this.labels.push(d[this.item.data.columnname])
+          this.colors.push(this.getColor(index))
         })
-    }
+      }
+    },
+    getColor(index) {
+      const color = ['004e96', '#ffe700', '#00d4bd', '#826bf8', '#2b9bf4', '#FFA1A1']
+      return color[index]
+    },
   },
 }
 </script>
