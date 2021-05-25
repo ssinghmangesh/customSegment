@@ -11,7 +11,7 @@
       type="donut"
       height="350"
       :options="data.chartOptions"
-      :series="data.series"
+      :series="series"
     />
   </b-card>
 </template>
@@ -42,6 +42,10 @@ export default {
     subtitle: {
       type: String,
       default: () => '',
+    },
+    series: {
+      type: [Array],
+      default: () => [],
     },
   },
   data() {

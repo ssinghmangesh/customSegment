@@ -4,9 +4,9 @@
     class="card-tiny-line-stats"
     body-class="pb-50"
   >
-    <h6>Profit</h6>
+    <h6>{{ title }}</h6>
     <h2 class="font-weight-bolder mb-1">
-      6,24k
+      {{ total }}
     </h2>
     <!-- chart -->
     <vue-apex-charts
@@ -33,6 +33,14 @@ export default {
     data: {
       type: Object,
       default: () => {},
+    },
+    title: {
+      type: String,
+      default: () => '',
+    },
+    total: {
+      type: String,
+      default: () => '',
     },
   },
   data() {

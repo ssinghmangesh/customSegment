@@ -12,10 +12,10 @@
           This Month
         </div>
         <h5 class="mb-1">
-          $4055.56
+          {{ total }}
         </h5>
         <b-card-text class="text-muted font-small-2">
-          <span class="font-weight-bolder">68.2%</span><span> more earnings than last month.</span>
+          <span class="font-weight-bolder">{{ change }}</span><span> more earnings than last month.</span>
         </b-card-text>
       </b-col>
       <b-col cols="6">
@@ -52,6 +52,14 @@ export default {
     data: {
       type: Object,
       default: () => {},
+    },
+    change: {
+      type: String,
+      default: () => '',
+    },
+    total: {
+      type: String,
+      default: () => '',
     },
   },
   data() {

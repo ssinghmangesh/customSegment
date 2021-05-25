@@ -41,9 +41,9 @@
     />
     <apex-donut-chart
       v-else-if="graphType === 'apex-donut-chart'"
-      title="Apex Donut Chart"
-      subtitle="Apex Donut Chart"
+      title="Financial Status"
       :data="donutChart"
+      :series="series"
     />
     <echart-line
       v-else-if="graphType === 'echart-line'"
@@ -74,10 +74,34 @@
       title="Echart Scatter"
       :data="echartScatter"
     />
+    <ecommerce-order-chart
+      v-else-if="graphType === 'ecommerce-order-chart'"
+      :data="data.statisticsOrder"
+      title="Order"
+      total="100"
+    />
+    <ecommerce-profit-chart
+      v-else-if="graphType === 'ecommerce-profit-chart'"
+      :data="data.statisticsProfit"
+      title="Profit"
+      total="100$"
+    />
+    <ecommerce-earnings-chart
+      v-else-if="graphType === 'ecommerce-earnings-chart'"
+      total="50026$"
+      change="40%"
+      :data="data.earningsChart"
+    />
+    <ecommerce-goal-overview
+      v-else-if="graphType === 'ecommerce-goal-overview'"
+      title="Goal Overview"
+      :data="data.goalOverview"
+    />
   </b-col>
 </template>
 
 <script>
+// import { getUserData } from '@/auth/utils'
 import Statistics from '@/views/sharedcomponents/Statistics.vue'
 import ApexLineAreaChart from '@/views/charts-and-maps/charts/apex-chart/ApexLineAreaChart.vue'
 import ApexScatterChart from '@/views/charts-and-maps/charts/apex-chart/ApexScatterChart.vue'
@@ -92,6 +116,11 @@ import EchartDoughnut from '@/views/charts-and-maps/charts/echart/EchartDoughnut
 import EchartScatter from '@/views/charts-and-maps/charts/echart/EchartScatter.vue'
 import { BCol } from 'bootstrap-vue'
 import { $themeColors } from '@themeConfig'
+import EcommerceOrderChart from '@/views/dashboard/ecommerce/EcommerceOrderChart.vue'
+import EcommerceProfitChart from '@/views/dashboard/ecommerce/EcommerceProfitChart.vue'
+import EcommerceEarningsChart from '@/views/dashboard/ecommerce/EcommerceEarningsChart.vue'
+import EcommerceGoalOverview from '@/views/dashboard/ecommerce/EcommerceGoalOverview.vue'
+import axios from 'axios'
 
 const chartColors = {
   column: {
@@ -132,12 +161,22 @@ export default {
     BCol,
     EchartDoughnut,
     EchartScatter,
+    EcommerceOrderChart,
+    EcommerceProfitChart,
+    EcommerceEarningsChart,
+    EcommerceGoalOverview,
   },
   props: {
     item: {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      data: {},
+      series: [],
+    }
   },
   computed: {
     echartScatter() {
@@ -319,7 +358,6 @@ export default {
     },
     donutChart() {
       return {
-        series: [85, 16, 50, 50],
         chartOptions: {
           legend: {
             show: true,
@@ -332,6 +370,7 @@ export default {
             chartColors.donut.series5,
             chartColors.donut.series3,
             chartColors.donut.series2,
+            chartColors.donut.series4,
           ],
           dataLabels: {
             enabled: true,
@@ -354,7 +393,7 @@ export default {
                     fontFamily: 'Montserrat',
                     formatter(val) {
                       // eslint-disable-next-line radix
-                      return `${parseInt(val)}%`
+                      return `${parseInt(val)}`
                     },
                   },
                   total: {
@@ -369,7 +408,7 @@ export default {
               },
             },
           },
-          labels: ['Operational', 'Networking', 'Hiring', 'R&D'],
+          labels: ['Paid', 'Partially Paid', 'Partially Refunded', 'Refunded', 'Pending'],
           responsive: [
             {
               breakpoint: 992,
@@ -774,6 +813,25 @@ export default {
         },
       }
     },
+  },
+  created() {
+    // data
+    const data = {
+      table: 'order',
+      workspaceId: 1,
+      columnname: 'financial_status',
+      startdate: '2000-01-01 11:49:40.765997+05:30',
+      enddate: '2021-05-13 11:49:40.765997+05:30',
+    }
+    if (this.graphType === 'apex-donut-chart') {
+      axios.post('http://localhost:3000/analytics-manager/pieChart', data)
+        .then(response => {
+          console.log(typeof response.data)
+          response.data.data.map(value => this.series.push(parseInt(value.count, 10)))
+          console.log(this.series)
+          this.data = response.data
+        })
+    }
   },
 }
 </script>
