@@ -1,7 +1,7 @@
 <template>
   <b-card no-body>
     <b-card-header>
-      <b-card-title>Data Science</b-card-title>
+      <b-card-title>{{ title }}</b-card-title>
 
       <!-- datepicker -->
       <div class="d-flex align-items-center">
@@ -47,12 +47,27 @@ export default {
     BCardTitle,
     flatPickr,
   },
-  data() {
-    return {
-      chartjsData,
-      rangePicker: ['2019-05-01', '2019-05-10'],
-    }
+  props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
+    chartjsData: {
+      type: Object,
+      default: () => chartjsData,
+    },
+    rangePicker: {
+      type: Array,
+      default: () => [],
+    },
   },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //     rangePicker: ['2019-05-01', '2019-05-10'],
+  //   }
+  // },
 }
 </script>
 

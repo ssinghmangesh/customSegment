@@ -3,9 +3,9 @@
     <b-card-header>
       <div>
         <b-card-title class="mb-1">
-          Statistics
+          {{ title }}
         </b-card-title>
-        <b-card-sub-title>Commercial networks and enterprises</b-card-sub-title>
+        <b-card-sub-title>{{ subtitle }}</b-card-sub-title>
       </div>
     </b-card-header>
 
@@ -37,10 +37,28 @@ export default {
     BCardTitle,
     ChartjsComponentLineChart,
   },
-  data() {
-    return {
-      chartjsData,
-      plugins: [
+  props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
+    subtitle: {
+      type: String,
+      require: true,
+      default: () => 'SubTitle',
+    },
+    chartjsData: {
+      type: Object,
+      default: () => chartjsData,
+    },
+    options: {
+      type: Object,
+      default: null,
+    },
+    plugins: {
+      type: Array,
+      default: () => [
         // to add spacing between legends and chart
         {
           beforeInit(chart) {
@@ -52,7 +70,28 @@ export default {
           },
         },
       ],
-    }
+    },
+    styles: {
+      type: Object,
+      default: null,
+    },
   },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //     plugins: [
+  //       // to add spacing between legends and chart
+  //       {
+  //         beforeInit(chart) {
+  //           /* eslint-disable func-names, no-param-reassign */
+  //           chart.legend.afterFit = function () {
+  //             this.height += 20
+  //           }
+  //           /* eslint-enable */
+  //         },
+  //       },
+  //     ],
+  //   }
+  // },
 }
 </script>

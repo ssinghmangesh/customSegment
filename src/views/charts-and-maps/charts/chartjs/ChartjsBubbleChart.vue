@@ -1,12 +1,12 @@
 <template>
   <b-card no-body>
     <b-card-header>
-      <b-card-title>Bubble Chart</b-card-title>
+      <b-card-title>{{ title }}</b-card-title>
 
       <!-- status -->
       <div class="d-flex align-items-center flex-wrap">
         <h5 class="font-weight-bolder mb-0 mr-1">
-          $ 100,000
+          {{ total }}
         </h5>
         <b-badge variant="light-secondary">
           <feather-icon
@@ -14,7 +14,7 @@
             class="text-danger"
             size="18"
           />
-          <span class="ml-25">20%</span>
+          <span class="ml-25">{{ updown }}</span>
         </b-badge>
       </div>
       <!-- status -->
@@ -47,10 +47,35 @@ export default {
     BCardTitle,
     BCardBody,
   },
-  data() {
-    return {
-      chartjsData,
-    }
+  props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
+    chartjsData: {
+      type: Object,
+      default: () => chartjsData,
+    },
+    total: {
+      type: Number,
+      require: true,
+      default: () => 0,
+    },
+    updown: {
+      type: Number,
+      require: true,
+      default: () => 0,
+    },
+    options: {
+      type: Object,
+      default: null,
+    },
   },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //   }
+  // },
 }
 </script>

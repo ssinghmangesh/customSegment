@@ -2,7 +2,7 @@
   <b-card no-body>
     <b-card-header>
       <b-card-title>
-        New Product Data
+        {{ title }}
       </b-card-title>
 
       <!-- dropdown button -->
@@ -61,10 +61,25 @@ export default {
   directives: {
     Ripple,
   },
-  data() {
-    return {
-      chartjsData,
-    }
+  props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
+    chartjsData: {
+      type: Object,
+      default: () => chartjsData,
+    },
+    options: {
+      type: Object,
+      default: null,
+    },
   },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //   }
+  // },
 }
 </script>
