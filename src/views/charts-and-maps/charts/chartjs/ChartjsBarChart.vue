@@ -1,7 +1,7 @@
 <template>
   <b-card no-body>
     <b-card-header>
-      <b-card-title>Latest Statistics</b-card-title>
+      <b-card-title>{{ title }}</b-card-title>
       <!-- datepicker -->
       <div class="d-flex align-items-center">
         <feather-icon
@@ -46,11 +46,26 @@ export default {
     flatPickr,
     ChartjsComponentBarChart,
   },
+  props: {
+    title: {
+      type: String,
+      required: true,
+      default: () => 'TEST',
+    },
+    chartjsData: {
+      type: Object,
+      required: true,
+      default: () => chartjsData,
+    },
+    rangePicker: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+  },
+
   data() {
-    return {
-      chartjsData,
-      rangePicker: ['2019-05-01', '2019-05-10'],
-    }
+    return {}
   },
 }
 </script>
