@@ -4,7 +4,7 @@
     :md="mdCol"
   >
     <div>
-      <!-- <ChartjsBarChart
+      <ChartjsBarChart
         v-if="graphType === 'ChartjsBarChart'"
         title="Chartjs Bar Chart"
         :data="barChart"
@@ -64,7 +64,7 @@
         title="Chartjs Scatter Chart"
         :data="scatterChart"
         :options="options"
-      /> -->
+      />
       <StatisticCardWithAreaChart
         v-if="graphType === 'StatisticCardWithAreaChartOrders'"
         :icon="icon"
@@ -79,7 +79,7 @@
         :statistic-title="title"
         :chart-data="data.subscribersGained.series"
       />
-      <!-- <AnalyticsAvgSessions
+      <AnalyticsAvgSessions
         v-else-if="graphType === 'AnalyticsAvgSessions'"
         :data="data.avgSessions"
         :title="title"
@@ -105,7 +105,7 @@
       />
       <InvoiceList
         v-else-if="graphType === 'InvoiceList'"
-      /> -->
+      />
     </div>
   </b-col>
 </template>

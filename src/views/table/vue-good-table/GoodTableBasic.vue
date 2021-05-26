@@ -178,53 +178,80 @@ export default {
     BDropdown,
     BDropdownItem,
   },
+  props: {
+    pageLength: {
+      type: Number,
+      required: true,
+      default: () => 0,
+    },
+    dir: {
+      type: Boolean,
+      required: true,
+      default: () => false,
+    },
+    columns: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    rows: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    status: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      pageLength: 3,
-      dir: false,
+      // pageLength: 3,
+      // dir: false,
       codeBasic,
-      columns: [
-        {
-          label: 'Name',
-          field: 'fullName',
-        },
-        {
-          label: 'Email',
-          field: 'email',
-        },
-        {
-          label: 'Date',
-          field: 'startDate',
-        },
-        {
-          label: 'Salary',
-          field: 'salary',
-        },
-        {
-          label: 'Status',
-          field: 'status',
-        },
-        {
-          label: 'Action',
-          field: 'action',
-        },
-      ],
-      rows: [],
+      // columns: [
+      //   {
+      //     label: 'Name',
+      //     field: 'fullName',
+      //   },
+      //   {
+      //     label: 'Email',
+      //     field: 'email',
+      //   },
+      //   {
+      //     label: 'Date',
+      //     field: 'startDate',
+      //   },
+      //   {
+      //     label: 'Salary',
+      //     field: 'salary',
+      //   },
+      //   {
+      //     label: 'Status',
+      //     field: 'status',
+      //   },
+      //   {
+      //     label: 'Action',
+      //     field: 'action',
+      //   },
+      // ],
+      // rows: [],
       searchTerm: '',
-      status: [{
-        1: 'Current',
-        2: 'Professional',
-        3: 'Rejected',
-        4: 'Resigned',
-        5: 'Applied',
-      },
-      {
-        1: 'light-primary',
-        2: 'light-success',
-        3: 'light-danger',
-        4: 'light-warning',
-        5: 'light-info',
-      }],
+      // status: [{
+      //   1: 'Current',
+      //   2: 'Professional',
+      //   3: 'Rejected',
+      //   4: 'Resigned',
+      //   5: 'Applied',
+      // },
+      // {
+      //   1: 'light-primary',
+      //   2: 'light-success',
+      //   3: 'light-danger',
+      //   4: 'light-warning',
+      //   5: 'light-info',
+      // }],
     }
   },
   computed: {
@@ -251,10 +278,11 @@ export default {
       this.dir = false
       return this.dir
     },
+
   },
-  created() {
-    this.$http.get('/good-table/basic')
-      .then(res => { this.rows = res.data })
-  },
+  // created() {
+  //   this.$http.get('/good-table/basic')
+  //     .then(res => { this.rows = res.data })
+  // },
 }
 </script>
