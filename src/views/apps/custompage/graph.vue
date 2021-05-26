@@ -21,10 +21,10 @@
     />
     <apex-line-chart
       v-else-if="graphType === 'apex-line-chart'"
-      title="Apex Line Chart"
+      :balance="100"
+      :title="item.title"
       subtitle="Apex Line Chart"
-      balance="100"
-      change="10"
+      :change="10"
       :data="lineChart"
     />
     <apex-bar-chart
@@ -41,9 +41,8 @@
     />
     <apex-donut-chart
       v-else-if="graphType === 'apex-donut-chart'"
-      title="Financial Status"
+      :title="item.title"
       :data="donutChart"
-      :series="series"
     />
     <echart-line
       v-else-if="graphType === 'echart-line'"
@@ -358,7 +357,9 @@ export default {
       }
     },
     donutChart() {
+      const { series, labels, colors } = this
       return {
+        series,
         chartOptions: {
           legend: {
             show: true,
@@ -366,7 +367,7 @@ export default {
             fontSize: '14px',
             fontFamily: 'Montserrat',
           },
-          colors: this.colors,
+          colors,
           dataLabels: {
             enabled: true,
             formatter(val) {
@@ -393,16 +394,16 @@ export default {
                   total: {
                     show: true,
                     fontSize: '1.5rem',
-                    label: this.labels && this.labels[0] ? this.labels[0] : '',
+                    label: labels[0],
                     formatter() {
-                      return this.series && this.series[0] ? this.series[0] : 0
+                      return series[0]
                     },
                   },
                 },
               },
             },
           },
-          labels: this.labels,
+          labels,
           responsive: [
             {
               breakpoint: 992,
@@ -535,24 +536,9 @@ export default {
       }
     },
     lineChart() {
+      const { series } = this
       return {
-        series: [
-          {
-            type: this.item.graphCatergory,
-            data: [{
-              x: 1,
-              y: 10,
-            },
-            {
-              x: 2,
-              y: 9,
-            },
-            {
-              x: 3,
-              y: 17,
-            }],
-          },
-        ],
+        series,
         chartOptions: {
           chart: {
             zoom: {
@@ -568,12 +554,12 @@ export default {
             strokeColors: [$themeColors.light],
             colors: [$themeColors.warning],
           },
-          colors: [$themeColors.warning],
+          colors: ['#2E93fA'],
           dataLabels: {
             enabled: false,
           },
           stroke: {
-            curve: 'straight',
+            curve: this.item.curve,
           },
           grid: {
             xaxis: {
@@ -805,16 +791,26 @@ export default {
     async update() {
       if (this.graphType === 'apex-donut-chart') {
         const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
-        console.log('response : ', response.data)
-        response.data.forEach((d, index) => {
+        // console.log('response : ', response.data)
+        response.data.data.forEach((d, index) => {
           this.series.push(Number(d.count))
           this.labels.push(d[this.item.data.columnname])
           this.colors.push(this.getColor(index))
         })
+      } else if (this.graphType === 'apex-line-chart') {
+        const response = await this.$http.post('/analytics-manager/line-graph', this.item.data)
+        const data = response.data.data.map(value => ({
+          x: value.period,
+          y: value.revenue,
+        }))
+        this.series.push({
+          type: this.item.graphCatergory,
+          data,
+        })
       }
     },
     getColor(index) {
-      const color = ['004e96', '#ffe700', '#00d4bd', '#826bf8', '#2b9bf4', '#FFA1A1']
+      const color = ['#004e96', '#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800', '#ffe700', '#00d4bd', '#826bf8', '#2b9bf4', '#FFA1A1']
       return color[index]
     },
   },
