@@ -37,6 +37,13 @@
         enabled: true,
         perPage:pageLength
       }"
+      :sortOptions="{
+        enabled: true,
+        initialSortBy: {
+          label: 'Name',
+          field: 'fullName',
+        }
+      }"
     >
       <template
         slot="table-row"
@@ -112,17 +119,17 @@
               Showing 1 to
             </span>
             <b-form-select
-              v-model="pageLength"
+              v-model="rowLength"
               :options="['3','5','10']"
               class="mx-1"
               @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />
-            <span class="text-nowrap"> of {{ props.total }} entries </span>
+            <span class="text-nowrap"> of {{ total }} entries </span>
           </div>
           <div>
             <b-pagination
               :value="1"
-              :total-rows="props.total"
+              :total-rows="total"
               :per-page="pageLength"
               first-number
               last-number
@@ -130,7 +137,7 @@
               prev-class="prev-item"
               next-class="next-item"
               class="mt-1 mb-0"
-              @input="(value)=>props.pageChanged({currentPage:value})"
+              @input="(value)=>{props.pageChanged({currentPage:value}); $emit('changeInCurrentPage', value);}"
             >
               <template #prev-text>
                 <feather-icon
@@ -204,9 +211,20 @@ export default {
       required: true,
       default: () => [],
     },
+    total: {
+      type: Number,
+      required: true,
+      default: () => 100,
+    },
+    currentPage: {
+      type: Number,
+      required: true,
+      default: () => 1,
+    },
   },
   data() {
     return {
+      rowLength: 0,
       // pageLength: 3,
       // dir: false,
       codeBasic,
@@ -280,9 +298,13 @@ export default {
     },
 
   },
-  // created() {
-  //   this.$http.get('/good-table/basic')
-  //     .then(res => { this.rows = res.data })
-  // },
+  watch: {
+    rowLength(val) {
+      this.$emit('changeInPageLength', val)
+    },
+  },
+  created() {
+    this.rowLength = this.pageLength
+  },
 }
 </script>

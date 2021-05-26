@@ -3,10 +3,14 @@
     <b-col cols="12">
       <good-table-basic
         :pageLength="pageLength"
+        :currentPage="currentPage"
         :columns="columns"
         :rows="rows"
         :status="status"
         :dir="dir"
+        :total="total"
+        @changeInPageLength="changeInPageLength"
+        @changeInCurrentPage="changeInCurrentPage"
       />
       <!-- <good-table-row-group />
       <good-table-column-search />
@@ -41,12 +45,11 @@ export default {
   data() {
     return {
       rows: [],
+      pageLength: 10,
+      currentPage: 1,
     }
   },
   computed: {
-    pageLength() {
-      return 3
-    },
     columns() {
       return [
         {
@@ -98,26 +101,44 @@ export default {
       return false
     },
   },
+  watch: {
+    async pageLength() {
+      await this.update()
+    },
+    async currentPage() {
+      await this.update()
+    },
+  },
   async created() {
     await this.update()
   },
   methods: {
+    changeInCurrentPage(val) {
+      console.log('changeInCurrentPage', val)
+      this.currentPage = val
+    },
+    changeInPageLength(length) {
+      console.log('changeInPageLength', length)
+      this.pageLength = length
+    },
     async update() {
       const data = {
         table: 'order',
-        workspaceId: 333,
+        workspaceId: 9,
         orderBykey: 'created_at',
         limit: this.pageLength,
-        skipRowby: 0,
+        skipRowby: ((this.currentPage - 1) * this.pageLength),
       }
       const response = await this.$http.post('/analytics-manager/table', data)
       console.log(response.data)
       this.rows = [...response.data.data]
-    },
-  },
-  watch: {
-    async pageLength() {
-      await this.update()
+      const countData = {
+        table: 'order',
+        workspaceId: 9,
+      }
+      const response2 = await this.$http.post('/analytics-manager/count', countData)
+      console.log(response2)
+      this.total = response2.data.data.count
     },
   },
 }
