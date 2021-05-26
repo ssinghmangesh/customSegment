@@ -96,6 +96,22 @@
       title="Goal Overview"
       :data="data.goalOverview"
     />
+    <ecommerce-browser-states
+      v-else-if="graphType === 'ecommerce-browser-states'"
+      :data="browserStates"
+      :title="item.title"
+      :subtitle="item.subtitle"
+    />
+    <ecommerce-transactions
+      v-else-if="graphType === 'ecommerce-transactions'"
+      :title="item.title"
+      :data="data.transactionData"
+    />
+    <ecommerce-company-table
+      v-else-if="graphType === 'ecommerce-company-table'"
+      :fields="item.fields"
+      :table-data="data"
+    />
   </b-col>
 </template>
 
@@ -119,6 +135,10 @@ import EcommerceOrderChart from '@/views/dashboard/ecommerce/EcommerceOrderChart
 import EcommerceProfitChart from '@/views/dashboard/ecommerce/EcommerceProfitChart.vue'
 import EcommerceEarningsChart from '@/views/dashboard/ecommerce/EcommerceEarningsChart.vue'
 import EcommerceGoalOverview from '@/views/dashboard/ecommerce/EcommerceGoalOverview.vue'
+import EcommerceBrowserStates from '@/views/dashboard/ecommerce/EcommerceBrowserStates.vue'
+import EcommerceTransactions from '@/views/dashboard/ecommerce/EcommerceTransactions.vue'
+import EcommerceCompanyTable from '@/views/dashboard/ecommerce/EcommerceCompanyTable.vue'
+// import Vue from 'vue'
 
 const chartColors = {
   column: {
@@ -163,6 +183,9 @@ export default {
     EcommerceProfitChart,
     EcommerceEarningsChart,
     EcommerceGoalOverview,
+    EcommerceBrowserStates,
+    EcommerceTransactions,
+    EcommerceCompanyTable,
   },
   props: {
     item: {
@@ -179,6 +202,36 @@ export default {
     }
   },
   computed: {
+    browserStates() {
+      /* eslint-disable global-require */
+      return [
+        {
+          browserImg: require('@/assets/images/icons/google-chrome.png'),
+          name: 'Google Chrome',
+          usage: '54.4%',
+        },
+        {
+          browserImg: require('@/assets/images/icons/mozila-firefox.png'),
+          name: 'Mozila Firefox',
+          usage: '6.1%',
+        },
+        {
+          browserImg: require('@/assets/images/icons/apple-safari.png'),
+          name: 'Apple Safari',
+          usage: '14.6%',
+        },
+        {
+          browserImg: require('@/assets/images/icons/internet-explorer.png'),
+          name: 'Internet Explorer',
+          usage: '4.2%',
+        },
+        {
+          browserImg: require('@/assets/images/icons/opera.png'),
+          name: 'Opera Mini',
+          usage: '8.%',
+        },
+      ]
+    },
     echartScatter() {
       return {
         selected: 'radio1',
@@ -800,13 +853,21 @@ export default {
       } else if (this.graphType === 'apex-line-chart') {
         const response = await this.$http.post('/analytics-manager/line-graph', this.item.data)
         const data = response.data.data.map(value => ({
-          x: value.period,
-          y: value.revenue,
+          x: value.x,
+          y: value.y,
         }))
         this.series.push({
           type: this.item.graphCatergory,
           data,
         })
+      } else if (this.graphType === 'ecommerce-company-table') {
+        const response = await this.$http.post('/analytics-manager/table', this.item.data)
+        this.data = [...response.data.data]
+      } else {
+        this.$http.get('/ecommerce/data')
+          .then(response => {
+            this.data = response.data
+          })
       }
     },
     getColor(index) {

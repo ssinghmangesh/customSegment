@@ -70,6 +70,44 @@ export default {
             enddate: '2021-05-13 11:49:40.765997+05:30',
           },
         },
+        {
+          type: 'ecommerce-browser-states',
+          title: 'Ecommerce Browser States',
+          subtitle: 'subtile',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'ecommerce-transactions',
+          title: 'Transactions',
+          subtitle: 'subtile',
+          col: {
+            default: 12,
+            md: 6,
+          },
+        },
+        {
+          type: 'ecommerce-company-table',
+          col: {
+            default: 12,
+            md: 8,
+          },
+          fields: [
+            { key: 'name', label: 'Name' },
+            { key: 'total_discounts', label: 'Total Discounts' },
+            { key: 'total_price', label: 'Total Price' },
+            { key: 'financial_status', label: 'Financial Status' },
+          ],
+          data: {
+            table: 'order',
+            workspaceId: 1,
+            orderBykey: 'id',
+            limit: '5',
+            skipRowby: '3',
+          },
+        },
       ]
     },
   },

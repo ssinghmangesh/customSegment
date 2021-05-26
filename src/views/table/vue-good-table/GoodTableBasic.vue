@@ -122,7 +122,7 @@
           <div>
             <b-pagination
               :value="1"
-              :total-rows="props.total"
+              :total-rows="20"
               :per-page="pageLength"
               first-number
               last-number
