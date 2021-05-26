@@ -5,7 +5,7 @@
   >
     <b-card-header>
       <b-card-title class="ml-25">
-        User Timeline
+        {{ title }}
       </b-card-title>
     </b-card-header>
 
@@ -116,6 +116,10 @@ export default {
     data: {
       type: Object,
       default: () => {},
+    },
+    title: {
+      type: String,
+      default: () => 'Title',
     },
   },
 }

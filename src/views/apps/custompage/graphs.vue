@@ -4,7 +4,7 @@
     :md="mdCol"
   >
     <div>
-      <ChartjsBarChart
+      <!-- <ChartjsBarChart
         v-if="graphType === 'ChartjsBarChart'"
         title="Chartjs Bar Chart"
         :data="barChart"
@@ -64,25 +64,25 @@
         title="Chartjs Scatter Chart"
         :data="scatterChart"
         :options="options"
-      />
+      /> -->
       <StatisticCardWithAreaChart
-        v-else-if="graphType === 'StatisticCardWithAreaChartOrders'"
-        icon="PackageIcon"
-        color="warning"
-        :statistic="kFormatter(data.ordersRecevied.analyticsData.orders)"
-        statistic-title="Orders Received"
-        :chart-data="data.ordersRecevied.series"
+        v-if="graphType === 'StatisticCardWithAreaChartOrders'"
+        :icon="icon"
+        :color="color"
+        :statistic-title="title"
+        :chart-data="count"
       />
       <StatisticCardWithAreaChart
         v-else-if="graphType === 'StatisticCardWithAreaChartSubscribers'"
-        icon="UsersIcon"
+        :icon="icon"
         :statistic="kFormatter(data.subscribersGained.analyticsData.subscribers)"
-        statistic-title="Subscribers Gained"
+        :statistic-title="title"
         :chart-data="data.subscribersGained.series"
       />
-      <AnalyticsAvgSessions
+      <!-- <AnalyticsAvgSessions
         v-else-if="graphType === 'AnalyticsAvgSessions'"
         :data="data.avgSessions"
+        :title="title"
       />
       <AnalyticsSupportTracker
         v-else-if="graphType === 'AnalyticsSupportTracker'"
@@ -91,10 +91,13 @@
       <AnalyticsTimeline
         v-else-if="graphType === 'AnalyticsTimeline'"
         :data="data.timeline"
+        :title="title"
       />
       <AnalyticsSalesRadarChart
         v-else-if="graphType === 'AnalyticsSalesRadarChart'"
         :data="data.salesChart"
+        :title="title"
+        :period="period"
       />
       <AnalyticsAppDesign
         v-else-if="graphType === 'AnalyticsAppDesign'"
@@ -102,7 +105,7 @@
       />
       <InvoiceList
         v-else-if="graphType === 'InvoiceList'"
-      />
+      /> -->
     </div>
   </b-col>
 </template>
@@ -153,6 +156,21 @@ export default {
       required: true,
       default: null,
     },
+    // icon: {
+    //   type: String,
+    //   required: true,
+    //   default: 'PackageIcon',
+    // },
+    // color: {
+    //   type: String,
+    //   required: true,
+    //   default: 'warning',
+    // },
+    // title: {
+    //   type: String,
+    //   required: true,
+    //   default: 'Orders Received',
+    // },
     // dataProp: {
     //   type: Object,
     //   required: true,
@@ -162,6 +180,7 @@ export default {
   data() {
     return {
       data: {},
+      count: 0,
     }
   },
   computed: {
@@ -174,13 +193,33 @@ export default {
     graphType() {
       return this.item.type
     },
+    icon() {
+      return this.item.icon
+    },
+    color() {
+      return this.item.color
+    },
+    title() {
+      return this.item.title
+    },
+    period() {
+      return this.item.period
+    },
   },
-  created() {
+  async created() {
     // data
-    this.$http.get('/analytics/data')
-      .then(response => { this.data = response.data })
+    // this.$http.get('/analytics/data')
+    //   .then(response => { this.data = response.data })
+    await this.update()
   },
   methods: {
+    async update() {
+      if (this.graphType === 'StatisticCardWithAreaChartOrders') {
+        const response = await this.$http.post('/analytics-manager/count', this.item.data)
+        console.log('response : ', response.data)
+        this.count = response.data.data.count
+      }
+    },
     kFormatter,
   },
 }

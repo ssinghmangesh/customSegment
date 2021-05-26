@@ -800,8 +800,8 @@ export default {
       } else if (this.graphType === 'apex-line-chart') {
         const response = await this.$http.post('/analytics-manager/line-graph', this.item.data)
         const data = response.data.data.map(value => ({
-          x: value.period,
-          y: value.revenue,
+          x: value.x,
+          y: value.y,
         }))
         this.series.push({
           type: this.item.graphCatergory,
