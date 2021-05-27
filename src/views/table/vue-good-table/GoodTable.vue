@@ -11,6 +11,7 @@
         :total="total"
         @changeInPageLength="changeInPageLength"
         @changeInCurrentPage="changeInCurrentPage"
+        @onSortChange="onSortChange"
       />
       <!-- <good-table-row-group />
       <good-table-column-search />
@@ -47,6 +48,8 @@ export default {
       rows: [],
       pageLength: 10,
       currentPage: 1,
+      orderBykey: 'email',
+      orderByDirection: 'asc',
     }
   },
   computed: {
@@ -113,6 +116,12 @@ export default {
     await this.update()
   },
   methods: {
+    onSortChange(val) {
+      console.log(val)
+      this.orderBykey = this.val[0].field
+      this.orderByDirection = this.val[0].type
+      this.update()
+    },
     changeInCurrentPage(val) {
       console.log('changeInCurrentPage', val)
       this.currentPage = val
@@ -125,7 +134,8 @@ export default {
       const data = {
         table: 'order',
         workspaceId: 9,
-        orderBykey: 'created_at',
+        orderBykey: this.orderBykey,
+        orderByDirection: this.orderByDirection,
         limit: this.pageLength,
         skipRowby: ((this.currentPage - 1) * this.pageLength),
       }

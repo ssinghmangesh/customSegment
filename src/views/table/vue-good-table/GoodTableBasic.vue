@@ -44,6 +44,7 @@
           field: 'fullName',
         }
       }"
+      @on-sort-change="onSortChange"
     >
       <template
         slot="table-row"
@@ -305,6 +306,12 @@ export default {
   },
   created() {
     this.rowLength = this.pageLength
+  },
+  methods: {
+    onSortChange(val) {
+      console.log('onSortChange : ', val)
+      this.$emit('onSortChange', val)
+    },
   },
 }
 </script>
