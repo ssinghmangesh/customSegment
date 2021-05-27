@@ -37,7 +37,8 @@
         ok-title="Save"
       >
       <type-handler
-        :selected-filter=""
+        :selected-filter="filter"
+        @applide
       />
       </b-modal>
       <!-- <b-form-input
@@ -76,6 +77,7 @@ export default {
       searchQuery: '',
       searchOption: [{
         name: 'total_spent',
+        title: 'Total Spent' 
         type: 'number',
       },
       {
@@ -89,6 +91,7 @@ export default {
       {
         name: 'cancel_reason',
         type: 'dropdown',
+        options: ['', '']
       },
       ],
       query: 'Exactly',
