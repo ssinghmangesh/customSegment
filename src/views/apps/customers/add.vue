@@ -19,13 +19,33 @@
           class="select-size-lg"
         />
       </b-form-group>
-
-      <b-form-input
+      <b-form-group>
+        <v-select
+          v-model="searchQuery"
+          :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
+          label="title"
+          :options="searchOption"
+          class="select-size-lg"
+        />
+      </b-form-group>
+      <b-modal
+        id="modal-center"
+        ref="my-modal"
+        centered
+        :title="searchQuery"
+        ok-only
+        ok-title="Save"
+      >
+      <type-handler
+        :selected-filter=""
+      />
+      </b-modal>
+      <!-- <b-form-input
         id="input-lg"
         size="lg"
         v-model="searchQuery"
         placeholder="Search"
-      />
+      /> -->
 
     </b-card-text>
   </b-card>
@@ -33,7 +53,7 @@
 
 <script>
 import {
-  BCard, BCardText, BFormGroup, BFormInput,
+  BCard, BCardText, BFormGroup, BModal, BFormInput,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import store from '@/store/index'
@@ -45,6 +65,7 @@ export default {
     BFormGroup,
     BFormInput,
     vSelect,
+    BModal,
   },
   data() {
     return {
@@ -53,6 +74,26 @@ export default {
       incEcl: 'Include',
       incEclOption: ['Include', 'Exclude'],
       searchQuery: '',
+      searchOption: [{
+        name: 'total_spent',
+        type: 'number',
+      },
+      {
+        name: 'email',
+        type: 'text',
+      },
+      {
+        name: 'accepts_marketing',
+        type: 'boolean',
+      },
+      {
+        name: 'cancel_reason',
+        type: 'dropdown',
+      },
+      ],
+      query: 'Exactly',
+      queryOption: ['Exactly', 'Greater than', 'Less than'],
+      value: null,
     }
   },
   computed: {
@@ -78,6 +119,13 @@ export default {
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.dir = false
       return this.dir
+    },
+  },
+  watch: {
+    searchQuery(val) {
+      if (val) {
+        this.$refs['my-modal'].show()
+      }
     },
   },
   created() {
