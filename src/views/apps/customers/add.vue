@@ -32,13 +32,13 @@
         id="modal-center"
         ref="my-modal"
         centered
-        :title="searchQuery"
+        :title="searchQuery.title"
         ok-only
         ok-title="Save"
       >
-      <type-handler
-        :selected-filter=""
-      />
+        <type-handler
+          :selected-filter="searchQuery"
+        />
       </b-modal>
       <!-- <b-form-input
         id="input-lg"
@@ -53,7 +53,8 @@
 
 <script>
 import {
-  BCard, BCardText, BFormGroup, BModal, BFormInput,
+  BCard, BCardText, BFormGroup, BModal,
+  // BFormInput,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import store from '@/store/index'
@@ -63,7 +64,7 @@ export default {
     BCard,
     BCardText,
     BFormGroup,
-    BFormInput,
+    // BFormInput,
     vSelect,
     BModal,
   },
@@ -75,25 +76,26 @@ export default {
       incEclOption: ['Include', 'Exclude'],
       searchQuery: '',
       searchOption: [{
+        title: 'Total Spent',
         name: 'total_spent',
         type: 'number',
       },
       {
+        title: 'Email',
         name: 'email',
         type: 'text',
       },
       {
+        title: 'Accepts Marketing',
         name: 'accepts_marketing',
         type: 'boolean',
       },
       {
+        title: 'Cancel Reason',
         name: 'cancel_reason',
         type: 'dropdown',
       },
       ],
-      query: 'Exactly',
-      queryOption: ['Exactly', 'Greater than', 'Less than'],
-      value: null,
     }
   },
   computed: {
