@@ -37,13 +37,7 @@
         enabled: true,
         perPage:pageLength
       }"
-      :sortOptions="{
-        enabled: true,
-        initialSortBy: {
-          label: 'Name',
-          field: 'fullName',
-        }
-      }"
+      @on-sort-change="onSortChange"
     >
       <template
         slot="table-row"
@@ -116,7 +110,7 @@
         <div class="d-flex justify-content-between flex-wrap">
           <div class="d-flex align-items-center mb-0 mt-1">
             <span class="text-nowrap ">
-              Showing 1 to
+              Showing {{ start }} to
             </span>
             <b-form-select
               v-model="rowLength"
@@ -221,6 +215,11 @@ export default {
       required: true,
       default: () => 1,
     },
+    start: {
+      type: Number,
+      required: true,
+      default: () => 1,
+    },
   },
   data() {
     return {
@@ -296,7 +295,6 @@ export default {
       this.dir = false
       return this.dir
     },
-
   },
   watch: {
     rowLength(val) {
@@ -305,6 +303,12 @@ export default {
   },
   created() {
     this.rowLength = this.pageLength
+  },
+  methods: {
+    onSortChange(params) {
+      console.log(params)
+      this.$emit('onSortChange', params)
+    },
   },
 }
 </script>

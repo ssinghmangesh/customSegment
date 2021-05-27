@@ -9,12 +9,25 @@
         :status="status"
         :dir="dir"
         :total="total"
+        :start="start"
         @changeInPageLength="changeInPageLength"
         @changeInCurrentPage="changeInCurrentPage"
+        @onSortChange="onSortChange"
       />
+      <!-- <good-table-advance-search
+        :pageLength="pageLength"
+        :currentPage="currentPage"
+        :columns="columns"
+        :rows="rows"
+        :status="status"
+        :dir="dir"
+        :total="total"
+        :start="start"
+        @changeInPageLength="changeInPageLength"
+        @changeInCurrentPage="changeInCurrentPage"
+      /> -->
       <!-- <good-table-row-group />
       <good-table-column-search />
-      <good-table-advance-search />
       <good-table-i18n />
       <good-table-ssr /> -->
     </b-col>
@@ -47,6 +60,10 @@ export default {
       rows: [],
       pageLength: 10,
       currentPage: 1,
+      start: 1,
+      total: 100,
+      orderBykey: 'email',
+      orderByDirection: 'asc',
     }
   },
   computed: {
@@ -72,30 +89,29 @@ export default {
           label: 'Status',
           field: 'status',
         },
-        // {
-        //   label: 'Action',
-        //   field: 'action',
-        // },
+        {
+          label: 'Action',
+          field: 'action',
+        },
       ]
     },
     status() {
-      return []
-      // return [
-      //   {
-      //     1: 'Current',
-      //     2: 'Professional',
-      //     3: 'Rejected',
-      //     4: 'Resigned',
-      //     5: 'Applied',
-      //   },
-      //   {
-      //     1: 'light-primary',
-      //     2: 'light-success',
-      //     3: 'light-danger',
-      //     4: 'light-warning',
-      //     5: 'light-info',
-      //   },
-      // ]
+      return [
+        {
+          1: 'Current',
+          2: 'Professional',
+          3: 'Rejected',
+          4: 'Resigned',
+          5: 'Applied',
+        },
+        {
+          1: 'light-primary',
+          2: 'light-success',
+          3: 'light-danger',
+          4: 'light-warning',
+          5: 'light-info',
+        },
+      ]
     },
     dir() {
       return false
@@ -113,9 +129,15 @@ export default {
     await this.update()
   },
   methods: {
+    async onSortChange(params) {
+      this.orderBykey = params[0].field
+      this.orderByDirection = params[0].type
+      await this.update()
+    },
     changeInCurrentPage(val) {
       console.log('changeInCurrentPage', val)
       this.currentPage = val
+      this.start = ((this.currentPage - 1) * this.pageLength + 1)
     },
     changeInPageLength(length) {
       console.log('changeInPageLength', length)
@@ -124,17 +146,17 @@ export default {
     async update() {
       const data = {
         table: 'order',
-        workspaceId: 9,
-        orderBykey: 'created_at',
+        orderBykey: this.orderBykey,
+        orderByDirection: this.orderByDirection,
         limit: this.pageLength,
         skipRowby: ((this.currentPage - 1) * this.pageLength),
       }
       const response = await this.$http.post('/analytics-manager/table', data)
       console.log(response.data)
       this.rows = [...response.data.data]
+      console.log(this.rows)
       const countData = {
         table: 'order',
-        workspaceId: 9,
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
       console.log(response2)
