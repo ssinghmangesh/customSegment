@@ -94,6 +94,7 @@ export default {
         title: 'Cancel Reason',
         name: 'cancel_reason',
         type: 'dropdown',
+        options: ['', ''],
       },
       ],
     }
