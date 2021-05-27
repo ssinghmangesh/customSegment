@@ -60,11 +60,8 @@ export default {
       rows: [],
       pageLength: 10,
       currentPage: 1,
-<<<<<<< HEAD
       start: 1,
       total: 100,
-=======
->>>>>>> 82fa49b43dfe7e39683c0e2877854af69a7b3eec
       orderBykey: 'email',
       orderByDirection: 'asc',
     }
@@ -132,18 +129,10 @@ export default {
     await this.update()
   },
   methods: {
-<<<<<<< HEAD
     async onSortChange(params) {
       this.orderBykey = params[0].field
       this.orderByDirection = params[0].type
       await this.update()
-=======
-    onSortChange(val) {
-      console.log(val)
-      this.orderBykey = this.val[0].field
-      this.orderByDirection = this.val[0].type
-      this.update()
->>>>>>> 82fa49b43dfe7e39683c0e2877854af69a7b3eec
     },
     changeInCurrentPage(val) {
       console.log('changeInCurrentPage', val)
@@ -157,10 +146,6 @@ export default {
     async update() {
       const data = {
         table: 'order',
-<<<<<<< HEAD
-=======
-        workspaceId: 9,
->>>>>>> 82fa49b43dfe7e39683c0e2877854af69a7b3eec
         orderBykey: this.orderBykey,
         orderByDirection: this.orderByDirection,
         limit: this.pageLength,
