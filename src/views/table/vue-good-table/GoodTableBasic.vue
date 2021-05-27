@@ -37,6 +37,16 @@
         enabled: true,
         perPage:pageLength
       }"
+<<<<<<< HEAD
+=======
+      :sortOptions="{
+        enabled: true,
+        initialSortBy: {
+          label: 'Name',
+          field: 'fullName',
+        }
+      }"
+>>>>>>> 82fa49b43dfe7e39683c0e2877854af69a7b3eec
       @on-sort-change="onSortChange"
     >
       <template
@@ -305,9 +315,15 @@ export default {
     this.rowLength = this.pageLength
   },
   methods: {
+<<<<<<< HEAD
     onSortChange(params) {
       console.log(params)
       this.$emit('onSortChange', params)
+=======
+    onSortChange(val) {
+      console.log('onSortChange : ', val)
+      this.$emit('onSortChange', val)
+>>>>>>> 82fa49b43dfe7e39683c0e2877854af69a7b3eec
     },
   },
 }
