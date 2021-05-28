@@ -79,11 +79,11 @@ export default {
         },
         {
           label: 'Date',
-          field: 'startDate',
+          field: 'created_at',
         },
         {
-          label: 'Salary',
-          field: 'salary',
+          label: 'CartId',
+          field: 'cart_id',
         },
         {
           label: 'Status',
@@ -145,13 +145,15 @@ export default {
     },
     async update() {
       const data = {
-        table: 'order',
+        customerId: 0,
+        // startdate: '2000-01-01 11:49:40.765997+05:30',
+        // enddate: '2021-01-01 11:49:40.765997+05:30',
         orderBykey: this.orderBykey,
         orderByDirection: this.orderByDirection,
         limit: this.pageLength,
         skipRowby: ((this.currentPage - 1) * this.pageLength),
       }
-      const response = await this.$http.post('/analytics-manager/table', data)
+      const response = await this.$http.post('/customer-manager/orders', data)
       console.log(response.data)
       this.rows = [...response.data.data]
       console.log(this.rows)
