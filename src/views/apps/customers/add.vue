@@ -38,6 +38,7 @@
       >
         <type-handler
           :selected-filter="searchQuery"
+          @appliedFilter="applyFilter"
         />
       </b-modal>
       <!-- <b-form-input
@@ -58,6 +59,7 @@ import {
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import store from '@/store/index'
+import TypeHandler from './TypeHandler/TypeHandler.vue'
 
 export default {
   components: {
@@ -67,6 +69,7 @@ export default {
     // BFormInput,
     vSelect,
     BModal,
+    TypeHandler,
   },
   data() {
     return {
@@ -97,6 +100,7 @@ export default {
         options: ['', ''],
       },
       ],
+      selectedFilters: [],
     }
   },
   computed: {
@@ -126,14 +130,30 @@ export default {
   },
   watch: {
     searchQuery(val) {
-      if (val) {
+      if (val !== '') {
         this.$refs['my-modal'].show()
       }
+    },
+    selectedFilters() {
+      console.log(this.selectedFilters)
     },
   },
   created() {
     this.$http.get('/good-table/basic')
       .then(res => { this.rows = res.data })
+  },
+  methods: {
+    applyFilter(filter) {
+      const { searchQuery } = this
+      const data = {
+        columnName: searchQuery.name,
+        dataType: searchQuery.type,
+        ...filter,
+      }
+      this.selectedFilters = [...this.selectedFilters, data]
+      this.searchQuery = ''
+      this.$refs['my-modal'].hide()
+    },
   },
 }
 </script>
