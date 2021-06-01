@@ -14,7 +14,7 @@
             class="text-danger"
             size="18"
           />
-          <span class="ml-25">{{ percentage }}</span>
+          <span class="ml-25">{{ updown }}</span>
         </b-badge>
       </div>
       <!-- status -->
@@ -48,28 +48,34 @@ export default {
     BCardBody,
   },
   props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
     chartjsData: {
       type: Object,
       default: () => chartjsData,
     },
-    title: {
-      type: String,
-      required: true,
-      default: () => 'Bubble',
-    },
     total: {
       type: Number,
-      required: true,
-      default: () => 10,
+      require: true,
+      default: () => 0,
     },
-    percentage: {
-      type: String,
-      required: true,
-      default: () => '60%',
+    updown: {
+      type: Number,
+      require: true,
+      default: () => 0,
+    },
+    options: {
+      type: Object,
+      default: null,
     },
   },
-  data() {
-    return {}
-  },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //   }
+  // },
 }
 </script>

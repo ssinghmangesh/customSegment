@@ -31,7 +31,7 @@ export default {
           },
           data: {
             table: 'order',
-            workspaceId: 1,
+            workspaceId: 333,
             columnname: 'financial_status',
             startdate: '2000-01-01 11:49:40.765997+05:30',
             enddate: '2021-05-13 11:49:40.765997+05:30',
@@ -49,7 +49,7 @@ export default {
           curve: "straight",
           data: {
             table: 'order',
-            workspaceId: 1,
+            workspaceId: 333,
             columnname: 'total_price',
             startdate: '2000-01-01 11:49:40.765997+05:30',
             enddate: '2021-05-13 11:49:40.765997+05:30',
@@ -64,7 +64,7 @@ export default {
           },
           data: {
             table: 'order',
-            workspaceId: 1,
+            workspaceId: 333,
             columnname: 'fulfillment_status',
             startdate: '2000-01-01 11:49:40.765997+05:30',
             enddate: '2021-05-13 11:49:40.765997+05:30',

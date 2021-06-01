@@ -1,7 +1,7 @@
 <template>
   <b-card no-body>
     <b-card-header>
-      <b-card-title>Average Skills</b-card-title>
+      <b-card-title>{{ title }}</b-card-title>
       <!-- dropdown -->
       <b-dropdown
         dropright
@@ -56,10 +56,25 @@ export default {
     BDropdown,
     BDropdownItem,
   },
-  data() {
-    return {
-      chartjsData,
-    }
+  props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
+    chartjsData: {
+      type: Object,
+      default: () => chartjsData,
+    },
+    options: {
+      type: Object,
+      default: null,
+    },
   },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //   }
+  // },
 }
 </script>

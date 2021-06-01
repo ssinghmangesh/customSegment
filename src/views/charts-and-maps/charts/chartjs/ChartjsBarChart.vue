@@ -49,24 +49,27 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
-      default: () => 'TEST',
+      default: 'Title',
     },
     chartjsData: {
       type: Object,
-      required: true,
       default: () => chartjsData,
     },
     rangePicker: {
       type: Array,
-      required: true,
       default: () => [],
     },
+    options: {
+      type: Object,
+      default: null,
+    },
   },
-
-  data() {
-    return {}
-  },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //     rangePicker: ['2019-05-01', '2019-05-10'],
+  //   }
+  // },
 }
 </script>
 

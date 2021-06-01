@@ -1,266 +1,170 @@
 <template>
-  <!-- <add /> -->
   <div>
     <add
       @updateTable="updateTable"
     />
-    <b-card-code title="Basic Table">
-      <!-- table -->
-      <vue-good-table
-        :columns="columns"
-        :rows="rows"
-        :rtl="direction"
-        :search-options="{
-          enabled: true,
-          externalQuery: searchTerm }"
-        :select-options="{
-          enabled: true,
-          selectOnCheckboxOnly: true, // only select when checkbox is clicked instead of the row
-          selectionInfoClass: 'custom-class',
-          selectionText: 'rows selected',
-          clearSelectionText: 'clear',
-          disableSelectInfo: true, // disable the select info panel on top
-          selectAllByGroup: true, // when used in combination with a grouped table, add a checkbox in the header row to check/uncheck the entire group
-        }"
-        :pagination-options="{
-          enabled: true,
-          perPage:pageLength
-        }"
-      >
-        <template
-          slot="table-row"
-          slot-scope="props"
-        >
-
-          <!-- Column: Name -->
-          <span
-            v-if="props.column.field === 'fullName'"
-            class="text-nowrap"
-          >
-            <b-avatar
-              :src="props.row.avatar"
-              class="mx-1"
-            />
-            <span class="text-nowrap">{{ props.row.fullName }}</span>
-          </span>
-
-          <!-- Column: Status -->
-          <span v-else-if="props.column.field === 'status'">
-            <b-badge :variant="statusVariant(props.row.status)">
-              {{ props.row.status }}
-            </b-badge>
-          </span>
-
-          <!-- Column: Action -->
-          <span v-else-if="props.column.field === 'action'">
-            <span>
-              <b-dropdown
-                variant="link"
-                toggle-class="text-decoration-none"
-                no-caret
-              >
-                <template v-slot:button-content>
-                  <feather-icon
-                    icon="MoreVerticalIcon"
-                    size="16"
-                    class="text-body align-middle mr-25"
-                  />
-                </template>
-                <b-dropdown-item>
-                  <feather-icon
-                    icon="Edit2Icon"
-                    class="mr-50"
-                  />
-                  <span>Edit</span>
-                </b-dropdown-item>
-                <b-dropdown-item>
-                  <feather-icon
-                    icon="TrashIcon"
-                    class="mr-50"
-                  />
-                  <span>Delete</span>
-                </b-dropdown-item>
-              </b-dropdown>
-            </span>
-          </span>
-
-          <!-- Column: Common -->
-          <span v-else>
-            {{ props.formattedRow[props.column.field] }}
-          </span>
-        </template>
-
-        <!-- pagination -->
-        <template
-          slot="pagination-bottom"
-          slot-scope="props"
-        >
-          <div class="d-flex justify-content-between flex-wrap">
-            <div class="d-flex align-items-center mb-0 mt-1">
-              <span class="text-nowrap ">
-                Showing 1 to
-              </span>
-              <b-form-select
-                v-model="pageLength"
-                :options="['3','5','10']"
-                class="mx-1"
-                @input="(value)=>props.perPageChanged({currentPerPage:value})"
-              />
-              <span class="text-nowrap"> of {{ props.total }} entries </span>
-            </div>
-            <div>
-              <b-pagination
-                :value="1"
-                :total-rows="props.total"
-                :per-page="pageLength"
-                first-number
-                last-number
-                align="right"
-                prev-class="prev-item"
-                next-class="next-item"
-                class="mt-1 mb-0"
-                @input="(value)=>props.pageChanged({currentPage:value})"
-              >
-                <template #prev-text>
-                  <feather-icon
-                    icon="ChevronLeftIcon"
-                    size="18"
-                  />
-                </template>
-                <template #next-text>
-                  <feather-icon
-                    icon="ChevronRightIcon"
-                    size="18"
-                  />
-                </template>
-              </b-pagination>
-            </div>
-          </div>
-        </template>
-      </vue-good-table>
-    </b-card-code>
+    <b-row>
+      <b-col cols="12">
+        <good-table-basic
+          :pageLength="pageLength"
+          :currentPage="currentPage"
+          :columns="columns"
+          :rows="rows"
+          :status="status"
+          :dir="dir"
+          :total="total"
+          :start="start"
+          @changeInPageLength="changeInPageLength"
+          @changeInCurrentPage="changeInCurrentPage"
+          @onSortChange="onSortChange"
+        />
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
-import BCardCode from '@core/components/b-card-code/BCardCode.vue'
-import {
-  BAvatar, BBadge, BPagination, BFormSelect, BDropdown, BDropdownItem,
-} from 'bootstrap-vue'
-import { VueGoodTable } from 'vue-good-table'
-import store from '@/store/index'
+import { BRow, BCol } from 'bootstrap-vue'
+import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
 import add from './add.vue'
+// import GoodTableRowGroup from './GoodTableRowGroup.vue'
+// import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
+// import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
+// import GoodTableI18n from './GoodTableI18n.vue'
+// import GoodTableSsr from './GoodTableSsr.vue'
 
 export default {
   components: {
-    BAvatar,
-    BBadge,
-    BPagination,
-    BFormSelect,
-    BDropdown,
-    BDropdownItem,
-    VueGoodTable,
-    BCardCode,
+    BRow,
+    BCol,
     add,
+
+    GoodTableBasic,
+    // GoodTableRowGroup,
+    // GoodTableColumnSearch,
+    // GoodTableAdvanceSearch,
+    // GoodTableI18n,
+    // GoodTableSsr,
   },
   data() {
     return {
-      pageLength: 3,
-      dir: false,
-      columns: [
+      rows: [],
+      pageLength: 10,
+      currentPage: 1,
+      start: 1,
+      total: 100,
+      orderBykey: 'email',
+      orderByDirection: 'asc',
+      filters: {},
+    }
+  },
+  computed: {
+    columns() {
+      return [
         {
           label: 'Name',
-          field: 'fullName',
+          field: 'first_name',
         },
         {
           label: 'Email',
           field: 'email',
         },
         {
-          label: 'Order Count',
-          field: 'orders_count',
-        },
-        {
           label: 'Total Spent',
           field: 'total_spent',
         },
-        {
-          label: 'Last Order',
-          field: 'last_order_name',
-        },
-      ],
-      rows: [],
-      searchTerm: '',
-      status: [{
-        1: 'Current',
-        2: 'Professional',
-        3: 'Rejected',
-        4: 'Resigned',
-        5: 'Applied',
-      },
-      {
-        1: 'light-primary',
-        2: 'light-success',
-        3: 'light-danger',
-        4: 'light-warning',
-        5: 'light-info',
-      }],
-    }
-  },
-  computed: {
-    statusVariant() {
-      const statusColor = {
-        /* eslint-disable key-spacing */
-        Current      : 'light-primary',
-        Professional : 'light-success',
-        Rejected     : 'light-danger',
-        Resigned     : 'light-warning',
-        Applied      : 'light-info',
-        /* eslint-enable key-spacing */
-      }
-
-      return status => statusColor[status]
+        // {
+        //   label: 'CartId',
+        //   field: 'cart_id',
+        // },
+        // {
+        //   label: 'Status',
+        //   field: 'status',
+        // },
+        // {
+        //   label: 'Action',
+        //   field: 'action',
+        // },
+      ]
     },
-    direction() {
-      if (store.state.appConfig.isRTL) {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.dir = true
-        return this.dir
-      }
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.dir = false
-      return this.dir
+    status() {
+      return [
+        {
+          1: 'Current',
+          2: 'Professional',
+          3: 'Rejected',
+          4: 'Resigned',
+          5: 'Applied',
+        },
+        {
+          1: 'light-primary',
+          2: 'light-success',
+          3: 'light-danger',
+          4: 'light-warning',
+          5: 'light-info',
+        },
+      ]
+    },
+    dir() {
+      return false
     },
   },
   watch: {
-    pageLength() {
-      this.fetch()
+    async pageLength() {
+      await this.update()
+    },
+    async currentPage() {
+      await this.update()
     },
   },
-  created() {
-    this.fetch()
+  async created() {
+    await this.update()
   },
   methods: {
-    fetch(filters = {}) {
-      this.$http.post('/analytics-manager/table', {
-        table: 'customer',
-        orderBykey: 'created_at',
-        orderByDirection: 'asc',
+    async onSortChange(params) {
+      this.orderBykey = params[0].field
+      this.orderByDirection = params[0].type
+      await this.update()
+    },
+    changeInCurrentPage(val) {
+      console.log('changeInCurrentPage', val)
+      this.currentPage = val
+      this.start = ((this.currentPage - 1) * this.pageLength + 1)
+    },
+    changeInPageLength(length) {
+      console.log('changeInPageLength', length)
+      this.pageLength = length
+    },
+    async update() {
+      const data = {
+        orderBykey: this.orderBykey,
+        orderByDirection: this.orderByDirection,
         limit: this.pageLength,
-        skipRowby: this.currentPage * this.pageLength,
-        filters,
-      })
-        .then(res => {
-          this.rows = res.data.data
-            .map(customer => ({ ...customer, fullName: `${customer.first_name || ''} ${customer.last_name || ''}` }))
-        })
+        skipRowby: ((this.currentPage - 1) * this.pageLength),
+        table: 'customer',
+        filters: this.filters,
+      }
+      const response = await this.$http.post('/analytics-manager/table', data)
+      // console.log(response.data)
+      this.rows = [...response.data.data]
+      // console.log(this.rows)
+      const countData = {
+        table: 'customer',
+        filters: this.filters,
+      }
+      const response2 = await this.$http.post('/analytics-manager/count', countData)
+      // console.log(response2)
+      this.total = response2.data.data.count
     },
     updateTable(data) {
-      this.fetch(data)
+      this.filters = { ...data }
+      console.log(data)
+      this.update()
     },
   },
 }
 </script>
+
 <style lang="scss" >
 @import '@core/scss/vue/libs/vue-good-table.scss';
 </style>

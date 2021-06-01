@@ -14,7 +14,7 @@
             {{ kFormatter(data.sessions) }}
           </h2>
           <b-card-text class="font-weight-bold mb-2">
-            Avg Sessions
+            {{ title }}
           </b-card-text>
 
           <h5 class="font-medium-2">
@@ -155,6 +155,10 @@ export default {
     data: {
       type: Object,
       default: () => {},
+    },
+    title: {
+      type: String,
+      default: () => 'Title',
     },
   },
   data() {

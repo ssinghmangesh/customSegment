@@ -5,9 +5,9 @@
   >
     <b-card-header class="align-items-baseline">
       <div>
-        <b-card-title>Sales</b-card-title>
+        <b-card-title>{{ title }}</b-card-title>
         <b-card-text class="mb-0">
-          Last 6 months
+          {{ period }}
         </b-card-text>
       </div>
       <b-dropdown
@@ -85,6 +85,14 @@ export default {
     data: {
       type: Object,
       default: () => {},
+    },
+    title: {
+      type: String,
+      default: () => 'TITLE',
+    },
+    period: {
+      type: String,
+      default: () => 'Period',
     },
   },
   data() {
