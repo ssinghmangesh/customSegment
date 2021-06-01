@@ -4,11 +4,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 const axiosIns = axios.create({
-<<<<<<< HEAD
   headers: { 'x-workspace-id': 1 },
-=======
-  headers: { 'x-workspace-id': 333 },
->>>>>>> local
   baseURL: 'http://localhost:3000',
 })
 

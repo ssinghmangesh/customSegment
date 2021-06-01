@@ -71,7 +71,7 @@ import {
   // BFormInput,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
-import store from '@/store/index'
+// import store from '@/store/index'
 import TypeHandler from './TypeHandler/TypeHandler.vue'
 import SelectedFilters from './SelectedFilters/SelectedFilters.vue'
 
@@ -123,29 +123,6 @@ export default {
     }
   },
   computed: {
-    statusVariant() {
-      const statusColor = {
-        /* eslint-disable key-spacing */
-        Current      : 'light-primary',
-        Professional : 'light-success',
-        Rejected     : 'light-danger',
-        Resigned     : 'light-warning',
-        Applied      : 'light-info',
-        /* eslint-enable key-spacing */
-      }
-
-      return status => statusColor[status]
-    },
-    direction() {
-      if (store.state.appConfig.isRTL) {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.dir = true
-        return this.dir
-      }
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.dir = false
-      return this.dir
-    },
     filters() {
       return this.selectedFilters
     },
@@ -156,9 +133,9 @@ export default {
         this.$refs['my-modal'].show()
       }
     },
-    selectedFilters() {
-      this.send()
-    },
+    // selectedFilters() {
+    //   this.send()
+    // },
   },
   created() {
     this.$http.get('/good-table/basic')
@@ -166,9 +143,10 @@ export default {
   },
   methods: {
     async send() {
-      const data = {
-        relation: this.andOr,
-        conditions: this.selectedFilters,
+      const data = {}
+      if (this.selectedFilters.length) {
+        data.relation = this.andOr
+        data.conditions = this.selectedFilters
       }
       this.$emit('updateTable', data)
     },
