@@ -116,16 +116,15 @@
       >
         <div class="d-flex justify-content-between flex-wrap">
           <div class="d-flex align-items-center mb-0 mt-1">
-            <span class="text-nowrap ">
-              Showing {{ start }} to
-            </span>
             <b-form-select
               v-model="rowLength"
               :options="['3','5','10']"
               class="mx-1"
               @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />
-            <span class="text-nowrap"> of {{ total }} entries </span>
+            <span class="text-nowrap ">
+              Showing {{ start }} to {{ Number(start) + Number(pageLength) - 1 }} of {{ total }} entries
+            </span>
           </div>
           <div>
             <b-pagination
