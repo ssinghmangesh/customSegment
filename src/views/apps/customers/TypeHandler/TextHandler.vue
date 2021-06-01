@@ -47,8 +47,13 @@ export default {
     return {
       selected: false,
       filterTypes: {
+        equal_to: 'Is',
+        not_equal_to: 'Is Not',
         contains: 'Contains',
         starts_with: 'Starts With',
+        ends_with: 'Ends With',
+        is_known: 'Is Known',
+        is_unknown: 'Is Unknown',
       },
       values: [''],
     }

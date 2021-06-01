@@ -87,6 +87,12 @@ export default {
     SelectedFilters,
     BButton,
   },
+  props: {
+    searchOption: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       andOr: 'AND',
@@ -94,31 +100,6 @@ export default {
       incEcl: 'Include',
       incEclOption: ['Include', 'Exclude'],
       searchQuery: {},
-      searchOption: [{
-        title: 'Total Spent',
-        name: 'total_spent',
-        type: 'number',
-        dataType: 'numeric',
-      },
-      {
-        title: 'Email',
-        name: 'email',
-        type: 'text',
-        dataType: 'varchar',
-      },
-      {
-        title: 'Accepts Marketing',
-        name: 'accepts_marketing',
-        type: 'boolean',
-        dataType: 'boolean',
-      },
-      {
-        title: 'Payment Status',
-        name: 'payment_status',
-        type: 'dropdown',
-        dataType: 'varchar[]',
-        options: ['Paid', 'Pending', 'Refunded'],
-      }],
       selectedFilters: [],
     }
   },
@@ -133,9 +114,9 @@ export default {
         this.$refs['my-modal'].show()
       }
     },
-    // selectedFilters() {
-    //   this.send()
-    // },
+    selectedFilters() {
+      this.send()
+    },
   },
   created() {
     this.$http.get('/good-table/basic')
@@ -190,3 +171,11 @@ export default {
 <style lang="scss" >
 @import '@core/scss/vue/libs/vue-good-table.scss';
 </style>
+// ,
+//       {
+//         title: 'Payment Status',
+//         name: 'payment_status',
+//         type: 'dropdown',
+//         dataType: 'varchar[]',
+//         options: ['Paid', 'Pending', 'Refunded'],
+//       }

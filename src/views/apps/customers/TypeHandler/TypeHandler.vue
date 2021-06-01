@@ -20,12 +20,18 @@
     :applied-values="appliedValues"
     @appliedFilter="appliedFilter"
   />
+  <time-handler
+    v-else-if="type === 'timestamptz'"
+    :applied-values="appliedValues"
+    @appliedFilter="appliedFilter"
+  />
 </template>
 <script>
 import NumberHandler from './NumberHandler.vue'
 import TextHandler from './TextHandler.vue'
 import BooleanHandler from './BooleanHandler.vue'
 import DropdownHandler from './DropdownHandler.vue'
+import TimeHandler from './TimeHandler.vue'
 
 export default {
   components: {
@@ -33,6 +39,7 @@ export default {
     TextHandler,
     BooleanHandler,
     DropdownHandler,
+    TimeHandler,
   },
   props: {
     selectedFilter: {

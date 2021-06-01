@@ -1,0 +1,129 @@
+[
+      {
+        "title": "Name",
+        "name": "name",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Email",
+        "name": "email",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Total Order Count",
+        "name": "total_order_count",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Total Amount Spent",
+        "name": "total_amount_spent",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Average Order Price",
+        "name": "total_spent",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Refunded Order Count",
+        "name": "refunded_order_count",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Cancelled Order Count",
+        "name": "cancelled_order_count",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Unfulfilled Order Count",
+        "name": "unfulfilled_order_count",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Unrefunded Order Count",
+        "name": "unrefunded_order_count",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Uncancelled Order Count",
+        "name": "uncancelled_order_count",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Abandoned Cart",
+        "name": "abandoned_cart",
+        "type": "boolean",
+        "dataType": "boolean"
+      },
+      {
+        "title": "Unfulfilled Order Count",
+        "name": "unfulfilled_order_count",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "First Order At",
+        "name": "first_order_at",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Last Order At",
+        "name": "last_order_at",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Last Seen",
+        "name": "last_seen",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Address 1",
+        "name": "address1",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      
+      {
+        "title": "Address 2",
+        "name": "address2",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "City",
+        "name": "city",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Country",
+        "name": "country",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Province",
+        "name": "address1",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Zip",
+        "name": "zip",
+        "type": "number",
+        "dataType": "numeric"
+      }
+]
