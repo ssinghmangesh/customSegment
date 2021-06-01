@@ -1,23 +1,21 @@
 <template>
   <div>
-    <div
-      v-for="(type, index) in filterTypes"
-      :key="index"
-    >
-      <b-form-checkbox
-        v-model="selected"
-        :value="type"
-      >{{ type }}
-      </b-form-checkbox>
-      <b-form-input
-        v-if="selected === type"
-        v-model="values[0]"
-        size="sm"
-      />
-    </div>
+    <b-form-radio-group
+      v-model="selected"
+      :options="filterTypes"
+      name="radio-validation"
+      class="radio"
+    />
+    <b-form-input
+      v-if="selected !== false"
+      v-model="values[0]"
+      size="sm"
+      class="radio"
+    />
     <b-button
       v-ripple.400="'rgba(255, 255, 255, 0.15)'"
       variant="primary"
+      class="button"
       @click="appliedFilter"
     >
       Add
@@ -26,7 +24,7 @@
 </template>
 <script>
 import {
-  BFormCheckbox,
+  BFormRadioGroup,
   BFormInput,
   BButton,
 // BCardText
@@ -34,28 +32,32 @@ import {
 
 export default {
   components: {
-    BFormCheckbox,
+    BFormRadioGroup,
     BFormInput,
     BButton,
     // BCardText,
   },
   props: {
-    selectedFilter: {
+    appliedValues: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      selected: '',
-      filterTypes: ['Contains', 'Starts With', 'Ends With'],
+      selected: false,
+      filterTypes: {
+        contains: 'Contains',
+        starts_with: 'Starts With',
+      },
       values: [''],
     }
   },
-  watch: {
-    selected() {
-      console.log(this.selected)
-    },
+  created() {
+    if (this.appliedValues) {
+      this.selected = this.appliedValues.filterType
+      this.values = [...this.appliedValues.values]
+    }
   },
   methods: {
     appliedFilter() {
@@ -68,3 +70,11 @@ export default {
   },
 }
 </script>
+<style>
+.radio{
+  margin-bottom: 10px;
+}
+.button{
+  float: right;
+}
+</style>

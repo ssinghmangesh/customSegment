@@ -1,139 +1,145 @@
 <template>
-  <b-card-code title="Basic Table">
-    <!-- table -->
-    <vue-good-table
-      :columns="columns"
-      :rows="rows"
-      :rtl="direction"
-      :search-options="{
-        enabled: true,
-        externalQuery: searchTerm }"
-      :select-options="{
-        enabled: true,
-        selectOnCheckboxOnly: true, // only select when checkbox is clicked instead of the row
-        selectionInfoClass: 'custom-class',
-        selectionText: 'rows selected',
-        clearSelectionText: 'clear',
-        disableSelectInfo: true, // disable the select info panel on top
-        selectAllByGroup: true, // when used in combination with a grouped table, add a checkbox in the header row to check/uncheck the entire group
-      }"
-      :pagination-options="{
-        enabled: true,
-        perPage:pageLength
-      }"
-    >
-      <template
-        slot="table-row"
-        slot-scope="props"
+  <!-- <add /> -->
+  <div>
+    <add
+      @updateTable="updateTable"
+    />
+    <b-card-code title="Basic Table">
+      <!-- table -->
+      <vue-good-table
+        :columns="columns"
+        :rows="rows"
+        :rtl="direction"
+        :search-options="{
+          enabled: true,
+          externalQuery: searchTerm }"
+        :select-options="{
+          enabled: true,
+          selectOnCheckboxOnly: true, // only select when checkbox is clicked instead of the row
+          selectionInfoClass: 'custom-class',
+          selectionText: 'rows selected',
+          clearSelectionText: 'clear',
+          disableSelectInfo: true, // disable the select info panel on top
+          selectAllByGroup: true, // when used in combination with a grouped table, add a checkbox in the header row to check/uncheck the entire group
+        }"
+        :pagination-options="{
+          enabled: true,
+          perPage:pageLength
+        }"
       >
-
-        <!-- Column: Name -->
-        <span
-          v-if="props.column.field === 'fullName'"
-          class="text-nowrap"
+        <template
+          slot="table-row"
+          slot-scope="props"
         >
-          <b-avatar
-            :src="props.row.avatar"
-            class="mx-1"
-          />
-          <span class="text-nowrap">{{ props.row.fullName }}</span>
-        </span>
 
-        <!-- Column: Status -->
-        <span v-else-if="props.column.field === 'status'">
-          <b-badge :variant="statusVariant(props.row.status)">
-            {{ props.row.status }}
-          </b-badge>
-        </span>
-
-        <!-- Column: Action -->
-        <span v-else-if="props.column.field === 'action'">
-          <span>
-            <b-dropdown
-              variant="link"
-              toggle-class="text-decoration-none"
-              no-caret
-            >
-              <template v-slot:button-content>
-                <feather-icon
-                  icon="MoreVerticalIcon"
-                  size="16"
-                  class="text-body align-middle mr-25"
-                />
-              </template>
-              <b-dropdown-item>
-                <feather-icon
-                  icon="Edit2Icon"
-                  class="mr-50"
-                />
-                <span>Edit</span>
-              </b-dropdown-item>
-              <b-dropdown-item>
-                <feather-icon
-                  icon="TrashIcon"
-                  class="mr-50"
-                />
-                <span>Delete</span>
-              </b-dropdown-item>
-            </b-dropdown>
-          </span>
-        </span>
-
-        <!-- Column: Common -->
-        <span v-else>
-          {{ props.formattedRow[props.column.field] }}
-        </span>
-      </template>
-
-      <!-- pagination -->
-      <template
-        slot="pagination-bottom"
-        slot-scope="props"
-      >
-        <div class="d-flex justify-content-between flex-wrap">
-          <div class="d-flex align-items-center mb-0 mt-1">
-            <span class="text-nowrap ">
-              Showing 1 to
-            </span>
-            <b-form-select
-              v-model="pageLength"
-              :options="['3','5','10']"
+          <!-- Column: Name -->
+          <span
+            v-if="props.column.field === 'fullName'"
+            class="text-nowrap"
+          >
+            <b-avatar
+              :src="props.row.avatar"
               class="mx-1"
-              @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />
-            <span class="text-nowrap"> of {{ props.total }} entries </span>
+            <span class="text-nowrap">{{ props.row.fullName }}</span>
+          </span>
+
+          <!-- Column: Status -->
+          <span v-else-if="props.column.field === 'status'">
+            <b-badge :variant="statusVariant(props.row.status)">
+              {{ props.row.status }}
+            </b-badge>
+          </span>
+
+          <!-- Column: Action -->
+          <span v-else-if="props.column.field === 'action'">
+            <span>
+              <b-dropdown
+                variant="link"
+                toggle-class="text-decoration-none"
+                no-caret
+              >
+                <template v-slot:button-content>
+                  <feather-icon
+                    icon="MoreVerticalIcon"
+                    size="16"
+                    class="text-body align-middle mr-25"
+                  />
+                </template>
+                <b-dropdown-item>
+                  <feather-icon
+                    icon="Edit2Icon"
+                    class="mr-50"
+                  />
+                  <span>Edit</span>
+                </b-dropdown-item>
+                <b-dropdown-item>
+                  <feather-icon
+                    icon="TrashIcon"
+                    class="mr-50"
+                  />
+                  <span>Delete</span>
+                </b-dropdown-item>
+              </b-dropdown>
+            </span>
+          </span>
+
+          <!-- Column: Common -->
+          <span v-else>
+            {{ props.formattedRow[props.column.field] }}
+          </span>
+        </template>
+
+        <!-- pagination -->
+        <template
+          slot="pagination-bottom"
+          slot-scope="props"
+        >
+          <div class="d-flex justify-content-between flex-wrap">
+            <div class="d-flex align-items-center mb-0 mt-1">
+              <span class="text-nowrap ">
+                Showing 1 to
+              </span>
+              <b-form-select
+                v-model="pageLength"
+                :options="['3','5','10']"
+                class="mx-1"
+                @input="(value)=>props.perPageChanged({currentPerPage:value})"
+              />
+              <span class="text-nowrap"> of {{ props.total }} entries </span>
+            </div>
+            <div>
+              <b-pagination
+                :value="1"
+                :total-rows="props.total"
+                :per-page="pageLength"
+                first-number
+                last-number
+                align="right"
+                prev-class="prev-item"
+                next-class="next-item"
+                class="mt-1 mb-0"
+                @input="(value)=>props.pageChanged({currentPage:value})"
+              >
+                <template #prev-text>
+                  <feather-icon
+                    icon="ChevronLeftIcon"
+                    size="18"
+                  />
+                </template>
+                <template #next-text>
+                  <feather-icon
+                    icon="ChevronRightIcon"
+                    size="18"
+                  />
+                </template>
+              </b-pagination>
+            </div>
           </div>
-          <div>
-            <b-pagination
-              :value="1"
-              :total-rows="props.total"
-              :per-page="pageLength"
-              first-number
-              last-number
-              align="right"
-              prev-class="prev-item"
-              next-class="next-item"
-              class="mt-1 mb-0"
-              @input="(value)=>props.pageChanged({currentPage:value})"
-            >
-              <template #prev-text>
-                <feather-icon
-                  icon="ChevronLeftIcon"
-                  size="18"
-                />
-              </template>
-              <template #next-text>
-                <feather-icon
-                  icon="ChevronRightIcon"
-                  size="18"
-                />
-              </template>
-            </b-pagination>
-          </div>
-        </div>
-      </template>
-    </vue-good-table>
-  </b-card-code>
+        </template>
+      </vue-good-table>
+    </b-card-code>
+  </div>
 </template>
 
 <script>
@@ -143,6 +149,7 @@ import {
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
+import add from './add.vue'
 
 export default {
   components: {
@@ -154,6 +161,7 @@ export default {
     BDropdownItem,
     VueGoodTable,
     BCardCode,
+    add,
   },
   data() {
     return {
@@ -233,18 +241,22 @@ export default {
     this.fetch()
   },
   methods: {
-    fetch() {
+    fetch(filters = {}) {
       this.$http.post('/analytics-manager/table', {
-        TABLE_NAME: 'order',
-        workspaceId: 9,
+        table: 'customer',
         orderBykey: 'created_at',
+        orderByDirection: 'asc',
         limit: this.pageLength,
         skipRowby: this.currentPage * this.pageLength,
+        filters,
       })
         .then(res => {
-          this.rows = res.data
+          this.rows = res.data.data
             .map(customer => ({ ...customer, fullName: `${customer.first_name || ''} ${customer.last_name || ''}` }))
         })
+    },
+    updateTable(data) {
+      this.fetch(data)
     },
   },
 }

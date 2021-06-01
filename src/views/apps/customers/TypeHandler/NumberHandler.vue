@@ -1,28 +1,27 @@
 <template>
   <div>
-    <div
-      v-for="(type, index) in filterTypes"
-      :key="index"
-    >
-      <b-form-checkbox
-        v-model="selected"
-        :value="type"
-      >{{ type }}
-      </b-form-checkbox>
-      <b-form-input
-        v-if="selected === type"
-        v-model="values[0]"
-        size="sm"
-      />
-      <b-form-input
-        v-if="selected === type && selected === 'Between'"
-        v-model="values[1]"
-        size="sm"
-      />
-    </div>
+    <b-form-radio-group
+      v-model="selected"
+      :options="filterTypes"
+      name="radio-validation"
+      class="radio"
+    />
+    <b-form-input
+      v-if="selected !== false"
+      v-model="values[0]"
+      size="sm"
+      class="radio"
+    />
+    <b-form-input
+      v-if="selected !== false && selected === 'between'"
+      v-model="values[1]"
+      size="sm"
+      class="radio"
+    />
     <b-button
       v-ripple.400="'rgba(255, 255, 255, 0.15)'"
       variant="primary"
+      class="button"
       @click="appliedFilter"
     >
       Add
@@ -31,30 +30,42 @@
 </template>
 <script>
 import {
-  BFormCheckbox,
   BFormInput,
   BButton,
+  BFormRadioGroup,
 // BCardText
 } from 'bootstrap-vue'
 
 export default {
   components: {
-    BFormCheckbox,
+    BFormRadioGroup,
     BFormInput,
     BButton,
     // BCardText,
   },
+  props: {
+    appliedValues: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
-      selected: '',
-      filterTypes: ['Exactly', 'Greater Than', 'Less Than', 'Between'],
+      selected: false,
+      filterTypes: {
+        equal_to: 'Exactly',
+        less_than: 'Less Than',
+        greater_than: 'Greater Than',
+        between: 'Between',
+      },
       values: ['', ''],
     }
   },
-  watch: {
-    selected() {
-      console.log(this.selected)
-    },
+  created() {
+    if (this.appliedValues) {
+      this.selected = this.appliedValues.filterType
+      this.values = [...this.appliedValues.values]
+    }
   },
   methods: {
     appliedFilter() {
@@ -67,3 +78,11 @@ export default {
   },
 }
 </script>
+<style>
+.radio{
+  margin-bottom: 10px;
+}
+.button{
+  float: right;
+}
+</style>
