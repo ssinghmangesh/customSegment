@@ -7,7 +7,7 @@
       class="radio"
     />
     <b-form-input
-      v-if="selected !== false"
+      v-if="selected !== false && selected !== 'is_known' && selected !== 'is_unknown'"
       v-model="values[0]"
       size="sm"
       class="radio"

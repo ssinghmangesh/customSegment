@@ -25,6 +25,11 @@
     :applied-values="appliedValues"
     @appliedFilter="appliedFilter"
   />
+  <array-handler
+    v-else-if="type === 'array'"
+    :applied-values="appliedValues"
+    @appliedFilter="appliedFilter"
+  />
 </template>
 <script>
 import NumberHandler from './NumberHandler.vue'
@@ -32,6 +37,7 @@ import TextHandler from './TextHandler.vue'
 import BooleanHandler from './BooleanHandler.vue'
 import DropdownHandler from './DropdownHandler.vue'
 import TimeHandler from './TimeHandler.vue'
+import ArrayHandler from './ArrayHandler.vue'
 
 export default {
   components: {
@@ -40,6 +46,7 @@ export default {
     BooleanHandler,
     DropdownHandler,
     TimeHandler,
+    ArrayHandler,
   },
   props: {
     selectedFilter: {

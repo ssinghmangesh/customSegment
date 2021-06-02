@@ -66,15 +66,15 @@ export default {
       return [
         {
           label: 'Name',
-          field: 'first_name',
+          field: 'name',
         },
         {
           label: 'Email',
           field: 'email',
         },
         {
-          label: 'Total Spent',
-          field: 'total_spent',
+          label: 'Total Amount Spent',
+          field: 'total_amount_spent',
         },
         // {
         //   label: 'CartId',
@@ -147,7 +147,7 @@ export default {
         orderByDirection: this.orderByDirection,
         limit: this.pageLength,
         skipRowby: ((this.currentPage - 1) * this.pageLength),
-        table: 'customer',
+        table: 'customeraggregate',
         filters: this.filters,
       }
       const response = await this.$http.post('/analytics-manager/table', data)
@@ -155,7 +155,7 @@ export default {
       this.rows = [...response.data.data]
       // console.log(this.rows)
       const countData = {
-        table: 'customer',
+        table: 'customeraggregate',
         filters: this.filters,
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
