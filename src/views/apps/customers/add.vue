@@ -74,6 +74,7 @@ import vSelect from 'vue-select'
 // import store from '@/store/index'
 import TypeHandler from './TypeHandler/TypeHandler.vue'
 import SelectedFilters from './SelectedFilters/SelectedFilters.vue'
+import searchOption from './filters.json'
 
 export default {
   components: {
@@ -87,12 +88,6 @@ export default {
     SelectedFilters,
     BButton,
   },
-  props: {
-    searchOption: {
-      type: Array,
-      required: true,
-    },
-  },
   data() {
     return {
       andOr: 'AND',
@@ -100,7 +95,8 @@ export default {
       incEcl: 'Include',
       incEclOption: ['Include', 'Exclude'],
       searchQuery: {},
-      selectedFilters: [],
+      selectedFilters: searchOption.customer.selectedFilters,
+      searchOption: searchOption.customer.filters,
     }
   },
   computed: {
@@ -118,9 +114,8 @@ export default {
       this.send()
     },
   },
-  created() {
-    this.$http.get('/good-table/basic')
-      .then(res => { this.rows = res.data })
+  async created() {
+    await this.send()
   },
   methods: {
     async send() {
