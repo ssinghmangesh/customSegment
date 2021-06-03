@@ -8,7 +8,24 @@
     }"
   >
     <b-link
+      v-if="item.path"
       :to="item.path || linkProps"
+      class="d-flex align-items-center"
+    >
+      <feather-icon :icon="item.icon || 'CircleIcon'" />
+      <span class="menu-title text-truncate">{{ t(item.title) }}</span>
+      <b-badge
+        v-if="item.tag"
+        pill
+        :variant="item.tagVariant || 'primary'"
+        class="mr-1 ml-auto"
+      >
+        {{ item.tag }}
+      </b-badge>
+    </b-link>
+    <b-link
+      v-else
+      v-bind="linkProps"
       class="d-flex align-items-center"
     >
       <feather-icon :icon="item.icon || 'CircleIcon'" />

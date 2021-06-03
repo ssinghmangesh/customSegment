@@ -1,7 +1,6 @@
 <template>
   <div>
     <add
-      :search-option="searchOption"
       @updateTable="updateTable"
     />
     <b-row>
@@ -28,7 +27,6 @@
 import { BRow, BCol } from 'bootstrap-vue'
 import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
 import add from './add.vue'
-import searchOption from './filters.json'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
 // import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
 // import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
@@ -57,7 +55,6 @@ export default {
       total: 100,
       orderBykey: 'email',
       orderByDirection: 'asc',
-      searchOption,
       filters: {},
     }
   },
@@ -123,9 +120,9 @@ export default {
       await this.update()
     },
   },
-  async created() {
-    await this.update()
-  },
+  // async created() {
+  //   await this.update()
+  // },
   methods: {
     async onSortChange(params) {
       this.orderBykey = params[0].field
