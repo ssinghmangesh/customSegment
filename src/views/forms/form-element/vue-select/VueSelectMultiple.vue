@@ -19,7 +19,7 @@
             :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
             multiple
             label="title"
-            :options="option"
+            :options="['lop', 'lol']"
           />
 
           <template #code>

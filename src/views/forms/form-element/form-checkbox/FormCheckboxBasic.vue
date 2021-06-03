@@ -11,7 +11,7 @@
     <div class="demo-inline-spacing">
       <b-form-checkbox
         v-model="selected"
-        value="A"
+        value="contains"
         plain
       >
         Checked
@@ -60,9 +60,14 @@ export default {
   },
   data() {
     return {
-      selected: ['A', 'C'],
+      selected: '',
       codeBasic,
     }
+  },
+  watch: {
+    selected() {
+      console.log(this.selected)
+    },
   },
 }
 </script>

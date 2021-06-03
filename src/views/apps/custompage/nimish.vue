@@ -1,76 +1,182 @@
 <template>
   <div>
-    <statistics
-      :data="statisticsItems"
-      title="Customer counts"
-    />
-    <!-- <line-area-chart :data="" :range="" /> -->
-    <ChartjsBarChart
-      title="test me"
-      :rangePicker="rangePicker"
-    />
-    <ChartjsBubbleChart
-      title="test me"
-      :total="1000"
-      percentage="10%"
-    />
+    <b-row>
+      <Graph
+        v-for="(item, index) in pageDefinition"
+        :key="index"
+        :item="item"
+      />
+    </b-row>
   </div>
 </template>
 
 <script>
-import Statistics from '@/views/sharedcomponents/Statistics.vue'
-import ChartjsBarChart from '@/views/charts-and-maps/charts/chartjs/ChartjsBarChart.vue'
-import ChartjsBubbleChart from '@/views/charts-and-maps/charts/chartjs/ChartjsBubbleChart.vue'
-import chartjsDataTest from './chartjsData'
+import { BRow } from 'bootstrap-vue'
+import Graph from './graphs.vue'
 
 export default {
+
   components: {
-    Statistics,
-    ChartjsBarChart,
-    ChartjsBubbleChart,
-  },
-  data() {
-    return {
-      chartjsDataTest,
-      rangePicker: ['2019-05-01', '2019-05-10'],
-    }
+    Graph,
+    BRow,
   },
   computed: {
-    statisticsItems() {
+    pageDefinition() {
       return [
+        // {
+        //   type: 'ChartjsBarChart',
+        //   col: {
+        //     default: 12,
+        //     md: 8,
+        //   },
+        //   data: {
+        //     table: 'order',
+        //     workspaceId: 333,
+        //     columnname: 'total_price',
+        //     startdate: '2000-01-01 11:49:40.765997+05:30',
+        //     enddate: '2021-05-13 11:49:40.765997+05:30',
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsBarChart',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsHorizontalBarChart',
+        //   col: {
+        //     md: 4,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsLineChart',
+        //   col: {
+        //     md: 12,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsRadarChart',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsPolarAreaChart',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsBubbleChart',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsDoughnutChart',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsScatterChart',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'ChartjsLineAreaChart',
+        //   col: {
+        //     md: 12,
+        //     default: 12,
+        //   },
+        // },
         {
-          color: 'light-primary',
-          customClass: 'mb-2 mb-xl-0',
-          icon: 'TrendingUpIcon',
-          subtitle: 'Sales',
-          title: '2376670k',
+          type: 'StatisticCardWithAreaChartOrders',
+          icon: 'PackageIcon',
+          color: 'warning',
+          title: 'Orders Received',
+          data: {
+            table: 'order',
+            workspaceId: 333,
+            startdate: '2000-01-01 11:49:40.765997+05:30',
+            enddate: '2021-05-13 11:49:40.765997+05:30',
+          },
+          col: {
+            md: 3,
+            default: 12,
+          },
         },
         {
-          color: 'light-primary',
-          customClass: 'mb-2 mb-xl-0',
-          icon: 'TrendingUpIcon',
-          subtitle: 'Sales',
-          title: '230k',
+          type: 'StatisticCardWithAreaChartSubscribers',
+          icon: 'UsersIcon',
+          title: 'Subscribers Gained',
+          col: {
+            md: 3,
+            default: 12,
+          },
         },
-        {
-          color: 'light-primary',
-          customClass: 'mb-2 mb-xl-0',
-          icon: 'TrendingUpIcon',
-          subtitle: 'Sales',
-          title: '230k',
-        },
-        {
-          color: 'light-primary',
-          customClass: 'mb-2 mb-xl-0',
-          icon: 'TrendingUpIcon',
-          subtitle: 'Sales',
-          title: '230k',
-        },
+        // {
+        //   type: 'AnalyticsAvgSessions',
+        //   title: 'Avg Sessions',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'AnalyticsSupportTracker',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'AnalyticsTimeline',
+        //   title: 'User Timeline',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'AnalyticsSalesRadarChart',
+        //   title: 'Sales',
+        //   period: 'Last x months',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'AnalyticsAppDesign',
+        //   col: {
+        //     md: 6,
+        //     default: 12,
+        //   },
+        // },
+        // {
+        //   type: 'InvoiceList',
+        //   col: {
+        //     md: 12,
+        //     default: 12,
+        //   },
+        // },
       ]
     },
-    chartjsData() {
-      return chartjsDataTest
-    },
+    // chartjsData() {
+    //   return chartjsDataTest
+    // },
   },
 }
+
 </script>

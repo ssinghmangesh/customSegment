@@ -37,6 +37,14 @@
         enabled: true,
         perPage:pageLength
       }"
+      :sortOptions="{
+        enabled: true,
+        initialSortBy: {
+          label: 'Name',
+          field: 'email',
+        }
+      }"
+      @on-sort-change="onSortChange"
     >
       <template
         slot="table-row"
@@ -109,20 +117,20 @@
         <div class="d-flex justify-content-between flex-wrap">
           <div class="d-flex align-items-center mb-0 mt-1">
             <span class="text-nowrap ">
-              Showing 1 to
+              Showing {{ start }} to
             </span>
             <b-form-select
-              v-model="pageLength"
+              v-model="rowLength"
               :options="['3','5','10']"
               class="mx-1"
               @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />
-            <span class="text-nowrap"> of {{ props.total }} entries </span>
+            <span class="text-nowrap"> of {{ total }} entries </span>
           </div>
           <div>
             <b-pagination
               :value="1"
-              :total-rows="props.total"
+              :total-rows="total"
               :per-page="pageLength"
               first-number
               last-number
@@ -130,7 +138,7 @@
               prev-class="prev-item"
               next-class="next-item"
               class="mt-1 mb-0"
-              @input="(value)=>props.pageChanged({currentPage:value})"
+              @input="(value)=>{props.pageChanged({currentPage:value}); $emit('changeInCurrentPage', value);}"
             >
               <template #prev-text>
                 <feather-icon
@@ -178,53 +186,96 @@ export default {
     BDropdown,
     BDropdownItem,
   },
+  props: {
+    pageLength: {
+      type: Number,
+      required: true,
+      default: () => 0,
+    },
+    dir: {
+      type: Boolean,
+      required: true,
+      default: () => false,
+    },
+    columns: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    rows: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    status: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    total: {
+      type: Number,
+      required: true,
+      default: () => 100,
+    },
+    currentPage: {
+      type: Number,
+      required: true,
+      default: () => 1,
+    },
+    start: {
+      type: Number,
+      required: true,
+      default: () => 1,
+    },
+  },
   data() {
     return {
-      pageLength: 3,
-      dir: false,
+      rowLength: 0,
+      // pageLength: 3,
+      // dir: false,
       codeBasic,
-      columns: [
-        {
-          label: 'Name',
-          field: 'fullName',
-        },
-        {
-          label: 'Email',
-          field: 'email',
-        },
-        {
-          label: 'Date',
-          field: 'startDate',
-        },
-        {
-          label: 'Salary',
-          field: 'salary',
-        },
-        {
-          label: 'Status',
-          field: 'status',
-        },
-        {
-          label: 'Action',
-          field: 'action',
-        },
-      ],
-      rows: [],
+      // columns: [
+      //   {
+      //     label: 'Name',
+      //     field: 'fullName',
+      //   },
+      //   {
+      //     label: 'Email',
+      //     field: 'email',
+      //   },
+      //   {
+      //     label: 'Date',
+      //     field: 'startDate',
+      //   },
+      //   {
+      //     label: 'Salary',
+      //     field: 'salary',
+      //   },
+      //   {
+      //     label: 'Status',
+      //     field: 'status',
+      //   },
+      //   {
+      //     label: 'Action',
+      //     field: 'action',
+      //   },
+      // ],
+      // rows: [],
       searchTerm: '',
-      status: [{
-        1: 'Current',
-        2: 'Professional',
-        3: 'Rejected',
-        4: 'Resigned',
-        5: 'Applied',
-      },
-      {
-        1: 'light-primary',
-        2: 'light-success',
-        3: 'light-danger',
-        4: 'light-warning',
-        5: 'light-info',
-      }],
+      // status: [{
+      //   1: 'Current',
+      //   2: 'Professional',
+      //   3: 'Rejected',
+      //   4: 'Resigned',
+      //   5: 'Applied',
+      // },
+      // {
+      //   1: 'light-primary',
+      //   2: 'light-success',
+      //   3: 'light-danger',
+      //   4: 'light-warning',
+      //   5: 'light-info',
+      // }],
     }
   },
   computed: {
@@ -252,9 +303,19 @@ export default {
       return this.dir
     },
   },
+  watch: {
+    rowLength(val) {
+      this.$emit('changeInPageLength', val)
+    },
+  },
   created() {
-    this.$http.get('/good-table/basic')
-      .then(res => { this.rows = res.data })
+    this.rowLength = this.pageLength
+  },
+  methods: {
+    onSortChange(params) {
+      console.log(params)
+      this.$emit('onSortChange', params)
+    },
   },
 }
 </script>

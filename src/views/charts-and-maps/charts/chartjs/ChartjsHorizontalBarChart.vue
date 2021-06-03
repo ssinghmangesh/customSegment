@@ -3,9 +3,9 @@
     <b-card-header>
       <div>
         <b-card-sub-title class="mb-25">
-          Balance
+          {{ subtitle }}
         </b-card-sub-title>
-        <b-card-title>$74,123</b-card-title>
+        <b-card-title>{{ title }}</b-card-title>
       </div>
       <!-- datepicker -->
       <div class="d-flex align-items-center">
@@ -52,11 +52,29 @@ export default {
     flatPickr,
     ChartjsComponentHorizontalBarChart,
   },
-  data() {
-    return {
-      chartjsData,
-      rangePicker: ['2019-05-01', '2019-05-10'],
-    }
+  props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
+    subtitle: {
+      type: String,
+      require: true,
+      default: () => 'SubTitle',
+    },
+    chartjsData: {
+      type: Object,
+      default: () => chartjsData,
+    },
+    rangePicker: {
+      type: Array,
+      default: () => [],
+    },
+    options: {
+      type: Object,
+      default: null,
+    },
   },
 }
 </script>

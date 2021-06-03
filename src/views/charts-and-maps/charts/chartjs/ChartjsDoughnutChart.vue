@@ -47,10 +47,23 @@ export default {
     ChartjsComponentDoughnutChart,
     BCard,
   },
-  data() {
-    return {
-      chartjsData,
-      stockData: [
+  props: {
+    title: {
+      type: String,
+      require: true,
+      default: () => 'Title',
+    },
+    chartjsData: {
+      type: Object,
+      default: () => chartjsData,
+    },
+    options: {
+      type: Object,
+      default: null,
+    },
+    stockData: {
+      type: Array,
+      default: () => [
         {
           device: 'Desktop', symbol: 'MonitorIcon', color: 'text-primary', percentage: 80, upDown: 2,
         },
@@ -61,7 +74,23 @@ export default {
           device: 'Tablet', symbol: 'TabletIcon', color: 'text-success', percentage: 10, upDown: -5,
         },
       ],
-    }
+    },
   },
+  // data() {
+  //   return {
+  //     chartjsData,
+  //     stockData: [
+  //       {
+  //         device: 'Desktop', symbol: 'MonitorIcon', color: 'text-primary', percentage: 80, upDown: 2,
+  //       },
+  //       {
+  //         device: 'Mobile', symbol: 'TabletIcon', color: 'text-warning', percentage: 10, upDown: 8,
+  //       },
+  //       {
+  //         device: 'Tablet', symbol: 'TabletIcon', color: 'text-success', percentage: 10, upDown: -5,
+  //       },
+  //     ],
+  //   }
+  // },
 }
 </script>
