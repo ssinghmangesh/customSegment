@@ -8,7 +8,7 @@
     }"
   >
     <b-link
-      v-bind="linkProps"
+      :to="item.path || linkProps"
       class="d-flex align-items-center"
     >
       <feather-icon :icon="item.icon || 'CircleIcon'" />
