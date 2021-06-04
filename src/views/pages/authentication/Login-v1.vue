@@ -26,7 +26,7 @@
         >
           <b-form
             class="auth-login-form mt-2"
-            @submit.prevent
+            @submit.prevent="login"
           >
 
             <!-- email -->
@@ -200,6 +200,15 @@ export default {
   computed: {
     passwordToggleIcon() {
       return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
+    },
+  },
+  methods: {
+    async login() {
+      await this.$http.post('/auth-manager/login', {
+        userId: this.userEmail,
+        password: this.password,
+      })
+      this.$router.push('/apps/customers')
     },
   },
 }
