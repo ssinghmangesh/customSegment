@@ -5,7 +5,7 @@
     no-body
   >
     <b-card-header>
-      <b-card-title>Transactions</b-card-title>
+      <b-card-title>{{ title }}</b-card-title>
 
       <b-dropdown
         variant="link"

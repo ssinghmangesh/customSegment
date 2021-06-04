@@ -85,5 +85,79 @@
         "skipRowby": "3"
       }
     }
+  ],
+  "order": [
+    {
+      "type": "ecommerce-transactions",
+      "title": "Financial Status",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "order",
+        "workspaceId": 333,
+        "columnname": "financial_status",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30"
+      }
+    },
+    {
+      "type": "apex-line-chart",
+      "title": "Order count by day",
+      "graphCatergory": "line",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "curve": "straight",
+      "data": {
+        "table": "order",
+        "workspaceId": 333,
+        "startdate": "2020-04-13 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "groupBykey": "dow",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
+      }
+    },
+    {
+      "type": "apex-line-chart",
+      "title": "Total Order Amount",
+      "graphCatergory": "area",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "curve": "straight",
+      "data": {
+        "table": "order",
+        "workspaceId": 333,
+        "startdate": "2020-04-13 11:49:40.765997+05:30",
+        "enddate": "2020-05-13 11:49:40.765997+05:30",
+        "groupBykey": "day",
+        "statsDefinition": {
+          "aggregate": "sum",
+          "columnname": "total_price"
+        }
+      }
+    },
+    {
+      "type": "ecommerce-browser-states",
+      "title": "Fulfullment Status",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "order",
+        "workspaceId": 333,
+        "columnname": "fulfillment_status",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30"
+      }
+    }
   ]
 }
