@@ -41,7 +41,7 @@
         enabled: true,
         initialSortBy: {
           label: 'Name',
-          field: 'fullName',
+          field: 'email',
         }
       }"
       @on-sort-change="onSortChange"

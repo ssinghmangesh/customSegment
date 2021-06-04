@@ -5,9 +5,9 @@
   >
     <b-card-header>
       <div>
-        <b-card-title>Browser States</b-card-title>
+        <b-card-title>{{ title }}</b-card-title>
         <b-card-text class="font-small-2">
-          Counter August 2020
+          {{ subtitle }}
         </b-card-text>
       </div>
 
@@ -96,39 +96,27 @@ export default {
     BDropdownItem,
     VueApexCharts,
   },
+  props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
+    subtitle: {
+      type: String,
+      default: () => '',
+    },
+    data: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
       chartData: [],
       chartClone: {},
       chartColor: [$themeColors.primary, $themeColors.warning, $themeColors.secondary, $themeColors.info, $themeColors.danger],
       chartSeries: [54.4, 6.1, 14.6, 4.2, 8],
-      browserData: [
-        {
-          browserImg: require('@/assets/images/icons/google-chrome.png'),
-          name: 'Google Chrome',
-          usage: '54.4%',
-        },
-        {
-          browserImg: require('@/assets/images/icons/mozila-firefox.png'),
-          name: 'Mozila Firefox',
-          usage: '6.1%',
-        },
-        {
-          browserImg: require('@/assets/images/icons/apple-safari.png'),
-          name: 'Apple Safari',
-          usage: '14.6%',
-        },
-        {
-          browserImg: require('@/assets/images/icons/internet-explorer.png'),
-          name: 'Internet Explorer',
-          usage: '4.2%',
-        },
-        {
-          browserImg: require('@/assets/images/icons/opera.png'),
-          name: 'Opera Mini',
-          usage: '8.%',
-        },
-      ],
+      browserData: [],
       chart: {
         series: [65],
         options: {
@@ -169,6 +157,7 @@ export default {
     }
   },
   created() {
+    this.browserData = this.data
     for (let i = 0; i < this.browserData.length; i += 1) {
       const chartClone = JSON.parse(JSON.stringify(this.chart))
       chartClone.options.colors[0] = this.chartColor[i]

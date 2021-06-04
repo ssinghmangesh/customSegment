@@ -11,7 +11,7 @@
       class="mb-0"
     >
       <!-- company -->
-      <template #cell(company)="data">
+      <!-- <template #cell(company)="data">
         <div class="d-flex align-items-center">
           <b-avatar
             rounded
@@ -31,10 +31,10 @@
             </div>
           </div>
         </div>
-      </template>
+      </template> -->
 
       <!-- category -->
-      <template #cell(category)="data">
+      <!-- <template #cell(category)="data">
         <div class="d-flex align-items-center">
           <b-avatar
             class="mr-1"
@@ -47,23 +47,23 @@
           </b-avatar>
           <span>{{ data.item.avatarTitle }}</span>
         </div>
-      </template>
+      </template> -->
 
       <!-- views -->
-      <template #cell(views)="data">
+      <!-- <template #cell(views)="data">
         <div class="d-flex flex-column">
           <span class="font-weight-bolder mb-25">{{ data.item.viewTitle }}</span>
           <span class="font-small-2 text-muted text-nowrap">{{ data.item.viewsub }}</span>
         </div>
-      </template>
+      </template> -->
 
       <!-- revenue -->
-      <template #cell(revenue)="data">
+      <!-- <template #cell(revenue)="data">
         {{ '$'+data.item.revenue }}
-      </template>
+      </template> -->
 
       <!-- sales -->
-      <template #cell(sales)="data">
+      <!-- <template #cell(sales)="data">
         <div class="d-flex align-items-center">
           <span class="font-weight-bolder mr-1">{{ data.item.sales+'%' }}</span>
           <feather-icon
@@ -71,40 +71,34 @@
             :class="data.item.loss ? 'text-danger':'text-success'"
           />
         </div>
-      </template>
+      </template> -->
     </b-table>
   </b-card>
 </template>
 
 <script>
 import {
-  BCard, BTable, BAvatar, BImg,
+  BCard, BTable,
+  //  BAvatar,
+  // BImg,
 } from 'bootstrap-vue'
 
 export default {
   components: {
     BCard,
     BTable,
-    BAvatar,
-    BImg,
+    // BAvatar,
+    // BImg,
   },
   props: {
     tableData: {
       type: Array,
       default: () => [],
     },
-  },
-
-  data() {
-    return {
-      fields: [
-        { key: 'company', label: 'COMPANY' },
-        { key: 'category', label: 'CATEGORY' },
-        { key: 'views', label: 'VIEWS' },
-        { key: 'revenue', label: 'REVENUE' },
-        { key: 'sales', label: 'SALES' },
-      ],
-    }
+    fields: {
+      type: Array,
+      default: () => [],
+    },
   },
 }
 </script>

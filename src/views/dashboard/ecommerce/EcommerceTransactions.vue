@@ -89,6 +89,10 @@ export default {
     BDropdownItem,
   },
   props: {
+    title: {
+      type: String,
+      default: () => '',
+    },
     data: {
       type: Array,
       default: () => [],

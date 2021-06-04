@@ -1,42 +1,32 @@
 <template>
-  <b-row>
-    <b-col cols="12">
-      <good-table-basic
-        :pageLength="pageLength"
-        :currentPage="currentPage"
-        :columns="columns"
-        :rows="rows"
-        :status="status"
-        :dir="dir"
-        :total="total"
-        :start="start"
-        @changeInPageLength="changeInPageLength"
-        @changeInCurrentPage="changeInCurrentPage"
-        @onSortChange="onSortChange"
-      />
-      <!-- <good-table-advance-search
-        :pageLength="pageLength"
-        :currentPage="currentPage"
-        :columns="columns"
-        :rows="rows"
-        :status="status"
-        :dir="dir"
-        :total="total"
-        :start="start"
-        @changeInPageLength="changeInPageLength"
-        @changeInCurrentPage="changeInCurrentPage"
-      /> -->
-      <!-- <good-table-row-group />
-      <good-table-column-search />
-      <good-table-i18n />
-      <good-table-ssr /> -->
-    </b-col>
-  </b-row>
+  <div>
+    <add
+      @updateTable="updateTable"
+    />
+    <b-row>
+      <b-col cols="12">
+        <good-table-basic
+          :pageLength="pageLength"
+          :currentPage="currentPage"
+          :columns="columns"
+          :rows="rows"
+          :status="status"
+          :dir="dir"
+          :total="total"
+          :start="start"
+          @changeInPageLength="changeInPageLength"
+          @changeInCurrentPage="changeInCurrentPage"
+          @onSortChange="onSortChange"
+        />
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
 import { BRow, BCol } from 'bootstrap-vue'
 import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
+import add from './add.vue'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
 // import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
 // import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
@@ -47,6 +37,7 @@ export default {
   components: {
     BRow,
     BCol,
+    add,
 
     GoodTableBasic,
     // GoodTableRowGroup,
@@ -64,6 +55,7 @@ export default {
       total: 100,
       orderBykey: 'email',
       orderByDirection: 'asc',
+      filters: {},
     }
   },
   computed: {
@@ -71,28 +63,28 @@ export default {
       return [
         {
           label: 'Name',
-          field: 'fullName',
+          field: 'name',
         },
         {
           label: 'Email',
           field: 'email',
         },
         {
-          label: 'Date',
-          field: 'created_at',
+          label: 'Total Amount Spent',
+          field: 'total_amount_spent',
         },
-        {
-          label: 'CartId',
-          field: 'cart_id',
-        },
-        {
-          label: 'Status',
-          field: 'status',
-        },
-        {
-          label: 'Action',
-          field: 'action',
-        },
+        // {
+        //   label: 'CartId',
+        //   field: 'cart_id',
+        // },
+        // {
+        //   label: 'Status',
+        //   field: 'status',
+        // },
+        // {
+        //   label: 'Action',
+        //   field: 'action',
+        // },
       ]
     },
     status() {
@@ -124,10 +116,13 @@ export default {
     async currentPage() {
       await this.update()
     },
+    async filters() {
+      await this.update()
+    },
   },
-  async created() {
-    await this.update()
-  },
+  // async created() {
+  //   await this.update()
+  // },
   methods: {
     async onSortChange(params) {
       this.orderBykey = params[0].field
@@ -145,24 +140,27 @@ export default {
     },
     async update() {
       const data = {
-        customerId: 0,
-        // startdate: '2000-01-01 11:49:40.765997+05:30',
-        // enddate: '2021-01-01 11:49:40.765997+05:30',
         orderBykey: this.orderBykey,
         orderByDirection: this.orderByDirection,
         limit: this.pageLength,
         skipRowby: ((this.currentPage - 1) * this.pageLength),
+        table: 'customeraggregate',
+        filters: this.filters,
       }
-      const response = await this.$http.post('/customer-manager/orders', data)
-      console.log(response.data)
+      const response = await this.$http.post('/analytics-manager/table', data)
+      // console.log(response.data)
       this.rows = [...response.data.data]
-      console.log(this.rows)
+      // console.log(this.rows)
       const countData = {
-        table: 'order',
+        table: 'customeraggregate',
+        filters: this.filters,
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
-      console.log(response2)
+      // console.log(response2)
       this.total = response2.data.data.count
+    },
+    updateTable(data) {
+      this.filters = { ...data }
     },
   },
 }
