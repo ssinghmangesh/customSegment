@@ -10,9 +10,12 @@
       "data": {
         "table": "order",
         "workspaceId": 333,
-        "columnname": "financial_status",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30"
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
       }
     },
     {
@@ -29,7 +32,12 @@
         "workspaceId": 333,
         "columnname": "total_price",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30"
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "groupBykey": "dow",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
       }
     },
     {
@@ -44,29 +52,16 @@
         "workspaceId": 333,
         "columnname": "fulfillment_status",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30"
-      }
-    },
-    {
-      "type": "ecommerce-browser-states",
-      "title": "Ecommerce Browser States",
-      "subtitle": "subtile",
-      "col": {
-        "default": 12,
-        "md": 6
-      }
-    },
-    {
-      "type": "ecommerce-transactions",
-      "title": "Transactions",
-      "subtitle": "subtile",
-      "col": {
-        "default": 12,
-        "md": 6
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
       }
     },
     {
       "type": "ecommerce-company-table",
+      "title": "Discounts",
       "col": {
         "default": 12,
         "md": 8
@@ -79,10 +74,10 @@
       ],
       "data": {
         "table": "order",
-        "workspaceId": 1,
+        "workspaceId": 333,
         "orderBykey": "id",
-        "limit": "5",
-        "skipRowby": "3"
+        "limit": "10",
+        "skipRowby": "0"
       }
     }
   ],
@@ -99,7 +94,11 @@
         "workspaceId": 333,
         "columnname": "financial_status",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30"
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "financial_status"
+        }
       }
     },
     {
@@ -114,8 +113,10 @@
       "data": {
         "table": "order",
         "workspaceId": 333,
-        "startdate": "2020-04-13 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "startdate": "2020-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-01-01 11:49:40.765997+05:30",
+        "prevstartdate": "2019-01-01 11:49:40.765997+05:30",
+        "prevenddate": "2020-01-01 11:49:40.765997+05:30",
         "groupBykey": "dow",
         "statsDefinition": {
           "aggregate": "count",
@@ -156,7 +157,265 @@
         "workspaceId": 333,
         "columnname": "fulfillment_status",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30"
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "financial_status"
+        }
+      }
+    },
+    {
+      "type": "ecommerce-browser-states",
+      "title": "Shipping Country",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "order",
+        "workspaceId": 333,
+        "columnname": "shipping_address",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "shipping_address"
+        }
+      }
+    },
+    {
+      "type": "apex-donut-chart",
+      "title": "draftOrder",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "draftorder",
+        "workspaceId": 333,
+        "columnname": "status",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
+      }
+    }
+  ],
+  "product": [
+    {
+      "type": "ecommerce-transactions",
+      "title": "Best Selling Products",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "product",
+        "workspaceId": 333,
+        "columnname": "title",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        },
+        "orderByDirection": "desc"
+      }
+    },
+    {
+      "type": "apex-line-chart",
+      "title": "Total Products Sold",
+      "graphCatergory": "bar",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "curve": "straight",
+      "data": {
+        "table": "product",
+        "workspaceId": 333,
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "groupBykey": "year",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
+      }
+    },
+    {
+      "type": "ecommerce-transactions",
+      "title": "Products by Product types",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "product",
+        "workspaceId": 333,
+        "columnname": "product_type",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "title"
+        },
+        "orderByDirection": "desc"
+      }
+    },
+    {
+      "type": "ecommerce-company-table",
+      "title": "Product by Vendor and Product tags",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "fields": [
+        { "key": "title", "label": "Product Name" },
+        { "key": "vendor", "label": "Vendor" },
+        { "key": "tags", "label": "Product Tags" }
+      ],
+      "data": {
+        "table": "product",
+        "workspaceId": 333,
+        "orderBykey": "id",
+        "limit": "10",
+        "skipRowby": "0"
+      }
+    }
+  ],
+  "taxes": [
+    {
+      "type": "ecommerce-company-table",
+      "title": "Order Tax Details",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "fields": [
+        { "key": "order_id", "label": "Order Id" },
+        { "key": "order_name", "label": "Order Name" },
+        { "key": "title", "label": "Tax Title" },
+        { "key": "price", "label": "Tax Amount" }
+      ],
+      "data": {
+        "table": "tax",
+        "workspaceId": 333,
+        "orderBykey": "order_id",
+        "limit": "10",
+        "skipRowby": "0"
+      }
+    },
+    {
+      "type": "apex-line-chart",
+      "title": "Monthly Tax Collected",
+      "graphCatergory": "bar",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "curve": "straight",
+      "data": {
+        "table": "tax",
+        "workspaceId": 333,
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "groupBykey": "month",
+        "statsDefinition": {
+          "aggregate": "sum",
+          "columnname": "price"
+        }
+      }
+    }
+  ],
+  "discount": [
+    {
+      "type": "apex-donut-chart",
+      "title": "Discount Codes",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "discount",
+        "workspaceId": 333,
+        "columnname": "title",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
+      }
+    },
+    {
+      "type": "ecommerce-company-table",
+      "title": "Discount Details",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "fields": [
+        { "key": "id", "label": "Discount Id" },
+        { "key": "title", "label": "Discount Code" },
+        { "key": "usage_limit", "label": "Usage Limit" },
+        { "key": "value", "label": "Discount Amount in percent" },
+        { "key": "allocation_limit", "label": "Allocation Limit" }
+      ],
+      "data": {
+        "table": "discount",
+        "workspaceId": 333,
+        "orderBykey": "id",
+        "limit": "10",
+        "skipRowby": "0"
+      }
+    }
+  ],
+  "refund": [
+    {
+      "type": "apex-line-chart",
+      "title": "Refunds Count",
+      "graphCatergory": "bar",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "curve": "straight",
+      "data": {
+        "table": "refunded",
+        "workspaceId": 333,
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "groupBykey": "dow",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
+      }
+    },
+    {
+      "type": "ecommerce-company-table",
+      "title": "Refunds Details",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "fields": [
+        { "key": "id", "label": "Refund ID" },
+        { "key": "order_id", "label": "Order ID" },
+        { "key": "customer_id", "label": "Customer ID" },
+        { "key": "note", "label": "Note" },
+        { "key": "created_at", "label": "Created At" }
+      ],
+      "data": {
+        "table": "refunded",
+        "workspaceId": 333,
+        "orderBykey": "note",
+        "orderByDirection": "desc",
+        "limit": "10",
+        "skipRowby": "0"
       }
     }
   ]

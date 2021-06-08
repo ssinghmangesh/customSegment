@@ -35,26 +35,31 @@ export default [
   {
     title: 'Discount',
     route: 'custom-report',
+    path: '/apps/custom-report/discount',
     icon: 'CalendarIcon',
   },
   {
     title: 'Refund',
     route: 'custom-report',
+    path: '/apps/custom-report/refund',
     icon: 'CalendarIcon',
   },
   {
     title: 'Transaction',
     route: 'custom-report',
+    path: '/apps/custom-report/transaction',
     icon: 'CalendarIcon',
   },
   {
     title: 'Revenue',
     route: 'custom-report',
+    path: '/apps/custom-report/revenue',
     icon: 'CalendarIcon',
   },
   {
     title: 'Sales',
     route: 'custom-report',
+    path: '/apps/custom-report/sales',
     icon: 'CalendarIcon',
   },
 ]

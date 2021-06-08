@@ -4,6 +4,7 @@
     no-body
     class="card-company-table"
   >
+    <b-card-title>{{ title }}</b-card-title>
     <b-table
       :items="tableData"
       responsive
@@ -78,7 +79,7 @@
 
 <script>
 import {
-  BCard, BTable,
+  BCard, BTable, BCardTitle,
   //  BAvatar,
   // BImg,
 } from 'bootstrap-vue'
@@ -87,6 +88,7 @@ export default {
   components: {
     BCard,
     BTable,
+    BCardTitle,
     // BAvatar,
     // BImg,
   },
@@ -98,6 +100,10 @@ export default {
     fields: {
       type: Array,
       default: () => [],
+    },
+    title: {
+      type: String,
+      default: () => 'TITLE',
     },
   },
 }
