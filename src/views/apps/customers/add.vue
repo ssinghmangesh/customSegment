@@ -95,26 +95,37 @@ export default {
       incEcl: 'Include',
       incEclOption: ['Include', 'Exclude'],
       searchQuery: {},
-      selectedFilters: searchOption.customer.selectedFilters,
-      searchOption: searchOption.customer.filters,
+      selectedFilters: [],
+      searchOption: [],
     }
   },
   computed: {
     filters() {
       return this.selectedFilters
     },
+    type() {
+      return this.$route.params.type
+    },
   },
   watch: {
+    type() {
+      this.selectedFilters = searchOption[this.type].selectedFilters
+      this.searchOption = searchOption[this.type].filters
+    },
     searchQuery(val) {
       if (val.title) {
         this.$refs['my-modal'].show()
       }
     },
     selectedFilters() {
+      //  console.log(this.selectedFilters)
       this.send()
     },
   },
   async created() {
+    this.selectedFilters = searchOption[this.type].selectedFilters
+    this.searchOption = searchOption[this.type].filters
+    // //  console.log(searchOption[this.$route.params.type].filters)
     await this.send()
   },
   methods: {

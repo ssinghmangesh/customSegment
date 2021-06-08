@@ -844,7 +844,7 @@ export default {
     async update() {
       if (this.graphType === 'apex-donut-chart') {
         const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
-        // console.log('response : ', response.data)
+        // //  console.log('response : ', response.data)
         response.data.data.forEach((d, index) => {
           this.series.push(Number(d.count))
           this.labels.push(d[this.item.data.columnname])

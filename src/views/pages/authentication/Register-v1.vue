@@ -226,7 +226,7 @@ export default {
         password: this.password,
         shopName: this.username,
       })
-      console.log(response)
+      //  console.log(response)
       await this.$http.get(response.data)
     },
   },

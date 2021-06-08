@@ -6,6 +6,7 @@ export default [
       {
         title: 'Orders',
         route: 'apps-orders',
+        path: '/apps/orders',
       },
       {
         title: 'Add Segment',

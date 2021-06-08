@@ -1,7 +1,7 @@
 export default [
   {
-    path: '/apps/customers',
-    name: 'apps-customers',
+    path: '/apps/:type',
+    name: 'apps-customer',
     component: () => import('@/views/apps/customers/index.vue'),
   },
   {

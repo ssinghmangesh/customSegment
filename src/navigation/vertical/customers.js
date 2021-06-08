@@ -6,6 +6,7 @@ export default [
       {
         title: 'Customer',
         route: 'apps-customers',
+        path: '/apps/customers',
       },
       {
         title: 'Add Segment',
