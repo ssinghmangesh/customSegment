@@ -312,7 +312,7 @@ export default {
   },
   methods: {
     onSortChange(params) {
-      console.log(params)
+      // console.log(params)
       this.$emit('onSortChange', params)
     },
   },

@@ -55,7 +55,7 @@ export default {
       }
       const response = await this.$http.post('/analytics-manager/timeline', data)
       this.data = response.data.data
-      console.log(this.data)
+      // console.log(this.data)
     },
   },
 }

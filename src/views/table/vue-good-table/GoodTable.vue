@@ -135,12 +135,12 @@ export default {
       await this.update()
     },
     changeInCurrentPage(val) {
-      console.log('changeInCurrentPage', val)
+      // console.log('changeInCurrentPage', val)
       this.currentPage = val
       this.start = ((this.currentPage - 1) * this.pageLength + 1)
     },
     changeInPageLength(length) {
-      console.log('changeInPageLength', length)
+      // console.log('changeInPageLength', length)
       this.pageLength = length
     },
     async update() {
@@ -152,14 +152,14 @@ export default {
         skipRowby: ((this.currentPage - 1) * this.pageLength),
       }
       const response = await this.$http.post('/analytics-manager/table', data)
-      console.log(response.data)
+      // console.log(response.data)
       this.rows = [...response.data.data]
-      console.log(this.rows)
+      // console.log(this.rows)
       const countData = {
         table: 'order',
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
-      console.log(response2)
+      // console.log(response2)
       this.total = response2.data.data.count
     },
   },

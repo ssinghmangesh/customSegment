@@ -130,12 +130,12 @@ export default {
       await this.update()
     },
     changeInCurrentPage(val) {
-      console.log('changeInCurrentPage', val)
+      // console.log('changeInCurrentPage', val)
       this.currentPage = val
       this.start = ((this.currentPage - 1) * this.pageLength + 1)
     },
     changeInPageLength(length) {
-      console.log('changeInPageLength', length)
+      // console.log('changeInPageLength', length)
       this.pageLength = length
     },
     async update() {
