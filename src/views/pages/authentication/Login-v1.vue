@@ -204,11 +204,13 @@ export default {
   },
   methods: {
     async login() {
-      await this.$http.post('/auth-manager/login', {
+      this.$http.post('/auth-manager/login', {
         userId: this.userEmail,
         password: this.password,
       })
-      this.$router.push('/apps/customers')
+        .then(() => {
+          this.$router.push('/apps/customers').catch(err => console.log(err))
+        })
     },
   },
 }

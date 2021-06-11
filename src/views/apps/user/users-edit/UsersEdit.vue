@@ -2,7 +2,7 @@
   <component :is="userData === undefined ? 'div' : 'b-card'">
 
     <!-- Alert: No item found -->
-    <b-alert
+    <!-- <b-alert
       variant="danger"
       :show="userData === undefined"
     >
@@ -19,10 +19,9 @@
         </b-link>
         for other users.
       </div>
-    </b-alert>
+    </b-alert> -->
 
     <b-tabs
-      v-if="userData"
       pills
     >
 

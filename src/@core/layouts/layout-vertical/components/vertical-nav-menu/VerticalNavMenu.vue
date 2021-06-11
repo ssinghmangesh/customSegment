@@ -63,7 +63,6 @@
       :class="{'d-block': shallShadowBottom}"
       class="shadow-bottom"
     />
-
     <!-- main menu content-->
     <vue-perfect-scrollbar
       :settings="perfectScrollbarSettings"

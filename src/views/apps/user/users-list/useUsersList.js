@@ -1,6 +1,6 @@
 import { ref, watch, computed } from '@vue/composition-api'
 import store from '@/store'
-import { title } from '@core/utils/filter'
+// import { title } from '@core/utils/filter'
 
 // Notification
 import { useToast } from 'vue-toastification/composition'
@@ -14,17 +14,11 @@ export default function useUsersList() {
 
   // Table Handlers
   const tableColumns = [
-    { key: 'user', sortable: true },
-    { key: 'email', sortable: true },
-    { key: 'role', sortable: true },
-    {
-      key: 'currentPlan',
-      label: 'Plan',
-      formatter: title,
-      sortable: true,
-    },
-    { key: 'status', sortable: true },
-    { key: 'actions' },
+    { key: 'name', label: 'name', sortable: true },
+    { key: 'user_id', label: 'email', sortable: true },
+    { key: 'role', label: 'role', sortable: true },
+    { key: 'status', label: 'status', sortable: true },
+    { key: 'company', label: 'company', sortable: true },
   ]
   const perPage = ref(10)
   const totalUsers = ref(0)
