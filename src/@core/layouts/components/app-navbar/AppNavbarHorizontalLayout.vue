@@ -18,7 +18,7 @@
 
     <!-- Left Col -->
     <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
-      <bookmarks />
+      <!-- <bookmarks /> -->
     </div>
 
     <!-- Right Col -->
@@ -37,7 +37,7 @@
 import {
   BLink, BNavbarNav,
 } from 'bootstrap-vue'
-import Bookmarks from './components/Bookmarks.vue'
+// import Bookmarks from './components/Bookmarks.vue'
 import Locale from './components/Locale.vue'
 import DarkToggler from './components/DarkToggler.vue'
 import SearchBar from './components/SearchBar.vue'
@@ -51,7 +51,7 @@ export default {
 
     // Navbar Components
     BNavbarNav,
-    Bookmarks,
+    // Bookmarks,
     Locale,
     DarkToggler,
     SearchBar,

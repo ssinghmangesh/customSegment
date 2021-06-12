@@ -8,10 +8,10 @@ export default [
         route: 'apps-customers',
         path: '/apps/customers',
       },
-      {
-        title: 'Add Segment',
-        route: 'add-customers-segment',
-      },
+      // {
+      //   title: 'Add Segment',
+      //   route: 'add-customers-segment',
+      // },
     ],
   },
 ]

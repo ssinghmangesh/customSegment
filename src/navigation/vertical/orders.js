@@ -9,9 +9,24 @@ export default [
         path: '/apps/orders',
       },
       {
-        title: 'Add Segment',
-        route: 'add-orders-segment',
+        title: 'Discount',
+        route: 'apps-orders',
+        path: '/apps/discounts',
       },
+      {
+        title: 'Tax',
+        route: 'apps-orders',
+        path: '/apps/taxes',
+      },
+      {
+        title: 'Draft Order',
+        route: 'apps-orders',
+        path: '/apps/draftorders',
+      },
+      // {
+      //   title: 'Add Segment',
+      //   route: 'add-orders-segment',
+      // },
     ],
   },
 ]
