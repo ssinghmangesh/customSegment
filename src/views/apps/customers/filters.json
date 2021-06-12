@@ -1,5 +1,5 @@
 {
-  "customer": {
+  "customers": {
     "filters": [
       {
         "title": "Name",
@@ -152,14 +152,101 @@
         "dataType": "timestamptz"
       }
     ],
-    "columns":[],
-    "selectedFilters": [{
-      "columnName": "email",
-      "dataType": "varchar",
-      "filterType": "contains",
-      "title": "Email",
+    "columns":[{
+      "label": "Name",
+      "field": "name"
+    },
+    {
+      "label": "Email",
+      "field": "email"
+    },
+    {
+      "label": "Total Amount Spent",
+      "field": "total_amount_spent"
+    }],
+    "selectedFilters": [],
+    "table": "customeraggregate"
+  },
+  "orders": {
+    "filters": [{
       "type": "text",
-      "values": ["@gmail.com"]
-    }]
+      "name":"browser_ip",
+      "dataType": "varchar",
+      "title": "Browser IP"
+    },
+    {
+      "type": "boolean",
+      "title": "Buyer Accepts Marketing",
+      "name":"buyer_accepts_marketing",
+      "dataType": "boolean"
+    },
+    {
+      "type": "dropdown",
+      "name":"cancel_reason",
+      "dataType": "varchar",
+      "title": "Cancel Reason",
+      "options": ["other"]
+    },
+    {
+      "name":"cancelled_at",
+      "dataType": "timestamptz",
+      "title": "Cancelled At",
+      "type": "timestamptz"
+    },
+    {
+      "name":"current_total_price",
+      "dataType": "numeric",
+      "title": "Current Total Price",
+      "type": "number"
+    }
+    ],
+    "columns":[{
+      "label": "Name",
+      "field": "name"
+    },
+    {
+      "label": "Email",
+      "field": "email"
+    },
+    {
+      "label": "Total Price",
+      "field": "total_price"
+    }],
+    "selectedFilters": [],
+    "table": "order"
+  },
+  "discounts": {
+    "columns":[{
+      "label": "Title",
+      "field": "title"
+    },
+    {
+      "label": "Current Total Discount",
+      "field": "current_total_discount"
+    },
+    {
+      "label": "Financial Status",
+      "field": "financial_status"
+    }],
+    "selectedFilters": [],
+    "table": "discountapplication"
+  },
+  "taxes": {
+    "columns": [
+      {
+        "label": "Order Name",
+        "field": "order_name"
+      },
+      {
+        "label": "Title",
+        "field": "title"
+      },
+      {
+        "label": "Current Total Tax",
+        "field": "current_total_tax"
+      }
+    ],
+    "selectedFilters": [],
+    "table": "tax"
   }
 }

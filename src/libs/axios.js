@@ -4,7 +4,9 @@ import Vue from 'vue'
 import axios from 'axios'
 
 const axiosIns = axios.create({
-  headers: { 'x-workspace-id': 1 },
+  headers: {
+    'x-workspace-id': localStorage.getItem('workspaceId') || 56788582584,
+  },
   baseURL: 'http://localhost:3000',
 })
 

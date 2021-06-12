@@ -26,7 +26,7 @@
           >
             <!-- username -->
             <b-form-group
-              label="Username"
+              label="Shop Name"
               label-for="username"
             >
               <validation-provider
@@ -180,7 +180,7 @@ import {
 import VuexyLogo from '@core/layouts/components/Logo.vue'
 import { required, email } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/ui/forms'
-import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+// import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {
   components: {
@@ -220,19 +220,14 @@ export default {
     },
   },
   methods: {
-    validationForm() {
-      this.$refs.registerForm.validate().then(success => {
-        if (success) {
-          this.$toast({
-            component: ToastificationContent,
-            props: {
-              title: 'Form Submitted',
-              icon: 'EditIcon',
-              variant: 'success',
-            },
-          })
-        }
+    async validationForm() {
+      const response = await this.$http.post('/auth-manager/check-for-register', {
+        userId: this.regEmail,
+        password: this.password,
+        shopName: this.username,
       })
+      //  console.log(response)
+      await this.$http.get(response.data)
     },
   },
 }

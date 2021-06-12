@@ -34,6 +34,8 @@ import orders from './orders'
 import reports from './reports'
 import custompage from './custompage'
 import customers from './customers'
+import discount from './discount'
+import tax from './tax'
 import dashboard from './dashboard'
 import appsAndPages from './apps-and-pages'
 import others from './others'
@@ -43,4 +45,4 @@ import formAndTable from './forms-and-table'
 
 // Array of sections
 // export default [...customers, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]
-export default [...customers, ...dashboard, ...orders, ...custompage, ...reports, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]
+export default [...customers, ...dashboard, ...orders, ...discount, ...tax, ...custompage, ...reports, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]

@@ -27,6 +27,7 @@
 import { BRow, BCol } from 'bootstrap-vue'
 import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
 import add from './add.vue'
+import searchOption from './filters.json'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
 // import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
 // import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
@@ -53,39 +54,17 @@ export default {
       currentPage: 1,
       start: 1,
       total: 100,
-      orderBykey: 'email',
+      orderBykey: searchOption[this.$route.params.type].columns[0].field,
       orderByDirection: 'asc',
       filters: {},
     }
   },
   computed: {
+    table() {
+      return searchOption[this.$route.params.type].table
+    },
     columns() {
-      return [
-        {
-          label: 'Name',
-          field: 'name',
-        },
-        {
-          label: 'Email',
-          field: 'email',
-        },
-        {
-          label: 'Total Amount Spent',
-          field: 'total_amount_spent',
-        },
-        // {
-        //   label: 'CartId',
-        //   field: 'cart_id',
-        // },
-        // {
-        //   label: 'Status',
-        //   field: 'status',
-        // },
-        // {
-        //   label: 'Action',
-        //   field: 'action',
-        // },
-      ]
+      return searchOption[this.$route.params.type].columns
     },
     status() {
       return [
@@ -108,8 +87,15 @@ export default {
     dir() {
       return false
     },
+    type() {
+      return this.$route.params.type
+    },
   },
   watch: {
+    type() {
+      this.orderBykey = searchOption[this.$route.params.type].columns[0].field
+      //  console.log(this.type)
+    },
     async pageLength() {
       await this.update()
     },
@@ -130,34 +116,35 @@ export default {
       await this.update()
     },
     changeInCurrentPage(val) {
-      console.log('changeInCurrentPage', val)
+      //  console.log('changeInCurrentPage', val)
       this.currentPage = val
       this.start = ((this.currentPage - 1) * this.pageLength + 1)
     },
     changeInPageLength(length) {
-      console.log('changeInPageLength', length)
+      //  console.log('changeInPageLength', length)
       this.pageLength = length
     },
     async update() {
+      //  console.log(this.table)
       const data = {
         orderBykey: this.orderBykey,
         orderByDirection: this.orderByDirection,
         limit: this.pageLength,
         skipRowby: ((this.currentPage - 1) * this.pageLength),
-        table: 'customeraggregate',
+        table: this.table,
         filters: this.filters,
       }
       const response = await this.$http.post('/analytics-manager/table', data)
-      // console.log(response.data)
+      // //  console.log(response.data)
       this.rows = [...response.data.data]
-      // console.log(this.rows)
+      // //  console.log(this.rows)
       const countData = {
-        table: 'customeraggregate',
+        table: this.table,
         filters: this.filters,
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
-      // console.log(response2)
-      this.total = response2.data.data.count
+      // //  console.log(response2)
+      this.total = Number(response2.data.data.count)
     },
     updateTable(data) {
       this.filters = { ...data }
