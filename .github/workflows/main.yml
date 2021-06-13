@@ -15,9 +15,6 @@ jobs:
         - name: Install dependencies
           run: npm install
 
-        - name: Install dependencies 2
-          run: npm update vue-template-compiler
-
         - name: Build
           run: npm run build
 
