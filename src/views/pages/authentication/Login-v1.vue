@@ -209,7 +209,7 @@ export default {
         password: this.password,
       })
         .then(() => {
-          this.$router.push('/apps/customers').catch(err => {})
+          this.$router.push('/apps/customers')
         })
     },
   },
