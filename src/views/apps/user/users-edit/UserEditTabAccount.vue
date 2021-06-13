@@ -6,26 +6,24 @@
       <template #aside>
         <b-avatar
           ref="previewEl"
-          :src="userData.avatar"
-          :text="avatarText(userData.fullName)"
-          :variant="`light-${resolveUserRoleVariant(userData.role)}`"
+          :src="src"
           size="90px"
           rounded
         />
       </template>
       <h4 class="mb-1">
-        {{ userData.fullName }}
+        {{ name }}
       </h4>
       <div class="d-flex flex-wrap">
         <b-button
           variant="primary"
-          @click="$refs.refInputEl.click()"
+          @click="fileInput"
         >
           <input
-            ref="refInputEl"
+            id="fileInput"
             type="file"
             class="d-none"
-            @input="inputImageRenderer"
+            @input="fileUpload"
           >
           <span class="d-none d-sm-inline">Update</span>
           <feather-icon
@@ -45,7 +43,6 @@
         </b-button>
       </div>
     </b-media>
-
     <!-- User Info: Input Fields -->
     <b-form>
       <b-row>
@@ -61,7 +58,7 @@
           >
             <b-form-input
               id="username"
-              v-model="userData.username"
+              v-model="username"
             />
           </b-form-group>
         </b-col>
@@ -77,7 +74,7 @@
           >
             <b-form-input
               id="full-name"
-              v-model="userData.fullName"
+              v-model="name"
             />
           </b-form-group>
         </b-col>
@@ -93,8 +90,9 @@
           >
             <b-form-input
               id="email"
-              v-model="userData.email"
+              v-model="user_id"
               type="email"
+              :disabled="true"
             />
           </b-form-group>
         </b-col>
@@ -109,7 +107,7 @@
             label-for="user-status"
           >
             <v-select
-              v-model="userData.status"
+              v-model="status"
               :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
               :options="statusOptions"
               :reduce="val => val.value"
@@ -129,7 +127,7 @@
             label-for="user-role"
           >
             <v-select
-              v-model="userData.role"
+              v-model="role"
               :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
               :options="roleOptions"
               :reduce="val => val.value"
@@ -150,7 +148,7 @@
           >
             <b-form-input
               id="company"
-              v-model="userData.company"
+              v-model="company"
             />
           </b-form-group>
         </b-col>
@@ -192,6 +190,7 @@
       variant="primary"
       class="mb-1 mb-sm-0 mr-0 mr-sm-1"
       :block="$store.getters['app/currentBreakPoint'] === 'xs'"
+      @click="save"
     >
       Save Changes
     </b-button>
@@ -211,9 +210,6 @@ import {
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
 import vSelect from 'vue-select'
-import { useInputImageRenderer } from '@core/comp-functions/forms/form-utils'
-import { ref } from '@vue/composition-api'
-import useUsersList from '../users-list/useUsersList'
 
 export default {
   components: {
@@ -238,9 +234,7 @@ export default {
       required: true,
     },
   },
-  setup(props) {
-    const { resolveUserRoleVariant } = useUsersList()
-
+  setup() {
     const roleOptions = [
       { label: 'Admin', value: 'admin' },
       { label: 'Author', value: 'author' },
@@ -293,26 +287,76 @@ export default {
       },
     ]
 
-    // ? Demo Purpose => Update image on click of update
-    const refInputEl = ref(null)
-    const previewEl = ref(null)
-
-    const { inputImageRenderer } = useInputImageRenderer(refInputEl, base64 => {
-      // eslint-disable-next-line no-param-reassign
-      props.userData.avatar = base64
-    })
-
     return {
-      resolveUserRoleVariant,
       avatarText,
       roleOptions,
       statusOptions,
       permissionsData,
+    }
+  },
+  data() {
+    return {
+      file: null,
+      src: '',
+      username: 'mangesh123',
+      user_id: 'singhmangeshk@gmail.com',
+      name: 'Mangesh Singh',
+      company: 'custom-segment',
+      status: 'pending',
+      role: 'editor',
+    }
+  },
+  watch: {
+    file() {
+      console.log(this.file)
+    },
+  },
+  async created() {
+    console.log(this.$route.params.id)
+    const res = await this.$http.post('user-manager/user/fetch', {
+      user_id: this.user_id,
+    })
+    const user = res.data.data
+    this.name = user.name
+    this.status = user.status
+    this.role = user.role
+    this.company = user.company
+    this.username = user.username
+    this.src = user.src
+  },
+  methods: {
+    fileInput() {
+      document.getElementById('fileInput').click()
+    },
+    async fileUpload(event) {
+      /*eslint-disable */
+      this.file = event.target.files[0]
+      this.updateSrc(this.file)
+    },
+    async save() {
+      const formData = new FormData()
+      formData.append('file', this.file);
+      formData.append('user_id', this.user_id);
+      formData.append('name', this.name);
+      formData.append('status', this.status);
+      formData.append('role', this.role);
+      formData.append('company', this.company);
+      formData.append('username', this.username);
+      await this.$http.post('/user-manager/user/edit', formData)
+    },
+    updateSrc(file) {
+      const reader = new FileReader()
+      reader.addEventListener(
+        'load',
+        () => {
+          this.src = reader.result
+        },
+        false,
+      )
 
-      //  ? Demo - Update Image on click of update button
-      refInputEl,
-      previewEl,
-      inputImageRenderer,
+      if (file) {
+        reader.readAsDataURL(file)
+      }
     }
   },
 }

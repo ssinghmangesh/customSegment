@@ -9,7 +9,7 @@
           <vuexy-logo />
 
           <h2 class="brand-text text-primary ml-1">
-            Vuexy
+            Segment Custom class="brand-text text-primary ml-1">
           </h2>
         </b-link>
 
@@ -17,7 +17,7 @@
           Reset Password 🔒
         </b-card-title>
         <b-card-text class="mb-2">
-          Your new password must be different from previously used passwords
+          You are setting a password for {{ $route.query.user_id }}
         </b-card-text>
 
         <!-- form -->
@@ -130,7 +130,7 @@ import {
   BCard, BCardTitle, BCardText, BForm, BFormGroup, BInputGroup, BInputGroupAppend, BLink, BFormInput, BButton,
 } from 'bootstrap-vue'
 import { required } from '@validations'
-import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+// import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {
   components: {
@@ -176,19 +176,12 @@ export default {
     togglePassword2Visibility() {
       this.password2FieldType = this.password2FieldType === 'password' ? 'text' : 'password'
     },
-    validationForm() {
-      this.$refs.simpleRules.validate().then(success => {
-        if (success) {
-          this.$toast({
-            component: ToastificationContent,
-            props: {
-              title: 'Form Submitted',
-              icon: 'EditIcon',
-              variant: 'success',
-            },
-          })
-        }
+    async validationForm() {
+      await this.$http.post('/auth-manager/set-password', {
+        userId: this.$route.query.user_id,
+        password: this.password,
       })
+      this.$router.push('/apps/customers')
     },
   },
 }

@@ -43,7 +43,7 @@ export default {
     // this.$http.get('/analytics/data')
     //   .then(response => {
     //     this.data = response.data
-    //     console.log(this.data)
+    //     //  console.log(this.data)
     //   })
     await this.update()
   },
@@ -55,7 +55,6 @@ export default {
       }
       const response = await this.$http.post('/analytics-manager/timeline', data)
       this.data = response.data.data
-      // console.log(this.data)
     },
   },
 }

@@ -8,12 +8,12 @@
           <vuexy-logo />
 
           <h2 class="brand-text text-primary ml-1">
-            Vuexy
+            Segment Custom
           </h2>
         </b-link>
 
         <b-card-title class="mb-1">
-          Welcome to Vuexy! 👋
+          Welcome to Custom Segment 👋
         </b-card-title>
         <b-card-text class="mb-2">
           Please sign-in to your account and start the adventure
@@ -26,7 +26,7 @@
         >
           <b-form
             class="auth-login-form mt-2"
-            @submit.prevent
+            @submit.prevent="login"
           >
 
             <!-- email -->
@@ -200,6 +200,17 @@ export default {
   computed: {
     passwordToggleIcon() {
       return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
+    },
+  },
+  methods: {
+    async login() {
+      this.$http.post('/auth-manager/login', {
+        userId: this.userEmail,
+        password: this.password,
+      })
+        .then(() => {
+          this.$router.push('/apps/customers').catch(err => console.log(err))
+        })
     },
   },
 }

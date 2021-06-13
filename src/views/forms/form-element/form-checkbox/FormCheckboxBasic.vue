@@ -66,7 +66,6 @@ export default {
   },
   watch: {
     selected() {
-      // console.log(this.selected)
     },
   },
 }

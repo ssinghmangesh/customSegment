@@ -216,7 +216,6 @@ export default {
     async update() {
       if (this.graphType === 'StatisticCardWithAreaChartOrders') {
         const response = await this.$http.post('/analytics-manager/count', this.item.data)
-        // console.log('response : ', response.data)
         this.count = response.data.data.count
       }
     },

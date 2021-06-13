@@ -12,7 +12,7 @@ export default [
   {
     path: '/login',
     name: 'auth-login',
-    component: () => import('@/views/pages/authentication/Login.vue'),
+    component: () => import('@/views/pages/authentication/Login-v1.vue'),
     meta: {
       layout: 'full',
       resource: 'Auth',

@@ -24,12 +24,12 @@
               class="navbar-brand"
               to="/"
             >
-              <span class="brand-logo">
+              <!-- <span class="brand-logo">
                 <b-img
                   :src="appLogoImage"
                   alt="logo"
                 />
-              </span>
+              </span> -->
               <h2 class="brand-text">
                 {{ appName }}
               </h2>
@@ -37,7 +37,7 @@
           </li>
 
           <!-- Toggler Button -->
-          <li class="nav-item nav-toggle">
+          <!-- <li class="nav-item nav-toggle">
             <b-link class="nav-link modern-nav-toggle">
               <feather-icon
                 icon="XIcon"
@@ -52,7 +52,7 @@
                 @click="toggleCollapsed"
               />
             </b-link>
-          </li>
+          </li> -->
         </ul>
       </slot>
     </div>
@@ -63,7 +63,6 @@
       :class="{'d-block': shallShadowBottom}"
       class="shadow-bottom"
     />
-
     <!-- main menu content-->
     <vue-perfect-scrollbar
       :settings="perfectScrollbarSettings"
@@ -83,7 +82,7 @@
 <script>
 import navMenuItems from '@/navigation/vertical'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import { BLink, BImg } from 'bootstrap-vue'
+import { BLink } from 'bootstrap-vue'
 import { provide, computed, ref } from '@vue/composition-api'
 import useAppConfig from '@core/app-config/useAppConfig'
 import { $themeConfig } from '@themeConfig'
@@ -95,7 +94,7 @@ export default {
     VuePerfectScrollbar,
     VerticalNavMenuItems,
     BLink,
-    BImg,
+    // BImg,
   },
   props: {
     isVerticalMenuActive: {

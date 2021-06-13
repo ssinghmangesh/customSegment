@@ -37,12 +37,8 @@
         enabled: true,
         perPage:pageLength
       }"
-      :sortOptions="{
+      :sort-options="{
         enabled: true,
-        initialSortBy: {
-          label: 'Name',
-          field: 'email',
-        }
       }"
       @on-sort-change="onSortChange"
     >
@@ -312,7 +308,6 @@ export default {
   },
   methods: {
     onSortChange(params) {
-      // console.log(params)
       this.$emit('onSortChange', params)
     },
   },

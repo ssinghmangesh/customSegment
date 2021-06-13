@@ -17,18 +17,18 @@
     </ul>
 
     <!-- Left Col -->
-    <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
-
+    <div class="bookmark-wrapper align-items-center flex-grow-1 d-lg-flex cs-title">
+        {{ getTitle($route.path) }}
       <!-- Bookmarks Container -->
-      <bookmarks />
+      <!-- <bookmarks /> -->
     </div>
 
     <b-navbar-nav class="nav align-items-center ml-auto">
-      <locale />
-      <dark-Toggler class="d-none d-lg-block" />
-      <search-bar />
-      <cart-dropdown />
-      <notification-dropdown />
+      <!-- <locale /> -->
+      <!-- <dark-Toggler class="d-none d-lg-block" /> -->
+      <!-- <search-bar /> -->
+      <!-- <cart-dropdown /> -->
+      <!-- <notification-dropdown /> -->
       <user-dropdown />
     </b-navbar-nav>
   </div>
@@ -38,12 +38,12 @@
 import {
   BLink, BNavbarNav,
 } from 'bootstrap-vue'
-import Bookmarks from './components/Bookmarks.vue'
-import Locale from './components/Locale.vue'
-import SearchBar from './components/SearchBar.vue'
-import DarkToggler from './components/DarkToggler.vue'
-import CartDropdown from './components/CartDropdown.vue'
-import NotificationDropdown from './components/NotificationDropdown.vue'
+// import Bookmarks from './components/Bookmarks.vue'
+// import Locale from './components/Locale.vue'
+// import SearchBar from './components/SearchBar.vue'
+// import DarkToggler from './components/DarkToggler.vue'
+// import CartDropdown from './components/CartDropdown.vue'
+// import NotificationDropdown from './components/NotificationDropdown.vue'
 import UserDropdown from './components/UserDropdown.vue'
 
 export default {
@@ -52,12 +52,12 @@ export default {
 
     // Navbar Components
     BNavbarNav,
-    Bookmarks,
-    Locale,
-    SearchBar,
-    DarkToggler,
-    CartDropdown,
-    NotificationDropdown,
+    // Bookmarks,
+    // Locale,
+    // SearchBar,
+    // DarkToggler,
+    // CartDropdown,
+    // NotificationDropdown,
     UserDropdown,
   },
   props: {
@@ -66,5 +66,18 @@ export default {
       default: () => {},
     },
   },
+  methods: {
+    getTitle(title) {
+      const url = title.split('/')
+      return url[url.length - 1]
+    },
+  },
 }
 </script>
+<style>
+.cs-title {
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+</style>

@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // Routes
-import { canNavigate } from '@/libs/acl/routeProtection'
-import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
+// import { canNavigate } from '@/libs/acl/routeProtection'
+// import { isUserLoggedIn, getUserData, getHomeRouteForLoggedInUser } from '@/auth/utils'
 import customreport from './routes/customreport'
 import customers from './routes/customers'
 import orders from './routes/orders'
@@ -42,25 +42,27 @@ const router = new VueRouter({
   ],
 })
 
-router.beforeEach((to, _, next) => {
-  const isLoggedIn = isUserLoggedIn()
+/* eslint-disable */
 
-  if (!canNavigate(to)) {
-    // Redirect to login if not logged in
-    if (!isLoggedIn) return next({ name: 'auth-login' })
+router.beforeEach((to, _, next) => next())
+  //   const isLoggedIn = isUserLoggedIn()
 
-    // If logged in => not authorized
-    return next({ name: 'misc-not-authorized' })
-  }
+  //   if (!canNavigate(to)) {
+  //     // Redirect to login if not logged in
+  //     if (!isLoggedIn) return next({ name: 'auth-login' })
 
-  // Redirect if logged in
-  if (to.meta.redirectIfLoggedIn && isLoggedIn) {
-    const userData = getUserData()
-    next(getHomeRouteForLoggedInUser(userData ? userData.role : null))
-  }
+  //     // If logged in => not authorized
+  //     return next({ name: 'misc-not-authorized' })
+  //   }
 
-  return next()
-})
+  //   // Redirect if logged in
+  //   if (to.meta.redirectIfLoggedIn && isLoggedIn) {
+  //     const userData = getUserData()
+  //     next(getHomeRouteForLoggedInUser(userData ? userData.role : null))
+  //   }
+
+  // return next()
+// })
 
 // ? For splash screen
 // Remove afterEach hook if you are not using splash screen

@@ -1,7 +1,7 @@
 <template>
   <b-card class="mb-4">
-    <b-card-text>
-      <b-form-group>
+    <b-card-text class="row">
+      <b-form-group class="col-3">
         <v-select
           v-model="andOr"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
@@ -10,7 +10,7 @@
           class="select-size-lg"
         />
       </b-form-group>
-      <b-form-group>
+      <b-form-group class="col-3">
         <v-select
           v-model="incEcl"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
@@ -19,7 +19,7 @@
           class="select-size-lg"
         />
       </b-form-group>
-      <b-form-group>
+      <b-form-group class="col-6">
         <v-select
           v-model="searchQuery"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
@@ -49,6 +49,7 @@
         placeholder="Search"
       /> -->
       <selected-filters
+        class="col-12"
         :selected-filters="filters"
         @editFilter="editFilter"
         @removeFilter="removeFilter"
@@ -95,26 +96,37 @@ export default {
       incEcl: 'Include',
       incEclOption: ['Include', 'Exclude'],
       searchQuery: {},
-      selectedFilters: searchOption.customer.selectedFilters,
-      searchOption: searchOption.customer.filters,
+      selectedFilters: [],
+      searchOption: [],
     }
   },
   computed: {
     filters() {
       return this.selectedFilters
     },
+    type() {
+      return this.$route.params.type
+    },
   },
   watch: {
+    type() {
+      this.selectedFilters = searchOption[this.type].selectedFilters
+      this.searchOption = searchOption[this.type].filters
+    },
     searchQuery(val) {
       if (val.title) {
         this.$refs['my-modal'].show()
       }
     },
     selectedFilters() {
+      //  console.log(this.selectedFilters)
       this.send()
     },
   },
   async created() {
+    this.selectedFilters = searchOption[this.type].selectedFilters
+    this.searchOption = searchOption[this.type].filters
+    // //  console.log(searchOption[this.$route.params.type].filters)
     await this.send()
   },
   methods: {
