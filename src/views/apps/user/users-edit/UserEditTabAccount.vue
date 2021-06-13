@@ -308,11 +308,9 @@ export default {
   },
   watch: {
     file() {
-      console.log(this.file)
     },
   },
   async created() {
-    console.log(this.$route.params.id)
     const res = await this.$http.post('user-manager/user/fetch', {
       user_id: this.user_id,
     })

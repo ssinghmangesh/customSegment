@@ -261,7 +261,6 @@ export default {
   },
   watch: {
     sortBy() {
-      console.log(this.sortBy)
     },
   },
   async created() {
