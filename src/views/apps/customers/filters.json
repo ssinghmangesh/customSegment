@@ -199,6 +199,31 @@
         ]
       },
       {
+        "type": "dropdown",
+        "name": "financial_status",
+        "dataType": "varchar",
+        "title": "Financial Status",
+        "options": [
+          "paid",
+          "partially_paid",
+          "partially_refunded",
+          "pending",
+          "refunded"
+        ]
+      },
+      
+      {
+        "type": "dropdown",
+        "name": "fulfillment_status",
+        "dataType": "varchar",
+        "title": "Fulfillment Status",
+        "options": [
+          "fulfilled",
+          "unfillfiled",
+          "partial"
+        ]
+      },
+      {
         "name": "cancelled_at",
         "dataType": "timestamptz",
         "title": "Cancelled At",

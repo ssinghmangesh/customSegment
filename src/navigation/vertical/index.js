@@ -32,7 +32,7 @@ tagVariant
 */
 import orders from './orders'
 import reports from './reports'
-import customers from './customers'
+import mainRoute from './main'
 import dashboard from './dashboard'
 import appsAndPages from './apps-and-pages'
 import others from './others'
@@ -42,4 +42,4 @@ import formAndTable from './forms-and-table'
 
 // Array of sections
 // export default [...customers, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]
-export default [...customers, ...orders, ...reports, ...dashboard, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]
+export default [...mainRoute, ...orders, ...reports, ...dashboard, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]

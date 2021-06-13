@@ -17,8 +17,8 @@
     </ul>
 
     <!-- Left Col -->
-    <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
-        {{ $route.path}}
+    <div class="bookmark-wrapper align-items-center flex-grow-1 d-lg-flex cs-title">
+        {{ getTitle($route.path) }}
       <!-- Bookmarks Container -->
       <!-- <bookmarks /> -->
     </div>
@@ -66,5 +66,18 @@ export default {
       default: () => {},
     },
   },
+  methods: {
+    getTitle(title) {
+      const url = title.split('/')
+      return url[url.length - 1]
+    },
+  },
 }
 </script>
+<style>
+.cs-title {
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+</style>
