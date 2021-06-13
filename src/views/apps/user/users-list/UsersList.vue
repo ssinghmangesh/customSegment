@@ -264,9 +264,7 @@ export default {
     },
   },
   async created() {
-    // console.log(this.tableColumns)
     const res = await this.$http.post('/user-manager/user/fetch-all')
-    // console.log(res.data.data)
     this.users = [...res.data.data]
   },
 }

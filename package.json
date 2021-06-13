@@ -31,7 +31,6 @@
     "echarts": "4.8.0",
     "jsonwebtoken": "8.5.1",
     "leaflet": "1.6.0",
-    "pg": "^8.6.0",
     "portal-vue": "2.1.7",
     "postcss-rtl": "1.7.3",
     "prismjs": "1.19.0",
@@ -82,6 +81,6 @@
     "eslint-plugin-vue": "6.2.2",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "2.6.11"
   }
 }
