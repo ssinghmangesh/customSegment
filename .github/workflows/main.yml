@@ -13,10 +13,10 @@ jobs:
         - uses: actions/checkout@v2
 
         - name: Install dependencies
-          run: yarn
+          run: npm install
 
         - name: Build
-          run: yarn build
+          run: npm run build
 
         - name: Deploy
           uses: reggionick/s3-deploy@v3
@@ -24,7 +24,6 @@ jobs:
             folder: build
             bucket: custom-segment
             bucket-region: ap-south-1
-            invalidation: /
             delete-removed: true
             no-cache: true
             private: true
