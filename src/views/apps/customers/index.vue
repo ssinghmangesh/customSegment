@@ -92,9 +92,9 @@ export default {
     },
   },
   watch: {
-    type() {
+    async type() {
       this.orderBykey = searchOption[this.$route.params.type].columns[0].field
-      //  console.log(this.type)
+      await this.update()
     },
     async pageLength() {
       await this.update()
@@ -132,9 +132,7 @@ export default {
         filters: this.filters,
       }
       const response = await this.$http.post('/analytics-manager/table', data)
-      // //  console.log(response.data)
       this.rows = [...response.data.data]
-      // //  console.log(this.rows)
       const countData = {
         table: this.table,
         filters: this.filters,
