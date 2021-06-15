@@ -59,9 +59,9 @@
       v-ripple.400="'rgba(255, 255, 255, 0.15)'"
       variant="primary"
       class="button"
-      @click="send"
+      @click="add"
     >
-      Select
+      ADD
     </b-button>
   </b-card>
 </template>
@@ -130,6 +130,10 @@ export default {
     await this.send()
   },
   methods: {
+    add() {
+      console.log('add')
+      this.$emit('addSegment', this.selectedFilters)
+    },
     async send() {
       const data = {}
       if (this.selectedFilters.length) {
