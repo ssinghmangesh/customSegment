@@ -210,6 +210,7 @@ import {
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
 import vSelect from 'vue-select'
+import { compressAccurately } from 'image-conversion'
 
 export default {
   components: {
@@ -328,10 +329,16 @@ export default {
     },
     async fileUpload(event) {
       /*eslint-disable */
-      this.file = event.target.files[0]
+      const image = event.target.files[0]
+      const name = image.name
+      // console.log(image)
+      const res = await compressAccurately(image,200)
+      this.file = new File([res], name)
+      // console.log(this.file)
       this.updateSrc(this.file)
     },
     async save() {
+      // formData
       const formData = new FormData()
       formData.append('file', this.file);
       formData.append('user_id', this.user_id);

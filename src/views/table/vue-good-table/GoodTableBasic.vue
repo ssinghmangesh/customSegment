@@ -41,6 +41,7 @@
         enabled: true,
       }"
       @on-sort-change="onSortChange"
+      @on-row-click="onRowClick"
     >
       <template
         slot="table-row"
@@ -162,7 +163,7 @@
 <script>
 import BCardCode from '@core/components/b-card-code/BCardCode.vue'
 import {
-  BAvatar, BBadge, BPagination, BFormGroup, BFormInput, BFormSelect, BDropdown, BDropdownItem,
+  BAvatar, BBadge, BPagination, BFormGroup, BFormInput, BFormSelect, BDropdown, BDropdownItem, VBToggle,
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
@@ -180,6 +181,9 @@ export default {
     BFormSelect,
     BDropdown,
     BDropdownItem,
+  },
+  directives: {
+    'b-toggle': VBToggle,
   },
   props: {
     pageLength: {
@@ -309,6 +313,9 @@ export default {
   methods: {
     onSortChange(params) {
       this.$emit('onSortChange', params)
+    },
+    onRowClick(params) {
+      this.$emit('onRowClick', params.row)
     },
   },
 }
