@@ -140,7 +140,6 @@ export default {
     async onRowClick(data) {
       this.visible = true
       this.selectedRow = data
-      console.log(data)
     },
     async onSortChange(params) {
       this.orderBykey = params[0].field
