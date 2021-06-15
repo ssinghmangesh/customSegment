@@ -299,7 +299,7 @@ export default {
       file: null,
       src: '',
       username: 'mangesh123',
-      user_id: 'singhmangeshk@gmail.com',
+      user_id: this.$route.params.id,
       name: 'Mangesh Singh',
       company: 'custom-segment',
       status: 'pending',
