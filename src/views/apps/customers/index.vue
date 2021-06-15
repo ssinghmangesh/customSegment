@@ -17,17 +17,37 @@
           @changeInPageLength="changeInPageLength"
           @changeInCurrentPage="changeInCurrentPage"
           @onSortChange="onSortChange"
+          @onRowClick="onRowClick"
         />
       </b-col>
     </b-row>
+    <b-sidebar
+      :visible="visible"
+      bg-variant="white"
+      right
+      backdrop
+      shadow
+      width="500px"
+      @change="hide"
+    >
+      <sidebar-content
+        :row="row"
+      />
+    </b-sidebar>
   </div>
 </template>
 
 <script>
-import { BRow, BCol } from 'bootstrap-vue'
+import {
+  BRow, BCol, BSidebar,
+} from 'bootstrap-vue'
+// import {
+//   BButton, BSidebar, VBToggle, BCardText,
+// } from 'bootstrap-vue'
 import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
 import add from './add.vue'
 import searchOption from './filters.json'
+import SidebarContent from './sidebar.vue'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
 // import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
 // import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
@@ -39,13 +59,9 @@ export default {
     BRow,
     BCol,
     add,
-
+    BSidebar,
     GoodTableBasic,
-    // GoodTableRowGroup,
-    // GoodTableColumnSearch,
-    // GoodTableAdvanceSearch,
-    // GoodTableI18n,
-    // GoodTableSsr,
+    SidebarContent,
   },
   data() {
     return {
@@ -57,9 +73,14 @@ export default {
       orderBykey: searchOption[this.$route.params.type].columns[0].field,
       orderByDirection: 'asc',
       filters: {},
+      visible: false,
+      selectedRow: {},
     }
   },
   computed: {
+    row() {
+      return this.selectedRow
+    },
     table() {
       return searchOption[this.$route.params.type].table
     },
@@ -110,6 +131,17 @@ export default {
   //   await this.update()
   // },
   methods: {
+    async hide(data) {
+      this.visible = data
+      if (!data) {
+        this.selectedRow = {}
+      }
+    },
+    async onRowClick(data) {
+      this.visible = true
+      this.selectedRow = data
+      console.log(data)
+    },
     async onSortChange(params) {
       this.orderBykey = params[0].field
       this.orderByDirection = params[0].type
