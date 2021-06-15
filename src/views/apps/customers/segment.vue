@@ -1,12 +1,20 @@
 <template>
-  <b-card class="mb-4">
-    kl
-  </b-card>
+    <div class="segment">
+      <b-button
+        v-for="(segment, index) in segments"
+        :key="index"
+        variant="primary"
+        @click="() => select(segment.filters)"
+        class="title"
+      >
+          {{ segment.title }}
+      </b-button>
+    </div>
 </template>
 
 <script>
 import {
-  BCard,
+  BButton,
 //    BCardText, BFormGroup, BModal, BButton,
   // BFormInput,
 } from 'bootstrap-vue'
@@ -18,7 +26,6 @@ import {
 
 export default {
   components: {
-    BCard,
     // BCardText,
     // BFormGroup,
     // // BFormInput,
@@ -26,7 +33,7 @@ export default {
     // BModal,
     // TypeHandler,
     // SelectedFilters,
-    // BButton,
+    BButton,
   },
   props: {
     segment: {
@@ -34,18 +41,30 @@ export default {
       default: () => [],
     },
   },
-  data() {
-  },
   computed: {
+    segments() {
+      return this.$store.state.segment.segments
+    },
   },
   watch: {
   },
   //   async created() {
   //   },
   methods: {
+    select(val) {
+      this.$emit('select', val)
+    },
+  },
+  created() {
+    // console.log(this.$store.state.segment.segments)
   },
 }
 </script>
 <style lang="scss" >
-@import '@core/scss/vue/libs/vue-good-table.scss';
+.segment{
+    margin-top: 70px;
+}
+.title{
+    margin-right: 5px;
+}
 </style>

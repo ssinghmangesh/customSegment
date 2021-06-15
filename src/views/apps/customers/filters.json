@@ -326,7 +326,7 @@
     "columns": [
       {
         "label": "Name",
-        "field": "name"
+        "field": "first_name"
       },
       {
         "label": "Email",

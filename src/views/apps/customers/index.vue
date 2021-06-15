@@ -4,7 +4,6 @@
       @updateTable="updateTable"
       @addSegment="addSegment"
     />
-    <segment />
     <b-row>
       <b-col cols="12">
         <good-table-basic
@@ -50,7 +49,6 @@ import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
 import add from './add.vue'
 import searchOption from './filters.json'
 import SidebarContent from './sidebar.vue'
-import Segment from './segment.vue'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
 // import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
 // import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
@@ -65,7 +63,6 @@ export default {
     BSidebar,
     GoodTableBasic,
     SidebarContent,
-    Segment,
   },
   data() {
     return {
@@ -135,10 +132,14 @@ export default {
   // async created() {
   //   await this.update()
   // },
+  created() {
+    console.log(this.$store.state.segment)
+  },
   methods: {
     addSegment(data) {
       this.segment = [...this.segment, data]
-      console.log(this.segment)
+      this.$store.commit('segment/addSegment', data)
+      console.log(this.$store.state.segment.segments)
     },
     async hide(data) {
       this.visible = data
