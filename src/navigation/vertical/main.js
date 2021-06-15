@@ -55,4 +55,10 @@ export default [
     route: 'apps-orders',
     path: '/apps/product',
   },
+  {
+    title: 'Visitors',
+    icon: 'UserIcon',
+    route: 'apps-orders',
+    path: '/apps/visitors',
+  },
 ]

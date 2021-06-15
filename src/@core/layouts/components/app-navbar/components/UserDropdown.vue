@@ -7,13 +7,13 @@
     <template #button-content>
       <div class="d-sm-flex d-none user-nav">
         <p class="user-name font-weight-bolder mb-0">
-          {{ userData.fullName || userData.username }}
+          {{ userData.name }}
         </p>
         <span class="user-status">{{ userData.role }}</span>
       </div>
       <b-avatar
         size="40"
-        :src="userData.avatar"
+        :src="userData.src"
         variant="light-primary"
         badge
         class="badge-minimal"

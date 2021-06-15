@@ -208,7 +208,9 @@ export default {
         userId: this.userEmail,
         password: this.password,
       })
-        .then(() => {
+        .then(res => {
+          localStorage.setItem('userData', JSON.stringify(res.data))
+          localStorage.setItem('userId', this.userEmail)
           this.$router.push('/apps/customers')
         })
     },

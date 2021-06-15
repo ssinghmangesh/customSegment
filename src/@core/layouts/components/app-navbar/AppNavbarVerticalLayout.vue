@@ -18,7 +18,7 @@
 
     <!-- Left Col -->
     <div class="bookmark-wrapper align-items-center flex-grow-1 d-lg-flex cs-title">
-        {{ getTitle($route.path) }}
+      {{ getTitle($route.path) }}
       <!-- Bookmarks Container -->
       <!-- <bookmarks /> -->
     </div>
