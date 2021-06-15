@@ -68,7 +68,7 @@ export default {
   },
   async created() {
     const res = await this.$http.post('user-manager/user/fetch', {
-      user_id: 'singhmangeshk@gmail.com',
+      user_id: this.$route.params.id,
     })
     this.userData = { ...res.data.data }
   },
