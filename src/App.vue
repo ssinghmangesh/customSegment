@@ -102,5 +102,8 @@ export default {
       enableScrollToTop,
     }
   },
+  async created() {
+    await this.$store.commit('segment/getSegments')
+  },
 }
 </script>

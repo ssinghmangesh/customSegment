@@ -2,18 +2,13 @@
   <b-card-code title="Basic Table">
 
     <!-- search input -->
-    <div class="custom-search d-flex justify-content-end">
-      <b-form-group>
-        <div class="d-flex align-items-center">
-          <label class="mr-1">Search</label>
-          <b-form-input
-            v-model="searchTerm"
-            placeholder="Search"
-            type="text"
-            class="d-inline-block"
-          />
-        </div>
-      </b-form-group>
+    <div class="custom-search d-flex justify-content-end mb-1">
+      <b-button
+        variant="primary"
+        @click="download"
+      >
+        Download
+      </b-button>
     </div>
 
     <!-- table -->
@@ -163,7 +158,7 @@
 <script>
 import BCardCode from '@core/components/b-card-code/BCardCode.vue'
 import {
-  BAvatar, BBadge, BPagination, BFormGroup, BFormInput, BFormSelect, BDropdown, BDropdownItem, VBToggle,
+  BAvatar, BBadge, BPagination, BButton, BFormSelect, BDropdown, BDropdownItem, VBToggle,
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
@@ -176,8 +171,7 @@ export default {
     BAvatar,
     BBadge,
     BPagination,
-    BFormGroup,
-    BFormInput,
+    BButton,
     BFormSelect,
     BDropdown,
     BDropdownItem,
@@ -311,6 +305,9 @@ export default {
     this.rowLength = this.pageLength
   },
   methods: {
+    download() {
+      this.$emit('download')
+    },
     onSortChange(params) {
       this.$emit('onSortChange', params)
     },

@@ -6,8 +6,8 @@
     <b-row>
       <b-col cols="12">
         <good-table-basic
-          :pageLength="pageLength"
-          :currentPage="currentPage"
+          :page-length="pageLength"
+          :current-page="currentPage"
           :columns="columns"
           :rows="rows"
           :status="status"
@@ -18,6 +18,7 @@
           @changeInCurrentPage="changeInCurrentPage"
           @onSortChange="onSortChange"
           @onRowClick="onRowClick"
+          @download="download"
         />
       </b-col>
     </b-row>
@@ -130,6 +131,9 @@ export default {
   // async created() {
   //   await this.update()
   // },
+  created() {
+    console.log(this.$store.state.segment)
+  },
   methods: {
     async hide(data) {
       this.visible = data
@@ -152,6 +156,18 @@ export default {
     },
     changeInPageLength(length) {
       this.pageLength = length
+    },
+    async download() {
+      const data = {
+        table: this.table,
+        filters: this.filters,
+      }
+      const res = await this.$http.post('/analytics-manager/download/csv', data)
+      const blob = new Blob([res.data], { type: 'text/csv' })
+      const link = document.createElement('a')
+      link.href = window.URL.createObjectURL(blob)
+      link.download = 'data.csv'
+      link.click()
     },
     async update() {
       const data = {

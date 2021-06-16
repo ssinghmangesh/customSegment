@@ -59,10 +59,20 @@
       v-ripple.400="'rgba(255, 255, 255, 0.15)'"
       variant="primary"
       class="button"
-      @click="send"
+      @click="openModal"
     >
-      Select
+      ADD
     </b-button>
+    <segment @select="select" />
+    <b-modal
+      id="modal-center"
+      ref="add-title"
+      centered
+      title="Segment Title"
+      :hide-footer="true"
+    >
+      <add-title @add="add" />
+    </b-modal>
   </b-card>
 </template>
 
@@ -76,18 +86,22 @@ import vSelect from 'vue-select'
 import TypeHandler from './TypeHandler/TypeHandler.vue'
 import SelectedFilters from './SelectedFilters/SelectedFilters.vue'
 import searchOption from './filters.json'
+import AddTitle from './AddTitle.vue'
+import Segment from './segment.vue'
 
 export default {
   components: {
     BCard,
     BCardText,
     BFormGroup,
+    Segment,
     // BFormInput,
     vSelect,
     BModal,
     TypeHandler,
     SelectedFilters,
     BButton,
+    AddTitle,
   },
   data() {
     return {
@@ -130,6 +144,18 @@ export default {
     await this.send()
   },
   methods: {
+    select(val) {
+      this.selectedFilters = [...val.conditions]
+      this.andOr = val.relation
+    },
+    add(val) {
+      console.log('add')
+      this.$refs['add-title'].hide()
+      this.$store.commit('segment/addSegment', { title: val, filters: { relation: this.andOr, conditions: this.selectedFilters }, type: this.$route.params.type })
+    },
+    openModal() {
+      this.$refs['add-title'].show()
+    },
     async send() {
       const data = {}
       if (this.selectedFilters.length) {
