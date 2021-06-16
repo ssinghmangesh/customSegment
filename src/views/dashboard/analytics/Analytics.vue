@@ -39,12 +39,6 @@ export default {
     }
   },
   async created() {
-    // data
-    // this.$http.get('/analytics/data')
-    //   .then(response => {
-    //     this.data = response.data
-    //     //  console.log(this.data)
-    //   })
     await this.update()
   },
   methods: {

@@ -128,11 +128,7 @@ export default {
       await this.update()
     },
   },
-  // async created() {
-  //   await this.update()
-  // },
   created() {
-    console.log(this.$store.state.segment)
   },
   methods: {
     async hide(data) {
@@ -185,7 +181,6 @@ export default {
         filters: this.filters,
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
-      // //  console.log(response2)
       this.total = Number(response2.data.data.count)
     },
     updateTable(data) {

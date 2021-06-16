@@ -133,14 +133,12 @@ export default {
       }
     },
     selectedFilters() {
-      //  console.log(this.selectedFilters)
       this.send()
     },
   },
   async created() {
     this.selectedFilters = searchOption[this.type].selectedFilters
     this.searchOption = searchOption[this.type].filters
-    // //  console.log(searchOption[this.$route.params.type].filters)
     await this.send()
   },
   methods: {
@@ -149,7 +147,6 @@ export default {
       this.andOr = val.relation
     },
     add(val) {
-      console.log('add')
       this.$refs['add-title'].hide()
       this.$store.commit('segment/addSegment', { title: val, filters: { relation: this.andOr, conditions: this.selectedFilters }, type: this.$route.params.type })
     },

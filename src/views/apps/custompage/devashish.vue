@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     pageDefination() {
-      // //  console.log(this.pageDe)
       return this.pageDefinitons[this.$route.params.type]
     },
   },
