@@ -3,11 +3,11 @@
     <div
       v-for="(segment, index) in segments"
       :key="index"
+      class="segment-div"
     >
       <b-button
         v-if="segment.type === type"
         variant="primary"
-        class="title"
         @click="() => select(segment.filters)"
       >
         {{ segment.title }}
@@ -44,7 +44,9 @@ export default {
 .segment{
     margin-top: 70px;
 }
-.title{
-    margin-right: 5px;
+.segment-div{
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 </style>

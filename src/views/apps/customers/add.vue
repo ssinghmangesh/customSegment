@@ -68,7 +68,7 @@
       id="modal-center"
       ref="add-title"
       centered
-      :title="searchQuery.title"
+      title="Segment Title"
       :hide-footer="true"
     >
       <add-title @add="add" />
@@ -145,12 +145,13 @@ export default {
   },
   methods: {
     select(val) {
-      this.selectedFilters = [...val]
+      this.selectedFilters = [...val.conditions]
+      this.andOr = val.relation
     },
     add(val) {
       console.log('add')
       this.$refs['add-title'].hide()
-      this.$emit('addSegment', { title: val, filters: this.selectedFilters, type: this.$route.params.type })
+      this.$store.commit('segment/addSegment', { title: val, filters: { relation: this.andOr, conditions: this.selectedFilters }, type: this.$route.params.type })
     },
     openModal() {
       this.$refs['add-title'].show()

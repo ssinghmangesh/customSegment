@@ -2,13 +2,12 @@
   <div>
     <add
       @updateTable="updateTable"
-      @addSegment="addSegment"
     />
     <b-row>
       <b-col cols="12">
         <good-table-basic
-          :pageLength="pageLength"
-          :currentPage="currentPage"
+          :page-length="pageLength"
+          :current-page="currentPage"
           :columns="columns"
           :rows="rows"
           :status="status"
@@ -76,7 +75,6 @@ export default {
       filters: {},
       visible: false,
       selectedRow: {},
-      segment: [],
     }
   },
   computed: {
@@ -136,11 +134,6 @@ export default {
     console.log(this.$store.state.segment)
   },
   methods: {
-    addSegment(data) {
-      this.segment = [...this.segment, data]
-      this.$store.commit('segment/addSegment', data)
-      console.log(this.$store.state.segment.segments)
-    },
     async hide(data) {
       this.visible = data
       if (!data) {

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-form-input v-model="title" />
+    <b-form-input
+      v-model="title"
+      placeholder="Title"
+    />
     <b-button
       v-ripple.400="'rgba(255, 255, 255, 0.15)'"
       variant="primary"
@@ -45,5 +48,7 @@ export default {
 }
 </script>
 <style lang="scss" >
-@import '@core/scss/vue/libs/vue-good-table.scss';
+.button{
+  margin-top: 10px;
+}
 </style>
