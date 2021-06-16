@@ -331,10 +331,8 @@ export default {
       /*eslint-disable */
       const image = event.target.files[0]
       const name = image.name
-      // console.log(image)
       const res = await compressAccurately(image,200)
       this.file = new File([res], name)
-      // console.log(this.file)
       this.updateSrc(this.file)
     },
     async save() {

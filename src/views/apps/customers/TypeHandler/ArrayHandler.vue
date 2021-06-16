@@ -85,7 +85,6 @@ export default {
           values: [this.search],
         }
       }
-      //   //  console.log(data)
       const res = await this.$http.post('analytics-manager/table', data)
       this.options = [...res.data.data]
     },

@@ -843,10 +843,8 @@ export default {
   },
   methods: {
     async update() {
-      // console.log('inside update')
       if (this.graphType === 'apex-donut-chart') {
         const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
-        // //  console.log('response : ', response.data)
         response.data.data.forEach((d, index) => {
           this.series.push(Number(d.count))
           this.labels.push(d[this.item.data.columnname])
@@ -890,9 +888,7 @@ export default {
         })
         this.data = { ...this.data, transactionData: data1 }
       } else if (this.graphType === 'ecommerce-browser-states') {
-        // console.log('inside else if')
         const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
-        // console.log('after post request')
         const data1 = []
         response.data.data.forEach(row => {
           data1.push({
@@ -902,7 +898,6 @@ export default {
           })
         })
         this.data = { browserData: data1 }
-        // console.log('this.data.browserData: ', this.data.browserData)
       } else {
         this.$http.get('/ecommerce/data')
           .then(response => {

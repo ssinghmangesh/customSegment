@@ -139,27 +139,7 @@ export default {
       this.start = ((this.currentPage - 1) * this.pageLength + 1)
     },
     changeInPageLength(length) {
-      //  console.log('changeInPageLength', length)
       this.pageLength = length
-    },
-    async update() {
-      // const data = {
-      //   table: 'order',
-      //   orderBykey: this.orderBykey,
-      //   orderByDirection: this.orderByDirection,
-      //   limit: this.pageLength,
-      //   skipRowby: ((this.currentPage - 1) * this.pageLength),
-      // }
-      // const response = await this.$http.post('/analytics-manager/table', data)
-      // //  console.log(response.data)
-      // this.rows = [...response.data.data]
-      // //  console.log(this.rows)
-      // const countData = {
-      //   table: 'order',
-      // }
-      // const response2 = await this.$http.post('/analytics-manager/count', countData)
-      // //  console.log(response2)
-      // this.total = response2.data.data.count
     },
   },
 }
