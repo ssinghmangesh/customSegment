@@ -7,7 +7,7 @@ const axiosIns = axios.create({
   headers: {
     'x-workspace-id': localStorage.getItem('workspaceId') || 56788582584,
   },
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'https://custom-segment-service.herokuapp.com/',
 })
 
 Vue.prototype.$http = axiosIns
