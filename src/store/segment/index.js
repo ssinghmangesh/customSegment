@@ -8,7 +8,6 @@ export default {
   mutations: {
     async getSegments(state) {
       const res = await axios.get('/segment/get')
-      console.log(res.data.segments)
       state.segments = [...res.data.segments]
     },
     async addSegment(state, val) {
