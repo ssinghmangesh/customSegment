@@ -8,7 +8,7 @@
     backdrop
     no-header
     right
-    @hidden="resetForm"
+    @hidden="clearInput"
     @change="(val) => $emit('update:is-add-new-user-sidebar-active', val)"
   >
     <template #default="{ hide }">
@@ -35,57 +35,9 @@
         <!-- Form -->
         <b-form
           class="p-2"
-          @submit.prevent="handleSubmit(onSubmit)"
+          @submit.prevent="handleSubmit(submit)"
           @reset.prevent="resetForm"
         >
-
-          <!-- Full Name -->
-          <validation-provider
-            #default="validationContext"
-            name="Full Name"
-            rules="required"
-          >
-            <b-form-group
-              label="Full Name"
-              label-for="full-name"
-            >
-              <b-form-input
-                id="full-name"
-                v-model="userData.fullName"
-                autofocus
-                :state="getValidationState(validationContext)"
-                trim
-                placeholder="John Doe"
-              />
-
-              <b-form-invalid-feedback>
-                {{ validationContext.errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </validation-provider>
-
-          <!-- Username -->
-          <validation-provider
-            #default="validationContext"
-            name="Username"
-            rules="required|alpha-num"
-          >
-            <b-form-group
-              label="Username"
-              label-for="username"
-            >
-              <b-form-input
-                id="username"
-                v-model="userData.username"
-                :state="getValidationState(validationContext)"
-                trim
-              />
-
-              <b-form-invalid-feedback>
-                {{ validationContext.errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </validation-provider>
 
           <!-- Email -->
           <validation-provider
@@ -99,30 +51,7 @@
             >
               <b-form-input
                 id="email"
-                v-model="userData.email"
-                :state="getValidationState(validationContext)"
-                trim
-              />
-
-              <b-form-invalid-feedback>
-                {{ validationContext.errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </validation-provider>
-
-          <!-- Company -->
-          <validation-provider
-            #default="validationContext"
-            name="Contact"
-            rules="required"
-          >
-            <b-form-group
-              label="Contact"
-              label-for="contact"
-            >
-              <b-form-input
-                id="contact"
-                v-model="userData.contact"
+                v-model="user_id"
                 :state="getValidationState(validationContext)"
                 trim
               />
@@ -145,36 +74,12 @@
             >
               <b-form-input
                 id="company"
-                v-model="userData.company"
+                v-model="company"
                 :state="getValidationState(validationContext)"
                 trim
               />
 
               <b-form-invalid-feedback>
-                {{ validationContext.errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </validation-provider>
-
-          <!-- Country -->
-          <validation-provider
-            #default="validationContext"
-            name="Country"
-            rules="required"
-          >
-            <b-form-group
-              label="Country"
-              label-for="country"
-              :state="getValidationState(validationContext)"
-            >
-              <v-select
-                v-model="userData.country"
-                :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                :options="countries"
-                :clearable="false"
-                input-id="country"
-              />
-              <b-form-invalid-feedback :state="getValidationState(validationContext)">
                 {{ validationContext.errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -192,7 +97,7 @@
               :state="getValidationState(validationContext)"
             >
               <v-select
-                v-model="userData.role"
+                v-model="role"
                 :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
                 :options="roleOptions"
                 :reduce="val => val.value"
@@ -205,27 +110,28 @@
             </b-form-group>
           </validation-provider>
 
-          <!-- Plan -->
+          <!-- Workspace -->
           <validation-provider
             #default="validationContext"
             name="Plan"
             rules="required"
           >
             <b-form-group
-              label="Plan"
+              label="WorkpaceId"
               label-for="plan"
               :state="getValidationState(validationContext)"
             >
               <v-select
-                v-model="userData.currentPlan"
+                v-model="workspaceId"
                 :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                :options="planOptions"
-                :reduce="val => val.value"
+                :options="workspaceOptions"
+                :reduce="val => val.workspace_id"
+                label="workspace_id"
                 :clearable="false"
                 input-id="plan"
               />
               <b-form-invalid-feedback :state="getValidationState(validationContext)">
-                {{ validationContext.errors[0] }}
+                The WorkspaceId field is required
               </b-form-invalid-feedback>
             </b-form-group>
           </validation-provider>
@@ -299,13 +205,17 @@ export default {
       type: Array,
       required: true,
     },
-    planOptions: {
+    workspaceOptions: {
       type: Array,
       required: true,
     },
   },
   data() {
     return {
+      user_id: '',
+      role: '',
+      workspaceId: '',
+      company: '',
       required,
       alphaNum,
       email,
@@ -314,14 +224,10 @@ export default {
   },
   setup(props, { emit }) {
     const blankUserData = {
-      fullName: '',
-      username: '',
       email: '',
       role: null,
-      currentPlan: null,
+      workspaceId: null,
       company: '',
-      country: '',
-      contact: '',
     }
 
     const userData = ref(JSON.parse(JSON.stringify(blankUserData)))
@@ -351,6 +257,29 @@ export default {
       getValidationState,
       resetForm,
     }
+  },
+  async created() {
+    const res = await this.$http.post('user-manager/user-to-workspace/fetch-all')
+    this.workspaces = [...res.data.data]
+  },
+  methods: {
+    clearInput() {
+      this.user_id = ''
+      this.role = null
+      this.workspaceId = null
+      this.company = ''
+    },
+    async submit() {
+      const data = {
+        workspace_id: this.workspaceId,
+        user_id: this.user_id,
+        role: this.role,
+        company: this.company,
+      }
+      await this.$http.post('user-manager/user/add', data)
+      this.$emit('refetch-data')
+      this.$emit('update:is-add-new-user-sidebar-active', false)
+    },
   },
 }
 </script>
