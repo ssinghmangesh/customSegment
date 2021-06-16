@@ -20,7 +20,7 @@
         badge-variant="success"
       >
         <feather-icon
-          v-if="!userData.fullName"
+          v-if="!userData.name"
           icon="UserIcon"
           size="22"
         />

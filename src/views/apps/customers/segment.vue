@@ -1,62 +1,42 @@
 <template>
-    <div class="segment">
+  <div class="segment">
+    <div
+      v-for="(segment, index) in segments"
+      :key="index"
+    >
       <b-button
-        v-for="(segment, index) in segments"
-        :key="index"
+        v-if="segment.type === type"
         variant="primary"
-        @click="() => select(segment.filters)"
         class="title"
+        @click="() => select(segment.filters)"
       >
-          {{ segment.title }}
+        {{ segment.title }}
       </b-button>
     </div>
+  </div>
 </template>
 
 <script>
 import {
   BButton,
-//    BCardText, BFormGroup, BModal, BButton,
-  // BFormInput,
 } from 'bootstrap-vue'
-// import vSelect from 'vue-select'
-// // import store from '@/store/index'
-// import TypeHandler from './TypeHandler/TypeHandler.vue'
-// import SelectedFilters from './SelectedFilters/SelectedFilters.vue'
-// import searchOption from './filters.json'
 
 export default {
   components: {
-    // BCardText,
-    // BFormGroup,
-    // // BFormInput,
-    // vSelect,
-    // BModal,
-    // TypeHandler,
-    // SelectedFilters,
     BButton,
   },
-  props: {
-    segment: {
-      type: Array,
-      default: () => [],
-    },
-  },
   computed: {
+    type() {
+      return this.$route.params.type
+    },
     segments() {
       return this.$store.state.segment.segments
     },
   },
-  watch: {
-  },
-  //   async created() {
-  //   },
   methods: {
     select(val) {
       this.$emit('select', val)
     },
-  },
-  created() {
-    // console.log(this.$store.state.segment.segments)
   },
 }
 </script>

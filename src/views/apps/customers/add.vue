@@ -150,7 +150,7 @@ export default {
     add(val) {
       console.log('add')
       this.$refs['add-title'].hide()
-      this.$emit('addSegment', { title: val, filters: this.selectedFilters })
+      this.$emit('addSegment', { title: val, filters: this.selectedFilters, type: this.$route.params.type })
     },
     openModal() {
       this.$refs['add-title'].show()
