@@ -5,8 +5,8 @@
     <user-list-add-new
       :is-add-new-user-sidebar-active.sync="isAddNewUserSidebarActive"
       :role-options="roleOptions"
-      :plan-options="planOptions"
-      @refetch-data="refetchData"
+      :workspace-options="workspaces"
+      @refetch-data="update"
     />
 
     <!-- Filters -->
@@ -15,7 +15,7 @@
       :plan-filter.sync="planFilter"
       :status-filter.sync="statusFilter"
       :role-options="roleOptions"
-      :plan-options="planOptions"
+      :workspace-options="workspaces"
       :status-options="statusOptions"
     />
 
@@ -257,6 +257,7 @@ export default {
   data() {
     return {
       users: [],
+      workspaces: [],
     }
   },
   watch: {
@@ -264,8 +265,21 @@ export default {
     },
   },
   async created() {
-    const res = await this.$http.post('/user-manager/user/fetch-all')
-    this.users = [...res.data.data]
+    await this.update()
+  },
+  methods: {
+    async update() {
+      await this.fetchUsers()
+      await this.fetchWorkspaces()
+    },
+    async fetchUsers() {
+      const res = await this.$http.post('/user-manager/user/fetch-all')
+      this.users = [...res.data.data]
+    },
+    async fetchWorkspaces() {
+      const res = await this.$http.post('user-manager/user-to-workspace/fetch-all')
+      this.workspaces = res.data.data.filter(workspace => workspace.role === 'admin')
+    },
   },
 }
 </script>
