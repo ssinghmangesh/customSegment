@@ -265,7 +265,6 @@ export default {
     },
   },
   async created() {
-    console.log('created update')
     await this.update()
   },
   methods: {

@@ -1,9 +1,9 @@
 <template>
-  <b-card>
+  <b-card class="d-flex">
     <b-button
       :disabled="visible"
       variant="primary"
-      class="button mb-3"
+      class="mb-3"
       @click="send"
     >
       Save

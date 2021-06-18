@@ -12,6 +12,7 @@
         Send Email
       </b-button>
       <b-button
+        :disabled="total === 0"
         variant="primary"
         @click="download"
       >
@@ -219,7 +220,7 @@ export default {
     total: {
       type: Number,
       required: true,
-      default: () => 100,
+      default: () => 0,
     },
     currentPage: {
       type: Number,
