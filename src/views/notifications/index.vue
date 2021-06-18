@@ -58,6 +58,7 @@ export default {
   methods: {
     async send() {
       await this.$http.post(`/notifications/${this.type}/insert`, { selected: this.selected })
+      this.prev = [...this.selected]
     },
   },
 }
