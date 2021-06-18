@@ -1,7 +1,7 @@
 <template>
   <b-card>
     <b-button
-      v-if="visible"
+      :disabled="visible"
       variant="primary"
       class="button mb-3"
       @click="send"
@@ -23,7 +23,7 @@
 
 <script>
 import { BCard, BFormCheckbox, BButton } from 'bootstrap-vue'
-import options from './options.json'
+import notifications from './notifications.json'
 
 export default {
   components: {
@@ -33,18 +33,26 @@ export default {
   },
   data() {
     return {
-      options,
+      notifications,
       selected: [],
+      prev: [],
     }
   },
   computed: {
+    type() {
+      return this.$route.params.type
+    },
+    options() {
+      return this.notifications[this.type].options
+    },
     visible() {
-      return true
+      const flag = this.selected.length === this.prev.length && this.selected.every(el => this.prev.includes(el))
+      return flag
     },
   },
   methods: {
     async send() {
-      await this.$http.post('/notifications/email/insert', { selected: this.selected })
+      await this.$http.post(`/notifications/${this.type}/insert`, { selected: this.selected })
     },
   },
 }

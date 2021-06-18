@@ -139,7 +139,6 @@ export default {
   async created() {
     this.selectedFilters = searchOption[this.type].selectedFilters
     this.searchOption = searchOption[this.type].filters
-    await this.send()
   },
   methods: {
     select(val) {
