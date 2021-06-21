@@ -50,12 +50,20 @@ export default {
       return flag
     },
   },
+  watch: {
+    async type() {
+      await this.update()
+    },
+  },
   async created() {
-    const res = await this.$http.post(`/notifications/${this.type}/fetch`)
-    this.selected = [...res.data.data]
-    this.prev = [...res.data.data]
+    await this.update()
   },
   methods: {
+    async update() {
+      const res = await this.$http.post(`/notifications/${this.type}/fetch`)
+      this.selected = [...res.data.data]
+      this.prev = [...res.data.data]
+    },
     async send() {
       await this.$http.post(`/notifications/${this.type}/insert`, { selected: this.selected })
       this.prev = [...this.selected]
