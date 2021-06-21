@@ -14,6 +14,7 @@
           :dir="dir"
           :total="total"
           :start="start"
+          :type="type"
           @changeInPageLength="changeInPageLength"
           @changeInCurrentPage="changeInCurrentPage"
           @onSortChange="onSortChange"
@@ -22,6 +23,18 @@
         />
       </b-col>
     </b-row>
+    <b-modal
+      id="send-email"
+      title="Send Email"
+      size="lg"
+      centered
+      :hide-footer="true"
+    >
+      <send-email
+        :templates="templates"
+        @sendEmail="sendEmail"
+      />
+    </b-modal>
     <b-sidebar
       :visible="visible"
       bg-variant="white"
@@ -40,7 +53,7 @@
 
 <script>
 import {
-  BRow, BCol, BSidebar,
+  BRow, BCol, BSidebar, BModal,
 } from 'bootstrap-vue'
 // import {
 //   BButton, BSidebar, VBToggle, BCardText,
@@ -49,6 +62,7 @@ import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
 import add from './add.vue'
 import searchOption from './filters.json'
 import SidebarContent from './sidebar.vue'
+import SendEmail from './SendEmail.vue'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
 // import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
 // import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
@@ -63,6 +77,8 @@ export default {
     BSidebar,
     GoodTableBasic,
     SidebarContent,
+    BModal,
+    SendEmail,
   },
   data() {
     return {
@@ -76,6 +92,7 @@ export default {
       filters: {},
       visible: false,
       selectedRow: {},
+      templates: [],
     }
   },
   computed: {
@@ -116,7 +133,6 @@ export default {
   watch: {
     async type() {
       this.orderBykey = searchOption[this.$route.params.type].columns[0].field
-      await this.update()
     },
     async pageLength() {
       await this.update()
@@ -128,7 +144,9 @@ export default {
       await this.update()
     },
   },
-  created() {
+  async created() {
+    const res = await this.$http.post('/template/fetch-all')
+    this.templates = [...res.data.data]
   },
   methods: {
     async hide(data) {
@@ -185,6 +203,15 @@ export default {
     },
     updateTable(data) {
       this.filters = { ...data }
+    },
+    async sendEmail(val) {
+      const data = {
+        table: this.table,
+        filters: this.filters,
+        ...val,
+      }
+      this.$bvModal.hide('send-email')
+      await this.$http.post('/export/email/template', data)
     },
   },
 }

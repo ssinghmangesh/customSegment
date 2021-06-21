@@ -258,10 +258,6 @@ export default {
       resetForm,
     }
   },
-  async created() {
-    const res = await this.$http.post('user-manager/user-to-workspace/fetch-all')
-    this.workspaces = [...res.data.data]
-  },
   methods: {
     clearInput() {
       this.user_id = ''

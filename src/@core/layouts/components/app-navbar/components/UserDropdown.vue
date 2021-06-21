@@ -28,7 +28,7 @@
     </template>
 
     <b-dropdown-item
-      :to="{ name: 'pages-profile'}"
+      :to="{ path: `/apps/users/view/${userData.user_id}`}"
       link-class="d-flex align-items-center"
     >
       <feather-icon
@@ -124,8 +124,6 @@
 import {
   BNavItemDropdown, BDropdownItem, BDropdownDivider, BAvatar,
 } from 'bootstrap-vue'
-import { initialAbility } from '@/libs/acl/config'
-import useJwt from '@/auth/jwt/useJwt'
 import { avatarText } from '@core/utils/filter'
 
 export default {
@@ -143,18 +141,6 @@ export default {
   },
   methods: {
     logout() {
-      // Remove userData from localStorage
-      // ? You just removed token from localStorage. If you like, you can also make API call to backend to blacklist used token
-      localStorage.removeItem(useJwt.jwtConfig.storageTokenKeyName)
-      localStorage.removeItem(useJwt.jwtConfig.storageRefreshTokenKeyName)
-
-      // Remove userData from localStorage
-      localStorage.removeItem('userData')
-
-      // Reset ability
-      this.$ability.update(initialAbility)
-
-      // Redirect to login page
       this.$router.push({ name: 'auth-login' })
     },
   },

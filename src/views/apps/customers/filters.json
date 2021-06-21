@@ -639,6 +639,28 @@
     "selectedFilters": [],
     "table": "draftorder"
   },
+  "cart": {
+    "filters": [],
+    "columns": [
+      {
+        "label": "Id",
+        "field": "id"
+      }
+    ],
+    "selectedFilters": [],
+    "table": "cart"
+  },
+  "product": {
+    "filters": [],
+    "columns": [
+      {
+        "label": "Id",
+        "field": "id"
+      }
+    ],
+    "selectedFilters": [],
+    "table": "product"
+  },
   "visitors": {
     "columns":[
       {

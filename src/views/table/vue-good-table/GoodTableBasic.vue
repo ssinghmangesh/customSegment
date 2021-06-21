@@ -4,13 +4,21 @@
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end mb-1">
       <b-button
+        v-if="type === 'customers'"
+        v-b-modal.send-email
+        variant="primary"
+        class="mr-1"
+      >
+        Send Email
+      </b-button>
+      <b-button
+        :disabled="total === 0"
         variant="primary"
         @click="download"
       >
         Download
       </b-button>
     </div>
-
     <!-- table -->
     <vue-good-table
       :columns="columns"
@@ -180,6 +188,10 @@ export default {
     'b-toggle': VBToggle,
   },
   props: {
+    type: {
+      type: String,
+      default: () => '',
+    },
     pageLength: {
       type: Number,
       required: true,
@@ -208,7 +220,7 @@ export default {
     total: {
       type: Number,
       required: true,
-      default: () => 100,
+      default: () => 0,
     },
     currentPage: {
       type: Number,
