@@ -12,6 +12,7 @@
           :rows="rows"
           :status="status"
           :dir="dir"
+          :loading="loading"
           :total="total"
           :start="start"
           :type="type"
@@ -86,13 +87,14 @@ export default {
       pageLength: 10,
       currentPage: 1,
       start: 1,
-      total: 100,
+      total: 0,
       orderBykey: searchOption[this.$route.params.type].columns[0].field,
       orderByDirection: 'asc',
       filters: {},
       visible: false,
       selectedRow: {},
       templates: [],
+      loading: false,
     }
   },
   computed: {
@@ -192,6 +194,8 @@ export default {
         table: this.table,
         filters: this.filters,
       }
+      this.loading = true
+      this.total = 0
       const response = await this.$http.post('/analytics-manager/table', data)
       this.rows = [...response.data.data]
       const countData = {
@@ -200,6 +204,7 @@ export default {
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
       this.total = Number(response2.data.data.count)
+      this.loading = false
     },
     updateTable(data) {
       this.filters = { ...data }
