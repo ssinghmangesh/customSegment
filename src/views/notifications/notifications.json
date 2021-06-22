@@ -1,26 +1,89 @@
 {
   "email": {
     "options": [
-      "Product Back in Stock",
-      "Cart Created or Updated",
-      "Customer Created",
-      "Customer Updated",
-      "Draft order Created and Updated",
-      "Fulfilment Event Created",
-      "If Out for Delivery",
-      "If Delivered",
-      "Order Cancelled",
-      "Order Created",
-      "Order Fulfilled",
-      "Order Paid",
-      "Order Partially Fulfilled",
-      "Order Updated",
-      "Transaction Created",
-      "Refund Created"
+      {
+        "label": "Product back in stock",
+        "value": "backInStock",
+        "type": "Product"
+      },
+      {
+        "label": "Product added or removed from cart",
+        "value": "cartCreatedOrUpdated",
+        "type": "Cart"
+      },
+      {
+        "label": "Customer created",
+        "value": "customerCreated",
+        "type": "Customer"
+      },
+      {
+        "label": "Customer updated",
+        "value": "customerUpdated",
+        "type": "Customer"
+      },
+      {
+        "label": "Draft order created and updated",
+        "value": "draftOrderUpdated",
+        "type": "Order"
+      },
+      {
+        "label": "Track order fulfillment status",
+        "value": "fulfilemntEventCreated",
+        "type": "Fulfillment"
+      },
+      {
+        "label": "Order is Out for Delivery",
+        "value": "outForDelivery",
+        "type": "Fulfillment"
+      },
+      {
+        "label": "Order is delivered",
+        "value": "fulfillmentDelivery",
+        "type": "Fulfillment"
+      },
+      {
+        "label": "Order is cancelled",
+        "value": "orderCancelled",
+        "type": "Order"
+      },
+      {
+        "label": "Order is created",
+        "value": "orderCreated",
+        "type": "Order"
+      },
+      {
+        "label": "Order shipped",
+        "value": "orderFulfilled",
+        "type": "Order"
+      },
+      {
+        "label": "Order is paid",
+        "value": "orderPaid",
+        "type": "Order"
+      },
+      {
+        "label": "Order Partially Fulfilled",
+        "value": "orderPartiallyFullfilled",
+        "type": "Order"
+      },
+      {
+        "label": "Order is updated",
+        "value": "orderUpdated",
+        "type": "Order"
+      },
+      {
+        "label": "Transaction is created for the order",
+        "value": "tranactionCreated",
+        "type": "Order"
+      },
+      {
+        "label": "Refund is created", 
+        "value": "refundCreated",
+        "type": "Order"
+      }
     ]
   },
   "whatsapp": {
-    "options": [
-    ]
+    "options": []
   }
 }
