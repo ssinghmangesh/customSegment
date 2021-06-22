@@ -94,12 +94,16 @@ export default {
       return map
     },
     async update() {
-      // const res = await this.$http.post(`/notifications/${this.type}/fetch`)
-      this.selected = this.options.map(v => v.value)
-      this.prev = this.options.map(v => v.value)
+      const res = await this.$http.post(`/notifications/${this.type}/fetch`)
+      this.selected = res.data.data
+      this.prev = res.data.data
     },
     async send() {
-      await this.$http.post(`/notifications/${this.type}/insert`, { selected: this.selected })
+      const data = this.options.map(option => ({
+        notificationType: option.value,
+        value: this.selected.includes(option.value),
+      }))
+      await this.$http.post(`/notifications/${this.type}/insert`, { selected: data })
       this.prev = [...this.selected]
     },
   },

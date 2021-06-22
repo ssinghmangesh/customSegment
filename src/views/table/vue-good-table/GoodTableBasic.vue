@@ -24,6 +24,7 @@
       :columns="columns"
       :rows="rows"
       :rtl="direction"
+      :is-loading="loading"
       :search-options="{
         enabled: true,
         externalQuery: searchTerm }"
@@ -188,6 +189,10 @@ export default {
     'b-toggle': VBToggle,
   },
   props: {
+    loading: {
+      type: Boolean,
+      default: () => false,
+    },
     type: {
       type: String,
       default: () => '',
