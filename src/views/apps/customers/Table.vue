@@ -143,7 +143,6 @@ export default {
       await this.update()
     },
     async filters() {
-      console.log('filters')
       await this.update()
     },
   },
