@@ -1,5 +1,5 @@
 <template>
-  <b-card-code title="Basic Table">
+  <b-card :title="type">
 
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end mb-1">
@@ -161,13 +161,12 @@
     <template #code>
       {{ codeBasic }}
     </template>
-  </b-card-code>
+  </b-card>
 </template>
 
 <script>
-import BCardCode from '@core/components/b-card-code/BCardCode.vue'
 import {
-  BAvatar, BBadge, BPagination, BButton, BFormSelect, BDropdown, BDropdownItem, VBToggle,
+  BAvatar, BBadge, BPagination, BButton, BFormSelect, BDropdown, BDropdownItem, BCard, VBToggle,
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
@@ -175,7 +174,7 @@ import { codeBasic } from './code'
 
 export default {
   components: {
-    BCardCode,
+    BCard,
     VueGoodTable,
     BAvatar,
     BBadge,

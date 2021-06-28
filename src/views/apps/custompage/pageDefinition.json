@@ -1,5 +1,5 @@
 {
-  "customer": [
+  "customers": [
     {
       "type": "apex-donut-chart",
       "title": "Financial Status",
@@ -52,7 +52,7 @@
         "workspaceId": 333,
         "columnname": "fulfillment_status",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "enddate": "2021-06-22 11:49:40.765997+05:30",
         "statsDefinition": {
           "aggregate": "count",
           "columnname": "id"
@@ -81,7 +81,7 @@
       }
     }
   ],
-  "order": [
+  "orders": [
     {
       "type": "ecommerce-transactions",
       "title": "Financial Status",
