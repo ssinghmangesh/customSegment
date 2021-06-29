@@ -114,12 +114,17 @@ export default {
   data() {
     return {
       selected: localStorage.getItem('workspaceId'),
-      options: ['lp', 'lol'],
+      options: [],
     }
   },
   watch: {
     selected(val) {
       localStorage.setItem('workspaceId', val)
+      this.options.forEach(option => {
+        if (option.value === val) {
+          localStorage.setItem('workspaceName', option.text)
+        }
+      })
       window.location.reload()
     },
   },

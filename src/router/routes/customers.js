@@ -9,4 +9,9 @@ export default [
     name: 'add-customers-segment',
     component: () => import('@/views/apps/customers/add.vue'),
   },
+  {
+    path: '/sync',
+    name: 'apps-sync',
+    component: () => import('@/views/apps/sync/index.vue'),
+  },
 ]
