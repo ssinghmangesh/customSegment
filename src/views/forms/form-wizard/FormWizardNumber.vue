@@ -105,7 +105,6 @@ export default {
       socket.emit('workspaceId', 56788582584)
     })
     socket.on('sync', (type, message) => {
-      console.log(type, message)
       this.syncStatus = { ...this.syncStatus, [type]: message }
     })
     let res = await this.$http.post('/analytics-manager/count', { table: 'order' })
