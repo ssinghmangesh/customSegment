@@ -34,6 +34,10 @@
                 {{ appName }}
               </h2>
             </b-link>
+            <b-form-select
+              v-model="selected"
+              :options="options"
+            />
           </li>
 
           <!-- Toggler Button -->
@@ -82,7 +86,7 @@
 <script>
 import navMenuItems from '@/navigation/vertical'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import { BLink } from 'bootstrap-vue'
+import { BLink, BFormSelect } from 'bootstrap-vue'
 import { provide, computed, ref } from '@vue/composition-api'
 import useAppConfig from '@core/app-config/useAppConfig'
 import { $themeConfig } from '@themeConfig'
@@ -94,6 +98,7 @@ export default {
     VuePerfectScrollbar,
     VerticalNavMenuItems,
     BLink,
+    BFormSelect,
     // BImg,
   },
   props: {
@@ -104,6 +109,18 @@ export default {
     toggleVerticalMenuActive: {
       type: Function,
       required: true,
+    },
+  },
+  data() {
+    return {
+      selected: localStorage.getItem('workspaceId'),
+      options: ['lp', 'lol'],
+    }
+  },
+  watch: {
+    selected(val) {
+      localStorage.setItem('workspaceId', val)
+      window.location.reload()
     },
   },
   setup(props) {
@@ -152,6 +169,13 @@ export default {
       appName,
       appLogoImage,
     }
+  },
+  async created() {
+    const res = await this.$http.post('/user-manager/workspace/fetch-all', { userId: localStorage.getItem('userId') })
+    this.options = res.data.data.map(workspace => ({
+      text: workspace.shop_name,
+      value: workspace.workspace_id,
+    }))
   },
 }
 </script>

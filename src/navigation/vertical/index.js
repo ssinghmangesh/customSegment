@@ -32,7 +32,7 @@ tagVariant
 */
 // import orders from './orders'
 import notifications from './notifications'
-import reports from './reports'
+// import reports from './reports'
 import mainRoute from './main'
 // import dashboard from './dashboard'
 import setting from './setting'
@@ -44,4 +44,4 @@ import setting from './setting'
 
 // Array of sections
 // export default [...customers, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]
-export default [...notifications, ...mainRoute, ...reports, ...setting]
+export default [...notifications, ...mainRoute, ...setting]
