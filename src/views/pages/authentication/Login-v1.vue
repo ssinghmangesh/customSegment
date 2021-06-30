@@ -106,9 +106,17 @@
               variant="primary"
               type="submit"
               block
-              :disabled="invalid"
+              :disabled="invalid || loading"
             >
-              Sign in
+              <b-spinner
+                v-if="loading"
+                small
+              />
+              <span
+                v-if="loading"
+                class="ml-1"
+              >Signing in...</span>
+              <span v-else>Sign in</span>
             </b-button>
           </b-form>
         </validation-observer>
@@ -162,7 +170,7 @@
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
-  BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardTitle, BCardText, BInputGroup, BInputGroupAppend, BFormCheckbox,
+  BButton, BForm, BFormInput, BFormGroup, BCard, BLink, BCardTitle, BCardText, BInputGroup, BInputGroupAppend, BFormCheckbox, BSpinner,
 } from 'bootstrap-vue'
 import VuexyLogo from '@core/layouts/components/Logo.vue'
 import { required, email } from '@validations'
@@ -171,6 +179,7 @@ import { togglePasswordVisibility } from '@core/mixins/ui/forms'
 export default {
   components: {
     // BSV
+    BSpinner,
     BButton,
     BForm,
     BFormInput,
@@ -196,6 +205,7 @@ export default {
       required,
       email,
       loginErrors: '',
+      loading: false,
     }
   },
   computed: {
@@ -205,6 +215,7 @@ export default {
   },
   methods: {
     async login() {
+      this.loading = true
       this.$http.post('/auth-manager/login', {
         userId: this.userEmail,
         password: this.password,
@@ -212,10 +223,12 @@ export default {
         .then(res => {
           localStorage.setItem('userData', JSON.stringify(res.data))
           localStorage.setItem('userId', this.userEmail)
+          this.loading = false
           this.$router.push('/apps/customers')
         })
         .catch(err => {
           this.loginErrors = err.response.data
+          this.loading = false
         })
     },
   },
