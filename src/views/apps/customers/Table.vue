@@ -134,7 +134,7 @@ export default {
   },
   watch: {
     async type() {
-      this.orderBykey = searchOption[this.$route.params.type].columns[0].field
+      this.orderBykey = null
     },
     async pageLength() {
       await this.update()

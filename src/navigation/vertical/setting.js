@@ -20,4 +20,9 @@ export default [
       },
     ],
   },
+  {
+    title: 'Sync',
+    icon: 'UserIcon',
+    route: 'apps-sync',
+  },
 ]
