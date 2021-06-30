@@ -77,11 +77,19 @@
         responsive
         :fields="tableColumns"
         primary-key="id"
+        :busy="loading"
         :sort-by.sync="sortBy"
         show-empty
         empty-text="No matching records found"
         :sort-desc.sync="isSortDirDesc"
-      />
+      >
+        <template #table-busy>
+          <div class="text-center text-primary my-2">
+            <b-spinner class="align-middle" />
+            <strong>Loading...</strong>
+          </div>
+        </template>
+      </b-table>
       <div class="mx-2 mb-2">
         <b-row>
 
@@ -133,7 +141,7 @@
 
 <script>
 import {
-  BCard, BRow, BCol, BFormInput, BButton, BTable, BPagination,
+  BCard, BRow, BCol, BFormInput, BButton, BTable, BPagination, BSpinner,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import store from '@/store'
@@ -148,7 +156,7 @@ export default {
   components: {
     UsersListFilters,
     UserListAddNew,
-
+    BSpinner,
     BCard,
     BRow,
     BCol,
@@ -258,6 +266,7 @@ export default {
     return {
       users: [],
       workspaces: [],
+      loading: false,
     }
   },
   watch: {
@@ -273,12 +282,14 @@ export default {
       await this.fetchWorkspaces()
     },
     async fetchUsers() {
+      this.loading = true
       const res = await this.$http.post('/user-manager/user/fetch-all')
       this.users = [...res.data.data]
+      this.loading = false
     },
     async fetchWorkspaces() {
-      const res = await this.$http.post('user-manager/user-to-workspace/fetch-all')
-      this.workspaces = res.data.data.filter(workspace => workspace.role === 'admin')
+      const res = await this.$http.post('user-manager/user-to-workspace/fetch-all', { userId: localStorage.getItem('userId') })
+      this.workspaces = res.data.data
     },
   },
 }

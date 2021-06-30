@@ -117,7 +117,7 @@
             rules="required"
           >
             <b-form-group
-              label="WorkpaceId"
+              label="Workpace Name"
               label-for="plan"
               :state="getValidationState(validationContext)"
             >
@@ -126,12 +126,12 @@
                 :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
                 :options="workspaceOptions"
                 :reduce="val => val.workspace_id"
-                label="workspace_id"
+                label="shop_name"
                 :clearable="false"
                 input-id="plan"
               />
               <b-form-invalid-feedback :state="getValidationState(validationContext)">
-                The WorkspaceId field is required
+                The Workspace Name field is required
               </b-form-invalid-feedback>
             </b-form-group>
           </validation-provider>
@@ -143,13 +143,23 @@
               variant="primary"
               class="mr-2"
               type="submit"
+              :disabled="loading"
             >
-              Add
+              <b-spinner
+                v-if="loading"
+                small
+              />
+              <span
+                v-if="loading"
+                class="ml-1"
+              >Adding...</span>
+              <span v-else>Add</span>
             </b-button>
             <b-button
               v-ripple.400="'rgba(186, 191, 199, 0.15)'"
               type="button"
               variant="outline-secondary"
+              :disabled="loading"
               @click="hide"
             >
               Cancel
@@ -164,7 +174,7 @@
 
 <script>
 import {
-  BSidebar, BForm, BFormGroup, BFormInput, BFormInvalidFeedback, BButton,
+  BSidebar, BForm, BFormGroup, BFormInput, BFormInvalidFeedback, BButton, BSpinner,
 } from 'bootstrap-vue'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { ref } from '@vue/composition-api'
@@ -184,7 +194,7 @@ export default {
     BFormInvalidFeedback,
     BButton,
     vSelect,
-
+    BSpinner,
     // Form Validation
     ValidationProvider,
     ValidationObserver,
@@ -220,6 +230,7 @@ export default {
       alphaNum,
       email,
       countries,
+      loading: false,
     }
   },
   setup(props, { emit }) {
@@ -266,6 +277,7 @@ export default {
       this.company = ''
     },
     async submit() {
+      this.loading = true
       const data = {
         workspace_id: this.workspaceId,
         user_id: this.user_id,
@@ -275,6 +287,7 @@ export default {
       await this.$http.post('user-manager/user/add', data)
       this.$emit('refetch-data')
       this.$emit('update:is-add-new-user-sidebar-active', false)
+      this.loading = false
     },
   },
 }
