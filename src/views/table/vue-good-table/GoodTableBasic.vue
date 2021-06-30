@@ -124,7 +124,7 @@
               @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />
             <span class="text-nowrap ">
-              Showing {{ start }} to {{ Number(start) + Number(pageLength) - 1 }} of {{ total }} entries
+              Showing {{ start }} to {{ end }} of {{ total }} entries
             </span>
           </div>
           <div>
@@ -231,11 +231,6 @@ export default {
       required: true,
       default: () => 1,
     },
-    start: {
-      type: Number,
-      required: true,
-      default: () => 1,
-    },
   },
   data() {
     return {
@@ -288,6 +283,18 @@ export default {
     }
   },
   computed: {
+    end() {
+      if (this.rows.length === 0) {
+        return 0
+      }
+      return this.start + this.rows.length - 1
+    },
+    start() {
+      if (this.rows.length === 0) {
+        return 0
+      }
+      return (this.currentPage - 1) * this.pageLength + 1
+    },
     statusVariant() {
       const statusColor = {
         /* eslint-disable key-spacing */
