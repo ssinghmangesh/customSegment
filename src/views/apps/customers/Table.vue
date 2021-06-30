@@ -195,7 +195,6 @@ export default {
         filters: this.filters,
       }
       this.loading = true
-      this.total = 0
       const response = await this.$http.post('/analytics-manager/table', data)
       this.rows = [...response.data.data]
       const countData = {
