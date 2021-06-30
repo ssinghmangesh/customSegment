@@ -645,6 +645,26 @@
       {
         "label": "Id",
         "field": "id"
+      },
+      {
+        "label": "Date",
+        "field": "updated_at"
+      },
+      {
+        "label": "Placed By",
+        "field": "customer_name"
+      },
+      {
+        "label": "Email Status",
+        "field": "email_status"
+      },
+      {
+        "label": "Recovery Status",
+        "field": "recovery_status"
+      },
+      {
+        "label": "Total",
+        "field": "total"
       }
     ],
     "selectedFilters": [],
@@ -654,8 +674,24 @@
     "filters": [],
     "columns": [
       {
-        "label": "Id",
-        "field": "id"
+        "label": "Product Name",
+        "field": "title"
+      },
+      {
+        "label": "Status",
+        "field": "status"
+      },
+      {
+        "label": "Inventory",
+        "field": "inventory"
+      },
+      {
+        "label": "Type",
+        "field": "product_type"
+      },
+      {
+        "label": "Vendor",
+        "field": "vendor"
       }
     ],
     "selectedFilters": [],
@@ -678,5 +714,47 @@
     ],
     "selectedFilters": [],
     "table": "visitor"
+  },
+  "sentEmail": {
+    "columns": [
+      {
+        "label": "Email Type",
+        "field":"email_type"
+      },
+      {
+        "label": "Sender",
+        "field":"sender"
+      },
+      {
+        "label": "Receiver",
+        "field":"receiver"
+      },
+      {
+        "label": "varchar",
+        "field":"html_body"
+      },
+      {
+        "label": "Subject",
+        "field":"subject"
+      },
+      {
+        "label": "Attachments",
+        "field":"attachments_url"
+      },
+      {
+        "label": "Sent Time",
+        "field":"sent_time"
+      },
+      {
+        "label": "Email ID",
+        "field":"email_id"
+      },
+      {
+        "label": "Status",
+        "field":"status"
+      }
+    ],
+    "selectedFilters": [],
+    "table": "sentemail"
   }
 }
