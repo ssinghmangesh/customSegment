@@ -193,6 +193,10 @@ export default {
       type: Object,
       required: true,
     },
+    filters: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -302,6 +306,9 @@ export default {
     },
     mdCol() {
       return this.item.col.md
+    },
+    type() {
+      return this.$route.params.type
     },
     graphType() {
       return this.item.type
@@ -838,20 +845,29 @@ export default {
       }
     },
   },
+  watch: {
+    type() {
+      this.update()
+    },
+  },
   async created() {
     await this.update()
   },
   methods: {
     async update() {
+      this.data = []
+      this.series = []
+      this.labels = []
+      this.colors = []
       if (this.graphType === 'apex-donut-chart') {
-        const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
+        const response = await this.$http.post('/analytics-manager/pie-chart', { ...this.item.data, filters: this.filters })
         response.data.data.forEach((d, index) => {
           this.series.push(Number(d.count))
           this.labels.push(d[this.item.data.columnname])
           this.colors.push(this.getColor(index))
         })
       } else if (this.graphType === 'apex-line-chart') {
-        const response = await this.$http.post('/analytics-manager/line-graph', this.item.data)
+        const response = await this.$http.post('/analytics-manager/line-graph', { ...this.item.data, filters: this.filters })
         let data = response.data.data.current.map(value => ({
           x: value.x,
           y: value.y,
@@ -871,10 +887,10 @@ export default {
           })
         }
       } else if (this.graphType === 'ecommerce-company-table') {
-        const response = await this.$http.post('/analytics-manager/table', this.item.data)
+        const response = await this.$http.post('/analytics-manager/table', { ...this.item.data, filters: this.filters })
         this.data = [...response.data.data]
       } else if (this.graphType === 'ecommerce-transactions') {
-        const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
+        const response = await this.$http.post('/analytics-manager/pie-chart', { ...this.item.data, filters: this.filters })
         const data1 = []
         response.data.data.forEach(row => {
           data1.push({
@@ -888,7 +904,7 @@ export default {
         })
         this.data = { ...this.data, transactionData: data1 }
       } else if (this.graphType === 'ecommerce-browser-states') {
-        const response = await this.$http.post('/analytics-manager/pie-chart', this.item.data)
+        const response = await this.$http.post('/analytics-manager/pie-chart', { ...this.item.data, filters: this.filters })
         const data1 = []
         response.data.data.forEach(row => {
           data1.push({

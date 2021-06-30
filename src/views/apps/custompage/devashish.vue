@@ -5,6 +5,7 @@
         v-for="(item, index) in pageDefination"
         :key="index"
         :item="item"
+        :filters="filters"
       />
     </b-row>
   </div>
@@ -19,6 +20,12 @@ export default {
   components: {
     Graph,
     BRow,
+  },
+  props: {
+    filters: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

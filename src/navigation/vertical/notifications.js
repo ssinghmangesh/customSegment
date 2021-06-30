@@ -1,6 +1,6 @@
 export default [
   {
-    header: 'Settings',
+    header: 'Notifications',
   },
   {
     title: 'Email',

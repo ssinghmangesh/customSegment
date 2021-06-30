@@ -753,6 +753,40 @@
         "label": "Status",
         "field":"status"
       }
+    ]
+  },
+  "events": {
+    "columns":[
+      {
+        "label": "Id",
+        "field": "id"
+      },
+      {
+        "label": "OS",
+        "field": "os"
+      },
+      {
+        "label": "Event Name",
+        "field": "event_name"
+      }
+    ],
+    "selectedFilters": [],
+    "table": "event"
+  },
+  "notifications": {
+    "columns":[
+      {
+        "label": "Email Type",
+        "field": "email_type"
+      },
+      {
+        "label": "Sender",
+        "field": "sender"
+      },
+      {
+        "label": "Receiver",
+        "field": "receiver"
+      }
     ],
     "selectedFilters": [],
     "table": "sentemail"

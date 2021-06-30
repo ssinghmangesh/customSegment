@@ -66,4 +66,16 @@ export default [
     route: 'apps-orders',
     path: '/apps/visitors',
   },
+  {
+    title: 'Events',
+    icon: 'UserIcon',
+    route: 'apps-orders',
+    path: '/apps/events',
+  },
+  {
+    title: 'Notifications',
+    icon: 'UserIcon',
+    route: 'apps-orders',
+    path: '/apps/notifications',
+  },
 ]
