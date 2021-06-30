@@ -6,7 +6,15 @@
       class="mb-3"
       @click="send"
     >
-      Save
+      <b-spinner
+        v-if="loading"
+        small
+      />
+      <span
+        v-if="loading"
+        class="ml-1"
+      >Saving...</span>
+      <span v-else>Save</span>
     </b-button>
 
     <app-collapse
@@ -15,13 +23,13 @@
     >
 
       <app-collapse-item
-        :title="optionsdetails[0]"
-        :key="index"
         v-for="(optionsdetails, index) in optionsGroup"
+        :key="index"
+        :title="optionsdetails[0]"
       >
         <b-form-checkbox
-          v-for="(option, index) in optionsdetails[1]"
-          :key="index"
+          v-for="(option, index2) in optionsdetails[1]"
+          :key="index2"
           v-model="selected"
           class="mb-1"
           :value="option.value"
@@ -35,7 +43,12 @@
 </template>
 
 <script>
-import { BCard, BFormCheckbox, BButton } from 'bootstrap-vue'
+import {
+  BCard,
+  BFormCheckbox,
+  BButton,
+  BSpinner,
+} from 'bootstrap-vue'
 import AppCollapse from '@core/components/app-collapse/AppCollapse.vue'
 import AppCollapseItem from '@core/components/app-collapse/AppCollapseItem.vue'
 import notifications from './notifications.json'
@@ -43,6 +56,7 @@ import notifications from './notifications.json'
 export default {
   components: {
     BCard,
+    BSpinner,
     BFormCheckbox,
     BButton,
     AppCollapse,
@@ -53,6 +67,7 @@ export default {
       notifications,
       selected: [],
       prev: [],
+      loading: false,
     }
   },
   computed: {
@@ -68,7 +83,7 @@ export default {
     },
     visible() {
       const flag = this.selected.length === this.prev.length && this.selected.every(el => this.prev.includes(el))
-      return flag
+      return flag || this.loading
     },
   },
   watch: {
@@ -103,8 +118,10 @@ export default {
         notificationType: option.value,
         value: this.selected.includes(option.value),
       }))
+      this.loading = true
       await this.$http.post(`/notifications/${this.type}/insert`, { selected: data })
       this.prev = [...this.selected]
+      this.loading = false
     },
   },
 }

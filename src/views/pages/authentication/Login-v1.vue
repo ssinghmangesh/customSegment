@@ -18,7 +18,7 @@
         <b-card-text class="mb-2">
           Please sign-in to your account and start the adventure
         </b-card-text>
-
+        <small class="text-danger">{{ loginErrors }}</small>
         <!-- form -->
         <validation-observer
           ref="loginForm"
@@ -195,6 +195,7 @@ export default {
       // validation rules
       required,
       email,
+      loginErrors: '',
     }
   },
   computed: {
@@ -212,6 +213,9 @@ export default {
           localStorage.setItem('userData', JSON.stringify(res.data))
           localStorage.setItem('userId', this.userEmail)
           this.$router.push('/apps/customers')
+        })
+        .catch(err => {
+          this.loginErrors = err.response.data
         })
     },
   },
