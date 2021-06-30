@@ -129,7 +129,7 @@
           </div>
           <div>
             <b-pagination
-              :value="1"
+              :value="currentpage"
               :total-rows="total"
               :per-page="pageLength"
               first-number
@@ -138,7 +138,7 @@
               prev-class="prev-item"
               next-class="next-item"
               class="mt-1 mb-0"
-              @input="(value)=>{props.pageChanged({currentPage:value}); $emit('changeInCurrentPage', value);}"
+              @change="(value)=>{$emit('changeInCurrentPage', value);}"
             >
               <template #prev-text>
                 <feather-icon
@@ -283,6 +283,9 @@ export default {
     }
   },
   computed: {
+    currentpage() {
+      return this.currentPage
+    },
     end() {
       if (this.rows.length === 0) {
         return 0
@@ -293,7 +296,7 @@ export default {
       if (this.rows.length === 0) {
         return 0
       }
-      return (this.currentPage - 1) * this.pageLength + 1
+      return (this.currentpage - 1) * this.pageLength + 1
     },
     statusVariant() {
       const statusColor = {
