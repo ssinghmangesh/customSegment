@@ -190,9 +190,20 @@
       variant="primary"
       class="mb-1 mb-sm-0 mr-0 mr-sm-1"
       :block="$store.getters['app/currentBreakPoint'] === 'xs'"
+      :disabled="loading"
       @click="save"
     >
-      Save Changes
+      <b-spinner
+        v-if="loading"
+        small
+      />
+      <span
+        v-if="loading"
+        class="ml-1"
+      >
+        Saving...
+      </span>
+      <span v-else>Save Changes</span>
     </b-button>
     <b-button
       variant="outline-secondary"
@@ -206,7 +217,7 @@
 
 <script>
 import {
-  BButton, BMedia, BAvatar, BRow, BCol, BFormGroup, BFormInput, BForm, BTable, BCard, BCardHeader, BCardTitle, BFormCheckbox,
+  BButton, BMedia, BAvatar, BRow, BCol, BSpinner, BFormGroup, BFormInput, BForm, BTable, BCard, BCardHeader, BCardTitle, BFormCheckbox,
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
 import vSelect from 'vue-select'
@@ -219,6 +230,7 @@ export default {
     BAvatar,
     BRow,
     BCol,
+    BSpinner,
     BFormGroup,
     BFormInput,
     BForm,
@@ -305,6 +317,7 @@ export default {
       company: 'custom-segment',
       status: 'pending',
       role: 'editor',
+      loading: false,
     }
   },
   watch: {
@@ -337,6 +350,7 @@ export default {
     },
     async save() {
       // formData
+      this.loading = true
       const formData = new FormData()
       formData.append('file', this.file);
       formData.append('user_id', this.user_id);
@@ -346,6 +360,7 @@ export default {
       formData.append('company', this.company);
       formData.append('username', this.username);
       await this.$http.post('/user-manager/user/edit', formData)
+      this.loading = false
     },
     updateSrc(file) {
       const reader = new FileReader()

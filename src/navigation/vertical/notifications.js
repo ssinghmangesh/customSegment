@@ -4,13 +4,13 @@ export default [
   },
   {
     title: 'Email',
-    icon: 'MaiIcon',
+    icon: 'MailIcon',
     route: 'notifications',
     path: '/email/notifications',
   },
   {
     title: 'Whatsapp',
-    icon: 'MaiIcon',
+    icon: 'MessageCircleIcon',
     route: 'notifications',
     path: '/whatsapp/notifications',
   },
