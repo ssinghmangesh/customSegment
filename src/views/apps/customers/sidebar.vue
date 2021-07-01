@@ -1,7 +1,7 @@
 <template>
   <b-card-code
     active
-    title="Details"
+    title=""
   >
     <b-tabs>
       <b-tab title="Properties">
@@ -44,10 +44,6 @@
         </b-card-text>
       </b-tab>
     </b-tabs>
-
-    <template #code>
-      {{ codeDefault }}
-    </template>
   </b-card-code>
 </template>
 
@@ -78,10 +74,5 @@ export default {
       default: () => {},
     },
   },
-//   data() {
-//     return {
-//       codeDefault,
-//     }
-//   },
 }
 </script>

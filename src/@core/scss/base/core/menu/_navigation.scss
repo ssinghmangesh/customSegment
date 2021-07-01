@@ -100,6 +100,7 @@
   }
 
   .main-menu-content {
+    margin-top: 3rem !important;
     height: calc(100% - #{$navbar-height}) !important;
     position: relative;
     .ps__rail-y {

@@ -34,7 +34,9 @@
                 {{ appName }}
               </h2>
             </b-link>
+            <br>
             <b-form-select
+              class="cs-select-workspace"
               v-model="selected"
               :options="options"
             />
@@ -187,4 +189,7 @@ export default {
 
 <style lang="scss">
 @import "~@core/scss/base/core/menu/menu-types/vertical-menu.scss";
+.cs-select-workspace {
+  width: 215px;
+}
 </style>

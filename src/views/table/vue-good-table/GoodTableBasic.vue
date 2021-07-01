@@ -127,7 +127,7 @@
               Showing {{ start }} to {{ end }} of {{ total }} entries
             </span>
           </div>
-          <div>
+          <div class="d-flex align-items-center mb-1 mt-1 mr-1">
             <b-pagination
               :value="currentpage"
               :total-rows="total"
