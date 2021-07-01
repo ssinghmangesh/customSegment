@@ -286,7 +286,6 @@ export default {
   methods: {
     async clearData(type) {
       this.loading2[type] = true
-      console.log(this.loading2[type])
       await this.$http.post('/data-manager/clear-data', { type })
       this.loading2[type] = false
       this.update()
