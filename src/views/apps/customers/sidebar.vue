@@ -5,29 +5,37 @@
   >
     <b-tabs>
       <b-tab title="Properties">
-        <p
-          v-for="(key, index) in Object.keys(row)"
-          :key="index"
-        >
-          {{ key }}:  {{ row[key] }}
-        </p>
+        <Properties
+          :properties="row"
+        />
       </b-tab>
       <b-tab
-        title="Service"
+        title="Orders"
       >
-        <b-card-text>
-          Biscuit macaroon sugar plum sesame snaps oat cake halvah fruitcake pudding cotton candy. Cheesecake tart wafer soufflé. Chocolate marzipan donut pie soufflé dragée cheesecake. Gummi bears dessert croissant chocolate jujubes fruitcake. Pie cupcake halvah.
-        </b-card-text>
-        <b-card-text>Tiramisu carrot cake marzipan sugar plum powder marzipan sugar plum bonbon powder. Macaroon jujubes ice cream sugar plum lollipop wafer caramels. Cheesecake chocolate tart cake gingerbread fruitcake cake candy jelly-o. Candy cookie lollipop. Wafer lemon drops chocolate cake gummi bears.</b-card-text>
+        <CustomerOrder
+          :customer="row"
+        />
       </b-tab>
       <b-tab
-        title="Disabled"
+        title="Purchased Items"
       >
-        <b-card-text>
-          Carrot cake dragée chocolate.
-        </b-card-text>
+        <PurchasedProduct
+          :customer="row"
+        />
       </b-tab>
-      <b-tab title="Account">
+      <b-tab
+        title="Cart"
+      >
+        <CustomerCart
+          :customer="row"
+        />
+      </b-tab>
+      <b-tab title="Timeline">
+        <Timeline
+          :customer="row"
+        />
+      </b-tab>
+      <b-tab title="Notification">
         <b-card-text>
           Chocolate croissant cupcake croissant jelly donut. Cheesecake toffee apple pie chocolate bar biscuit tart croissant. Lemon drops danish cookie. Oat cake macaroon icing tart lollipop cookie sweet bear claw.
         </b-card-text>
@@ -46,6 +54,11 @@
 <script>
 import BCardCode from '@core/components/b-card-code'
 import { BTabs, BTab, BCardText } from 'bootstrap-vue'
+import Properties from './Sidebar/Properties.vue'
+import Timeline from './Sidebar/Timeline.vue'
+import CustomerOrder from './Sidebar/CustomerOrder.vue'
+import CustomerCart from './Sidebar/CustomerCart.vue'
+import PurchasedProduct from './Sidebar/PurchasedProduct.vue'
 
 export default {
   components: {
@@ -53,6 +66,11 @@ export default {
     BTabs,
     BCardText,
     BTab,
+    Properties,
+    Timeline,
+    CustomerOrder,
+    CustomerCart,
+    PurchasedProduct,
   },
   props: {
     row: {
