@@ -324,17 +324,34 @@
       }
     ],
     "columns": [
-      {
-        "label": "Name",
-        "field": "first_name"
-      },
+     
       {
         "label": "Email",
         "field": "email"
       },
       {
-        "label": "Total Amount Spent",
-        "field": "total_amount_spent"
+        "label": "First Name",
+        "field": "first_name"
+      },
+      {
+        "label": "Last Name",
+        "field": "last_name"
+      },
+      {
+        "label": "Updated At",
+        "field": "updated_at"
+      },
+      {
+        "label": "State",
+        "field": "province"
+      },
+      {
+        "label": "Country",
+        "field": "country"
+      },
+      {
+        "label": "Total Spent",
+        "field": "total_spent"
       }
     ],
     "selectedFilters": [],

@@ -119,7 +119,7 @@
           <div class="d-flex align-items-center mb-0 mt-1">
             <b-form-select
               v-model="rowLength"
-              :options="['3','5','10']"
+              :options="['3','5','10', '20', '50']"
               class="mx-1"
               @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />
@@ -343,3 +343,22 @@ export default {
   },
 }
 </script>
+<style>
+.vgt-table thead th span {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline;
+    font-size: 15px;
+}
+
+ .vgt-table td span {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline;
+    font-size: 15px;
+ }
+</style>

@@ -2,19 +2,18 @@
   "customers": [
     {
       "type": "apex-donut-chart",
-      "title": "Financial Status",
+      "title": "By Country",
       "col": {
         "default": 12,
         "md": 4
       },
       "data": {
-        "table": "order",
-        "workspaceId": 333,
+        "table": "customer",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "enddate": "2021-07-13 11:49:40.765997+05:30",
         "statsDefinition": {
           "aggregate": "count",
-          "columnname": "id"
+          "columnname": "country"
         }
       }
     },
@@ -28,15 +27,14 @@
       },
       "curve": "straight",
       "data": {
-        "table": "order",
-        "workspaceId": 333,
+        "table": "customer",
         "columnname": "total_price",
         "startdate": "2000-01-01 11:49:40.765997+05:30",
-        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "enddate": "2021-07-13 11:49:40.765997+05:30",
         "groupBykey": "dow",
         "statsDefinition": {
-          "aggregate": "count",
-          "columnname": "id"
+          "aggregate": "sum",
+          "columnname": "total_spent"
         }
       }
     },
