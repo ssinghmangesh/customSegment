@@ -20,10 +20,26 @@
         <b-button
           class="mt-2"
           variant="primary"
-          :disabled="loading.order"
+          :disabled="loading.order || count.orders >= syncCount.orders || busy"
           @click="() => sync('order')"
         >
-          Sync
+          <b-spinner
+            v-if="loading.order"
+            small
+          />
+          <span v-else>Sync</span>
+        </b-button>
+        <b-button
+          class="mt-2 ml-1"
+          variant="danger"
+          :disabled="loading.order || loading2.order || busy"
+          @click="() => clearData('order')"
+        >
+          <b-spinner
+            v-if="loading2.order"
+            small
+          />
+          <span v-else>Clear Data</span>
         </b-button>
       </tab-content>
 
@@ -37,10 +53,26 @@
         <b-button
           class="mt-2"
           variant="primary"
-          :disabled="loading.product"
+          :disabled="loading.product || count.products >= syncCount.products || busy"
           @click="() => sync('product')"
         >
-          Sync
+          <b-spinner
+            v-if="loading.product"
+            small
+          />
+          <span v-else>Sync</span>
+        </b-button>
+        <b-button
+          class="mt-2 ml-1"
+          variant="danger"
+          :disabled="loading.product || loading2.product || busy"
+          @click="() => clearData('product')"
+        >
+          <b-spinner
+            v-if="loading2.order"
+            small
+          />
+          <span v-else>Clear Data</span>
         </b-button>
       </tab-content>
 
@@ -54,10 +86,26 @@
         <b-button
           class="mt-2"
           variant="primary"
-          :disabled="loading.discount"
+          :disabled="loading.discount || count.discounts >= syncCount.discounts || busy"
           @click="() => sync('discount')"
         >
-          Sync
+          <b-spinner
+            v-if="loading.discount"
+            small
+          />
+          <span v-else>Sync</span>
+        </b-button>
+        <b-button
+          class="mt-2 ml-1"
+          variant="danger"
+          :disabled="loading.discount || loading2.discount || busy"
+          @click="() => clearData('discount')"
+        >
+          <b-spinner
+            v-if="loading2.discount"
+            small
+          />
+          <span v-else>Clear Data</span>
         </b-button>
       </tab-content>
 
@@ -71,10 +119,26 @@
         <b-button
           class="mt-2"
           variant="primary"
-          :disabled="loading.cart"
+          :disabled="loading.cart || count.carts >= syncCount.carts || busy"
           @click="() => sync('cart')"
         >
-          Sync
+          <b-spinner
+            v-if="loading.cart"
+            small
+          />
+          <span v-else>Sync</span>
+        </b-button>
+        <b-button
+          class="mt-2 ml-1"
+          variant="danger"
+          :disabled="loading.cart || loading2.cart || busy"
+          @click="() => clearData('cart')"
+        >
+          <b-spinner
+            v-if="loading2.cart"
+            small
+          />
+          <span v-else>Clear Data</span>
         </b-button>
       </tab-content>
 
@@ -88,10 +152,26 @@
         <b-button
           class="mt-2"
           variant="primary"
-          :disabled="loading.draftorder"
+          :disabled="loading.draftorder || count.draftOrders >= syncCount.draftOrders || busy"
           @click="() => sync('draftorder')"
         >
-          Sync
+          <b-spinner
+            v-if="loading.draftorder"
+            small
+          />
+          <span v-else>Sync</span>
+        </b-button>
+        <b-button
+          class="mt-2 ml-1"
+          variant="danger"
+          :disabled="loading.draftorder || loading2.draftorder || busy"
+          @click="() => clearData('draftorder')"
+        >
+          <b-spinner
+            v-if="loading2.draftorder"
+            small
+          />
+          <span v-else>Clear Data</span>
         </b-button>
       </tab-content>
 
@@ -105,10 +185,26 @@
         <b-button
           class="mt-2"
           variant="primary"
-          :disabled="loading.location"
+          :disabled="loading.location || count.locations >= syncCount.locations || busy"
           @click="() => sync('location')"
         >
-          Sync
+          <b-spinner
+            v-if="loading.location"
+            small
+          />
+          <span v-else>Sync</span>
+        </b-button>
+        <b-button
+          class="mt-2 ml-1"
+          variant="danger"
+          :disabled="loading.location || loading2.location || busy"
+          @click="() => clearData('location')"
+        >
+          <b-spinner
+            v-if="loading2.location"
+            small
+          />
+          <span v-else>Clear Data</span>
         </b-button>
       </tab-content>
 
@@ -122,10 +218,26 @@
         <b-button
           class="mt-2"
           variant="primary"
-          :disabled="loading.customer"
+          :disabled="loading.customer || count.customers >= syncCount.customers || busy"
           @click="() => sync('customer')"
         >
-          Sync
+          <b-spinner
+            v-if="loading.customer"
+            small
+          />
+          <span v-else>Sync</span>
+        </b-button>
+        <b-button
+          class="mt-2 ml-1"
+          variant="danger"
+          :disabled="loading.customer || loading2.customer || busy"
+          @click="() => clearData('customer')"
+        >
+          <b-spinner
+            v-if="loading2.customer"
+            small
+          />
+          <span v-else>Clear Data</span>
         </b-button>
       </tab-content>
 
@@ -140,13 +252,14 @@ import ToastificationContent from '@core/components/toastification/Toastificatio
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 // import { codeIcon } from './code'
 import io from 'socket.io-client'
-import { BButton } from 'bootstrap-vue'
+import { BButton, BSpinner } from 'bootstrap-vue'
 
 export default {
   components: {
     FormWizard,
     TabContent,
     BButton,
+    BSpinner,
     // eslint-disable-next-line vue/no-unused-components
     ToastificationContent,
   },
@@ -156,6 +269,8 @@ export default {
       syncCount: {},
       syncStatus: {},
       loading: {},
+      loading2: {},
+      busy: false,
     }
   },
   async created() {
@@ -169,7 +284,15 @@ export default {
     this.update()
   },
   methods: {
+    async clearData(type) {
+      this.loading2[type] = true
+      console.log(this.loading2[type])
+      await this.$http.post('/data-manager/clear-data', { type })
+      this.loading2[type] = false
+      this.update()
+    },
     async update() {
+      this.busy = true
       let res = await this.$http.post('/analytics-manager/count', { table: 'order' })
       this.count = { ...this.count, orders: res.data.data.count }
       res = await this.$http.post('/analytics-manager/count', { table: 'product' })
@@ -186,6 +309,7 @@ export default {
       this.count = { ...this.count, customers: res.data.data.count }
       res = await this.$http.get('/shopify-manager/count')
       this.syncCount = { ...this.syncCount, ...res.data.count }
+      this.busy = false
     },
     async sync(table) {
       this.loading = { ...this.loading, [table]: true }
