@@ -11,8 +11,12 @@ export default {
       state.segments = [...res.data.segments]
     },
     async addSegment(state, val) {
-      state.segments = [...state.segments, val]
       await axios.post('/segment/add', val)
+      state.segments = [...state.segments, val]
+    },
+    async deleteSegment(state, val) {
+      await axios.post('/segment/delete', { segmentId: val })
+      state.segments = state.segments.filter(segment => segment.segment_id !== val)
     },
   },
   actions: {},
