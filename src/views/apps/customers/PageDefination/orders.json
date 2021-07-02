@@ -49,7 +49,7 @@
         "title": "Fulfillment Status",
         "options": [
           "fulfilled",
-          "unfillfiled",
+          "unfulfilled",
           "partial"
         ]
       },
