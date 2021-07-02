@@ -13,6 +13,7 @@
           :total="total"
           :start="start"
           :type="type"
+          :pageName="pageName"
           @changeInPageLength="changeInPageLength"
           @changeInCurrentPage="changeInCurrentPage"
           @onSortChange="onSortChange"
@@ -57,7 +58,7 @@ import {
 //   BButton, BSidebar, VBToggle, BCardText,
 // } from 'bootstrap-vue'
 import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
-import searchOption from './filters.json'
+import { pageDefination } from './PageDefination/index'
 import SidebarContent from './sidebar.vue'
 import SendEmail from './SendEmail.vue'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
@@ -89,7 +90,7 @@ export default {
       currentPage: 1,
       start: 1,
       total: 0,
-      orderBykey: searchOption[this.$route.params.type].columns[0].field,
+      orderBykey: pageDefination[this.$route.params.type].columns[0].field,
       orderByDirection: 'asc',
       visible: false,
       selectedRow: {},
@@ -102,10 +103,13 @@ export default {
       return this.selectedRow
     },
     table() {
-      return searchOption[this.$route.params.type].table
+      return pageDefination[this.$route.params.type].table
     },
     columns() {
-      return searchOption[this.$route.params.type].columns
+      return pageDefination[this.$route.params.type].columns
+    },
+    pageName() {
+      return pageDefination[this.$route.params.type].title
     },
     status() {
       return [

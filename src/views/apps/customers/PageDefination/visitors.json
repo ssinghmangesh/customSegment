@@ -1,0 +1,19 @@
+{
+    "title": "Visitors",
+    "columns":[
+    {
+      "label": "Type",
+      "field": "type"
+    },
+    {
+      "label": "OS",
+      "field": "os"
+    },
+    {
+      "label": "First Page Viewed",
+      "field": "first_page_viewed"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "visitor"
+}

@@ -1,0 +1,40 @@
+{
+    "columns": [
+      {
+        "label": "Email Type",
+        "field":"email_type"
+      },
+      {
+        "label": "Sender",
+        "field":"sender"
+      },
+      {
+        "label": "Receiver",
+        "field":"receiver"
+      },
+      {
+        "label": "varchar",
+        "field":"html_body"
+      },
+      {
+        "label": "Subject",
+        "field":"subject"
+      },
+      {
+        "label": "Attachments",
+        "field":"attachments_url"
+      },
+      {
+        "label": "Sent Time",
+        "field":"sent_time"
+      },
+      {
+        "label": "Email ID",
+        "field":"email_id"
+      },
+      {
+        "label": "Status",
+        "field":"status"
+      }
+    ]
+  }

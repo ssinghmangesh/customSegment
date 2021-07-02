@@ -43,6 +43,7 @@ export default {
 <style lang="scss" >
 .segment{
     margin-top: 70px;
+    display: none;
 }
 .segment-div{
   display: inline-block;

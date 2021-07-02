@@ -1,0 +1,31 @@
+{
+    "title": "Taxes",
+    "columns": [
+    {
+      "label": "Order Name",
+      "field": "order_name"
+    },
+    {
+      "label": "Title",
+      "field": "title"
+    },
+    {
+      "label": "Price",
+      "field": "price"
+    },
+    {
+      "label": "Rate",
+      "field": "rate"
+    },
+    {
+      "label": "Order Date",
+      "field": "created_at"
+    },
+    {
+      "label": "Total Tax",
+      "field": "current_total_tax"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "tax"
+}

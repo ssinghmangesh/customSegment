@@ -1,0 +1,28 @@
+{
+  "title": "Products",
+  "filters": [],
+  "columns": [
+    {
+      "label": "Product Name",
+      "field": "title"
+    },
+    {
+      "label": "Status",
+      "field": "status"
+    },
+    {
+      "label": "Inventory",
+      "field": "inventory"
+    },
+    {
+      "label": "Type",
+      "field": "product_type"
+    },
+    {
+      "label": "Vendor",
+      "field": "vendor"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "product"
+}
