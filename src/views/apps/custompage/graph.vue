@@ -5,8 +5,8 @@
   >
     <statistics
       v-if="graphType === 'statistics'"
-      :data="statisticsItems"
-      title="Customer counts"
+      :data="series"
+      :title="item.title"
     />
     <apex-line-area-chart
       v-else-if="graphType === 'apex-line-area-chart'"
@@ -23,7 +23,7 @@
       v-else-if="graphType === 'apex-line-chart'"
       :balance="100"
       :title="item.title"
-      subtitle="Apex Line Chart"
+      :subtitle="item.subtitle"
       :change="10"
       :data="lineChart"
     />
@@ -93,8 +93,8 @@
     />
     <ecommerce-goal-overview
       v-else-if="graphType === 'ecommerce-goal-overview'"
-      title="Goal Overview"
-      :data="data.goalOverview"
+      :title="item.title"
+      :data="data"
     />
     <ecommerce-browser-states
       v-else-if="graphType === 'ecommerce-browser-states'"
@@ -609,13 +609,16 @@ export default {
               show: false,
             },
           },
+          xaxis: {
+            type: 'datetime',
+          },
           markers: {
             strokeWidth: 7,
             strokeOpacity: 1,
             strokeColors: [$themeColors.light],
             colors: [$themeColors.warning],
           },
-          colors: ['#2E93fA'],
+          colors: ['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'],
           dataLabels: {
             enabled: false,
           },
@@ -846,16 +849,16 @@ export default {
     },
   },
   watch: {
-    type() {
-      this.update()
+    async filters() {
+      await this.update()
     },
   },
-  async created() {
-    await this.update()
-  },
+  // async created() {
+  //   await this.update()
+  // },
   methods: {
     async update() {
-      this.data = []
+      this.data = {}
       this.series = []
       this.labels = []
       this.colors = []
@@ -867,25 +870,29 @@ export default {
           this.colors.push(this.getColor(index))
         })
       } else if (this.graphType === 'apex-line-chart') {
-        const response = await this.$http.post('/analytics-manager/line-graph', { ...this.item.data, filters: this.filters })
-        let data = response.data.data.current.map(value => ({
-          x: value.x,
-          y: value.y,
-        }))
-        this.series.push({
-          type: this.item.graphCatergory,
-          data,
-        })
-        if (response.data.data.previous) {
-          data = response.data.data.previous.map(value => ({
-            x: value.x,
-            y: value.y,
-          }))
-          this.series.push({
-            type: this.item.graphCatergory,
-            data,
-          })
+        /* eslint-disable */
+        for (let i = 0; i < this.item.data.length; i++) {
+          const response = await this.$http.post('/analytics-manager/line-graph', { ...this.item.data[i], filters: this.filters })
+            const data = response.data.data.current.map(value => ({
+              x: value.x,
+              y: value.y,
+            }))
+            this.series.push({
+              name: this.item.data[i].statsDefinition.columnname,
+              type: this.item.graphCatergory,
+              data,
+            })
         }
+        // if (response.data.data.previous) {
+        //   data = response.data.data.previous.map(value => ({
+        //     x: value.x,
+        //     y: value.y,
+        //   }))
+        //   this.series.push({
+        //     type: this.item.graphCatergory,
+        //     data,
+        //   })
+        // }
       } else if (this.graphType === 'ecommerce-company-table') {
         const response = await this.$http.post('/analytics-manager/table', { ...this.item.data, filters: this.filters })
         this.data = [...response.data.data]
@@ -899,7 +906,7 @@ export default {
             deduction: true,
             mode: row[Object.keys(row)[0]],
             payment: row.count,
-            types: 'Starbucks',
+            types: '',
           })
         })
         this.data = { ...this.data, transactionData: data1 }
@@ -909,11 +916,33 @@ export default {
         response.data.data.forEach(row => {
           data1.push({
             browserImg: require('@/assets/images/icons/google-chrome.png'),
-            name: this.item.data.columnname,
+            name: row.fulfillment_status || row.shipping_state,
             usage: row.count,
           })
         })
         this.data = { browserData: data1 }
+      } else if (this.graphType === 'statistics') {
+        const res = await this.$http.post('/analytics-manager/stats', { ...this.item.data, filters: this.filters })
+        const data1 = []
+        Object.keys(res.data.data).forEach(key => {
+          data1.push({
+            color: 'light-primary',
+            customClass: 'mb-2 mb-xl-0',
+            icon: 'TrendingUpIcon',
+            subtitle: key,
+            title: res.data.data[key],
+          })
+        })
+        this.series = [...data1]
+      } else if (this.graphType === 'ecommerce-goal-overview') {
+        const res = await this.$http.post('/analytics-manager/count', { ...this.item.data[0] })
+        const res2 = await this.$http.post('/analytics-manager/count', { ...this.item.data[1] })
+        const data1 = {
+          completed: res.data.data.count,
+          inProgress: res2.data.data.count,
+          series: [((res2.data.data.count / res.data.data.count) * 100).toFixed(1)],
+        }
+        this.data = { ...data1 }
       } else {
         this.$http.get('/ecommerce/data')
           .then(response => {
