@@ -4,6 +4,13 @@
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end mb-1">
       <b-button
+        variant="primary"
+        class="mr-1"
+        @click="() => $emit('onShowSelectColumns')"
+      >
+        Select Columns
+      </b-button>
+      <b-button
         v-if="type === 'customers'"
         v-b-modal.send-email
         variant="primary"

@@ -23,7 +23,7 @@
 <script>
 import {
   BTabs, BTab,
-  // BCard,
+  BCard,
 } from 'bootstrap-vue'
 import Graphs from '@/views/apps/custompage/devashish.vue'
 import add from './add.vue'
@@ -31,7 +31,7 @@ import CustomTable from './Table.vue'
 
 export default {
   components: {
-    // BCard,
+    BCard,
     Graphs,
     add,
     BTabs,
