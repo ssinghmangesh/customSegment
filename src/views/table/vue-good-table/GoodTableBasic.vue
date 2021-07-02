@@ -1,5 +1,5 @@
 <template>
-  <b-card :title="type">
+  <b-card :title="title">
 
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end mb-1">
@@ -192,6 +192,10 @@ export default {
       type: Boolean,
       default: () => false,
     },
+    pageName: {
+      type: String,
+      default: () => '',
+    },
     type: {
       type: String,
       default: () => '',
@@ -283,6 +287,9 @@ export default {
     }
   },
   computed: {
+    title() {
+      return `${this.total || 0}  ${this.pageName}`
+    },
     currentpage() {
       return this.currentPage
     },

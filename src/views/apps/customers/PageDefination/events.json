@@ -1,0 +1,19 @@
+{
+  "title": "Events",
+  "columns":[
+    {
+      "label": "Id",
+      "field": "id"
+    },
+    {
+      "label": "OS",
+      "field": "os"
+    },
+    {
+      "label": "Event Name",
+      "field": "event_name"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "event"
+}

@@ -10,6 +10,7 @@
         />
       </b-tab>
       <b-tab
+        v-if="type === 'customers'"
         title="Orders"
       >
         <CustomerOrder
@@ -17,6 +18,7 @@
         />
       </b-tab>
       <b-tab
+        v-if="type === 'customers'"
         title="Purchased Items"
       >
         <PurchasedProduct
@@ -24,18 +26,25 @@
         />
       </b-tab>
       <b-tab
+        v-if="type === 'customers'"
         title="Cart"
       >
         <CustomerCart
           :customer="row"
         />
       </b-tab>
-      <b-tab title="Timeline">
+      <b-tab
+        v-if="type === 'customers'"
+        title="Timeline"
+      >
         <Timeline
           :customer="row"
         />
       </b-tab>
-      <b-tab title="Notification">
+      <b-tab
+        v-if="type === 'customers'"
+        title="Notification"
+      >
         <b-card-text>
           Chocolate croissant cupcake croissant jelly donut. Cheesecake toffee apple pie chocolate bar biscuit tart croissant. Lemon drops danish cookie. Oat cake macaroon icing tart lollipop cookie sweet bear claw.
         </b-card-text>
@@ -72,6 +81,11 @@ export default {
     row: {
       type: Object,
       default: () => {},
+    },
+  },
+  computed: {
+    type() {
+      return this.$route.params.type
     },
   },
 }

@@ -24,7 +24,7 @@
           v-model="searchQuery"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
           label="title"
-          :options="searchOption"
+          :options="pageDefination"
           class="select-size-lg"
         />
       </b-form-group>
@@ -85,7 +85,7 @@ import vSelect from 'vue-select'
 // import store from '@/store/index'
 import TypeHandler from './TypeHandler/TypeHandler.vue'
 import SelectedFilters from './SelectedFilters/SelectedFilters.vue'
-import searchOption from './filters.json'
+import { pageDefination } from './PageDefination/index'
 import AddTitle from './AddTitle.vue'
 import Segment from './segment.vue'
 
@@ -111,7 +111,7 @@ export default {
       incEclOption: ['Include', 'Exclude'],
       searchQuery: {},
       selectedFilters: [],
-      searchOption: [],
+      pageDefination: [],
     }
   },
   computed: {
@@ -124,8 +124,8 @@ export default {
   },
   watch: {
     type() {
-      this.selectedFilters = searchOption[this.type].selectedFilters
-      this.searchOption = searchOption[this.type].filters
+      this.selectedFilters = pageDefination[this.type].selectedFilters
+      this.pageDefination = pageDefination[this.type].filters
     },
     searchQuery(val) {
       if (val.title) {
@@ -137,8 +137,8 @@ export default {
     },
   },
   async created() {
-    this.selectedFilters = searchOption[this.type].selectedFilters
-    this.searchOption = searchOption[this.type].filters
+    this.selectedFilters = pageDefination[this.type].selectedFilters
+    this.pageDefination = pageDefination[this.type].filters
   },
   methods: {
     select(val) {

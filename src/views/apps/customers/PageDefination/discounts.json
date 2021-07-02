@@ -1,0 +1,47 @@
+{
+  "title": "Discounts",
+  "columns": [
+    {
+      "label": "Name",
+      "field": "order_name"
+    },
+    {
+      "label": "Title",
+      "field": "title"
+    },
+    {
+      "label": "Type",
+      "field": "type"
+    },
+    {
+      "label": "Value",
+      "field": "value"
+    },
+    {
+      "label": "Target Selection",
+      "field": "target_selection"
+    },
+    {
+      "label": "Code",
+      "field": "code"
+    },
+    {
+      "label": "Value",
+      "field": "allocation_method"
+    },
+    {
+      "label": "Total Discount",
+      "field": "current_total_discounts"
+    },
+    {
+      "label": "Total Discount",
+      "field": "current_total_discounts"
+    },
+    {
+      "label": "Financial Status",
+      "field": "financial_status"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "discountapplication"
+}

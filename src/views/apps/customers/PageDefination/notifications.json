@@ -1,0 +1,19 @@
+{
+  "title": "Notifications",
+  "columns":[
+    {
+      "label": "Email Type",
+      "field": "email_type"
+    },
+    {
+      "label": "Sender",
+      "field": "sender"
+    },
+    {
+      "label": "Receiver",
+      "field": "receiver"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "sentemail"
+}

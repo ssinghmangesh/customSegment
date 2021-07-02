@@ -65,7 +65,9 @@ export default {
     flex-direction: row;
 }
 .cs-filter-group-item {
-  padding: 6px;
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
   border: 1px solid;
   border-radius: 5px;
   margin-right: 12px;
