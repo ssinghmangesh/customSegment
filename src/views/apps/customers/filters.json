@@ -700,7 +700,7 @@
       },
       {
         "label": "Inventory",
-        "field": "inventory"
+        "field": "inventory_item_id"
       },
       {
         "label": "Type",
