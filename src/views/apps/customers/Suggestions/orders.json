@@ -1,0 +1,6 @@
+[
+    {
+        "title": "Biling",
+        "columns": ["email", "shipping_country", "shipping_province", "shipping_city"]
+    }
+]

@@ -19,6 +19,7 @@
           @onSortChange="onSortChange"
           @onRowClick="onRowClick"
           @download="download"
+          @onShowSelectColumns="() => hide2(true)"
         />
       </b-col>
     </b-row>
@@ -47,6 +48,19 @@
         :row="row"
       />
     </b-sidebar>
+    <b-sidebar
+      :visible="visible2"
+      bg-variant="white"
+      right
+      backdrop
+      shadow
+      width="350px"
+      @change="hide2"
+    >
+      <select-columns
+        @selectedColumnsChanged="selectedColumnsChanged"
+      />
+    </b-sidebar>
   </div>
 </template>
 
@@ -61,6 +75,7 @@ import GoodTableBasic from '@/views/table/vue-good-table/GoodTableBasic.vue'
 import { pageDefination } from './PageDefination/index'
 import SidebarContent from './sidebar.vue'
 import SendEmail from './SendEmail.vue'
+import SelectColumns from './SelectColumns.vue'
 // import GoodTableRowGroup from './GoodTableRowGroup.vue'
 // import GoodTableColumnSearch from './GoodTableColumnSearch.vue'
 // import GoodTableAdvanceSearch from './GoodTableAdvanceSearch.vue'
@@ -76,6 +91,7 @@ export default {
     SidebarContent,
     BModal,
     SendEmail,
+    SelectColumns,
   },
   props: {
     filters: {
@@ -85,6 +101,7 @@ export default {
   },
   data() {
     return {
+      visible2: false,
       rows: [],
       pageLength: 10,
       currentPage: 1,
@@ -96,6 +113,7 @@ export default {
       selectedRow: {},
       templates: [],
       loading: false,
+      selectedColumns: pageDefination[this.$route.params.type].columns.map(column => column.field),
     }
   },
   computed: {
@@ -106,7 +124,7 @@ export default {
       return pageDefination[this.$route.params.type].table
     },
     columns() {
-      return pageDefination[this.$route.params.type].columns
+      return pageDefination[this.$route.params.type].columns.filter(column => this.selectedColumns.includes(column.field))
     },
     pageName() {
       return pageDefination[this.$route.params.type].title
@@ -155,6 +173,12 @@ export default {
     this.templates = [...res.data.data]
   },
   methods: {
+    selectedColumnsChanged(data) {
+      this.selectedColumns = data
+    },
+    hide2(data) {
+      this.visible2 = data
+    },
     async hide(data) {
       this.visible = data
       if (!data) {

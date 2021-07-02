@@ -22,7 +22,7 @@ export default [
   },
   {
     title: 'Sync',
-    icon: 'UserIcon',
+    icon: 'RefreshCwIcon',
     route: 'apps-sync',
   },
 ]
