@@ -870,7 +870,6 @@ export default {
           this.colors.push(this.getColor(index))
         })
       } else if (this.graphType === 'apex-line-chart') {
-        // console.log(this.item.data)
         /* eslint-disable */
         for (let i = 0; i < this.item.data.length; i++) {
           const response = await this.$http.post('/analytics-manager/line-graph', { ...this.item.data[i], filters: this.filters })
@@ -948,7 +947,6 @@ export default {
         this.$http.get('/ecommerce/data')
           .then(response => {
             this.data = response.data
-            console.log(response.data.goalOverview)
           })
       }
     },
