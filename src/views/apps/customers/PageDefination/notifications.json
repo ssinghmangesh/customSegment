@@ -1,5 +1,6 @@
 {
   "title": "Notifications",
+  "suggestions": [],
   "columns":[
     {
       "label": "Email Type",

@@ -33,7 +33,6 @@
 <script>
 import { BFormCheckbox, BTab, BTabs } from 'bootstrap-vue'
 import { pageDefination } from './PageDefination/index'
-import Suggestions from './Suggestions'
 
 export default {
   components: {
@@ -48,7 +47,7 @@ export default {
   },
   computed: {
     suggestions() {
-      return Suggestions[this.type]
+      return pageDefination[this.$route.params.type].suggestions
     },
     columns() {
       return pageDefination[this.$route.params.type].columns
