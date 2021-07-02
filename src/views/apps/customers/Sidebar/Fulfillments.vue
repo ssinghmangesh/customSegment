@@ -1,29 +1,29 @@
 <template>
     <div>
-      customer products:
+      fulfillments:
         <p
-          v-for="(key, index) in products.data.data"
+          v-for="(key, index) in fulfillments.data.data"
           :key="index"
         >
-          {{ key }}:  {{ products.data.data[key] }}
+          {{ key }}:  {{ fulfillments.data.data[key] }}
         </p>
     </div>
 </template>
 <script>
 export default {
   props: {
-    customer: {
+    order: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      products: [],
+      fulfillments: [],
     }
   },
   watch: {
-    customer(val) {
+    order(val) {
       if (val && val.id) {
         this.update()
       }
@@ -31,9 +31,7 @@ export default {
   },
   methods: {
     async update() {
-      if (this.customer) {
-        this.products = await this.$http.post('/customer-manager/product-purchased', { customerId: this.customer.id })
-      }
+      this.fulfillments = await this.$http.post('/order-manager/fulfillments', { orderId: this.order.id })
     },
   },
 }
