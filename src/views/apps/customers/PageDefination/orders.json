@@ -1,0 +1,133 @@
+{
+  "title": "Orders",
+  "filters": [
+      {
+        "type": "text",
+        "name": "email",
+        "dataType": "varchar",
+        "title": "Email"
+      },
+      {
+        "type": "text",
+        "name": "browser_ip",
+        "dataType": "varchar",
+        "title": "Browser IP"
+      },
+      {
+        "type": "boolean",
+        "title": "Buyer Accepts Marketing",
+        "name": "buyer_accepts_marketing",
+        "dataType": "boolean"
+      },
+      {
+        "type": "dropdown",
+        "name": "cancel_reason",
+        "dataType": "varchar",
+        "title": "Cancel Reason",
+        "options": [
+          "other"
+        ]
+      },
+      {
+        "type": "dropdown",
+        "name": "financial_status",
+        "dataType": "varchar",
+        "title": "Financial Status",
+        "options": [
+          "paid",
+          "partially_paid",
+          "partially_refunded",
+          "pending",
+          "refunded"
+        ]
+      },
+      
+      {
+        "type": "dropdown",
+        "name": "fulfillment_status",
+        "dataType": "varchar",
+        "title": "Fulfillment Status",
+        "options": [
+          "fulfilled",
+          "unfillfiled",
+          "partial"
+        ]
+      },
+      {
+        "name": "cancelled_at",
+        "dataType": "timestamptz",
+        "title": "Cancelled At",
+        "type": "timestamptz"
+      },
+      {
+        "name": "current_total_price",
+        "dataType": "numeric",
+        "title": "Current Total Price",
+        "type": "number"
+      }
+    ],
+    "columns": [
+      {
+        "label": "Name",
+        "field": "name"
+      },
+      {
+        "label": "Email",
+        "field": "email"
+      },
+      {
+        "label": "Financial",
+        "field": "financial_status"
+      },
+      {
+        "label": "Fulfillment",
+        "field": "fulfillment_status"
+      },
+      {
+        "label": "Tags",
+        "field": "tags"
+      },
+      {
+        "label": "Tax",
+        "field": "total_tax"
+      },
+      {
+        "label": "Discount",
+        "field": "total_discounts"
+      },
+      {
+        "label": "Subtotal",
+        "field": "subtotal_price"
+      },
+      {
+        "label": "Total",
+        "field": "total_price"
+      },
+      {
+        "label": "Country",
+        "field": "shipping_country"
+      },
+      {
+        "label": "Province",
+        "field": "shipping_province"
+      },
+      {
+        "label": "City",
+        "field": "shipping_city"
+      },
+      {
+        "label": "Tip",
+        "field": "total_tip_received"
+      },
+      {
+        "label": "Ordered Date",
+        "field": "created_at"
+      },
+      {
+        "label": "Tip",
+        "field": "total_tip_received"
+      }
+    ],
+    "selectedFilters": [],
+    "table": "order"
+  }

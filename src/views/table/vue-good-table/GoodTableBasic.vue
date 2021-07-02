@@ -1,5 +1,5 @@
 <template>
-  <b-card :title="type">
+  <b-card :title="title">
 
     <!-- search input -->
     <div class="custom-search d-flex justify-content-end mb-1">
@@ -119,7 +119,7 @@
           <div class="d-flex align-items-center mb-0 mt-1">
             <b-form-select
               v-model="rowLength"
-              :options="['3','5','10']"
+              :options="['3','5','10', '20', '50']"
               class="mx-1"
               @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />
@@ -127,7 +127,7 @@
               Showing {{ start }} to {{ end }} of {{ total }} entries
             </span>
           </div>
-          <div>
+          <div class="d-flex align-items-center mb-1 mt-1 mr-1">
             <b-pagination
               :value="currentpage"
               :total-rows="total"
@@ -191,6 +191,10 @@ export default {
     loading: {
       type: Boolean,
       default: () => false,
+    },
+    pageName: {
+      type: String,
+      default: () => '',
     },
     type: {
       type: String,
@@ -283,6 +287,9 @@ export default {
     }
   },
   computed: {
+    title() {
+      return `${this.total || 0}  ${this.pageName}`
+    },
     currentpage() {
       return this.currentPage
     },
@@ -343,3 +350,22 @@ export default {
   },
 }
 </script>
+<style>
+.vgt-table thead th span {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline;
+    font-size: 15px;
+}
+
+ .vgt-table td span {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline;
+    font-size: 15px;
+ }
+</style>

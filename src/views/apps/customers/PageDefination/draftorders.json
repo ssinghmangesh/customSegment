@@ -1,0 +1,92 @@
+{
+  "title": "Draft Orders",
+  "filters": [
+    {
+      "type": "text",
+      "name": "email",
+      "dataType": "varchar",
+      "title": "Email"
+    },
+    {
+      "type": "text",
+      "name": "browser_ip",
+      "dataType": "varchar",
+      "title": "Browser IP"
+    },
+    {
+      "type": "boolean",
+      "title": "Buyer Accepts Marketing",
+      "name": "buyer_accepts_marketing",
+      "dataType": "boolean"
+    },
+    {
+      "type": "dropdown",
+      "name": "cancel_reason",
+      "dataType": "varchar",
+      "title": "Cancel Reason",
+      "options": [
+        "other"
+      ]
+    },
+    {
+      "name": "cancelled_at",
+      "dataType": "timestamptz",
+      "title": "Cancelled At",
+      "type": "timestamptz"
+    },
+    {
+      "name": "current_total_price",
+      "dataType": "numeric",
+      "title": "Current Total Price",
+      "type": "number"
+    }
+  ],
+  "columns": [
+    {
+      "label": "Name",
+      "field": "name"
+    },
+    {
+      "label": "Email",
+      "field": "email"
+    },
+    {
+      "label": "Status",
+      "field": "status"
+    },
+    {
+      "label": "Tags",
+      "field": "tags"
+    },
+    {
+      "label": "Tax",
+      "field": "total_tax"
+    },
+    {
+      "label": "Subtotal",
+      "field": "subtotal_price"
+    },
+    {
+      "label": "Total",
+      "field": "total_price"
+    },
+    {
+      "label": "Country",
+      "field": "shipping_country"
+    },
+    {
+      "label": "Province",
+      "field": "shipping_province"
+    },
+    {
+      "label": "City",
+      "field": "shipping_city"
+    },
+    {
+      "label": "Ordered Date",
+      "field": "created_at"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "draftorder"
+}

@@ -1,13 +1,18 @@
 <template>
-  <div>
+  <div
+      class="cs-filter-group"
+  >
     <div
       v-for="(filter, index) in filters"
       :key="filter.filterType + filter.values[0]"
+      class="cs-filter-group-item"
     >
       <span
         class="filter"
         @click="() => editFilter(filter, index)"
-      >{{ filter.title }}: {{ filter.filterType }} {{ filter.values[0] }}
+      >
+        {{ filter.title }}  {{ filter.filterType }}
+        {{ filter.values[0] }}
         <span
           v-for="(value, i) in filter.values.slice(1)"
           :key="i"
@@ -54,5 +59,17 @@ export default {
 }
 .filter{
     cursor: pointer;
+}
+.cs-filter-group {
+    display: flex;
+    flex-direction: row;
+}
+.cs-filter-group-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-right: 12px;
 }
 </style>
