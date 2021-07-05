@@ -851,7 +851,6 @@ export default {
   },
   watch: {
     async filters() {
-      console.log(this.graphType)
       await this.update()
     },
   },
