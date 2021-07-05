@@ -111,7 +111,7 @@ export default {
       incEcl: 'Include',
       incEclOption: ['Include', 'Exclude'],
       searchQuery: {},
-      selectedFilters: pageDefination[this.$route.params.type].selectedFilters,
+      selectedFilters: [],
       pageDefination: pageDefination[this.$route.params.type].filters,
     }
   },
