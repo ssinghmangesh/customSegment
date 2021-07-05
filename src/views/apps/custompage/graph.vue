@@ -76,8 +76,8 @@
     <ecommerce-order-chart
       v-else-if="graphType === 'ecommerce-order-chart'"
       :data="data.statisticsOrder"
-      title="Order"
-      total="100"
+      :title="item.title"
+      :total="total"
     />
     <ecommerce-profit-chart
       v-else-if="graphType === 'ecommerce-profit-chart'"
@@ -204,6 +204,7 @@ export default {
       series: [],
       labels: [],
       colors: [],
+      total: '',
     }
   },
   computed: {
@@ -944,6 +945,10 @@ export default {
         }
         this.data = { ...data1 }
       } else {
+        if (this.graphType === 'ecommerce-order-chart'){
+          const res = await this.$http.post('/analytics-manager/count', { ...this.item.data })
+          this.total = res.data.data.count
+        }
         this.$http.get('/ecommerce/data')
           .then(response => {
             this.data = response.data

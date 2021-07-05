@@ -1,5 +1,6 @@
 {
     "title": "Taxes",
+    "suggestions": [],
     "columns": [
     {
       "label": "Order Name",
