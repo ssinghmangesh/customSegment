@@ -169,6 +169,7 @@ export default {
     },
   },
   async created() {
+    this.update()
     const res = await this.$http.post('/template/fetch-all')
     this.templates = [...res.data.data]
   },
