@@ -32,13 +32,20 @@
         {{ segment.title }}
       </b-button> -->
     </div>
+    <b-toast
+      id="segment-toast"
+      @hidden="hidden">
+      <span>{{ error }}</span>
+    </b-toast>
   </div>
 </template>
 
 <script>
+import { BToast } from 'bootstrap-vue'
 
 export default {
   components: {
+    BToast,
   },
   data() {
     return {
@@ -52,8 +59,21 @@ export default {
     segments() {
       return this.$store.state.segment.segments.filter(segment => segment.type === this.type)
     },
+    error() {
+      return this.$store.state.segment.error
+    },
+  },
+  watch: {
+    error(val) {
+      if (val) {
+        this.$bvToast.show('segment-toast')
+      }
+    },
   },
   methods: {
+    hidden() {
+      this.$store.commit('segment/clearError')
+    },
     select(val) {
       this.$emit('select', val)
     },
