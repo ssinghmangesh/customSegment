@@ -112,7 +112,7 @@ export default {
       incEclOption: ['Include', 'Exclude'],
       searchQuery: {},
       selectedFilters: [],
-      pageDefination: [],
+      pageDefination: pageDefination[this.$route.params.type].filters,
     }
   },
   computed: {
@@ -125,7 +125,7 @@ export default {
   },
   watch: {
     type() {
-      this.selectedFilters = pageDefination[this.type].selectedFilters
+      this.selectedFilters = []
       this.pageDefination = pageDefination[this.type].filters
     },
     searchQuery(val) {
@@ -136,10 +136,6 @@ export default {
     selectedFilters() {
       this.send()
     },
-  },
-  async created() {
-    this.selectedFilters = pageDefination[this.type].selectedFilters
-    this.pageDefination = pageDefination[this.type].filters
   },
   methods: {
     select(val) {

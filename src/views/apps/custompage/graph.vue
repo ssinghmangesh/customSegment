@@ -854,9 +854,9 @@ export default {
       await this.update()
     },
   },
-  // async created() {
-  //   await this.update()
-  // },
+  created() {
+    this.update()
+  },
   methods: {
     async update() {
       this.data = {}

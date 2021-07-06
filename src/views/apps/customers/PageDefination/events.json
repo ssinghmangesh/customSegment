@@ -3,8 +3,8 @@
   "suggestions": [],
   "columns":[
     {
-      "label": "Id",
-      "field": "id"
+      "label": "Previous Page",
+      "field": "previous_page"
     },
     {
       "label": "OS",
