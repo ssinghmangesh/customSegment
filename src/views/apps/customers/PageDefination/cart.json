@@ -8,6 +8,14 @@
       "field": "id"
     },
     {
+      "label": "Customer Id",
+      "field": "customer_id"
+    },
+    {
+      "label": "Customer Name",
+      "field": "customer_name"
+    },
+    {
       "label": "Date",
       "field": "updated_at"
     },

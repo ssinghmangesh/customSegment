@@ -1,29 +1,29 @@
 <template>
     <div>
-      timeline:
+      Product Recommendations:
         <p
-          v-for="(key, index) in timeline.data.data"
+          v-for="(key, index) in product.data.data"
           :key="index"
         >
-          {{ key }}:  {{ timeline.data.data[key] }}
+          {{ key }}:  {{ product.data.data[key] }}
         </p>
     </div>
 </template>
 <script>
 export default {
   props: {
-    customer: {
+    recommendations: {
       type: Object,
       required: true,
     },
   },
   data() {
     return {
-      timeline: [],
+      product: [],
     }
   },
   watch: {
-    customer(val) {
+    recommendations(val) {
       if (val && val.id) {
         this.update()
       }
@@ -31,9 +31,7 @@ export default {
   },
   methods: {
     async update() {
-      if (this.customer) {
-        this.timeline = await this.$http.post('/customer-manager/timeline', { customerId: this.customer.id })
-      }
+      this.product = await this.$http.post('/product-recommendations-manager/recommendations', { customerId: this.recommendations.id })
     },
   },
 }

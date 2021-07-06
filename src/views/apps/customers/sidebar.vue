@@ -43,6 +43,14 @@
       </b-tab>
       <b-tab
         v-if="type === 'customers'"
+        title="Recommendations"
+      >
+        <ProductRecommendations
+          :recommendations="row"
+        />
+      </b-tab>
+      <b-tab
+        v-if="type === 'customers'"
         title="Notification"
       >
       </b-tab>
@@ -102,6 +110,7 @@ import Fulfillments from './Sidebar/Fulfillments.vue'
 import OrderProduct from './Sidebar/OrderProduct.vue'
 import DraftOrderProduct from './Sidebar/DraftOrderProduct.vue'
 import CartProduct from './Sidebar/CartProduct.vue'
+import ProductRecommendations from './Sidebar/ProductRecommendations.vue'
 
 export default {
   components: {
@@ -118,6 +127,7 @@ export default {
     OrderProduct,
     DraftOrderProduct,
     CartProduct,
+    ProductRecommendations,
   },
   props: {
     row: {
