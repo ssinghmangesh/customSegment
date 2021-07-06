@@ -47,6 +47,7 @@
       >
         <ProductRecommendations
           :recommendations="row"
+          :customer-id="row.id"
         />
       </b-tab>
       <b-tab
