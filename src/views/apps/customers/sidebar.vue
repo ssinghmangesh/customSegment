@@ -1,5 +1,5 @@
 <template>
-  <b-card-code
+  <b-card
     active
     title=""
   >
@@ -54,6 +54,7 @@
         v-if="type === 'customers'"
         title="Notification"
       >
+        Notifications
       </b-tab>
       <b-tab
         v-if="type === 'orders'"
@@ -96,12 +97,13 @@
         </b-card-text>
       </b-tab>
     </b-tabs>
-  </b-card-code>
+  </b-card>
 </template>
 
 <script>
-import BCardCode from '@core/components/b-card-code'
-import { BTabs, BTab, BCardText } from 'bootstrap-vue'
+import {
+  BTabs, BTab, BCardText, BCard,
+} from 'bootstrap-vue'
 import Properties from './Sidebar/Properties.vue'
 import Timeline from './Sidebar/Timeline.vue'
 import CustomerOrder from './Sidebar/CustomerOrder.vue'
@@ -115,7 +117,7 @@ import ProductRecommendations from './Sidebar/ProductRecommendations.vue'
 
 export default {
   components: {
-    BCardCode,
+    BCard,
     BTabs,
     BCardText,
     BTab,
