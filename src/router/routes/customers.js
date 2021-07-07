@@ -14,4 +14,9 @@ export default [
     name: 'apps-sync',
     component: () => import('@/views/apps/sync/index.vue'),
   },
+  {
+    path: '/connect',
+    name: 'connect-store',
+    component: () => import('@/views/apps/ConnectStore/ConnectStore.vue'),
+  },
 ]

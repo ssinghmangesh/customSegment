@@ -25,4 +25,9 @@ export default [
     icon: 'RefreshCwIcon',
     route: 'apps-sync',
   },
+  {
+    title: 'Connect Store',
+    icon: 'RefreshCwIcon',
+    route: 'connect-store',
+  },
 ]
