@@ -26,7 +26,6 @@
         />
 
       </div>
-
       <!-- BODY -->
       <validation-observer
         #default="{ handleSubmit }"
@@ -38,7 +37,7 @@
           @submit.prevent="handleSubmit(submit)"
           @reset.prevent="resetForm"
         >
-
+          <small class="text-danger">{{ error }}</small>
           <!-- Email -->
           <validation-provider
             #default="validationContext"
@@ -231,6 +230,7 @@ export default {
       email,
       countries,
       loading: false,
+      error: '',
     }
   },
   setup(props, { emit }) {
@@ -284,9 +284,14 @@ export default {
         role: this.role,
         company: this.company,
       }
-      await this.$http.post('user-manager/user/add', data)
-      this.$emit('refetch-data')
-      this.$emit('update:is-add-new-user-sidebar-active', false)
+      try {
+        await this.$http.post('user-manager/user/add', data)
+        this.$emit('refetch-data')
+        this.$emit('update:is-add-new-user-sidebar-active', false)
+      } catch (err) {
+        // this.$router.push(`/pages/authentication/reset-password-v1?user_id=${encodeURIComponent(this.user_id)}`)
+        this.error = err.response.data.message
+      }
       this.loading = false
     },
   },

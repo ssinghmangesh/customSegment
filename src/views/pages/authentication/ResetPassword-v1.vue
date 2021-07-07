@@ -9,7 +9,7 @@
           <vuexy-logo />
 
           <h2 class="brand-text text-primary ml-1">
-            Segment Custom class="brand-text text-primary ml-1">
+            Custom Segment
           </h2>
         </b-link>
 
@@ -181,7 +181,7 @@ export default {
         userId: this.$route.query.user_id,
         password: this.password,
       })
-      this.$router.push('/apps/customers')
+      this.$router.push('/login')
     },
   },
 }

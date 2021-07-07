@@ -213,6 +213,12 @@ export default {
       return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
     },
   },
+  created() {
+    localStorage.removeItem('workspaceId')
+    localStorage.removeItem('workspaceName')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userData')
+  },
   methods: {
     async login() {
       this.loading = true

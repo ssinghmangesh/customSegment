@@ -183,6 +183,10 @@ export default {
       text: workspace.shop_name,
       value: workspace.workspace_id,
     }))
+    if (!this.selected) {
+      this.selected = this.options[0].value
+      // window.location.reload()
+    }
   },
 }
 </script>
