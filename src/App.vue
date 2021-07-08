@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!loading"
     id="app"
     class="h-100"
     :class="[skinClasses]"
@@ -38,6 +39,11 @@ export default {
     LayoutFull,
 
     ScrollToTop,
+  },
+  data() {
+    return {
+      loading: false,
+    }
   },
   // ! We can move this computed: layout & contentLayoutType once we get to use Vue 3
   // Currently, router.currentRoute is not reactive and doesn't trigger any change
@@ -103,7 +109,14 @@ export default {
     }
   },
   async created() {
-    await this.$store.commit('segment/getSegments')
+    this.loading = true
+    try {
+      this.$store.commit('segment/getSegments')
+      this.$store.commit('workspace/getWorkspaces')
+      this.loading = false
+    } catch {
+      this.loading = false
+    }
   },
 }
 </script>

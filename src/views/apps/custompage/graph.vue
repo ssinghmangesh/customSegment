@@ -197,6 +197,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    time: {
+      type: Object,
+      default: () => '',
+    },
   },
   data() {
     return {
@@ -205,6 +209,7 @@ export default {
       labels: [],
       colors: [],
       total: '',
+      interval: null,
     }
   },
   computed: {
@@ -853,8 +858,24 @@ export default {
     async filters() {
       await this.update()
     },
+    time() {
+      if (this.interval) {
+        clearInterval(this.interval)
+        this.interval = null
+      }
+      if (this.time) {
+        this.interval = setInterval(() => this.update(), Number(this.time) * 1000)
+      }
+    },
   },
   created() {
+    if (this.interval) {
+      clearInterval(this.interval)
+      this.interval = null
+    }
+    if (this.time) {
+      this.interval = setInterval(() => this.update(), Number(this.time) * 1000)
+    }
     this.update()
   },
   methods: {

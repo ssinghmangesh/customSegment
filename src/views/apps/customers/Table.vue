@@ -20,6 +20,7 @@
           @onRowClick="onRowClick"
           @download="download"
           @onShowSelectColumns="() => hide2(true)"
+          @applyTimer="applyTimer"
         />
       </b-col>
     </b-row>
@@ -98,6 +99,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    time: {
+      type: String,
+      default: () => '',
+    },
   },
   data() {
     return {
@@ -113,6 +118,7 @@ export default {
       selectedRow: {},
       templates: [],
       loading: false,
+      interval: null,
       selectedColumns: pageDefination[this.$route.params.type].columns.map(column => column.field),
     }
   },
@@ -158,6 +164,15 @@ export default {
     async type() {
       this.orderBykey = null
     },
+    time() {
+      if (this.interval) {
+        clearInterval(this.interval)
+        this.interval = null
+      }
+      if (this.time) {
+        this.interval = setInterval(() => this.update(), Number(this.time) * 1000)
+      }
+    },
     async pageLength() {
       await this.update()
     },
@@ -169,11 +184,21 @@ export default {
     },
   },
   async created() {
+    if (this.interval) {
+      clearInterval(this.interval)
+      this.interval = null
+    }
+    if (this.time) {
+      this.interval = setInterval(() => this.update(), Number(this.time) * 1000)
+    }
     this.update()
     const res = await this.$http.post('/template/fetch-all')
     this.templates = [...res.data.data]
   },
   methods: {
+    applyTimer(val) {
+      this.$emit('applyTimer', val)
+    },
     selectedColumnsChanged(data) {
       this.selectedColumns = data
     },
