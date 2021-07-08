@@ -1,5 +1,6 @@
 <template>
   <b-card>
+    <small class="text-danger">{{ error }}</small>
     <b-row>
       <b-col sm="4">
         <b-form-input
@@ -37,13 +38,19 @@ export default {
   data() {
     return {
       store: '',
+      error: '',
     }
   },
   methods: {
-    connect() {
-      const a = document.createElement('a')
-      a.href = `https://custom-segment-service.herokuapp.com/install?shop=${this.store}`
-      a.click()
+    async connect() {
+      try {
+        const res = await this.$http.post('/connect', { shop: this.store, userId: localStorage.getItem('userId') })
+        const a = document.createElement('a')
+        a.href = res.data
+        a.click()
+      } catch (err) {
+        this.error = err.response.data
+      }
     },
   },
 }
