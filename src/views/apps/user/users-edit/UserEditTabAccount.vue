@@ -312,7 +312,7 @@ export default {
       file: null,
       src: '',
       username: 'mangesh123',
-      user_id: this.$route.params.id,
+      user_id: localStorage.getItem('userId'),
       name: 'Mangesh Singh',
       company: 'custom-segment',
       status: 'pending',

@@ -24,27 +24,7 @@
             class="auth-register-form mt-2"
             @submit.prevent="validationForm"
           >
-            <!-- username -->
-            <b-form-group
-              label="Shop Name"
-              label-for="username"
-            >
-              <validation-provider
-                #default="{ errors }"
-                name="Username"
-                rules="required"
-              >
-                <b-form-input
-                  id="username"
-                  v-model="username"
-                  :state="errors.length > 0 ? false:null"
-                  name="register-username"
-                  placeholder="johndoe"
-                />
-                <small class="text-danger">{{ errors[0] }}</small>
-              </validation-provider>
-            </b-form-group>
-
+            <small class="text-danger">{{ error }}</small>
             <!-- email -->
             <b-form-group
               label="Email"
@@ -205,9 +185,9 @@ export default {
   data() {
     return {
       regEmail: '',
-      username: '',
       password: '',
       status: '',
+      error: '',
 
       // validation rules
       required,
@@ -221,12 +201,16 @@ export default {
   },
   methods: {
     async validationForm() {
-      const response = await this.$http.post('/auth-manager/check-for-register', {
-        userId: this.regEmail,
-        password: this.password,
-        shopName: this.username,
-      })
-      await this.$http.get(response.data)
+      try {
+        await this.$http.post('/auth-manager/check-for-register', {
+          userId: this.regEmail,
+          password: this.password,
+        })
+        localStorage.setItem('userId', this.regEmail)
+        this.$router.push('/apps/orders')
+      } catch (err) {
+        this.error = err.response.data
+      }
     },
   },
 }

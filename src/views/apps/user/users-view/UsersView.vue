@@ -68,7 +68,7 @@ export default {
   },
   async created() {
     const res = await this.$http.post('user-manager/user/fetch', {
-      user_id: this.$route.params.id,
+      user_id: localStorage.getItem('userId'),
     })
     this.userData = { ...res.data.data }
   },

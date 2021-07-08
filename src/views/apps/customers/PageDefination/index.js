@@ -6,7 +6,7 @@ const taxes = require('./taxes.json')
 const draftorders = require('./draftorders.json')
 const cart = require('./cart.json')
 const visitors = require('./visitors.json')
-const products = require('./products.json')
+const product = require('./products.json')
 const events = require('./events.json')
 const notifications = require('./notifications.json')
 const sentEmail = require('./sentEmail.json')
@@ -20,7 +20,7 @@ const pageDefination = {
   draftorders,
   cart,
   visitors,
-  products,
+  product,
   notifications,
   events,
   sentEmail,

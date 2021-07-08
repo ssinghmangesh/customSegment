@@ -186,12 +186,12 @@ export default [
     component: () => import('@/views/apps/user/users-list/UsersList.vue'),
   },
   {
-    path: '/apps/users/view/:id',
+    path: '/apps/users/view',
     name: 'apps-users-view',
     component: () => import('@/views/apps/user/users-view/UsersView.vue'),
   },
   {
-    path: '/apps/users/edit/:id',
+    path: '/apps/users/edit',
     name: 'apps-users-edit',
     component: () => import('@/views/apps/user/users-edit/UsersEdit.vue'),
   },

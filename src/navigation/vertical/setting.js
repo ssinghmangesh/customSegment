@@ -12,11 +12,11 @@ export default [
       },
       {
         title: 'View',
-        route: { name: 'apps-users-view', params: { id: localStorage.getItem('userId') || 21 } },
+        route: { name: 'apps-users-view' },
       },
       {
         title: 'Edit',
-        route: { name: 'apps-users-edit', params: { id: localStorage.getItem('userId') || 21 } },
+        route: { name: 'apps-users-edit' },
       },
     ],
   },
@@ -24,5 +24,10 @@ export default [
     title: 'Sync',
     icon: 'RefreshCwIcon',
     route: 'apps-sync',
+  },
+  {
+    title: 'Connect Store',
+    icon: 'RefreshCwIcon',
+    route: 'connect-store',
   },
 ]

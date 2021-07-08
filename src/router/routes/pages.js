@@ -38,7 +38,7 @@ export default [
   {
     path: '/register',
     name: 'auth-register',
-    component: () => import('@/views/pages/authentication/Register.vue'),
+    component: () => import('@/views/pages/authentication/Register-v1.vue'),
     meta: {
       layout: 'full',
       resource: 'Auth',
