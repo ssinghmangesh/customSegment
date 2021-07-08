@@ -4,7 +4,7 @@
           v-for="(key, index) in Object.keys(data)"
           :key="index"
         >
-            {{ key }}:  {{ data[key] }}
+            {{ formatData.snakeCaseToNormalText(key) }}:  {{ formatData.transform(data[key]) }}
         </p>
     </div>
 </template>
