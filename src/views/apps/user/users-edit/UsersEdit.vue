@@ -42,7 +42,7 @@
       </b-tab>
 
       <!-- Tab: Information -->
-      <b-tab>
+      <!-- <b-tab>
         <template #title>
           <feather-icon
             icon="InfoIcon"
@@ -52,10 +52,10 @@
           <span class="d-none d-sm-inline">Information</span>
         </template>
         <user-edit-tab-information class="mt-2 pt-75" />
-      </b-tab>
+      </b-tab> -->
 
       <!-- Tab: Social -->
-      <b-tab>
+      <!-- <b-tab>
         <template #title>
           <feather-icon
             icon="Share2Icon"
@@ -65,7 +65,7 @@
           <span class="d-none d-sm-inline">Social</span>
         </template>
         <user-edit-tab-social class="mt-2 pt-75" />
-      </b-tab>
+      </b-tab> -->
     </b-tabs>
   </component>
 </template>
