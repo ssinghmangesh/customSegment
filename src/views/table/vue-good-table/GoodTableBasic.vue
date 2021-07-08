@@ -113,7 +113,7 @@
 
         <!-- Column: Common -->
         <span v-else>
-          {{ props.formattedRow[props.column.field] }}
+          {{ formatter.transform({ key: props.column.field, value: props.formattedRow[props.column.field] })}}
         </span>
       </template>
 
@@ -177,6 +177,7 @@ import {
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
+import formatData from '@/views/apps/customers/Helper/globalMethods'
 import { codeBasic } from './code'
 
 export default {
@@ -245,6 +246,7 @@ export default {
   },
   data() {
     return {
+      formatter: formatData,
       rowLength: 0,
       // pageLength: 3,
       // dir: false,
