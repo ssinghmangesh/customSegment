@@ -30,11 +30,5 @@ export default {
       return this.properties
     },
   },
-  mounted() {
-    console.log('!!!!!!!!!!!!!!!!!')
-    Object.keys(this.data).forEach(key => {
-      console.log(formatData.snakeCaseToNormalText(key))
-    })
-  },
 }
 </script>

@@ -79,7 +79,6 @@ class formatData {
   static snakeCaseToNormalText(value) {
     const array = value.split('_')
     const string = array.map(str => str).join(' ')
-    console.log(string)
     return string
   }
 }

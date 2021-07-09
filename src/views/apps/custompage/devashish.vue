@@ -5,6 +5,7 @@
         v-for="(item, index) in pageDefination"
         :key="index"
         :item="item"
+        :time="time"
         :filters="filters"
       />
     </b-row>
@@ -25,6 +26,10 @@ export default {
     filters: {
       type: Object,
       default: () => {},
+    },
+    time: {
+      type: String,
+      default: () => '',
     },
   },
   data() {

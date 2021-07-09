@@ -7,6 +7,7 @@ import app from './app'
 import appConfig from './app-config'
 import verticalMenu from './vertical-menu'
 import segment from './segment'
+import workspace from './workspaces'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     appConfig,
     verticalMenu,
     segment,
+    workspace,
     'app-ecommerce': ecommerceStoreModule,
   },
   strict: process.env.DEV,

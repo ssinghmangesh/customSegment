@@ -116,8 +116,15 @@ export default {
   data() {
     return {
       selected: localStorage.getItem('workspaceId'),
-      options: [],
     }
+  },
+  computed: {
+    options() {
+      return this.$store.state.workspace.workspaces.map(workspace => ({
+        text: workspace.shop_name,
+        value: workspace.workspace_id,
+      }))
+    },
   },
   watch: {
     selected(val) {
@@ -178,11 +185,6 @@ export default {
     }
   },
   async created() {
-    const res = await this.$http.post('/user-manager/workspace/fetch-all', { userId: localStorage.getItem('userId') })
-    this.options = res.data.data.map(workspace => ({
-      text: workspace.shop_name,
-      value: workspace.workspace_id,
-    }))
     if (!this.selected) {
       this.selected = this.options[0].value
       // window.location.reload()

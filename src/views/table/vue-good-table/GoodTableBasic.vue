@@ -1,8 +1,34 @@
 <template>
   <b-card :title="title">
-
+    <b-modal
+      id="timer"
+      title="Auto Refresh"
+      size="md"
+      centered
+      :ok-disabled="!time"
+      @cancel="cancel"
+      @close="cancel"
+      @ok="applyTimer"
+    >
+      <b-form-input
+        v-model="time"
+        type="number"
+        placeholder="Time (in seconds)"
+      />
+    </b-modal>
     <!-- search input -->
-    <div class="custom-search d-flex justify-content-end mb-1">
+    <div class="custom-search d-flex justify-content-end mb-1 align-items-center">
+      <div class="d-flex">
+        <span class="mr-1">{{ time ? time+'s' : null }}</span>
+        <b-form-checkbox
+          v-model="timer"
+          class="mr-1"
+          switch
+          @change="autoRefresh"
+        >
+          Auto-Refresh
+        </b-form-checkbox>
+      </div>
       <b-button
         variant="primary"
         class="mr-1"
@@ -173,7 +199,7 @@
 
 <script>
 import {
-  BAvatar, BBadge, BPagination, BButton, BFormSelect, BDropdown, BDropdownItem, BCard, VBToggle,
+  BAvatar, BBadge, BPagination, BButton, BFormSelect, BDropdown, BDropdownItem, BCard, VBToggle, BFormCheckbox, BFormInput,
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
@@ -182,6 +208,7 @@ import { codeBasic } from './code'
 
 export default {
   components: {
+    BFormInput,
     BCard,
     VueGoodTable,
     BAvatar,
@@ -191,6 +218,7 @@ export default {
     BFormSelect,
     BDropdown,
     BDropdownItem,
+    BFormCheckbox,
   },
   directives: {
     'b-toggle': VBToggle,
@@ -201,10 +229,6 @@ export default {
       default: () => false,
     },
     pageName: {
-      type: String,
-      default: () => '',
-    },
-    type: {
       type: String,
       default: () => '',
     },
@@ -248,54 +272,16 @@ export default {
     return {
       formatter: formatData,
       rowLength: 0,
-      // pageLength: 3,
-      // dir: false,
       codeBasic,
-      // columns: [
-      //   {
-      //     label: 'Name',
-      //     field: 'fullName',
-      //   },
-      //   {
-      //     label: 'Email',
-      //     field: 'email',
-      //   },
-      //   {
-      //     label: 'Date',
-      //     field: 'startDate',
-      //   },
-      //   {
-      //     label: 'Salary',
-      //     field: 'salary',
-      //   },
-      //   {
-      //     label: 'Status',
-      //     field: 'status',
-      //   },
-      //   {
-      //     label: 'Action',
-      //     field: 'action',
-      //   },
-      // ],
-      // rows: [],
       searchTerm: '',
-      // status: [{
-      //   1: 'Current',
-      //   2: 'Professional',
-      //   3: 'Rejected',
-      //   4: 'Resigned',
-      //   5: 'Applied',
-      // },
-      // {
-      //   1: 'light-primary',
-      //   2: 'light-success',
-      //   3: 'light-danger',
-      //   4: 'light-warning',
-      //   5: 'light-info',
-      // }],
+      timer: localStorage.getItem(`${this.$route.params.type}timer`) !== null,
+      time: null,
     }
   },
   computed: {
+    type() {
+      return this.$route.params.type
+    },
     title() {
       return `${this.total || 0}  ${this.pageName}`
     },
@@ -339,6 +325,10 @@ export default {
     },
   },
   watch: {
+    type() {
+      this.timer = localStorage.getItem(`${this.type}timer`) !== null
+      this.time = localStorage.getItem(`${this.type}timer`)
+    },
     rowLength(val) {
       this.$emit('changeInPageLength', val)
     },
@@ -347,6 +337,26 @@ export default {
     this.rowLength = this.pageLength
   },
   methods: {
+    cancel() {
+      this.timer = false
+      this.time = null
+    },
+    applyTimer(event) {
+      if (this.time) {
+        this.$emit('applyTimer', this.time)
+      } else {
+        event.preventDefault()
+      }
+    },
+    autoRefresh(val) {
+      if (val) {
+        this.$bvModal.show('timer')
+      } else {
+        this.time = null
+        localStorage.removeItem(`${this.type}timer`)
+        this.$emit('applyTimer', 0)
+      }
+    },
     download() {
       this.$emit('download')
     },

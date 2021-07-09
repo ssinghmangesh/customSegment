@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: {
     cartItemsCount: (() => {
-      const userData = JSON.parse(localStorage.getItem('userData'))
+      const userData = localStorage.getItem('userData')
       return userData && userData.extras ? userData.extras.eCommerceCartItemsCount : 0
     })(),
   },
