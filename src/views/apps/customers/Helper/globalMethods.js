@@ -67,8 +67,8 @@ class formatData {
     if (Boolean) {
       return value ? 'Yes' : 'No'
     }
-    if (Amount) {
-      return value // add currency in front of value   "${{amount}}"
+    if (Amount && value) {
+      return `Rs ${value}`
     }
     if (Address) {
       return this.convertAddress(value)

@@ -1,6 +1,15 @@
 {
     "title": "Customers",
-    "suggestions": [],
+    "suggestions": [
+      {
+        "title": "Default Address",
+        "columns": ["email", "address1", "address2", "city", "province", "country"]
+      },
+      {
+        "title": "Last Orders",
+        "columns": ["email", "last_order_name", "last_order_id", "order_count", "total_spent"]
+      }
+    ],
     "filters": [
       {
         "title": "Name",
@@ -81,8 +90,8 @@
         "dataType": "numeric[]"
       },
       {
-        "title": "Total Order Count",
-        "name": "total_order_count",
+        "title": "Orders Count",
+        "name": "orders_count",
         "type": "number",
         "dataType": "numeric"
       },
@@ -172,6 +181,26 @@
         "field": "updated_at"
       },
       {
+        "label": "Total Spent",
+        "field": "total_spent"
+      },
+      {
+        "label": "Orders Count",
+        "field": "orders_count"
+      },
+      {
+        "label": "Address Line 1",
+        "field": "address1"
+      },
+      {
+        "label": "Address Line 2",
+        "field": "address2"
+      },
+      {
+        "label": "City",
+        "field": "city"
+      },
+      {
         "label": "State",
         "field": "province"
       },
@@ -180,8 +209,12 @@
         "field": "country"
       },
       {
-        "label": "Total Spent",
-        "field": "total_spent"
+        "label": "Last Order Name",
+        "field": "last_order_name"
+      },
+      {
+        "label": "Last Order Id",
+        "field": "last_order_id"
       }
     ],
     "selectedFilters": [],

@@ -1,16 +1,29 @@
 <template>
     <div>
-      customer products:
-        <p
-          v-for="(key, index) in products.data.data"
+        <b-card
+          v-for="(product, index) in products.data.data"
           :key="index"
+          border-variant="secondary"
+          :title="product.name"
+          bg-variant="transparent"
+          class="shadow-none"
         >
-          {{ key }}:  {{ products.data.data[key] }}
-        </p>
+          <b-card-text>
+            Some quick example text to build on the card title and make up.
+          </b-card-text>
+        </b-card>
     </div>
 </template>
 <script>
+import {
+  BCard, BCardText,
+} from 'bootstrap-vue'
+
 export default {
+  components: {
+    BCard,
+    BCardText,
+  },
   props: {
     customer: {
       type: Object,

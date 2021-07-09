@@ -5,14 +5,27 @@
     />
     <b-card>
       <b-tabs>
-        <b-tab title="Table">
+        <b-tab title="Stats">
+          <graphs
+            :time="time"
+            :filters="filters"
+          />
+        </b-tab>
+        <b-tab title="Raw Data">
           <custom-table
             :filters="filters"
             :time="time"
             @applyTimer="applyTimer"
           />
         </b-tab>
-        <b-tab title="Graphs">
+        <b-tab title="Graph">
+          <graphs
+            :time="time"
+            :filters="filters"
+          />
+        </b-tab>
+
+        <b-tab title="Segment">
           <graphs
             :time="time"
             :filters="filters"

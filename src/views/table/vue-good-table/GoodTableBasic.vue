@@ -152,7 +152,7 @@
           <div class="d-flex align-items-center mb-0 mt-1">
             <b-form-select
               v-model="rowLength"
-              :options="['3','5','10', '20', '50']"
+              :options="['3','5','10', '20', '50', '100', '200', '500']"
               class="mx-1"
               @input="(value)=>props.perPageChanged({currentPerPage:value})"
             />

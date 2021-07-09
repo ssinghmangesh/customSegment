@@ -2,8 +2,16 @@
   "title": "Orders",
   "suggestions": [
     {
-        "title": "Biling",
-        "columns": ["email", "shipping_country", "shipping_province", "shipping_city"]
+        "title": "Shipping Address",
+        "columns": ["name", "email", "shipping_address1", "shipping_address2", "shipping_city", "shipping_province", "shipping_country"]
+    },
+    {
+      "title": "Amount Break Down",
+      "columns": ["name", "total_tax", "total_discounts", "subtotal_price", "total_price", "total_tip_received", "fulfillment_status"]
+    },
+    {
+      "title": "Customer Details",
+      "columns": ["name", "email", "name", "first_name", "last_name", "phone"]
     }
 ],
   "filters": [
@@ -129,9 +137,9 @@
         "label": "Ordered Date",
         "field": "created_at"
       },
-      {
-        "label": "Tip",
-        "field": "total_tip_received"
+      { 
+        "label": "Phone",
+        "field": "phone"
       }
     ],
     "selectedFilters": [],

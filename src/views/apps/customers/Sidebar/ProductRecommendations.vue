@@ -36,7 +36,7 @@ export default {
       required: true,
     },
     customerId: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

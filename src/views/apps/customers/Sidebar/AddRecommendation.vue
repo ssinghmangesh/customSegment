@@ -52,7 +52,7 @@ export default {
   },
   props: {
     customerId: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

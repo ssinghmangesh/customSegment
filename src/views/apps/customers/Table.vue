@@ -108,7 +108,7 @@ export default {
     return {
       visible2: false,
       rows: [],
-      pageLength: 10,
+      pageLength: 50,
       currentPage: 1,
       start: 1,
       total: 0,

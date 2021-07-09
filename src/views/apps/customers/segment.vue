@@ -1,5 +1,5 @@
 <template>
-  <div class="segment">
+  <div class="segment" v-if="segments && segments.length">
     <b-modal
       id="modal-center"
       ref="delete-segment"
