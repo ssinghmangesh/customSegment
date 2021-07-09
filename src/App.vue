@@ -109,6 +109,9 @@ export default {
     }
   },
   async created() {
+    if (localStorage.getItem('userId') === null) {
+      this.$router.push('/login')
+    }
     this.loading = true
     try {
       this.$store.commit('segment/getSegments')
