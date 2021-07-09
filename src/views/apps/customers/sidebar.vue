@@ -75,6 +75,22 @@
         />
       </b-tab>
       <b-tab
+        v-if="type === 'orders'"
+        title="Refunds"
+      >
+        <OrderRefund
+          :order="row"
+        />
+      </b-tab>
+      <b-tab
+        v-if="type === 'orders'"
+        title="Transactions"
+      >
+        <OrderTransaction
+          :order="row"
+        />
+      </b-tab>
+      <b-tab
         v-if="type === 'draftorders'"
         title="Purchased Items"
       >
@@ -117,6 +133,8 @@ import DraftOrderProduct from './Sidebar/DraftOrderProduct.vue'
 import CartProduct from './Sidebar/CartProduct.vue'
 import ProductRecommendations from './Sidebar/ProductRecommendations.vue'
 import Notifications from './Sidebar/Notifications.vue'
+import OrderRefund from './Sidebar/OrderRefund.vue'
+import OrderTransaction from './Sidebar/OrderTransaction.vue'
 
 export default {
   components: {
@@ -135,6 +153,8 @@ export default {
     CartProduct,
     ProductRecommendations,
     Notifications,
+    OrderRefund,
+    OrderTransaction,
   },
   props: {
     row: {
