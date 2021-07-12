@@ -176,7 +176,7 @@
     },
     {
       "label": "Orders Count",
-      "field": "orders_count"
+      "field": "total_order_count"
     },
     {
       "label": "Address Line 1",
