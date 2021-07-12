@@ -8,6 +8,10 @@
       {
         "title": "Last Orders",
         "columns": ["email", "last_order_name", "last_order_id", "order_count", "total_spent"]
+      },
+      {
+        "title": "Order Counts",
+        "columns": ["email", "total_order_count", "refunded_order_count", "cancelled_order_count", "unfulfilled_order_count"]
       }
     ],
     "filters": [
@@ -181,12 +185,12 @@
         "field": "updated_at"
       },
       {
-        "label": "Total Spent",
-        "field": "total_spent"
+        "label": "Total Amount Spent",
+        "field": "total_amount_spent"
       },
       {
         "label": "Orders Count",
-        "field": "orders_count"
+        "field": "total_order_count"
       },
       {
         "label": "Address Line 1",
@@ -215,8 +219,20 @@
       {
         "label": "Last Order Id",
         "field": "last_order_id"
+      },
+      {
+        "label": "Refunded Orders",
+        "field": "refunded_order_count"
+      },
+      {
+        "label": "Uncancelled Orders",
+        "field": "uncancelled_order_count"
+      },
+      {
+        "label": "Unfulfilled Orders",
+        "field": "unfulfilled_order_count"
       }
     ],
     "selectedFilters": [],
-    "table": "customer"
+    "table": "customeraggregate"
   }

@@ -5,18 +5,8 @@ export default [
   {
     title: 'Customers',
     icon: 'UserIcon',
-    children: [
-      {
-        title: 'Customers',
-        route: 'apps-customers',
-        path: '/apps/customeraggregate',
-      },
-      // {
-      //   title: 'Customer',
-      //   route: 'apps-customers',
-      //   path: '/apps/customers',
-      // },
-    ],
+    route: 'apps-customers',
+    path: '/apps/customers',
   },
   {
     title: 'Order',
