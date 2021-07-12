@@ -127,12 +127,20 @@ export default {
     },
   },
   watch: {
-    selected(val) {
+    async selected(val) {
       localStorage.setItem('workspaceId', val)
+      const workspace = {
+        workspaceId: val,
+      }
       this.options.forEach(option => {
         if (option.value === val) {
           localStorage.setItem('workspaceName', option.text)
+          workspace.workspaceName = option.text
         }
+      })
+      await this.$http.post('/user-manager/workspace/current', {
+        userId: localStorage.getItem('userId'),
+        workspace,
       })
       window.location.reload()
     },

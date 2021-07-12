@@ -1,5 +1,7 @@
 <template>
-  <div class="segment" v-if="segments && segments.length">
+  <b-card
+    v-if="segments && segments.length"
+  >
     <b-modal
       id="modal-center"
       ref="delete-segment"
@@ -37,15 +39,16 @@
       @hidden="hidden">
       <span>{{ error }}</span>
     </b-toast>
-  </div>
+  </b-card>
 </template>
 
 <script>
-import { BToast } from 'bootstrap-vue'
+import { BToast, BCard } from 'bootstrap-vue'
 
 export default {
   components: {
     BToast,
+    BCard,
   },
   data() {
     return {
@@ -91,9 +94,6 @@ export default {
 }
 </script>
 <style lang="scss" >
-.segment{
-    margin-top: 70px;
-}
 .segment-div{
   display: inline-block;
   margin-right: 5px;

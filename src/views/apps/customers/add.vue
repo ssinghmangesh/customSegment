@@ -64,7 +64,6 @@
     >
       ADD
     </b-button>
-    <segment @select="select" />
     <b-modal
       id="modal-center"
       ref="add-title"
@@ -88,14 +87,12 @@ import TypeHandler from './TypeHandler/TypeHandler.vue'
 import SelectedFilters from './SelectedFilters/SelectedFilters.vue'
 import { pageDefination } from './PageDefination/index'
 import AddTitle from './AddTitle.vue'
-import Segment from './segment.vue'
 
 export default {
   components: {
     BCard,
     BCardText,
     BFormGroup,
-    Segment,
     // BFormInput,
     vSelect,
     BModal,
@@ -103,6 +100,12 @@ export default {
     SelectedFilters,
     BButton,
     AddTitle,
+  },
+  props: {
+    segment: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -136,12 +139,12 @@ export default {
     selectedFilters() {
       this.send()
     },
+    segment() {
+      this.selectedFilters = [...this.segment.conditions]
+      this.andOr = this.segment.relation
+    },
   },
   methods: {
-    select(val) {
-      this.selectedFilters = [...val.conditions]
-      this.andOr = val.relation
-    },
     add(val) {
       this.$refs['add-title'].hide()
       this.$store.commit('segment/addSegment', { title: val, filters: { relation: this.andOr, conditions: this.selectedFilters }, type: this.$route.params.type })

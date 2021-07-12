@@ -1,6 +1,7 @@
 <template>
   <div>
     <add
+      :segment="segment"
       @updateTable="updateTable"
     />
     <b-card>
@@ -26,9 +27,8 @@
         </b-tab>
 
         <b-tab title="Segment">
-          <graphs
-            :time="time"
-            :filters="filters"
+          <segment
+            @select="select"
           />
         </b-tab>
       </b-tabs>
@@ -44,11 +44,13 @@ import {
 import Graphs from '@/views/apps/custompage/devashish.vue'
 import add from './add.vue'
 import CustomTable from './Table.vue'
+import Segment from './segment.vue'
 
 export default {
   components: {
     // BCard,
     Graphs,
+    Segment,
     add,
     BTabs,
     BTab,
@@ -58,6 +60,7 @@ export default {
     return {
       filters: {},
       time: localStorage.getItem(`${this.$route.params.type}timer`),
+      segment: null,
     }
   },
   computed: {
@@ -79,6 +82,9 @@ export default {
       if (val) {
         localStorage.setItem(`${this.type}timer`, val)
       }
+    },
+    select(val) {
+      this.segment = { ...val }
     },
   },
 }

@@ -207,7 +207,8 @@ export default {
           password: this.password,
         })
         localStorage.setItem('userId', this.regEmail)
-        this.$router.push('/apps/orders')
+        localStorage.setItem('userData', JSON.stringify({ userId: this.regEmail }))
+        this.$router.push('/connect')
       } catch (err) {
         this.error = err.response.data
       }

@@ -141,6 +141,10 @@ export default {
   },
   methods: {
     logout() {
+      localStorage.removeItem('workspaceId')
+      localStorage.removeItem('workspaceName')
+      localStorage.removeItem('userId')
+      localStorage.removeItem('userData')
       this.$router.push({ name: 'auth-login' })
     },
   },

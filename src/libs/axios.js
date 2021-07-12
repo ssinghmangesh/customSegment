@@ -5,8 +5,8 @@ import axios from 'axios'
 
 const axiosIns = axios.create({
   headers: {
-    'x-workspace-id': localStorage.getItem('workspaceId') || 56788582584,
-    'x-workspace-name': localStorage.getItem('workspaceName') || 'indian-dress-cart.myshopify.com',
+    'x-workspace-id': localStorage.getItem('workspaceId'),
+    'x-workspace-name': localStorage.getItem('workspaceName'),
   },
   baseURL: 'https://custom-segment-service.herokuapp.com/',
 })

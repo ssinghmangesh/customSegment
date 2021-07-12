@@ -123,7 +123,7 @@
 
         <b-card-text class="text-center mt-2">
           <span>New on our platform? </span>
-          <b-link :to="{name:'auth-register-v1'}">
+          <b-link :to="{name:'auth-register'}">
             <span>Create an account</span>
           </b-link>
         </b-card-text>
@@ -213,12 +213,6 @@ export default {
       return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
     },
   },
-  created() {
-    localStorage.removeItem('workspaceId')
-    localStorage.removeItem('workspaceName')
-    localStorage.removeItem('userId')
-    localStorage.removeItem('userData')
-  },
   methods: {
     async login() {
       this.loading = true
@@ -230,7 +224,13 @@ export default {
           localStorage.setItem('userData', JSON.stringify(res.data))
           localStorage.setItem('userId', this.userEmail)
           this.loading = false
-          this.$router.push('/apps/customers')
+          if (res.data.current_workspace) {
+            localStorage.setItem('workspaceId', res.data.current_workspace.workspaceId)
+            localStorage.setItem('workspaceName', res.data.current_workspace.workspaceName)
+            window.location.replace('/apps/customers')
+          } else {
+            this.$router.push('/connect')
+          }
         })
         .catch(err => {
           this.loginErrors = err.response.data
