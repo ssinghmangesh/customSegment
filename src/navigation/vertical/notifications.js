@@ -8,10 +8,10 @@ export default [
     route: 'notifications',
     path: '/email/notifications',
   },
-  {
-    title: 'Whatsapp',
-    icon: 'MessageCircleIcon',
-    route: 'notifications',
-    path: '/whatsapp/notifications',
-  },
+  // {
+  //   title: 'Whatsapp',
+  //   icon: 'MessageCircleIcon',
+  //   route: 'notifications',
+  //   path: '/whatsapp/notifications',
+  // },
 ]

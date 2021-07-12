@@ -106,7 +106,7 @@
 
         <b-card-text class="text-center mt-2">
           <span>Already have an account? </span>
-          <b-link :to="{name:'auth-login-v1'}">
+          <b-link :to="{name:'auth-login'}">
             <span>Sign in instead</span>
           </b-link>
         </b-card-text>
@@ -207,7 +207,8 @@ export default {
           password: this.password,
         })
         localStorage.setItem('userId', this.regEmail)
-        this.$router.push('/apps/orders')
+        localStorage.setItem('userData', JSON.stringify({ userId: this.regEmail }))
+        this.$router.push('/connect')
       } catch (err) {
         this.error = err.response.data
       }
