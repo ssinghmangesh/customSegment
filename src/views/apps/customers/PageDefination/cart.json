@@ -37,5 +37,7 @@
     }
   ],
   "selectedFilters": [],
-  "table": "cart"
+  "table": "cart",
+  "stats": [],
+  "graphs": []
 }

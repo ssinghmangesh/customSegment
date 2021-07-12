@@ -16,5 +16,7 @@
     }
   ],
   "selectedFilters": [],
-  "table": "sentemail"
+  "table": "sentemail",
+  "stats": [],
+  "graphs": []
 }

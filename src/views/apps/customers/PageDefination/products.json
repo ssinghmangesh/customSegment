@@ -25,5 +25,90 @@
     }
   ],
   "selectedFilters": [],
-  "table": "product"
+  "table": "product",
+  "stats": [
+    {
+      "type": "ecommerce-transactions",
+      "title": "Best Selling Products",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "product",
+        "workspaceId": 333,
+        "columnname": "title",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        },
+        "orderByDirection": "desc"
+      }
+    },
+    {
+      "type": "ecommerce-transactions",
+      "title": "Products by Product types",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "product",
+        "workspaceId": 333,
+        "columnname": "product_type",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "title"
+        },
+        "orderByDirection": "desc"
+      }
+    },
+    {
+      "type": "ecommerce-company-table",
+      "title": "Product by Vendor and Product tags",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "fields": [
+        { "key": "title", "label": "Product Name" },
+        { "key": "vendor", "label": "Vendor" },
+        { "key": "tags", "label": "Product Tags" }
+      ],
+      "data": {
+        "table": "product",
+        "workspaceId": 333,
+        "orderBykey": "id",
+        "limit": "10",
+        "skipRowby": "0"
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "type": "apex-line-chart",
+      "title": "Total Products Sold",
+      "graphCatergory": "bar",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "curve": "straight",
+      "data": [{
+        "table": "product",
+        "workspaceId": 333,
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-07-13 11:49:40.765997+05:30",
+        "groupBykey": "year",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
+      }]
+    }
+  ]
 }

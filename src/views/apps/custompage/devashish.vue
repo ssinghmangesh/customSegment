@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <graph
-        v-for="(item, index) in pageDefination"
+        v-for="(item, index) in pageDefinitions"
         :key="index"
         :item="item"
         :time="time"
@@ -15,7 +15,6 @@
 <script>
 import { BRow } from 'bootstrap-vue'
 import Graph from './graph.vue'
-import pageDefinitons from './pageDefinition.json'
 
 export default {
   components: {
@@ -31,15 +30,9 @@ export default {
       type: String,
       default: () => '',
     },
-  },
-  data() {
-    return {
-      pageDefinitons,
-    }
-  },
-  computed: {
-    pageDefination() {
-      return this.pageDefinitons[this.$route.params.type]
+    pageDefinitions: {
+      type: Array,
+      default: () => [],
     },
   },
 }

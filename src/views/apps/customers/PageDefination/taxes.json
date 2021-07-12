@@ -28,5 +28,51 @@
     }
   ],
   "selectedFilters": [],
-  "table": "tax"
+  "table": "tax",
+  "stats": [
+    {
+      "type": "ecommerce-company-table",
+      "title": "Order Tax Details",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "fields": [
+        { "key": "order_id", "label": "Order Id" },
+        { "key": "order_name", "label": "Order Name" },
+        { "key": "title", "label": "Tax Title" },
+        { "key": "price", "label": "Tax Amount" }
+      ],
+      "data": {
+        "table": "tax",
+        "workspaceId": 333,
+        "orderBykey": "order_id",
+        "limit": "10",
+        "skipRowby": "0"
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "type": "apex-line-chart",
+      "title": "Monthly Tax Collected",
+      "graphCatergory": "bar",
+      "col": {
+        "default": 12,
+        "md": 8
+      },
+      "curve": "straight",
+      "data": [{
+        "table": "tax",
+        "workspaceId": 333,
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-07-13 11:49:40.765997+05:30",
+        "groupBykey": "month",
+        "statsDefinition": {
+          "aggregate": "sum",
+          "columnname": "price"
+        }
+      }]
+    }
+  ]
 }
