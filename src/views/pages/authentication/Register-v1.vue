@@ -106,7 +106,7 @@
 
         <b-card-text class="text-center mt-2">
           <span>Already have an account? </span>
-          <b-link :to="{name:'auth-login-v1'}">
+          <b-link :to="{name:'auth-login'}">
             <span>Sign in instead</span>
           </b-link>
         </b-card-text>

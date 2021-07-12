@@ -108,11 +108,6 @@ export default {
       enableScrollToTop,
     }
   },
-  beforeRouteUpdate(to, from, next) {
-    console.log(to)
-    console.log(from)
-    next()
-  },
   async created() {
     if (localStorage.getItem('userId') === null) {
       this.$router.push('/login')
