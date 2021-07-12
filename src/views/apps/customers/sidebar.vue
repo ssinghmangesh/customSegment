@@ -10,7 +10,7 @@
         />
       </b-tab>
       <b-tab
-        v-if="type === 'customers'"
+        v-if="type === 'customeraggregate'"
         title="Orders"
       >
         <CustomerOrder
@@ -18,7 +18,7 @@
         />
       </b-tab>
       <b-tab
-        v-if="type === 'customers'"
+        v-if="type === 'customeraggregate'"
         title="Purchased Items"
       >
         <PurchasedProduct
@@ -26,7 +26,7 @@
         />
       </b-tab>
       <b-tab
-        v-if="type === 'customers'"
+        v-if="type === 'customeraggregate'"
         title="Cart"
       >
         <CustomerCart
@@ -34,7 +34,7 @@
         />
       </b-tab>
       <b-tab
-        v-if="type === 'customers'"
+        v-if="type === 'customeraggregate'"
         title="Timeline"
       >
         <Timeline
@@ -42,7 +42,7 @@
         />
       </b-tab>
       <b-tab
-        v-if="type === 'customers'"
+        v-if="type === 'customeraggregate'"
         title="Recommendations"
       >
         <ProductRecommendations
@@ -51,7 +51,7 @@
         />
       </b-tab>
       <b-tab
-        v-if="type === 'customers'"
+        v-if="type === 'customeraggregate'"
         title="Notifications"
       >
         <Notifications
