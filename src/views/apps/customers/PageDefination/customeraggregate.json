@@ -175,7 +175,11 @@
       "field": "total_amount_spent"
     },
     {
-      "label": "Orders Count",
+      "label": "A.O.V.",
+      "field": "avg_order_price"
+    },
+    {
+      "label": "Total Orders Count",
       "field": "total_order_count"
     },
     {
@@ -207,16 +211,32 @@
       "field": "last_order_id"
     },
     {
+      "label": "Paid Orders",
+      "field": "paid_order_count"
+    },
+    {
+      "label": "UnPaid Orders",
+      "field": "unpaid_order_count"
+    },
+    {
       "label": "Refunded Orders",
       "field": "refunded_order_count"
+    },
+    {
+      "label": "Fulfilled Orders",
+      "field": "fulfilled_order_count"
+    },
+    {
+      "label": "Unfulfilled Orders",
+      "field": "unfulfilled_order_count"
     },
     {
       "label": "Uncancelled Orders",
       "field": "uncancelled_order_count"
     },
     {
-      "label": "Unfulfilled Orders",
-      "field": "unfulfilled_order_count"
+      "label": "Has Abandoned Cart",
+      "field": "abandoned_cart"
     }
   ],
   "selectedFilters": [],
