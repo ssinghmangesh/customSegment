@@ -37,5 +37,7 @@
         "label": "Status",
         "field":"status"
       }
-    ]
+    ],
+    "stats": [],
+    "graphs": []
   }

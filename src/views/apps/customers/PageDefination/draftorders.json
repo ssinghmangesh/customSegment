@@ -89,5 +89,114 @@
     }
   ],
   "selectedFilters": [],
-  "table": "draftorder"
+  "table": "draftorder",
+  "stats": [
+    {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "draftorder",
+        "statsDefinition": [
+          {
+            "columnname": "*",
+            "aggregate": "count",
+            "alias": "total"
+          },
+          {
+            "columnname": "total_price",
+            "aggregate": "sum",
+            "alias": "revenue"
+          },
+          {
+            "columnname": "total_tax",
+            "aggregate": "sum",
+            "alias": "taxes_collected"
+          }
+        ]
+      }
+    },
+    {
+      "type": "ecommerce-goal-overview",
+      "title": "Order Statistics",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": [{
+        "table": "draftorder"
+      },{
+        "table": "draftorder",
+        "filters":{
+          "relation": "AND",
+          "conditions": [
+            {
+            "columnName": "status",
+            "dataType": "varchar",
+            "filterType": "in",
+            "values": ["completed"]
+            }
+          ]
+        }
+      }]
+    },
+    {
+      "type": "ecommerce-order-chart",
+      "title": "Invoice Sent",
+      "col": {
+        "default": 12,
+        "md": 3
+      },
+      "data": {
+        "table": "draftorder",
+        "filters":{
+          "relation": "AND",
+          "conditions": [
+            {
+            "columnName": "status",
+            "dataType": "varchar",
+            "filterType": "in",
+            "values": ["invoice_sent"]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "type": "apex-line-chart",
+      "title": "Draft Order Amount Breakdown by Time",
+      "subtitle": "Amount Details",
+      "graphCatergory": "line",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "curve": "smooth",
+      "data": [{
+        "table": "draftorder",
+        "startdate": "2020-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-07-02 11:49:40.765997+05:30",
+        "groupBykey": "dow",
+        "statsDefinition": {
+          "aggregate": "sum",
+          "columnname": "total_price"
+        }
+      },
+      {
+        "table": "draftorder",
+        "startdate": "2020-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-07-02 11:49:40.765997+05:30",
+        "groupBykey": "dow",
+        "statsDefinition": {
+          "aggregate": "sum",
+          "columnname": "total_tax"
+        }
+      }]
+    }
+  ]
 }

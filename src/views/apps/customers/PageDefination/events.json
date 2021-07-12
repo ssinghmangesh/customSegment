@@ -16,5 +16,7 @@
     }
   ],
   "selectedFilters": [],
-  "table": "event"
+  "table": "event",
+  "stats": [],
+  "graphs": []
 }

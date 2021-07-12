@@ -143,5 +143,198 @@
       }
     ],
     "selectedFilters": [],
-    "table": "order"
+    "table": "order",
+    "stats": [
+      {
+        "type": "statistics",
+        "title": "Statistics",
+        "col": {
+          "default": 12,
+          "md": 12
+        },
+        "data": {
+          "table": "order",
+          "statsDefinition": [
+            {
+              "columnname": "*",
+              "aggregate": "count",
+              "alias": "total"
+            },
+            {
+              "columnname": "total_price",
+              "aggregate": "sum",
+              "alias": "revenue"
+            },
+            {
+              "columnname": "total_tax",
+              "aggregate": "sum",
+              "alias": "taxes_collected"
+            },
+            {
+              "columnname": "total_discounts",
+              "aggregate": "sum",
+              "alias": "discounts"
+            },
+            
+            {
+              "columnname": "total_tip_received",
+              "aggregate": "sum",
+              "alias": "tip"
+            }
+          ]
+        }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Financial Status",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "order",
+          "columnname": "financial_status",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-01 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "financial_status"
+          }
+        }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Fulfullment Status",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "order",
+          "columnname": "fulfillment_status",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-01 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "fulfillment_status"
+          }
+        }
+      },
+      {
+        "type": "ecommerce-goal-overview",
+        "title": "Order Statistics",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": [{
+          "table": "order"
+        },{
+          "table": "order",
+          "filters":{
+            "relation": "AND",
+            "conditions": [
+              {
+              "columnName": "fulfillment_status",
+              "dataType": "varchar",
+              "filterType": "in",
+              "values": ["fulfilled"]
+              }
+            ]
+          }
+        }]
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Shipping Country",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "order",
+          "columnname": "shipping_state",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-01 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "shipping_state"
+          }
+        }
+      }
+    ],
+    "graphs": [     
+      {
+        "type": "apex-line-chart",
+        "title": "Order Amount Breakdown by Time",
+        "subtitle": "Amount Details",
+        "graphCatergory": "line",
+        "col": {
+          "default": 12,
+          "md": 12
+        },
+        "curve": "smooth",
+        "data": [{
+          "table": "order",
+          "startdate": "2020-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-02 11:49:40.765997+05:30",
+          "groupBykey": "dow",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "total_price"
+          }
+        },
+        {
+          "table": "order",
+          "startdate": "2020-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-02 11:49:40.765997+05:30",
+          "groupBykey": "dow",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "total_tax"
+          }
+        },
+        {
+          "table": "order",
+          "startdate": "2020-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-02 11:49:40.765997+05:30",
+          "groupBykey": "dow",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "total_discounts"
+          }
+        },
+      
+        {
+          "table": "order",
+          "startdate": "2020-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-02 11:49:40.765997+05:30",
+          "groupBykey": "dow",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "total_tip_received"
+          }
+        }]
+      },
+      {
+        "type": "apex-line-chart",
+        "title": "Total Order Amount",
+        "graphCatergory": "area",
+        "col": {
+          "default": 12,
+          "md": 12
+        },
+        "curve": "smooth",
+        "data": [{
+          "table": "order",
+          "startdate": "2020-04-13 11:49:40.765997+05:30",
+          "enddate": "2021-07-13 11:49:40.765997+05:30",
+          "groupBykey": "dow",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "total_price"
+          }
+        }]
+      }
+    ]
   }

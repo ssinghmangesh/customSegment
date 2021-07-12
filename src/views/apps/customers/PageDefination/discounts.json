@@ -44,5 +44,49 @@
     }
   ],
   "selectedFilters": [],
-  "table": "discountapplication"
+  "table": "discountapplication",
+  "stats": [
+    {
+      "type": "apex-donut-chart",
+      "title": "Discount Codes",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "discount",
+        "workspaceId": 333,
+        "columnname": "title",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-05-13 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "id"
+        }
+      }
+    },
+    {
+      "type": "ecommerce-company-table",
+      "title": "Discount Details",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "fields": [
+        { "key": "id", "label": "Discount Id" },
+        { "key": "title", "label": "Discount Code" },
+        { "key": "usage_limit", "label": "Usage Limit" },
+        { "key": "value", "label": "Discount Amount in percent" },
+        { "key": "allocation_limit", "label": "Allocation Limit" }
+      ],
+      "data": {
+        "table": "discount",
+        "workspaceId": 333,
+        "orderBykey": "id",
+        "limit": "10",
+        "skipRowby": "0"
+      }
+    }
+  ],
+  "graphs": []
 }

@@ -234,5 +234,117 @@
       }
     ],
     "selectedFilters": [],
-    "table": "customeraggregate"
+    "table": "customeraggregate",
+    "stats": [
+      {
+        "type": "statistics",
+        "title": "Statistics",
+        "col": {
+          "default": 12,
+          "md": 12
+        },
+        "data": {
+          "table": "customer",
+          "statsDefinition": [
+            {
+              "columnname": "*",
+              "aggregate": "count",
+              "alias": "total"
+            },
+            {
+              "columnname": "total_spent",
+              "aggregate": "sum",
+              "alias": "revenue"
+            },
+            {
+              "columnname": "orders_count",
+              "aggregate": "sum",
+              "alias": "order_count"
+            }
+          ]
+        }
+      },
+      {
+        "type": "ecommerce-company-table",
+        "title": "Discounts",
+        "col": {
+          "default": 12,
+          "md": 8
+        },
+        "fields": [
+          { "key": "name", "label": "Name" },
+          { "key": "total_discounts", "label": "Total Discounts" },
+          { "key": "total_price", "label": "Total Price" },
+          { "key": "financial_status", "label": "Financial Status" }
+        ],
+        "data": {
+          "table": "order",
+          "workspaceId": 333,
+          "orderBykey": "id",
+          "limit": "10",
+          "skipRowby": "0"
+        }
+      }
+    ],
+    "graphs": [
+      
+      {
+        "type": "apex-donut-chart",
+        "title": "By Country",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "customer",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-13 11:49:40.765997+05:30",
+          "columnname": "country",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "country"
+          }
+        }
+      },
+      {
+        "type": "apex-line-chart",
+        "title": "Revenue",
+        "graphCatergory": "bar",
+        "col": {
+          "default": 12,
+          "md": 8
+        },
+        "curve": "straight",
+        "data": [{
+          "table": "customer",
+          "columnname": "total_price",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-13 11:49:40.765997+05:30",
+          "groupBykey": "dow",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "total_spent"
+          }
+        }]
+      },
+      {
+        "type": "apex-donut-chart",
+        "title": "Fulfillment Status",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "order",
+          "workspaceId": 333,
+          "columnname": "fulfillment_status",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-06-22 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "id"
+          }
+        }
+      }
+    ]
   }

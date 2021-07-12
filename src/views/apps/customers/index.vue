@@ -10,6 +10,7 @@
           <graphs
             :time="time"
             :filters="filters"
+            :page-definitions="stats"
           />
         </b-tab>
         <b-tab title="Raw Data">
@@ -23,6 +24,7 @@
           <graphs
             :time="time"
             :filters="filters"
+            :page-definitions="graphs"
           />
         </b-tab>
 
@@ -45,6 +47,7 @@ import Graphs from '@/views/apps/custompage/devashish.vue'
 import add from './add.vue'
 import CustomTable from './Table.vue'
 import Segment from './segment.vue'
+import { pageDefination } from './PageDefination/index'
 
 export default {
   components: {
@@ -61,6 +64,8 @@ export default {
       filters: {},
       time: localStorage.getItem(`${this.$route.params.type}timer`),
       segment: null,
+      graphs: pageDefination[this.$route.params.type].graphs,
+      stats: pageDefination[this.$route.params.type].stats,
     }
   },
   computed: {
@@ -71,6 +76,8 @@ export default {
   watch: {
     type() {
       this.time = localStorage.getItem(`${this.type}timer`)
+      this.graphs = pageDefination[this.$route.params.type].graphs
+      this.stats = pageDefination[this.$route.params.type].stats
     },
   },
   methods: {
