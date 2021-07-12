@@ -171,12 +171,12 @@
       "field": "updated_at"
     },
     {
-      "label": "Total Spent",
-      "field": "total_spent"
+      "label": "Total Amount Spent",
+      "field": "total_amount_spent"
     },
     {
       "label": "Orders Count",
-      "field": "orders_count"
+      "field": "total_order_count"
     },
     {
       "label": "Address Line 1",
@@ -209,10 +209,6 @@
     {
       "label": "Refunded Orders",
       "field": "refunded_order_count"
-    },
-    {
-      "label": "Refunded Orders",
-      "field": "total_amount_spent"
     },
     {
       "label": "Uncancelled Orders",
