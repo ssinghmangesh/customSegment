@@ -22,6 +22,7 @@
         @click="() => select(segment.filters)"
       >{{ segment.title }}</span>
       <feather-icon
+        v-if="!segment.default"
         class="cancel"
         icon="XIcon"
         @click="() => openModal(segment.segment_id)"
@@ -44,6 +45,7 @@
 
 <script>
 import { BToast, BCard } from 'bootstrap-vue'
+import { pageDefination } from './PageDefination/index'
 
 export default {
   components: {
@@ -60,7 +62,8 @@ export default {
       return this.$route.params.type
     },
     segments() {
-      return this.$store.state.segment.segments.filter(segment => segment.type === this.type)
+      const defaultSegments = pageDefination[this.type].segments
+      return [...defaultSegments, ...this.$store.state.segment.segments.filter(segment => segment.type === this.type)]
     },
     error() {
       return this.$store.state.segment.error

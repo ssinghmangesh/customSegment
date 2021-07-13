@@ -238,5 +238,6 @@
   ],
   "table": "customeraggregate",
   "stats": [],
-  "graphs": []
+  "graphs": [],
+  "segments": []
 }
