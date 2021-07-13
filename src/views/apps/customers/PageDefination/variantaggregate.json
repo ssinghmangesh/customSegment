@@ -1,5 +1,5 @@
 {
-    "title": "Vairants",
+    "title": "Variants",
     "suggestions": [],
     "filters": [],
     "columns": [
@@ -14,10 +14,6 @@
       {
         "label": "Weight Unit",
         "field": "weight_unit"
-      },
-      {
-        "label": "Inventory",
-        "field": "inventory_quantity"
       },
       {
         "label": "Created at",

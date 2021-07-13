@@ -6,12 +6,12 @@
     <div>
       Product Recommendations:
     </div>
-    <!-- <p
+    <p
       v-for="(key, index) in product.data.data"
       :key="index"
     >
       {{ key }}:  {{ product.data.data[key] }}
-    </p> -->
+    </p>
     <b-button
       variant="primary"
       class="mt-2"

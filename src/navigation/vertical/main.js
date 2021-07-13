@@ -51,7 +51,7 @@ export default [
     path: '/apps/product',
   },
   {
-    title: 'Variant Aggregate',
+    title: 'Variants',
     icon: 'PackageIcon',
     route: 'apps-orders',
     path: '/apps/variantaggregate',
