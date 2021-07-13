@@ -9,6 +9,7 @@ const axiosIns = axios.create({
     'x-workspace-name': localStorage.getItem('workspaceName'),
   },
   baseURL: 'https://custom-segment-service.herokuapp.com/',
+  // baseURL: 'http://localhost:3000/',
 })
 
 Vue.prototype.$http = axiosIns

@@ -10,6 +10,8 @@ const product = require('./products.json')
 const events = require('./events.json')
 const notifications = require('./notifications.json')
 const sentEmail = require('./sentEmail.json')
+const variantaggregate = require('./variantaggregate.json')
+const inventoryitem = require('./inventoryitem.json')
 
 const pageDefination = {
   customeraggregate,
@@ -24,6 +26,8 @@ const pageDefination = {
   notifications,
   events,
   sentEmail,
+  variantaggregate,
+  inventoryitem,
 }
 
 module.exports = {

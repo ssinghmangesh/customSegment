@@ -51,6 +51,18 @@ export default [
     path: '/apps/product',
   },
   {
+    title: 'Variants',
+    icon: 'PackageIcon',
+    route: 'apps-orders',
+    path: '/apps/variantaggregate',
+  },
+  {
+    title: 'Inventory',
+    icon: 'PackageIcon',
+    route: 'apps-orders',
+    path: '/apps/inventoryitem',
+  },
+  {
     title: 'Visitors',
     icon: 'UserIcon',
     route: 'apps-orders',
