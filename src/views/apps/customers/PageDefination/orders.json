@@ -179,13 +179,20 @@
               "columnname": "total_tip_received",
               "aggregate": "sum",
               "alias": "tip"
+            },
+            {
+              "columnname": "cancelled_at",
+              "aggregate": "count",
+              "alias": "cancelled_orders",
+              "operator": "IS NOT",
+              "value": "NULL"
             }, 
             {
               "columnname": "financial_status",
               "aggregate": "count",
               "alias": "refunded_orders",
               "operator": "=",
-              "value": "refunded"
+              "value": ["refunded","partially_refunded"]
             }, 
             {
               "columnname": "financial_status",
@@ -206,7 +213,7 @@
               "aggregate": "count",
               "alias": "unfulfilled_orders",
               "operator": "=",
-              "value": "unfulfilled"
+              "value": ["unfulfilled", "partial"]
             }
           ]
         }

@@ -274,6 +274,13 @@
               "alias": "customers_with_cancelled_orders",
               "operator": ">",
               "value": 0
+            },
+            {
+              "columnname": "unpaid_order_count",
+              "aggregate": "count",
+              "alias": "customers_with_unpaid_orders",
+              "operator": ">",
+              "value": 0
             }
           ]
         }
