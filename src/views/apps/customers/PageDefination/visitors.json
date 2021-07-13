@@ -16,5 +16,7 @@
     }
   ],
   "selectedFilters": [],
-  "table": "visitor"
+  "table": "visitor",
+  "stats": [],
+  "graphs": []
 }

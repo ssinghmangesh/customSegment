@@ -256,5 +256,7 @@
   "sidebar": [
     {}
   ],
-  "table": "customeraggregate"
+  "table": "customeraggregate",
+  "stats": [],
+  "graphs": []
 }
