@@ -174,12 +174,39 @@
               "columnname": "total_discounts",
               "aggregate": "sum",
               "alias": "discounts"
-            },
-            
+            }, 
             {
               "columnname": "total_tip_received",
               "aggregate": "sum",
               "alias": "tip"
+            }, 
+            {
+              "columnname": "financial_status",
+              "aggregate": "count",
+              "alias": "refunded_orders",
+              "operator": "=",
+              "value": "refunded"
+            }, 
+            {
+              "columnname": "financial_status",
+              "aggregate": "count",
+              "alias": "paid_orders",
+              "operator": "=",
+              "value": "paid"
+            }, 
+            {
+              "columnname": "financial_status",
+              "aggregate": "count",
+              "alias": "unpaid_orders",
+              "operator": "=",
+              "value": "pending"
+            }, 
+            {
+              "columnname": "fulfillment_status",
+              "aggregate": "count",
+              "alias": "unfulfilled_orders",
+              "operator": "=",
+              "value": "unfulfilled"
             }
           ]
         }
@@ -335,6 +362,76 @@
             "columnname": "total_price"
           }
         }]
+      }
+    ],
+    "segments": [
+      {
+        "title": "Unpaid Orders",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "financial_status",
+              "dataType": "varchar",
+              "filterType": "in",
+              "title": "Financial Status",
+              "type": "dropdown",
+              "values": ["pending", "partially_paid"]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Paid Orders",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "financial_status",
+              "dataType": "varchar",
+              "filterType": "in",
+              "title": "Financial Status",
+              "type": "dropdown",
+              "values": ["paid"]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Unfulfilled Orders",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "fulfillment_status",
+              "dataType": "varchar",
+              "filterType": "in",
+              "title": "Fulfillment Status",
+              "type": "dropdown",
+              "values": ["unfulfilled", "partial"]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Refunded Orders",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "financial_status",
+              "dataType": "varchar",
+              "filterType": "in",
+              "title": "Financial Status",
+              "type": "dropdown",
+              "values": ["refunded", "partially_refunded"]
+            }
+          ]
+        }
       }
     ]
   }

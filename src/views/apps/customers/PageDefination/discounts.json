@@ -47,6 +47,24 @@
   "table": "discountapplication",
   "stats": [
     {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "discount",
+        "statsDefinition": [
+          {
+            "columnname": "value",
+            "aggregate": "sum",
+            "alias": "total_discount"
+          }
+        ]
+      }
+    },
+    {
       "type": "apex-donut-chart",
       "title": "Discount Codes",
       "col": {
@@ -88,5 +106,6 @@
       }
     }
   ],
-  "graphs": []
+  "graphs": [],
+  "segments": []
 }
