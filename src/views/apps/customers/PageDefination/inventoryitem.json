@@ -1,0 +1,28 @@
+{
+    "title": "Inventory",
+    "suggestions": [],
+    "columns":[
+    {
+      "label": "ID",
+      "field": "id"
+    },
+    {
+      "label": "Price",
+      "field": "cost"
+    },
+    {
+      "label": "Created At",
+      "field": "created_at"
+    },
+    {
+      "label": "Country Code",
+      "field": "country_code_of_origin"
+    },
+    {
+      "label": "Shipping Required",
+      "field": "requires_shipping"
+    }
+  ],
+  "selectedFilters": [],
+  "table": "inventoryitem"
+}

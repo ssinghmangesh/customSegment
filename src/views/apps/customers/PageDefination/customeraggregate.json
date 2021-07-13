@@ -6,11 +6,11 @@
     },
     {
       "title": "Last Orders",
-      "columns": ["email", "last_order_name", "last_order_id", "order_count", "total_spent"]
+      "columns": ["email", "last_order_name", "last_order_id", "order_count", "total_amount_spent"]
     },
     {
       "title": "Order Counts",
-      "columns": ["email", "total_order_count", "refunded_order_count", "cancelled_order_count", "unfulfilled_order_count"]
+      "columns": ["email", "total_order_count", "refunded_order_count", "cancelled_order_count", "unfulfilled_order_count", "unpaid_order_count"]
     }
   ],
   "filters": [
@@ -192,7 +192,7 @@
       "field": "avg_order_price"
     },
     {
-      "label": "Total Orders Count",
+      "label": "Orders Count",
       "field": "total_order_count"
     },
     {
