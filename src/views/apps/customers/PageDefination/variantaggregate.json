@@ -1,0 +1,41 @@
+{
+    "title": "Variants",
+    "suggestions": [],
+    "filters": [],
+    "columns": [
+      {
+        "label": "Variant",
+        "field": "title"
+      },
+      {
+        "label": "Weight",
+        "field": "weight"
+      },
+      {
+        "label": "Weight Unit",
+        "field": "weight_unit"
+      },
+      {
+        "label": "Created at",
+        "field": "created_at"
+      },
+      {
+        "label": "Price",
+        "field": "price"
+      },
+      {
+        "label": "Quantity in Inventory",
+        "field": "inventory_quantity"
+      },
+      {
+        "label": "Quantity Sold",
+        "field": "quantity_sold"
+      },
+      {
+        "label": "Quantity in Cart",
+        "field": "quantity_in_cart"
+      }
+    ],
+    "selectedFilters": [],
+    "table": "variantaggregate"
+  }
