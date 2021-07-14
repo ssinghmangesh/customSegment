@@ -145,6 +145,22 @@
             "alias": "pending",
             "operator": "=",
             "value": "open"
+          },
+          {
+            "columnname": "status",
+            "aggcolumnname": "total_price",
+            "aggregate": "sum",
+            "alias": "revenue_from_completed_draftOrders",
+            "operator": "=",
+            "value": "completed"
+          },
+          {
+            "columnname": "status",
+            "aggcolumnname": "total_price",
+            "aggregate": "sum",
+            "alias": "revenue_from_not_completed_draftOrders",
+            "operator": "!=",
+            "value": "completed"
           }
         ]
       }
@@ -156,22 +172,23 @@
         "default": 12,
         "md": 4
       },
-      "data": [{
-        "table": "draftorder"
-      },{
+      "data": {
         "table": "draftorder",
-        "filters":{
-          "relation": "AND",
-          "conditions": [
-            {
-            "columnName": "status",
-            "dataType": "varchar",
-            "filterType": "in",
-            "values": ["completed"]
-            }
-          ]
-        }
-      }]
+        "statsDefinition": [
+          {
+            "columnname": "*",
+            "aggregate": "count",
+            "alias": "total_draftOrders"
+          },
+          {
+            "columnname": "status",
+            "aggregate": "count",
+            "alias": "completed_draftOrders",
+            "operator": "=",
+            "value": "completed"
+          }
+        ]
+      }
     },
     {
       "type": "ecommerce-order-chart",

@@ -28,6 +28,24 @@
   "table": "product",
   "stats": [
     {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "product",
+        "statsDefinition": [
+          {
+            "columnname": "*",
+            "aggregate": "count",
+            "alias": "total"
+          }
+        ]
+      }
+    },
+    {
       "type": "ecommerce-transactions",
       "title": "Best Selling Products",
       "col": {

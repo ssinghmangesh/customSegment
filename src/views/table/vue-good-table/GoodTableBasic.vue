@@ -203,7 +203,7 @@ import {
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
-import formatData from '@/views/apps/customers/Helper/globalMethods'
+import formatData from '@/views/apps/customers/Helper/formatData'
 import { codeBasic } from './code'
 
 export default {
