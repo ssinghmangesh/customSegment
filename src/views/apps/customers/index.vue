@@ -30,6 +30,7 @@
 
         <b-tab title="Segment">
           <segment
+            :time="time"
             @select="select"
           />
         </b-tab>
