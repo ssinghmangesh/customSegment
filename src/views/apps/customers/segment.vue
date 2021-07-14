@@ -12,6 +12,29 @@
     >
       Please confirm that you want to delete this segment.
     </b-modal>
+    <app-collapse accordion>
+      <app-collapse-item
+        v-for="(segment, index) in segments"
+        :key="index"
+        :title="segment.title"
+      >
+        Cheesecake cotton candy bonbon muffin cupcake tiramisu croissant. Tootsie roll sweet candy bear claw chupa chups lollipop toffee. Macaroon donut liquorice powder candy carrot cake macaroon fruitcake. Cookie toffee lollipop cotton candy ice cream dragée soufflé. Cake tiramisu lollipop wafer pie soufflé dessert tart. Biscuit ice cream pie apple pie topping oat cake dessert. Soufflé icing caramels. Chocolate cake icing ice cream macaroon pie cheesecake liquorice apple pie.
+        <b-button
+          v-if="!segment.default"
+          class="mr-1"
+          variant="danger"
+          @click="() => openModal(segment.segment_id)"
+        >
+          Delete Segment
+        </b-button>
+        <b-button
+          variant="primary"
+          @click="() => select(segment.filters)"
+        >
+          Apply Filter
+        </b-button>
+      </app-collapse-item>
+    </app-collapse>
     <div
       v-for="(segment, index) in segments"
       :key="index"
@@ -44,13 +67,18 @@
 </template>
 
 <script>
-import { BToast, BCard } from 'bootstrap-vue'
+import { BToast, BCard, BButton } from 'bootstrap-vue'
+import AppCollapse from '@core/components/app-collapse/AppCollapse.vue'
+import AppCollapseItem from '@core/components/app-collapse/AppCollapseItem.vue'
 import { pageDefination } from './PageDefination/index'
 
 export default {
   components: {
     BToast,
     BCard,
+    AppCollapse,
+    AppCollapseItem,
+    BButton,
   },
   data() {
     return {

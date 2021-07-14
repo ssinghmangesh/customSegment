@@ -189,28 +189,6 @@
           }
         ]
       }
-    },
-    {
-      "type": "ecommerce-order-chart",
-      "title": "Invoice Sent",
-      "col": {
-        "default": 12,
-        "md": 3
-      },
-      "data": {
-        "table": "draftorder",
-        "filters":{
-          "relation": "AND",
-          "conditions": [
-            {
-            "columnName": "status",
-            "dataType": "varchar",
-            "filterType": "in",
-            "values": ["invoice_sent"]
-            }
-          ]
-        }
-      }
     }
   ],
   "graphs": [

@@ -16,6 +16,13 @@
     ],
     "filters": [
       {
+        "entity": "discount",
+        "title": "Applied Coupon",
+        "type": "text",
+        "name": "code",
+        "dataType": "varchar"
+    },
+      {
         "title": "Name",
         "name": "name",
         "type": "text",
