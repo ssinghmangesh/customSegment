@@ -261,24 +261,22 @@
           "default": 12,
           "md": 4
         },
-        "data": [{
-          "title": "Total Orders",
-          "table": "order"
-        },{
+        "data": {
           "table": "order",
-          "title": "Fulfilled Orders",
-          "filters":{
-            "relation": "AND",
-            "conditions": [
-              {
-              "columnName": "fulfillment_status",
-              "dataType": "varchar",
-              "filterType": "in",
-              "values": ["fulfilled"]
-              }
-            ]
+          "statsDefinition": [
+            {
+              "columnname": "*",
+              "aggregate": "count",
+              "alias": "total_orders"
+          },
+          {
+            "columnname": "fulfillment_status",
+            "aggregate": "count",
+            "alias": "fulfilled_orders",
+            "operator": "=",
+            "value": "fulfilled"
           }
-        }]
+        ]}
       },
       {
         "type": "ecommerce-transactions",

@@ -960,12 +960,12 @@ export default {
         })
         this.series = [...data1]
       } else if (this.graphType === 'ecommerce-goal-overview') {
-        const res = await this.$http.post('/analytics-manager/count', { ...this.item.data[0] })
-        const res2 = await this.$http.post('/analytics-manager/count', { ...this.item.data[1] })
+         const res = await this.$http.post('/analytics-manager/stats', { ...this.item.data, filters: this.filters })
+         const keys = Object.keys(res.data.data)
         const data1 = {
-          completed: { value: res.data.data.count, title: this.item.data[0].title },
-          inProgress: { value: res2.data.data.count, title: this.item.data[1].title },
-          series: [((res2.data.data.count / res.data.data.count) * 100).toFixed(1)],
+          completed: { value: res.data.data[keys[0]], title: this.formatter.snakeCaseToNormalText(keys[0]) },
+          inProgress: { value: res.data.data[keys[1]], title: this.formatter.snakeCaseToNormalText(keys[1]) },
+          series: [((res.data.data[keys[1]] / res.data.data[keys[0]]) * 100).toFixed(1)],
         }
         this.data = { ...data1 }
       } else {

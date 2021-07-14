@@ -156,24 +156,23 @@
         "default": 12,
         "md": 4
       },
-      "data": [{
-        "title": "Total DraftOrders",
-        "table": "draftorder"
-      },{
-        "title": "Completed DraftOrders",
+      "data": {
         "table": "draftorder",
-        "filters":{
-          "relation": "AND",
-          "conditions": [
-            {
-            "columnName": "status",
-            "dataType": "varchar",
-            "filterType": "in",
-            "values": ["completed"]
-            }
-          ]
-        }
-      }]
+        "statsDefinition": [
+          {
+            "columnname": "*",
+            "aggregate": "count",
+            "alias": "total_draftOrders"
+          },
+          {
+            "columnname": "status",
+            "aggregate": "count",
+            "alias": "completed_draftOrders",
+            "operator": "=",
+            "value": "completed"
+          }
+        ]
+      }
     },
     {
       "type": "ecommerce-order-chart",
