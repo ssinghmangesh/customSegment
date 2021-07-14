@@ -1,39 +1,278 @@
 {
     "title": "Variants",
     "suggestions": [],
-    "filters": [],
+    "filters": [
+      {
+        "title": "Barcode",
+        "name":"barcode",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Compare At Price",
+        "name":"compare_at_price",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Variant Created Date",
+        "name":"created_at",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Fulfillment Service",
+        "name":"fulfillment_service",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Grams",
+        "name":"grams",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Image url",
+        "name":"image_url",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Weight",
+        "name":"weight",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Weight Unit",
+        "name":"weight_unit",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "ID",
+        "name":"id",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Inventory Item ID",
+        "name":"inventory_item_id",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Inventory Management",
+        "name":"inventory_management",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Inventory Policy",
+        "name":"inventory_policy",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Inventory Quantity",
+        "name":"inventory_quantity",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Option1",
+        "name":"option1",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Position",
+        "name":"position",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Barcode",
+        "name":"price",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Product ID",
+        "name":"product_id",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Requires Shipping",
+        "name":"requires_shipping",
+        "type": "boolean",
+        "dataType": "boolean"
+      },
+      {
+        "title": "SKU",
+        "name":"sku",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Taxable",
+        "name":"taxable",
+        "type": "boolean",
+        "dataType": "boolean"
+      },
+      {
+        "title": "Product Name",
+        "name":"title",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Variant Updated Date",
+        "name":"updated_at",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Quantity Sold",
+        "name":"quantity_sold",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Quantity in Cart",
+        "name":"quantity_in_cart",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Product Title",
+        "name":"product_title",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Tags",
+        "name":"tags",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Vendor",
+        "name":"vendor",
+        "type": "text",
+        "dataType": "varchar"
+      }
+    ],
     "columns": [
       {
-        "label": "Variant",
-        "field": "title"
+        "label": "ID",
+        "field":"id"
+      },
+      {
+        "label": "Product Name",
+        "field":"title"
+      },
+      {
+        "label": "Product ID",
+        "field":"product_id"
+      },
+      {
+        "label": "Inventory Item ID",
+        "field":"inventory_item_id"
+      },
+      {
+        "label": "Barcode",
+        "field":"barcode"
+      },
+      {
+        "label": "Compare At Price",
+        "field":"compare_at_price"
+      },
+      {
+        "label": "Variant Created Date",
+        "field":"created_at"
+      },
+      {
+        "label": "Fulfillment Service",
+        "field":"fulfillment_service"
+      },
+      {
+        "label": "Grams",
+        "field":"grams"
+      },
+      {
+        "label": "Image url",
+        "field":"image_url"
       },
       {
         "label": "Weight",
-        "field": "weight"
+        "field":"weight"
       },
       {
         "label": "Weight Unit",
-        "field": "weight_unit"
+        "field":"weight_unit"
       },
       {
-        "label": "Created at",
-        "field": "created_at"
+        "label": "Inventory Management",
+        "field":"inventory_management"
       },
       {
-        "label": "Price",
-        "field": "price"
+        "label": "Inventory Policy",
+        "field":"inventory_policy"
       },
       {
-        "label": "Quantity in Inventory",
-        "field": "inventory_quantity"
+        "label": "Inventory Quantity",
+        "field":"inventory_quantity"
+      },
+      {
+        "label": "Option1",
+        "field":"option1"
+      },
+      {
+        "label": "Position",
+        "field":"position"
+      },
+      {
+        "label": "Barcode",
+        "field":"price"
+      },
+      {
+        "label": "Requires Shipping",
+        "field":"requires_shipping"
+      },
+      {
+        "label": "SKU",
+        "field":"sku"
+      },
+      {
+        "label": "Taxable",
+        "field":"taxable"
+      },
+      {
+        "label": "Variant Updated Date",
+        "field":"updated_at"
       },
       {
         "label": "Quantity Sold",
-        "field": "quantity_sold"
+        "field":"quantity_sold"
       },
       {
         "label": "Quantity in Cart",
-        "field": "quantity_in_cart"
+        "field":"quantity_in_cart"
+      },
+      {
+        "label": "Product Title",
+        "field":"product_title"
+      },
+      {
+        "label": "Tags",
+        "field":"tags"
+      },
+      {
+        "label": "Vendor",
+        "field":"vendor"
       }
     ],
     "selectedFilters": [],

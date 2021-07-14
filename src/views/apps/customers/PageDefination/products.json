@@ -1,27 +1,158 @@
 {
   "title": "Products",
   "suggestions": [],
-  "filters": [],
+  "filters": [
+    {
+      "title": "HTML Body",
+      "columnName":"body_html",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Product Created Date",
+      "name":"created_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Handle",
+      "name":"handle",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "ID",
+      "name":"id",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Inventory Item ID",
+      "name":"inventory_item_id",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Inventory Quantity",
+      "name":"inventory_quantity",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Product Type",
+      "name":"product_type",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Product Published Date",
+      "name":"published_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Published Scope",
+      "name":"published_scope",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Status",
+      "name":"status",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Tags",
+      "name":"tags",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Template Suffix",
+      "name":"template_suffix",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Title",
+      "name":"title",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Product Updated Date",
+      "name":"updated_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Vendor",
+      "name":"vendor",
+      "type": "text",
+      "dataType": "varchar"
+    }
+  ],
   "columns": [
     {
-      "label": "Product Name",
-      "field": "title"
+      "label": "ID",
+      "field":"id"
     },
     {
-      "label": "Status",
-      "field": "status"
+      "label": "Product Created Date",
+      "field":"created_at"
     },
     {
-      "label": "Inventory",
-      "field": "inventory_quantity"
-    },
-    {
-      "label": "Type",
-      "field": "product_type"
+      "label": "Handle",
+      "field":"handle"
     },
     {
       "label": "Vendor",
-      "field": "vendor"
+      "field":"vendor"
+    },
+    {
+      "label": "Inventory Item ID",
+      "field":"inventory_item_id"
+    },
+    {
+      "label": "Inventory Quantity",
+      "field":"inventory_quantity"
+    },
+    {
+      "label": "Product Type",
+      "field":"product_type"
+    },
+    {
+      "label": "Product Published Date",
+      "field":"published_at"
+    },
+    {
+      "label": "Published Scope",
+      "field":"published_scope"
+    },
+    {
+      "label": "Status",
+      "field":"status"
+    },
+    {
+      "label": "Tags",
+      "field":"tags"
+    },
+    {
+      "label": "Template Suffix",
+      "field":"template_suffix"
+    },
+    {
+      "label": "Title",
+      "field":"title"
+    },
+    {
+      "label": "Product Updated Date",
+      "field":"updated_at"
+    },
+    {
+      "label": "HTML Body",
+      "field":"body_html"
     }
   ],
   "selectedFilters": [],
