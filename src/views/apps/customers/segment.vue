@@ -18,46 +18,29 @@
         :key="index"
         :title="segment.title"
       >
-        Cheesecake cotton candy bonbon muffin cupcake tiramisu croissant. Tootsie roll sweet candy bear claw chupa chups lollipop toffee. Macaroon donut liquorice powder candy carrot cake macaroon fruitcake. Cookie toffee lollipop cotton candy ice cream dragée soufflé. Cake tiramisu lollipop wafer pie soufflé dessert tart. Biscuit ice cream pie apple pie topping oat cake dessert. Soufflé icing caramels. Chocolate cake icing ice cream macaroon pie cheesecake liquorice apple pie.
-        <b-button
-          v-if="!segment.default"
-          class="mr-1"
-          variant="danger"
-          @click="() => openModal(segment.segment_id)"
-        >
-          Delete Segment
-        </b-button>
-        <b-button
-          variant="primary"
-          @click="() => select(segment.filters)"
-        >
-          Apply Filter
-        </b-button>
+        <div class="d-flex justify-content-end">
+          <b-button
+            v-if="!segment.default"
+            class="mr-1"
+            variant="danger"
+            @click="() => openModal(segment.segment_id)"
+          >
+            Delete Segment
+          </b-button>
+          <b-button
+            variant="primary"
+            @click="() => select(segment.filters)"
+          >
+            Apply Filter
+          </b-button>
+        </div>
+        <graph
+          :item="statsDefinitions"
+          :time="time"
+          :filters="segment.filters"
+        />
       </app-collapse-item>
     </app-collapse>
-    <div
-      v-for="(segment, index) in segments"
-      :key="index"
-      class="segment-div border border-dark px-1 rounded"
-    >
-      <span
-        role="button"
-        @click="() => select(segment.filters)"
-      >{{ segment.title }}</span>
-      <feather-icon
-        v-if="!segment.default"
-        class="cancel"
-        icon="XIcon"
-        @click="() => openModal(segment.segment_id)"
-      />
-      <!-- <b-button
-        v-if="segment.type === type"
-        variant="primary"
-        @click="() => select(segment.filters)"
-      >
-        {{ segment.title }}
-      </b-button> -->
-    </div>
     <b-toast
       id="segment-toast"
       @hidden="hidden">
@@ -70,6 +53,7 @@
 import { BToast, BCard, BButton } from 'bootstrap-vue'
 import AppCollapse from '@core/components/app-collapse/AppCollapse.vue'
 import AppCollapseItem from '@core/components/app-collapse/AppCollapseItem.vue'
+import Graph from '@/views/apps/custompage/graph.vue'
 import { pageDefination } from './PageDefination/index'
 
 export default {
@@ -79,6 +63,13 @@ export default {
     AppCollapse,
     AppCollapseItem,
     BButton,
+    Graph,
+  },
+  props: {
+    time: {
+      type: String,
+      default: () => null,
+    },
   },
   data() {
     return {
@@ -92,6 +83,9 @@ export default {
     segments() {
       const defaultSegments = pageDefination[this.type].segments
       return [...defaultSegments, ...this.$store.state.segment.segments.filter(segment => segment.type === this.type)]
+    },
+    statsDefinitions() {
+      return pageDefination[this.type].stats[0]
     },
     error() {
       return this.$store.state.segment.error
