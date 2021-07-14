@@ -141,6 +141,7 @@ import EcommerceTransactions from '@/views/dashboard/ecommerce/EcommerceTransact
 import EcommerceCompanyTable from '@/views/dashboard/ecommerce/EcommerceCompanyTable.vue'
 // import Vue from 'vue'
 import formatData from '@/views/apps/customers/Helper/formatData'
+import { getIcon } from '@/views/apps/customers/Helper/globalMethods'
 
 const chartColors = {
   column: {
@@ -925,7 +926,7 @@ export default {
         const data1 = []
         response.data.data.forEach(row => {
           data1.push({
-            avatar: 'PocketIcon',
+            avatar: getIcon(row[Object.keys(row)[0]]),
             avatarVariant: 'light-primary',
             deduction: true,
             mode: this.formatter.snakeCaseToNormalText(row[Object.keys(row)[0]]),
@@ -952,7 +953,7 @@ export default {
           data1.push({
             color: 'light-primary',
             customClass: 'mb-2 mb-xl-0',
-            icon: 'TrendingUpIcon',
+            icon: getIcon(key),
             subtitle: this.formatter.snakeCaseToNormalText(key),
             title: this.formatter.transform({ key, value: res.data.data[key] }),
           })
