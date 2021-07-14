@@ -1,6 +1,134 @@
 {
   "title": "Discounts",
   "suggestions": [],
+  "filters": [
+    {
+      "title": "Name",
+      "name": "title",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Value",
+      "name": "value",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Target Type",
+      "name": "target_type",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Discount Starting Date",
+      "name": "starts_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Discount Valid till Date",
+      "name": "ends_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Allocation Limit",
+      "name": "allocation_limit",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Limit one per Customer",
+      "name": "once_per_customer",
+      "type": "boolean",
+      "dataType": "boolean"
+    },
+    {
+      "title": "Discount Created Date",
+      "name": "created_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Discount Updated Date",
+      "name": "updated_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Entitled Collecion Ids",
+      "name": "entitled_collection_ids",
+      "type": "array",
+      "dataType": "numeric[]"
+    },
+    {
+      "title": "Entitled Country Ids",
+      "name": "entitled_country_ids",
+      "type": "array",
+      "dataType": "numeric[]"
+    },
+    {
+      "title": "Entitled Product Ids",
+      "name": "entitled_product_ids",
+      "type": "array",
+      "dataType": "numeric[]"
+    },
+    {
+      "title": "Entitled Variant Ids",
+      "name": "entitled_variant_ids",
+      "type": "array",
+      "dataType": "numeric[]"
+    },
+    {
+      "title": "ID",
+      "name": "id",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Prerequisite Customer IDs",
+      "name": "prerequisite_customer_ids",
+      "type": "array",
+      "dataType": "numeric[]"
+    },
+    {
+      "title": "Prerequisite Saved Search IDs",
+      "name": "prerequisite_saved_search_ids",
+      "type": "number",
+      "dataType": "numeric[]"
+    },
+    {
+      "title": "Usage Limit",
+      "name": "usage_limit",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Prerequisite Product IDs",
+      "name": "prerequisite_product_ids",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Prerequisite Variant IDs",
+      "name": "prerequisite_variant_ids",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Prerequisite Collection IDs",
+      "name": "prerequisite_collection_ids",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "value Type",
+      "name": "value_type",
+      "type": "text",
+      "dataType": "varchar"
+    }
+  ],
   "columns": [
     {
       "label": "Name",

@@ -3,22 +3,148 @@
   "suggestions": [],
   "filters": [
     {
-      "type": "text",
-      "name": "email",
-      "dataType": "varchar",
-      "title": "Email"
+      "title": "Value",
+      "name":"id",
+      "type": "number",
+      "dataType": "numeric"
     },
     {
-      "type": "text",
-      "name": "browser_ip",
-      "dataType": "varchar",
-      "title": "Browser IP"
+      "title": "Order ID",
+      "name":"order_id",
+      "type": "number",
+      "dataType": "numeric"
     },
     {
+      "title": "Name",
+      "name":"name",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Note",
+      "name":"note",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Email",
+      "name":"email",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Currency",
+      "name":"currency",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Invoice Sent Date",
+      "name":"invoice_sent_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Invoice url",
+      "name":"invoice_url",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Tags",
+      "name":"tags",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Tax Exemption Status",
+      "name":"tax_exempt",
       "type": "boolean",
-      "title": "Buyer Accepts Marketing",
-      "name": "buyer_accepts_marketing",
       "dataType": "boolean"
+    },
+    {
+      "title": "Tax Exemptions",
+      "name":"tax_exemptions",
+      "type": "array",
+      "dataType": "varchar[]"
+    },
+    {
+      "title": "Taxes Included",
+      "name":"taxes_included",
+      "type": "boolean",
+      "dataType": "boolean"
+    },
+    {
+      "title": "Total Tax",
+      "name":"total_tax",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "subtotal Price",
+      "name":"subtotal_price",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Total Price",
+      "name":"total_price",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Draft Order Completed Date",
+      "name":"completed_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Draft Order Created Date",
+      "name":"created_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Draft Order Updated Date",
+      "name":"updated_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Status",
+      "name":"status",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Shipping Country",
+      "name":"shipping_country",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Shipping State",
+      "name":"shipping_state",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Shipping City",
+      "name":"shipping_city",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Shipping Province",
+      "name":"shipping_province",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Customer ID",
+      "name":"customer_id",
+      "type": "text",
+      "dataType": "varchar"
     },
     {
       "type": "dropdown",
@@ -28,18 +154,6 @@
       "options": [
         "other"
       ]
-    },
-    {
-      "name": "cancelled_at",
-      "dataType": "timestamptz",
-      "title": "Cancelled At",
-      "type": "timestamptz"
-    },
-    {
-      "name": "current_total_price",
-      "dataType": "numeric",
-      "title": "Current Total Price",
-      "type": "number"
     }
   ],
   "columns": [

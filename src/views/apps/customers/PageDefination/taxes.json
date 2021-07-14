@@ -1,31 +1,99 @@
 {
     "title": "Taxes",
     "suggestions": [],
+    "filters": [
+      {
+        "title": "Current Total Tax",
+        "name":"current_total_tax",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Price",
+        "name":"price",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Rate",
+        "name":"rate",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Title",
+        "name":"title",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Order ID",
+        "name":"order_id",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Title",
+        "name":"order_name",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Customer ID",
+        "name":"customer_id",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Tax Created Date",
+        "name":"created_at",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Financial Status",
+        "name":"financial_status",
+        "type": "text",
+        "dataType": "varchar"
+      }
+    ],
     "columns": [
-    {
-      "label": "Order Name",
-      "field": "order_name"
-    },
-    {
-      "label": "Title",
-      "field": "title"
-    },
-    {
-      "label": "Price",
-      "field": "price"
-    },
-    {
-      "label": "Rate",
-      "field": "rate"
-    },
-    {
-      "label": "Order Date",
-      "field": "created_at"
-    },
-    {
-      "label": "Total Tax",
-      "field": "current_total_tax"
-    }
+      {
+        "label": "Current Total Tax",
+        "field":"current_total_tax"
+      },
+      {
+        "label": "Price",
+        "field":"price"
+      },
+      {
+        "label": "Rate",
+        "field":"rate"
+      },
+      {
+        "label": "Title",
+        "field":"title"
+      },
+      {
+        "label": "Order ID",
+        "field":"order_id"
+      },
+      {
+        "label": "Title",
+        "field":"order_name"
+      },
+      {
+        "label": "Customer ID",
+        "field":"customer_id"
+      },
+      {
+        "label": "Tax Created Date",
+        "field":"created_at"
+      },
+      {
+        "label": "Financial Status",
+        "field":"financial_status"
+      }
   ],
   "selectedFilters": [],
   "table": "tax",

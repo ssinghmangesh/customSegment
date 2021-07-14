@@ -1,18 +1,128 @@
 {
   "title": "Events",
   "suggestions": [],
-  "columns":[
+  "filters": [
     {
-      "label": "Previous Page",
-      "field": "previous_page"
+      "title": "ID",
+      "name":"id",
+      "type": "text",
+      "dataType": "varchar"
     },
     {
-      "label": "OS",
-      "field": "os"
+      "title": "Page ID",
+      "name":"page_id",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Event Name",
+      "name":"event_name",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Path",
+      "name":"path",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "href",
+      "name":"href",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Cart ID",
+      "name":"cart_id",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Created Date",
+      "name":"created_at",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Customer ID",
+      "name":"customer_id",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "OS",
+      "name":"os",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Previous Page",
+      "name":"previous_page",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Product ID",
+      "name":"product_id",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "Variant ID",
+      "name":"variant_id",
+      "type": "number",
+      "dataType": "numeric"
+    }
+  ],
+  "columns":[
+    {
+      "label": "ID",
+      "field":"id"
     },
     {
       "label": "Event Name",
-      "field": "event_name"
+      "field":"event_name"
+    },
+    {
+      "label": "Page ID",
+      "field":"page_id"
+    },
+    {
+      "label": "Path",
+      "field":"path"
+    },
+    {
+      "label": "href",
+      "field":"href"
+    },
+    {
+      "label": "Cart ID",
+      "field":"cart_id"
+    },
+    {
+      "label": "Created Date",
+      "field":"created_at"
+    },
+    {
+      "label": "Customer ID",
+      "field":"customer_id"
+    },
+    {
+      "label": "OS",
+      "field":"os"
+    },
+    {
+      "label": "Previous Page",
+      "field":"previous_page"
+    },
+    {
+      "label": "Product ID",
+      "field":"product_id"
+    },
+    {
+      "label": "Variant ID",
+      "field":"variant_id"
     }
   ],
   "selectedFilters": [],

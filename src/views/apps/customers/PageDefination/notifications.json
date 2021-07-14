@@ -1,18 +1,98 @@
 {
   "title": "Notifications",
   "suggestions": [],
+  "filters": [
+    {
+      "title": "Email Type",
+      "name":"email_type",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Sender",
+      "name":"sender",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Receiver",
+      "name":"receiver",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "HTML Body",
+      "name":"html_body",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Subject",
+      "name":"subject",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Attachments",
+      "name":"attachments_url",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Email Sent Time",
+      "name":"sent_time",
+      "type": "timestamptz",
+      "dataType": "timestamptz"
+    },
+    {
+      "title": "Email",
+      "name":"email_id",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Status",
+      "name":"status",
+      "type": "text",
+      "dataType": "varchar"
+    }
+  ],
   "columns":[
     {
       "label": "Email Type",
-      "field": "email_type"
+      "field":"email_type"
     },
     {
       "label": "Sender",
-      "field": "sender"
+      "field":"sender"
     },
     {
       "label": "Receiver",
-      "field": "receiver"
+      "field":"receiver"
+    },
+    {
+      "label": "Status",
+      "field":"status"
+    },
+    {
+      "label": "Subject",
+      "field":"subject"
+    },
+    {
+      "label": "Email Sent Time",
+      "field":"sent_time"
+    },
+    {
+      "label": "Attachments",
+      "field":"attachments_url"
+    },
+    {
+      "label": "Email",
+      "field":"email_id"
+    },
+    {
+      "label": "HTML Body",
+      "field":"html_body"
     }
   ],
   "selectedFilters": [],

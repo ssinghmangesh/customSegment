@@ -1,18 +1,68 @@
 {
-    "title": "Visitors",
-    "suggestions": [],
-    "columns":[
+  "title": "Visitors",
+  "suggestions": [],
+  "filters": [
+    {
+      "title": "Customer ID",
+      "name": "customer_id",
+      "type": "number",
+      "dataType": "numeric"
+    },
+    {
+      "title": "ID",
+      "name": "id",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Type",
+      "name": "type",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "First Page Viewed By Visitor",
+      "name": "first_page_viewed",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Last Page Viewed By Visitor",
+      "name": "last_page_viewed",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "OS",
+      "name": "os",
+      "type": "text",
+      "dataType": "varchar"
+    }
+  ],
+  "columns":[
+    {
+      "label": "Customer ID",
+      "field": "customer_id"
+    },
+    {
+      "label": "ID",
+      "field": "id"
+    },
     {
       "label": "Type",
       "field": "type"
     },
     {
-      "label": "OS",
-      "field": "os"
+      "label": "First Page Viewed By Visitor",
+      "field": "first_page_viewed"
     },
     {
-      "label": "First Page Viewed",
-      "field": "first_page_viewed"
+      "label": "Last Page Viewed By Visitor",
+      "field": "last_page_viewed"
+    },
+    {
+      "label": "OS",
+      "field": "os"
     }
   ],
   "selectedFilters": [],

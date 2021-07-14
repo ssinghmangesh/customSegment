@@ -1,27 +1,109 @@
 {
     "title": "Inventory",
     "suggestions": [],
+    "filters": [
+      {
+        "title": "ID",
+        "name":"id",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Cost",
+        "name":"cost",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Country Code of Origin",
+        "name":"country_code_of_origin",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Inventory Created Date",
+        "name":"created_at",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Harmonized System Code",
+        "name":"harmonized_system_code",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "province Code of Origin",
+        "name":"province_code_of_origin",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "SKU",
+        "name":"sku",
+        "type": "text",
+        "dataType": "varchar"
+      },
+      {
+        "title": "Tracked",
+        "name":"tracked",
+        "type": "boolean",
+        "dataType": "boolean"
+      },
+      {
+        "title": "Inventory Updated Date",
+        "name":"updated_at",
+        "type": "timestamptz",
+        "dataType": "timestamptz"
+      },
+      {
+        "title": "Requires Shipping",
+        "name":"requires_shipping",
+        "type": "boolean",
+        "dataType": "boolean"
+      }
+    ],
     "columns":[
-    {
-      "label": "ID",
-      "field": "id"
-    },
-    {
-      "label": "Price",
-      "field": "cost"
-    },
-    {
-      "label": "Created At",
-      "field": "created_at"
-    },
-    {
-      "label": "Country Code",
-      "field": "country_code_of_origin"
-    },
-    {
-      "label": "Shipping Required",
-      "field": "requires_shipping"
-    }
+      {
+        "label": "ID",
+        "field":"id"
+      },
+      {
+        "label": "Cost",
+        "field":"cost"
+      },
+      {
+        "label": "Country Code of Origin",
+        "field":"country_code_of_origin"
+      },
+      {
+        "label": "Inventory Created Date",
+        "field":"created_at"
+      },
+      {
+        "label": "SKU",
+        "field":"sku"
+      },
+      {
+        "label": "Harmonized System Code",
+        "field":"harmonized_system_code"
+      },
+      {
+        "label": "province Code of Origin",
+        "field":"province_code_of_origin"
+      },
+      {
+        "label": "Tracked",
+        "field":"tracked"
+      },
+      {
+        "label": "Inventory Updated Date",
+        "field":"updated_at"
+      },
+      {
+        "label": "Requires Shipping",
+        "field":"requires_shipping"
+      }
   ],
   "selectedFilters": [],
   "table": "inventoryitem"
