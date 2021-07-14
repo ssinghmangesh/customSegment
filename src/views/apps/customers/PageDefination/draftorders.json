@@ -157,8 +157,10 @@
         "md": 4
       },
       "data": [{
+        "title": "Total DraftOrders",
         "table": "draftorder"
       },{
+        "title": "Completed DraftOrders",
         "table": "draftorder",
         "filters":{
           "relation": "AND",

@@ -262,9 +262,11 @@
           "md": 4
         },
         "data": [{
+          "title": "Total Orders",
           "table": "order"
         },{
           "table": "order",
+          "title": "Fulfilled Orders",
           "filters":{
             "relation": "AND",
             "conditions": [

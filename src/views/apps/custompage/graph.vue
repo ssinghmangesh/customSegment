@@ -962,8 +962,8 @@ export default {
         const res = await this.$http.post('/analytics-manager/count', { ...this.item.data[0] })
         const res2 = await this.$http.post('/analytics-manager/count', { ...this.item.data[1] })
         const data1 = {
-          completed: res.data.data.count,
-          inProgress: res2.data.data.count,
+          completed: { value: res.data.data.count, title: this.item.data[0].title },
+          inProgress: { value: res2.data.data.count, title: this.item.data[1].title },
           series: [((res2.data.data.count / res.data.data.count) * 100).toFixed(1)],
         }
         this.data = { ...data1 }
