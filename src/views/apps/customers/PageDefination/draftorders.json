@@ -154,6 +154,27 @@
       "options": [
         "other"
       ]
+    },
+    {
+      "name": "cancelled_at",
+      "dataType": "timestamptz",
+      "title": "Cancelled At",
+      "type": "timestamptz"
+    },
+    {
+      "name": "current_total_price",
+      "dataType": "numeric",
+      "title": "Current Total Price",
+      "type": "number"
+    },
+    {
+      "type": "dropdown",
+      "name": "status",
+      "dataType": "varchar",
+      "title": "Status",
+      "options": [
+        "open", "invoice_sent", "completed"
+      ]
     }
   ],
   "columns": [
@@ -229,6 +250,27 @@
             "columnname": "total_tax",
             "aggregate": "sum",
             "alias": "taxes_collected"
+          },
+          {
+            "columnname": "status",
+            "aggregate": "count",
+            "alias": "completed",
+            "operator": "=",
+            "value": "completed"
+          },
+          {
+            "columnname": "status",
+            "aggregate": "count",
+            "alias": "invoice_sent",
+            "operator": "=",
+            "value": "invoice_sent"
+          },
+          {
+            "columnname": "status",
+            "aggregate": "count",
+            "alias": "pending",
+            "operator": "=",
+            "value": "open"
           }
         ]
       }
@@ -311,6 +353,42 @@
           "columnname": "total_tax"
         }
       }]
+    }
+  ],
+  "segments": [
+    {
+      "title": "Completed",
+      "default": true,
+      "filters": {
+        "relation": "AND",
+        "conditions": [
+          {
+            "columnName": "status",
+            "dataType": "varchar",
+            "filterType": "in",
+            "title": "Status",
+            "type": "dropdown",
+            "values": ["completed"]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Not Completed",
+      "default": true,
+      "filters": {
+        "relation": "AND",
+        "conditions": [
+          {
+            "columnName": "status",
+            "dataType": "varchar",
+            "filterType": "not_in",
+            "title": "Status",
+            "type": "dropdown",
+            "values": ["completed"]
+          }
+        ]
+      }
     }
   ]
 }

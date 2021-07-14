@@ -99,6 +99,29 @@
   "table": "tax",
   "stats": [
     {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "tax",
+        "statsDefinition": [
+          {
+            "columnname": "current_total_tax",
+            "aggregate": "sum",
+            "alias": "total_tax_amount"
+          },
+          {
+            "columnname": "distinct order_name",
+            "aggregate": "count",
+            "alias": "orders_which_include_tax"
+          }
+        ]
+      }
+    },
+    {
       "type": "ecommerce-company-table",
       "title": "Order Tax Details",
       "col": {
@@ -142,5 +165,6 @@
         }
       }]
     }
-  ]
+  ],
+  "segments": []
 }

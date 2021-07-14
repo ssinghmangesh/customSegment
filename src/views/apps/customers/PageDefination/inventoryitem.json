@@ -106,5 +106,8 @@
       }
   ],
   "selectedFilters": [],
-  "table": "inventoryitem"
+  "table": "inventoryitem",
+  "stats": [],
+  "graphs": [],
+  "segments": []
 }

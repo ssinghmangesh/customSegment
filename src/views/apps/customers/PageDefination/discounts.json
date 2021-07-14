@@ -175,6 +175,29 @@
   "table": "discountapplication",
   "stats": [
     {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "discountapplication",
+        "statsDefinition": [
+          {
+            "columnname": "current_total_discounts",
+            "aggregate": "sum",
+            "alias": "total_discount"
+          },
+          {
+            "columnname": "distinct order_name",
+            "aggregate": "count",
+            "alias": "orders_which_include_discount"
+          }
+        ]
+      }
+    },
+    {
       "type": "apex-donut-chart",
       "title": "Discount Codes",
       "col": {
@@ -216,5 +239,6 @@
       }
     }
   ],
-  "graphs": []
+  "graphs": [],
+  "segments": []
 }

@@ -140,6 +140,7 @@ import EcommerceBrowserStates from '@/views/dashboard/ecommerce/EcommerceBrowser
 import EcommerceTransactions from '@/views/dashboard/ecommerce/EcommerceTransactions.vue'
 import EcommerceCompanyTable from '@/views/dashboard/ecommerce/EcommerceCompanyTable.vue'
 // import Vue from 'vue'
+import formatData from '@/views/apps/customers/Helper/globalMethods'
 
 const chartColors = {
   column: {
@@ -204,6 +205,7 @@ export default {
   },
   data() {
     return {
+      formatter: formatData,
       data: {},
       series: [],
       labels: [],
@@ -951,8 +953,8 @@ export default {
             color: 'light-primary',
             customClass: 'mb-2 mb-xl-0',
             icon: 'TrendingUpIcon',
-            subtitle: key,
-            title: res.data.data[key],
+            subtitle: this.formatter.snakeCaseToNormalText(key),
+            title: this.formatter.transform({ key, value: res.data.data[key] }),
           })
         })
         this.series = [...data1]

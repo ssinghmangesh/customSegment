@@ -276,5 +276,9 @@
       }
     ],
     "selectedFilters": [],
-    "table": "variantaggregate"
+    "table": "variantaggregate",
+    "stats": [],
+    "graphs": [],
+    "segments": []
+
   }
