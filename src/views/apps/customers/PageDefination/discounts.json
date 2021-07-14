@@ -54,12 +54,17 @@
         "md": 12
       },
       "data": {
-        "table": "discount",
+        "table": "discountapplication",
         "statsDefinition": [
           {
-            "columnname": "value",
+            "columnname": "current_total_discounts",
             "aggregate": "sum",
             "alias": "total_discount"
+          },
+          {
+            "columnname": "distinct order_name",
+            "aggregate": "count",
+            "alias": "orders_which_include_discount"
           }
         ]
       }

@@ -44,6 +44,11 @@
             "columnname": "current_total_tax",
             "aggregate": "sum",
             "alias": "total_tax_amount"
+          },
+          {
+            "columnname": "distinct order_name",
+            "aggregate": "count",
+            "alias": "orders_which_include_tax"
           }
         ]
       }
