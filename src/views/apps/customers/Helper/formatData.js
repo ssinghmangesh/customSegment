@@ -68,7 +68,7 @@ class formatData {
       return value ? 'Yes' : 'No'
     }
     if (Amount && value) {
-      return `Rs ${value}`
+      return `Rs ${Number(value).toFixed(2)}`
     }
     if (Address) {
       return this.convertAddress(value)
@@ -78,7 +78,7 @@ class formatData {
 
   static snakeCaseToNormalText(value) {
     const array = value.split('_')
-    const string = array.map(str => str).join(' ')
+    const string = array.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' ')
     return string
   }
 }

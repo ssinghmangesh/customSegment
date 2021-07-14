@@ -140,7 +140,7 @@ import EcommerceBrowserStates from '@/views/dashboard/ecommerce/EcommerceBrowser
 import EcommerceTransactions from '@/views/dashboard/ecommerce/EcommerceTransactions.vue'
 import EcommerceCompanyTable from '@/views/dashboard/ecommerce/EcommerceCompanyTable.vue'
 // import Vue from 'vue'
-import formatData from '@/views/apps/customers/Helper/globalMethods'
+import formatData from '@/views/apps/customers/Helper/formatData'
 
 const chartColors = {
   column: {
@@ -890,7 +890,7 @@ export default {
         const response = await this.$http.post('/analytics-manager/pie-chart', { ...this.item.data, filters: this.filters })
         response.data.data.forEach((d, index) => {
           this.series.push(Number(d.count))
-          this.labels.push(d[this.item.data.columnname])
+          this.labels.push(this.formatter.snakeCaseToNormalText(d[this.item.data.columnname]))
           this.colors.push(this.getColor(index))
         })
       } else if (this.graphType === 'apex-line-chart') {
@@ -902,7 +902,7 @@ export default {
               y: value.y,
             }))
             this.series.push({
-              name: this.item.data[i].statsDefinition.columnname,
+              name: this.formatter.snakeCaseToNormalText(this.item.data[i].statsDefinition.columnname),
               type: this.item.graphCatergory,
               data,
             })
@@ -928,7 +928,7 @@ export default {
             avatar: 'PocketIcon',
             avatarVariant: 'light-primary',
             deduction: true,
-            mode: row[Object.keys(row)[0]],
+            mode: this.formatter.snakeCaseToNormalText(row[Object.keys(row)[0]]),
             payment: row.count,
             types: '',
           })
@@ -940,7 +940,7 @@ export default {
         response.data.data.forEach(row => {
           data1.push({
             browserImg: require('@/assets/images/icons/google-chrome.png'),
-            name: row.fulfillment_status || row.shipping_state,
+            name: this.formatter.snakeCaseToNormalText(row.fulfillment_status || row.shipping_state),
             usage: row.count,
           })
         })
