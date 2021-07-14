@@ -17,7 +17,26 @@
   ],
   "selectedFilters": [],
   "table": "visitor",
-  "stats": [],
+  "stats": [
+    {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "visitor",
+        "statsDefinition": [
+          {
+            "columnname": "*",
+            "aggregate": "count",
+            "alias": "total"
+          }
+        ]
+      }
+    }
+  ],
   "graphs": [],
   "segments": []
 }

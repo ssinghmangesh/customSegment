@@ -308,7 +308,6 @@
       }
     ],
     "graphs": [
-      
       {
         "type": "apex-donut-chart",
         "title": "By Country",
@@ -347,25 +346,6 @@
             "columnname": "total_amount_spent"
           }
         }]
-      },
-      {
-        "type": "apex-donut-chart",
-        "title": "Fulfillment Status",
-        "col": {
-          "default": 12,
-          "md": 4
-        },
-        "data": {
-          "table": "order",
-          "workspaceId": 333,
-          "columnname": "fulfillment_status",
-          "startdate": "2000-01-01 11:49:40.765997+05:30",
-          "enddate": "2021-06-22 11:49:40.765997+05:30",
-          "statsDefinition": {
-            "aggregate": "count",
-            "columnname": "id"
-          }
-        }
       }
     ],
     "segments": [

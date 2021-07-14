@@ -17,7 +17,33 @@
   ],
   "selectedFilters": [],
   "table": "sentemail",
-  "stats": [],
+  "stats": [
+    {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "sentEmail",
+        "statsDefinition": [
+          {
+            "columnname": "*",
+            "aggregate": "count",
+            "alias": "total"
+          },
+          {
+            "columnname": "status",
+            "aggregate": "count",
+            "alias": "successful",
+            "operator": "=",
+            "value": "sent"
+          }
+        ]
+      }
+    }
+  ],
   "graphs": [],
   "segments": []
 }

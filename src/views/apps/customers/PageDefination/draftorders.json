@@ -145,6 +145,22 @@
             "alias": "pending",
             "operator": "=",
             "value": "open"
+          },
+          {
+            "columnname": "status",
+            "aggcolumnname": "total_price",
+            "aggregate": "sum",
+            "alias": "revenue_from_completed_draftOrders",
+            "operator": "=",
+            "value": "completed"
+          },
+          {
+            "columnname": "status",
+            "aggcolumnname": "total_price",
+            "aggregate": "sum",
+            "alias": "revenue_from_not_completed_draftOrders",
+            "operator": "!=",
+            "value": "completed"
           }
         ]
       }
