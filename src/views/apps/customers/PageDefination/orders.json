@@ -287,18 +287,18 @@
         },
         "data": {
           "table": "order",
-          "columnname": "shipping_state",
+          "columnname": "shipping_country",
           "startdate": "2000-01-01 11:49:40.765997+05:30",
-          "enddate": "2021-07-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-15 11:49:40.765997+05:30",
           "statsDefinition": {
             "aggregate": "count",
-            "columnname": "shipping_state"
+            "columnname": "shipping_country"
           }
         }
       },
       {
         "type": "ecommerce-transactions",
-        "title": "Payment Methods",
+        "title": "Orders By Payment Methods",
         "col": {
           "default": 12,
           "md": 4
@@ -311,6 +311,24 @@
           "statsDefinition": {
             "aggregate": "count",
             "columnname": "gateway"
+          }
+        }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Orders By Processing Methods",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "order",
+          "columnname": "processing_method",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-15 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "processing_method"
           }
         }
       }
