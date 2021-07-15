@@ -17,7 +17,59 @@
       />
     </b-modal>
     <!-- search input -->
-    <div class="custom-search d-flex justify-content-end mb-1 align-items-center">
+    <div class="d-flex justify-content-end dots">
+      <!-- <b-button id="popover-target-1">
+        Hover Me -->
+      <feather-icon
+        id="popover-target-1"
+        role="button"
+        icon="MoreVerticalIcon"
+        size="24"
+      />
+      <!-- </b-button> -->
+      <b-popover
+        target="popover-target-1"
+        triggers="focus"
+        placement="bottom"
+      >
+        <div class="d-flex justify-content-start">
+          <b-form-checkbox
+            v-model="timer"
+            switch
+            @change="autoRefresh"
+          >
+            Auto-Refresh<span>{{ time ? '('+time+'s'+')' : null }}</span>
+          </b-form-checkbox>
+        </div>
+        <div
+          variant="primary"
+          role="button"
+          class="my-1"
+          @click="() => $emit('onShowSelectColumns')"
+        >
+          Select Columns
+        </div>
+        <div
+          v-if="type === 'customers'"
+          v-b-modal.send-email
+          variant="primary"
+          class="my-1"
+          role="button"
+        >
+          Send Email
+        </div>
+        <div
+          :disabled="total === 0"
+          variant="primary"
+          class="my-1"
+          role="button"
+          @click="download"
+        >
+          Download
+        </div>
+      </b-popover>
+    </div>
+    <!-- <div class="custom-search d-flex justify-content-end mb-1 align-items-center">
       <div class="d-flex">
         <span class="mr-1">{{ time ? time+'s' : null }}</span>
         <b-form-checkbox
@@ -51,7 +103,7 @@
       >
         Download
       </b-button>
-    </div>
+    </div> -->
     <!-- table -->
     <vue-good-table
       :columns="columns"
@@ -139,7 +191,7 @@
 
         <!-- Column: Common -->
         <span v-else>
-          {{ formatter.transform({ key: props.column.field, value: props.formattedRow[props.column.field] })}}
+          {{ formatter.transform({ key: props.column.field, value: props.formattedRow[props.column.field] }) }}
         </span>
       </template>
 
@@ -199,22 +251,22 @@
 
 <script>
 import {
-  BAvatar, BBadge, BPagination, BButton, BFormSelect, BDropdown, BDropdownItem, BCard, VBToggle, BFormCheckbox, BFormInput,
+  BAvatar, BBadge, BPagination, BFormSelect, BDropdown, BDropdownItem, BCard, VBToggle, BFormCheckbox, BFormInput, BPopover,
 } from 'bootstrap-vue'
 import { VueGoodTable } from 'vue-good-table'
 import store from '@/store/index'
-import formatData from '@/views/apps/customers/Helper/globalMethods'
+import formatData from '@/views/apps/customers/Helper/formatData'
 import { codeBasic } from './code'
 
 export default {
   components: {
+    BPopover,
     BFormInput,
     BCard,
     VueGoodTable,
     BAvatar,
     BBadge,
     BPagination,
-    BButton,
     BFormSelect,
     BDropdown,
     BDropdownItem,
@@ -386,5 +438,10 @@ export default {
     white-space: nowrap;
     display: inline;
     font-size: 15px;
+ }
+
+ .dots {
+   top: -45px;
+   position: relative;
  }
 </style>

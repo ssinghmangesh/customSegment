@@ -10,8 +10,8 @@
     </div>
 </template>
 <script>
-import formatData from '@/views/apps/customers/Helper/globalMethods'
-// const formatData = require('../Helper/globalMethods')
+import formatData from '@/views/apps/customers/Helper/formatData'
+// const formatData = require('../Helper/formData')
 
 export default {
   data() {

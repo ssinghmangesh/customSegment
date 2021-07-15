@@ -5,7 +5,7 @@
       @updateTable="updateTable"
     />
     <b-card>
-      <b-tabs>
+      <b-tabs v-model="tabIndex">
         <b-tab title="Stats">
           <graphs
             :time="time"
@@ -30,6 +30,7 @@
 
         <b-tab title="Segment">
           <segment
+            :time="time"
             @select="select"
           />
         </b-tab>
@@ -62,6 +63,7 @@ export default {
   data() {
     return {
       filters: {},
+      tabIndex: 0,
       time: localStorage.getItem(`${this.$route.params.type}timer`),
       segment: null,
       graphs: pageDefination[this.$route.params.type].graphs,
@@ -92,6 +94,7 @@ export default {
     },
     select(val) {
       this.segment = { ...val }
+      this.tabIndex = 0
     },
   },
 }

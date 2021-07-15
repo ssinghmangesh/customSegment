@@ -1,6 +1,6 @@
 <template>
   <div
-      class="cs-filter-group"
+    class="cs-filter-group"
   >
     <div
       v-for="(filter, index) in filters"
@@ -16,7 +16,7 @@
         <span
           v-for="(value, i) in filter.values.slice(1)"
           :key="i"
-        >{{ value !== '' ? 'and ' + value : null }}
+        >{{ value !== '' ? (filter.type !== 'dropdown' ? 'and ' : 'or ') + value : null }}
         </span>
       </span>
       <feather-icon

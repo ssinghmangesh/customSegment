@@ -126,7 +126,26 @@
   ],
   "selectedFilters": [],
   "table": "cart",
-  "stats": [],
+  "stats": [
+    {
+      "type": "statistics",
+      "title": "Statistics",
+      "col": {
+        "default": 12,
+        "md": 12
+      },
+      "data": {
+        "table": "cart",
+        "statsDefinition": [
+          {
+            "columnname": "*",
+            "aggregate": "count",
+            "alias": "total"
+          }
+        ]
+      }
+    }
+  ],
   "graphs": [],
   "segments": []
 }
