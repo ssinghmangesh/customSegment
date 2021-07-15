@@ -172,7 +172,6 @@ export default {
         title: searchQuery.title,
         tableName: searchQuery.entity,
         ...filter,
-        tableName: searchQuery.entity,
       }
       if (searchQuery.index + 1) {
         this.selectedFilters.splice(searchQuery.index, 1, data)
