@@ -336,6 +336,42 @@
           "limit": "10",
           "skipRowby": "0"
         }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Customers by Country",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "customeraggregate",
+          "columnname": "country",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-01 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "country"
+          }
+        }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Customers by Currency",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "customeraggregate",
+          "columnname": "currency",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-01 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "currency"
+          }
+        }
       }
     ],
     "graphs": [
@@ -444,6 +480,23 @@
               "title": "Orders Count",
               "type": "number",
               "values": [2, ""]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Risky Customer",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "last_order_at",
+              "dataType": "timestamptz",
+              "filterType": "less_than",
+              "title": "Last Order At",
+              "type": "timestamptz",
+              "values": [30, ""]
             }
           ]
         }

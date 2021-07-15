@@ -16,7 +16,7 @@
         :toggleCollapsed="toggleCollapsed"
         :collapseTogglerIcon="collapseTogglerIcon"
       >
-        <ul class="nav navbar-nav flex-row">
+        <ul class="nav navbar-nav flex-row pb-2">
 
           <!-- Logo & Text -->
           <li class="nav-item mr-auto">
@@ -65,10 +65,10 @@
     <!-- / main menu header-->
 
     <!-- Shadow -->
-    <div
+    <!-- <div
       :class="{'d-block': shallShadowBottom}"
       class="shadow-bottom"
-    />
+    /> -->
     <!-- main menu content-->
     <vue-perfect-scrollbar
       :settings="perfectScrollbarSettings"
@@ -78,7 +78,7 @@
     >
       <vertical-nav-menu-items
         :items="navMenuItems"
-        class="navigation navigation-main"
+        class="navigation navigation-main mb-4"
       />
     </vue-perfect-scrollbar>
     <!-- /main menu content-->

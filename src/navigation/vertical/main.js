@@ -70,13 +70,13 @@ export default [
   },
   {
     title: 'Events',
-    icon: 'UserIcon',
+    icon: 'CalendarIcon',
     route: 'apps-orders',
     path: '/apps/events',
   },
   {
     title: 'Notifications',
-    icon: 'UserIcon',
+    icon: 'BellIcon',
     route: 'apps-orders',
     path: '/apps/notifications',
   },

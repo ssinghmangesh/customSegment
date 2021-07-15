@@ -27,7 +27,7 @@ export default [
   },
   {
     title: 'Connect Store',
-    icon: 'RefreshCwIcon',
+    icon: 'LinkIcon',
     route: 'connect-store',
   },
 ]
