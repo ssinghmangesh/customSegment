@@ -145,6 +145,25 @@
           }
         ]
       }
+    },
+    {
+      "type": "ecommerce-transactions",
+      "title": "Event Types",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "event",
+        "columnname": "event_name",
+        "orderByDirection": "desc",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-07-15 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "count",
+          "columnname": "event_name"
+        }
+      }
     }
   ],
   "graphs": [],

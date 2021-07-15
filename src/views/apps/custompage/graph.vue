@@ -925,12 +925,15 @@ export default {
         const response = await this.$http.post('/analytics-manager/pie-chart', { ...this.item.data, filters: this.filters })
         const data1 = []
         response.data.data.forEach(row => {
+          if(this.item.data.statsDefinition.columnname === 'inventory_quantity' && row.sum > 0 ){
+            return
+          }
           data1.push({
             avatar: getIcon(row[Object.keys(row)[0]]),
             avatarVariant: 'light-primary',
             deduction: true,
             mode: this.formatter.snakeCaseToNormalText(row[Object.keys(row)[0]]),
-            payment: row.count,
+            payment: this.formatter.transform({ key: row[Object.keys(row)[0]],value: row[Object.keys(row)[1]] }),
             types: '',
           })
         })
