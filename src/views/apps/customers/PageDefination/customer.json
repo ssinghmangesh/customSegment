@@ -16,158 +16,189 @@
     ],
     "filters": [
       {
+        "entity": "customeraggregate",
         "title": "Name",
         "name": "name",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "Email",
         "name": "email",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "First Name",
         "name": "first_name",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "Last Name",
         "name": "last_name",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "Last Seen",
         "name": "last_seen",
         "type": "timestamptz",
         "dataType": "timestamptz"
       },
       {
+        "entity": "customeraggregate",
         "title": "Address 1",
         "name": "address1",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "Address 2",
         "name": "address2",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "City",
         "name": "city",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "Country",
         "name": "country",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "Province",
         "name": "address1",
         "type": "text",
         "dataType": "varchar"
       },
       {
+        "entity": "customeraggregate",
         "title": "Zip",
         "name": "zip",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Product Purchased",
         "name": "product_purchased",
         "type": "array",
         "dataType": "numeric[]"
       },
       {
+        "entity": "customeraggregate",
         "title": "Product Viewed",
         "name": "product_viewed",
         "type": "array",
         "dataType": "numeric[]"
       },
       {
+        "entity": "customeraggregate",
         "title": "Orders Count",
         "name": "total_order_count",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Total Amount Spent",
         "name": "total_amount_spent",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Average Order Price",
         "name": "total_spent",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Refunded Order Count",
         "name": "refunded_order_count",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Cancelled Order Count",
         "name": "cancelled_order_count",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Unfulfilled Order Count",
         "name": "unfulfilled_order_count",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Unrefunded Order Count",
         "name": "unrefunded_order_count",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Uncancelled Order Count",
         "name": "uncancelled_order_count",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "Abandoned Cart",
         "name": "abandoned_cart",
         "type": "boolean",
         "dataType": "boolean"
       },
       {
+        "entity": "customeraggregate",
         "title": "Unfulfilled Order Count",
         "name": "unfulfilled_order_count",
         "type": "number",
         "dataType": "numeric"
       },
       {
+        "entity": "customeraggregate",
         "title": "First Order At",
         "name": "first_order_at",
         "type": "timestamptz",
         "dataType": "timestamptz"
       },
       {
+        "entity": "customeraggregate",
         "title": "Last Order At",
         "name": "last_order_at",
         "type": "timestamptz",
         "dataType": "timestamptz"
+      },
+      {
+        "entity": "discountapplication",
+        "title": "Applied Discounts",
+        "name": "code",
+        "type": "text",
+        "dataType": "varchar"
       }
     ],
     "columns": [
-     
       {
         "label": "Email",
         "field": "email"
