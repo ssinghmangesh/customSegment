@@ -483,6 +483,23 @@
             }
           ]
         }
+      },
+      {
+        "title": "Risky Customer",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "last_order_at",
+              "dataType": "timestamptz",
+              "filterType": "less_than",
+              "title": "Last Order At",
+              "type": "timestamptz",
+              "values": [30, ""]
+            }
+          ]
+        }
       }
     ]
   }
