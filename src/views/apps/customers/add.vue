@@ -170,6 +170,7 @@ export default {
         type: searchQuery.type,
         dataType: searchQuery.dataType,
         title: searchQuery.title,
+        tableName: searchQuery.entity,
         ...filter,
         tableName: searchQuery.entity,
       }
@@ -189,6 +190,7 @@ export default {
         dataType: data.filter.dataType,
         index: data.index,
         options: data.filter.options,
+        entity: data.filter.tableName,
       }
       this.searchQuery = query
     },
