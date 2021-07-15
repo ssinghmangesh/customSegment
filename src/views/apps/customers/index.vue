@@ -6,21 +6,21 @@
     />
     <b-card>
       <b-tabs v-model="tabIndex">
-        <b-tab title="Stats">
+        <b-tab title="STATS">
           <graphs
             :time="time"
             :filters="filters"
             :page-definitions="stats"
           />
         </b-tab>
-        <b-tab title="Raw Data">
+        <b-tab title="RAW DATA">
           <custom-table
             :filters="filters"
             :time="time"
             @applyTimer="applyTimer"
           />
         </b-tab>
-        <b-tab title="Graph">
+        <b-tab title="GRAPH">
           <graphs
             :time="time"
             :filters="filters"
@@ -28,7 +28,7 @@
           />
         </b-tab>
 
-        <b-tab title="Segment">
+        <b-tab title="SEGMENT">
           <segment
             :time="time"
             @select="select"

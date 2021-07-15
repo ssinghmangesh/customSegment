@@ -952,7 +952,7 @@ export default {
         Object.keys(res.data.data).forEach(key => {
           data1.push({
             color: 'light-primary',
-            customClass: 'mb-2 mb-xl-0',
+            customClass: 'mb-2',
             icon: getIcon(key),
             subtitle: this.formatter.snakeCaseToNormalText(key),
             title: this.formatter.transform({ key, value: res.data.data[key] }),

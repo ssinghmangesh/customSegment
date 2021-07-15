@@ -374,7 +374,7 @@
         }
       },
       {
-        "title": "Customer",
+        "title": "One Time Customer",
         "default": true,
         "filters": {
           "relation": "AND",
