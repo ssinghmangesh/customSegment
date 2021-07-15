@@ -3,8 +3,14 @@
   "suggestions": [],
   "filters": [
     {
-      "title": "Name",
+      "title": "Title",
       "name": "title",
+      "type": "text",
+      "dataType": "varchar"
+    },
+    {
+      "title": "Order Name",
+      "name": "order_name",
       "type": "text",
       "dataType": "varchar"
     },
@@ -131,7 +137,7 @@
   ],
   "columns": [
     {
-      "label": "Name",
+      "label": "Order Name",
       "field": "order_name"
     },
     {
