@@ -1,11 +1,8 @@
 <template>
-  <b-card
-    v-if="data"
-    no-body
-  >
+  <b-card>
     <!-- title and dropdown -->
     <b-card-header class="pb-0">
-      <b-card-title>{{ data.title }}</b-card-title>
+      <b-card-title>{{ title }}</b-card-title>
       <b-dropdown
         no-caret
         right
@@ -16,7 +13,7 @@
         size="sm"
       >
         <b-dropdown-item
-          v-for="day in data.lastDays"
+          v-for="day in lastDays"
           :key="day"
         >
           {{ day }}
@@ -32,9 +29,9 @@
           class="d-flex flex-column flex-wrap text-center"
         >
           <h1 class="font-large-2 font-weight-bolder mt-2 mb-0">
-            {{ data.totalTicket }}
+            {{ data[0].value }}
           </h1>
-          <small>Tickets</small>
+          <small>{{ data[0].key }}</small>
         </b-col>
 
         <!-- chart -->
@@ -48,7 +45,7 @@
             type="radialBar"
             height="270"
             :options="supportTrackerRadialBar.chartOptions"
-            :series="data.supportTrackerRadialBar.series"
+            :series="series"
           />
         </b-col>
         <!--/ chart -->
@@ -58,21 +55,21 @@
       <div class="d-flex justify-content-between">
         <div class="text-center">
           <b-card-text class="mb-50">
-            New Tickets
+            {{ data[1].key }}
           </b-card-text>
-          <span class="font-large-1 font-weight-bold">{{ data.newTicket }}</span>
+          <span class="font-large-1 font-weight-bold">{{ data[1].value }}</span>
         </div>
         <div class="text-center">
           <b-card-text class="mb-50">
-            Open Tickets
+            {{ data[2].key }}
           </b-card-text>
-          <span class="font-large-1 font-weight-bold">{{ data.openTicket }}</span>
+          <span class="font-large-1 font-weight-bold">{{ data[2].value }}</span>
         </div>
         <div class="text-center">
           <b-card-text class="mb-50">
-            Response Time
+            {{ data[3].key }}
           </b-card-text>
-          <span class="font-large-1 font-weight-bold">{{ data.responseTime }}d</span>
+          <span class="font-large-1 font-weight-bold">{{ data[3].value }}</span>
         </div>
       </div>
     </b-card-body>
@@ -101,8 +98,12 @@ export default {
   },
   props: {
     data: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
+    },
+    title: {
+      type: String,
+      default: () => '',
     },
   },
   data() {
@@ -156,7 +157,15 @@ export default {
           labels: ['Completed Tickets'],
         },
       },
+      series: [0],
+      lastDays: ['Last 28 Days', 'Last Month', 'Last Year'],
     }
+  },
+  watch: {
+    data() {
+      this.series = [((this.data[4].value / this.data[0].value) * 100).toFixed(0)]
+      this.supportTrackerRadialBar.chartOptions.labels = [this.data[4].key]
+    },
   },
 }
 </script>

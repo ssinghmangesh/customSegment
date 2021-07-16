@@ -3,11 +3,11 @@
     v-if="data"
     no-body
   >
-    <b-card-header>
+    <!-- <b-card-header>
       <b-card-title class="ml-25">
         {{ title }}
       </b-card-title>
-    </b-card-header>
+    </b-card-header> -->
 
     <!-- timeline -->
     <b-card-body>
@@ -17,11 +17,11 @@
       >
         <app-timeline-item variant="primary">
           <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-            <h6 v-if="item.id">Order id: {{ item.id }}</h6>
-            <h6 v-if="item.page_id">Page id: {{ item.page_id }}</h6>
+            <h6>{{ item.event_name }}</h6>
+            <!-- <h6 v-if="item.page_id">Page id: {{ item.page_id }}</h6> -->
             <small class="timeline-item-time text-nowrap text-muted ml-1">{{ item.created_at }}</small>
           </div>
-          <p>Total Price: {{ item.total_price }}</p>
+          <!-- <p>Total Price: {{ item.total_price }}</p> -->
           <!-- <b-media no-body>
             <b-media-aside class="mr-1">
               <b-img
@@ -45,7 +45,8 @@
 
 <script>
 import {
-  BCard, BCardBody, BCardHeader, BCardTitle,
+  BCard, BCardBody,
+  //  BCardHeader, BCardTitle,
 } from 'bootstrap-vue'
 import AppTimeline from '@core/components/app-timeline/AppTimeline.vue'
 import AppTimelineItem from '@core/components/app-timeline/AppTimelineItem.vue'
@@ -55,8 +56,8 @@ export default {
     BCard,
     // BImg,
     BCardBody,
-    BCardHeader,
-    BCardTitle,
+    // BCardHeader,
+    // BCardTitle,
     AppTimeline,
     AppTimelineItem,
     // BMedia,

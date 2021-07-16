@@ -113,6 +113,16 @@
       :table-data="series"
       :title="item.title"
     />
+    <AnalyticsSupportTracker
+      v-else-if="graphType === 'analytics-support-tracker'"
+      :data="series"
+      :title="item.title"
+    />
+    <AnalyticsAvgSessions
+      v-else-if="graphType === 'analytics-avg-sessions'"
+      :title="item.title"
+      :data="series"
+    />
   </b-col>
 </template>
 
@@ -139,6 +149,8 @@ import EcommerceGoalOverview from '@/views/dashboard/ecommerce/EcommerceGoalOver
 import EcommerceBrowserStates from '@/views/dashboard/ecommerce/EcommerceBrowserStates.vue'
 import EcommerceTransactions from '@/views/dashboard/ecommerce/EcommerceTransactions.vue'
 import EcommerceCompanyTable from '@/views/dashboard/ecommerce/EcommerceCompanyTable.vue'
+import AnalyticsSupportTracker from '@/views/dashboard/analytics/AnalyticsSupportTracker.vue'
+import AnalyticsAvgSessions from '@/views/dashboard/analytics/AnalyticsAvgSessions.vue'
 // import Vue from 'vue'
 import formatData from '@/views/apps/customers/Helper/formatData'
 import { getIcon } from '@/views/apps/customers/Helper/globalMethods'
@@ -169,6 +181,7 @@ const chartColors = {
 
 export default {
   components: {
+    AnalyticsAvgSessions,
     Statistics,
     ApexLineAreaChart,
     ApexScatterChart,
@@ -189,6 +202,7 @@ export default {
     EcommerceBrowserStates,
     EcommerceTransactions,
     EcommerceCompanyTable,
+    AnalyticsSupportTracker,
   },
   props: {
     item: {
@@ -978,6 +992,16 @@ export default {
           series: [((res.data.data[keys[1]] / res.data.data[keys[0]]) * 100).toFixed(1)],
         }
         this.data = { ...data1 }
+      } else if (this.graphType === 'analytics-support-tracker' || this.graphType === 'analytics-avg-sessions') {
+        const res = await this.$http.post('/analytics-manager/stats', { ...this.item.data, filters: this.filters, ...this.range })
+        const data1 = []
+        Object.keys(res.data.data).forEach(key => {
+          data1.push({
+            key: this.formatter.snakeCaseToNormalText(key),
+            value: this.formatter.transform({ key, value: res.data.data[key] }),
+          })
+        })
+        this.series = [...data1]
       } else {
         if (this.graphType === 'ecommerce-order-chart'){
           const res = await this.$http.post('/analytics-manager/count', { ...this.item.data, ...this.range })

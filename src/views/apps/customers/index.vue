@@ -90,8 +90,8 @@ export default {
     const today = new Date()
     const priorDate = new Date().setDate(today.getDate() - 30)
     this.range = {
-      startDate: new Date(priorDate).toISOString(),
-      endDate: today.toISOString(),
+      startdate: new Date(priorDate).toISOString(),
+      enddate: today.toISOString(),
     }
   },
   methods: {

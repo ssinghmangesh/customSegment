@@ -11,26 +11,26 @@
       >
         <div>
           <h2 class="font-weight-bolder mb-25">
-            {{ kFormatter(data.sessions) }}
+            {{ data[0].value }}
           </h2>
           <b-card-text class="font-weight-bold mb-2">
-            {{ title }}
+            {{ data[0].key }}
           </b-card-text>
 
-          <h5 class="font-medium-2">
+          <!-- <h5 class="font-medium-2">
             <span class="text-success mr-50">{{ data.growth }}</span>
             <span>vs last 7 days</span>
-          </h5>
+          </h5> -->
         </div>
 
-        <b-button
+        <!-- <b-button
           v-ripple.400="'rgba(255, 255, 255, 0.15)'"
           variant="primary"
           class="shadow"
         >
           <span>View Details </span>
           <feather-icon icon="ChevronsRightIcon" />
-        </b-button>
+        </b-button> -->
       </b-col>
 
       <!-- dropdown and chart -->
@@ -51,7 +51,7 @@
             size="sm"
           >
             <b-dropdown-item
-              v-for="day in data.lastDays"
+              v-for="day in lastDays"
               :key="day"
             >
               {{ day }}
@@ -64,7 +64,7 @@
           type="bar"
           height="200"
           :options="salesBar.chartOptions"
-          :series="data.salesBar.series"
+          :series="series"
         />
       </b-col>
     </b-row>
@@ -77,7 +77,7 @@
         class="mb-2"
       >
         <b-card-text class="mb-50">
-          Goal: ${{ data.goal }}
+          {{ data[1].key }}: {{ data[1].value }}
         </b-card-text>
         <b-progress
           value="50"
@@ -90,7 +90,7 @@
         class="mb-2"
       >
         <b-card-text class="mb-50">
-          Users: {{ kFormatter(data.users) }}
+          {{ data[2].key }}: {{ data[2].value }}
         </b-card-text>
         <b-progress
           value="60"
@@ -101,7 +101,7 @@
       </b-col>
       <b-col cols="6">
         <b-card-text class="mb-50">
-          Retention: {{ data.retention }}%
+          {{ data[3].key }}: {{ data[3].value }}
         </b-card-text>
         <b-progress
           value="70"
@@ -113,7 +113,7 @@
       </b-col>
       <b-col cols="6">
         <b-card-text class="mb-50">
-          Duration: {{ data.duration }}yr
+          {{ data[4].key }}: {{ data[4].value }}
         </b-card-text>
         <b-progress
           value="90"
@@ -129,7 +129,7 @@
 
 <script>
 import {
-  BCard, BRow, BCol, BButton, BDropdown, BDropdownItem, BProgress, BCardText,
+  BCard, BRow, BCol, BDropdown, BDropdownItem, BProgress, BCardText,
 } from 'bootstrap-vue'
 import VueApexCharts from 'vue-apexcharts'
 import Ripple from 'vue-ripple-directive'
@@ -142,7 +142,7 @@ export default {
     BCard,
     BRow,
     BCol,
-    BButton,
+    // BButton,
     BCardText,
     BDropdown,
     BDropdownItem,
@@ -154,7 +154,7 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {},
+      default: () => [],
     },
     title: {
       type: String,
@@ -204,6 +204,13 @@ export default {
           },
         },
       },
+      series: [
+        {
+          name: 'Sessions',
+          data: [75, 125, 225, 175, 125, 75, 25],
+        },
+      ],
+      lastDays: ['Last 28 Days', 'Last Month', 'Last Year'],
     }
   },
   methods: {
