@@ -172,6 +172,10 @@
       },
       {
         "label": "Product Name",
+        "field":"product_title"
+      },
+      {
+        "label": "Variant Name",
         "field":"title"
       },
       {
@@ -261,10 +265,6 @@
       {
         "label": "Quantity in Cart",
         "field":"quantity_in_cart"
-      },
-      {
-        "label": "Product Title",
-        "field":"product_title"
       },
       {
         "label": "Tags",

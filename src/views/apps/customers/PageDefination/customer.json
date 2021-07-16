@@ -82,12 +82,6 @@
         "dataType": "numeric"
       },
       {
-        "title": "Product Purchased",
-        "name": "product_purchased",
-        "type": "array",
-        "dataType": "numeric[]"
-      },
-      {
         "title": "Product Viewed",
         "name": "product_viewed",
         "type": "array",
@@ -164,6 +158,20 @@
         "name": "last_order_at",
         "type": "timestamptz",
         "dataType": "timestamptz"
+      },
+      {
+        "arrayTable": "product",
+        "title": "Product Purchased",
+        "name": "product_purchased",
+        "type": "array",
+        "dataType": "numeric[]"
+      },
+      {
+        "arrayTable": "variant",
+        "title": "Variant Purchased",
+        "name": "variant_purchased",
+        "type": "array",
+        "dataType": "numeric[]"
       },
       {
         "entity": "discountapplication",
