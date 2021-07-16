@@ -3,12 +3,14 @@
     <add
       :segment="segment"
       @updateTable="updateTable"
+      @updateRange="updateRange"
     />
     <b-card>
       <b-tabs v-model="tabIndex">
         <b-tab title="STATS">
           <graphs
             :time="time"
+            :range="range"
             :filters="filters"
             :page-definitions="stats"
           />
@@ -17,6 +19,7 @@
           <custom-table
             :filters="filters"
             :time="time"
+            :range="range"
             @applyTimer="applyTimer"
           />
         </b-tab>
@@ -24,6 +27,7 @@
           <graphs
             :time="time"
             :filters="filters"
+            :range="range"
             :page-definitions="graphs"
           />
         </b-tab>
@@ -31,6 +35,7 @@
         <b-tab title="SEGMENT">
           <segment
             :time="time"
+            :range="range"
             @select="select"
           />
         </b-tab>
@@ -63,6 +68,7 @@ export default {
   data() {
     return {
       filters: {},
+      range: {},
       tabIndex: 0,
       time: localStorage.getItem(`${this.$route.params.type}timer`),
       segment: null,
@@ -82,7 +88,18 @@ export default {
       this.stats = pageDefination[this.$route.params.type].stats
     },
   },
+  created() {
+    const today = new Date()
+    const priorDate = new Date().setDate(today.getDate() - 30)
+    this.range = {
+      startDate: new Date(priorDate).toISOString(),
+      endDate: today.toISOString(),
+    }
+  },
   methods: {
+    updateRange(data) {
+      this.range = { ...data }
+    },
     updateTable(data) {
       this.filters = { ...data }
     },

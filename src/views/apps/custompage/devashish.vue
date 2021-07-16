@@ -6,6 +6,7 @@
         :key="index"
         :item="item"
         :time="time"
+        :range="range"
         :filters="filters"
       />
     </b-row>
@@ -23,6 +24,10 @@ export default {
   },
   props: {
     filters: {
+      type: Object,
+      default: () => {},
+    },
+    range: {
       type: Object,
       default: () => {},
     },

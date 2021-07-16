@@ -99,6 +99,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    range: {
+      type: Object,
+      default: () => {},
+    },
     time: {
       type: String,
       default: () => '',
@@ -182,6 +186,9 @@ export default {
     async filters() {
       await this.update()
     },
+    async range() {
+      await this.update()
+    },
   },
   async created() {
     if (this.interval) {
@@ -247,6 +254,7 @@ export default {
         skipRowby: ((this.currentPage - 1) * this.pageLength),
         table: this.table,
         filters: this.filters,
+        ...this.range,
       }
       this.loading = true
       const response = await this.$http.post('/analytics-manager/table', data)
@@ -254,6 +262,7 @@ export default {
       const countData = {
         table: this.table,
         filters: this.filters,
+        ...this.range,
       }
       const response2 = await this.$http.post('/analytics-manager/count', countData)
       this.total = Number(response2.data.data.count)
