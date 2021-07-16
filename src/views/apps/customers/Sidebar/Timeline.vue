@@ -1,16 +1,35 @@
 <template>
-    <div>
-      timeline:
-        <p
-          v-for="(key, index) in timeline.data.data"
-          :key="index"
-        >
-          {{ key }}:  {{ timeline.data.data[key] }}
-        </p>
-    </div>
+  <div>
+    <b-card
+      v-for="(event, index) in timeline"
+      :key="index"
+      border-variant="secondary"
+      bg-variant="transparent"
+      class="shadow-none"
+    >
+      <b-card-text>
+        <div class="d-flex justify-content-between">
+          <span>Event</span>
+          <span><strong>{{ event.event_name }}</strong></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Os</span>
+          <span><strong>{{ event.os }}</strong></span>
+        </div>
+      </b-card-text>
+    </b-card>
+  </div>
 </template>
 <script>
+import {
+  BCard, BCardText,
+} from 'bootstrap-vue'
+
 export default {
+  components: {
+    BCard,
+    BCardText,
+  },
   props: {
     customer: {
       type: Object,
@@ -32,7 +51,8 @@ export default {
   methods: {
     async update() {
       if (this.customer) {
-        this.timeline = await this.$http.post('/customer-manager/timeline', { customerId: this.customer.id })
+        const res = await this.$http.post('/customer-manager/timeline', { customerId: this.customer.id })
+        this.timeline = res.data.data
       }
     },
   },

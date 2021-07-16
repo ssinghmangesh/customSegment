@@ -1,5 +1,13 @@
 <template>
   <b-card class="mb-4">
+    <div class="d-flex justify-content-end mb-2">
+      <Calendar
+        element-name="doubleRangePicker"
+        type="double"
+        :format="format"
+        @dateEdit="processDateRange"
+      />
+    </div>
     <b-card-text class="row">
       <b-form-group class="col-sm-3">
         <v-select
@@ -82,6 +90,7 @@ import {
   // BFormInput,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
+import Calendar from 'vue2-baremetrics-calendar'
 // import store from '@/store/index'
 import TypeHandler from './TypeHandler/TypeHandler.vue'
 import SelectedFilters from './SelectedFilters/SelectedFilters.vue'
@@ -93,6 +102,7 @@ export default {
     BCard,
     BCardText,
     BFormGroup,
+    Calendar,
     // BFormInput,
     vSelect,
     BModal,
@@ -116,6 +126,11 @@ export default {
       searchQuery: {},
       selectedFilters: [],
       pageDefination: pageDefination[this.$route.params.type].filters,
+      format: {
+        input: 'MMMM D, YYYY', // Format for the input fields
+        jump_month: 'MMMM', // Format for the month switcher
+        jump_year: 'YYYY', // Format for the year switcher
+      },
     }
   },
   computed: {
@@ -145,6 +160,13 @@ export default {
     },
   },
   methods: {
+    processDateRange(output) {
+      const data = {
+        startDate: (new Date(output[0]).toISOString()),
+        endDate: (new Date(output[1]).toISOString()),
+      }
+      this.$emit('updateRange', data)
+    },
     add(val) {
       this.$refs['add-title'].hide()
       this.$store.commit('segment/addSegment', { title: val, filters: { relation: this.andOr, conditions: this.selectedFilters }, type: this.$route.params.type })

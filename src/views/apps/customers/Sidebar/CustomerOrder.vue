@@ -1,18 +1,44 @@
 <template>
-    <div>
-        <b-card
-          v-for="(order, index) in orders.data.data"
-          :key="index"
-          border-variant="secondary"
-          :title="order.name"
-          bg-variant="transparent"
-          class="shadow-none"
+  <div>
+    <b-card
+      v-for="(order, index) in orders"
+      :key="index"
+      border-variant="secondary"
+      :title="order.name"
+      bg-variant="transparent"
+      class="shadow-none"
+    >
+      <b-card-text>
+        <div class="d-flex justify-content-between">
+          <span>Subtotal</span>
+          <span><strong>{{ order.subtotal_price }}</strong></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Tax</span>
+          <span><strong>{{ order.total_tax }}</strong></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Discount</span>
+          <span><strong>{{ order.total_discounts }}</strong></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Tip</span>
+          <span><strong>{{ order.total_tip_received }}</strong></span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span>Total</span>
+          <span><strong>{{ order.total_price }}</strong></span>
+        </div>
+        <div
+          v-if="order.financial_status === 'paid' || order.financial_status === 'paid'"
+          class="d-flex justify-content-between"
         >
-          <b-card-text>
-            Some quick example text to build on the card title and make up.
-          </b-card-text>
-        </b-card>
-    </div>
+          <span>Paid</span>
+          <span><strong>{{ Number(order.total_price) - Number(order.total_outstanding) }}</strong></span>
+        </div>
+      </b-card-text>
+    </b-card>
+  </div>
 </template>
 <script>
 import {
@@ -45,7 +71,8 @@ export default {
   },
   methods: {
     async update() {
-      this.orders = await this.$http.post('/customer-manager/orders', { customerId: this.customer.id })
+      const res = await this.$http.post('/customer-manager/orders', { customerId: this.customer.id })
+      this.orders = res.data.data
     },
   },
 }
