@@ -37,6 +37,7 @@
         <graph
           :item="statsDefinitions"
           :time="time"
+          :range="range"
           :filters="segment.filters"
         />
       </app-collapse-item>
@@ -69,6 +70,10 @@ export default {
     time: {
       type: String,
       default: () => null,
+    },
+    range: {
+      type: Object,
+      default: () => {},
     },
   },
   data() {

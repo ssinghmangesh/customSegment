@@ -141,6 +141,24 @@
         "limit": "10",
         "skipRowby": "0"
       }
+    },
+    {
+      "type": "ecommerce-transactions",
+      "title": "Taxes Collected by Type",
+      "col": {
+        "default": 12,
+        "md": 4
+      },
+      "data": {
+        "table": "tax",
+        "columnname": "title",
+        "startdate": "2000-01-01 11:49:40.765997+05:30",
+        "enddate": "2021-07-15 11:49:40.765997+05:30",
+        "statsDefinition": {
+          "aggregate": "sum",
+          "columnname": "price"
+        }
+      }
     }
   ],
   "graphs": [

@@ -199,6 +199,22 @@
             "columnname": "distinct order_name",
             "aggregate": "count",
             "alias": "orders_which_include_discount"
+          },
+          {
+            "columnname": "financial_status",
+            "aggregate": "sum",
+            "alias": "total_discount_on_paid_orders",
+            "aggcolumnname": "current_total_discounts",
+            "operator": "=",
+            "value": "paid"
+          },
+          {
+            "columnname": "financial_status",
+            "aggregate": "sum",
+            "alias": "total_discount_on_unpaid_orders",
+            "aggcolumnname": "current_total_discounts",
+            "operator": "=",
+            "value": "pending"
           }
         ]
       }

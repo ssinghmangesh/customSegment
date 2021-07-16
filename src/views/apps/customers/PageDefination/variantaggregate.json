@@ -295,6 +295,65 @@
             }
           ]
         }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Top 5 Variants Sold",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "variantaggregate",
+          "columnname": "title",
+          "orderByDirection": "desc",
+          "limit": "5",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-15 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "quantity_sold"
+          }
+        }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Top 5 Variants in Cart",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "variantaggregate",
+          "columnname": "title",
+          "orderByDirection": "desc",
+          "limit": "5",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-15 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "quantity_in_cart"
+          }
+        }
+      },
+      {
+        "type": "ecommerce-transactions",
+        "title": "Top 5 Variants out of Stock",
+        "col": {
+          "default": 12,
+          "md": 4
+        },
+        "data": {
+          "table": "variantaggregate",
+          "columnname": "title",
+          "limit": "5",
+          "startdate": "2000-01-01 11:49:40.765997+05:30",
+          "enddate": "2021-07-15 11:49:40.765997+05:30",
+          "statsDefinition": {
+            "aggregate": "sum",
+            "columnname": "inventory_quantity"
+          }
+        }
       }
     ],
     "graphs": [],
