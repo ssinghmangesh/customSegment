@@ -42,6 +42,10 @@ export default {
       type: Object,
       required: true,
     },
+    selectedFilter: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
@@ -72,7 +76,7 @@ export default {
     },
     async update() {
       const data = {
-        table: 'variant',
+        table: this.selectedFilter.arrayTable,
         orderBykey: 'id',
       }
       if (this.search) {

@@ -29,6 +29,7 @@
     v-else-if="type === 'array'"
     :applied-values="appliedValues"
     @appliedFilter="appliedFilter"
+    :selected-filter="selectedFilter"
   />
 </template>
 <script>
