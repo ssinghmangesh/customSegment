@@ -367,11 +367,11 @@
               "alias": "revenue"
             },
             {
-              "columnname": "financial_status",
+              "columnname": "fulfillment_status",
               "aggregate": "count",
-              "alias": "paid_orders",
+              "alias": "fulfilled_orders",
               "operator": "=",
-              "value": "paid"
+              "value": "fulfilled"
             }
           ]
         }
