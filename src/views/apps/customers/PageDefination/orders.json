@@ -78,6 +78,22 @@
         "dataType": "numeric",
         "title": "Current Total Price",
         "type": "number"
+      },
+      {
+        "entity": "lineitems",
+        "arrayTable": "product",
+        "title": "Product Purchased",
+        "name": "product_id",
+        "type": "array",
+        "dataType": "numeric[]"
+      },
+      {
+        "entity": "lineitems",
+        "arrayTable": "variant",
+        "title": "Variant Purchased",
+        "name": "variant_id",
+        "type": "array",
+        "dataType": "numeric[]"
       }
     ],
     "columns": [
