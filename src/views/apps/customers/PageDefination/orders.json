@@ -347,6 +347,88 @@
             "columnname": "processing_method"
           }
         }
+      },
+      {
+        "type": "analytics-support-tracker",
+        "title": "Order Statistics",
+        "col": {
+          "default": 12,
+          "md": 6
+        },
+        "data": {
+          "table": "order",
+          "statsDefinition": [
+            {
+              "columnname": "*",
+              "aggregate": "count",
+              "alias": "total"
+            },
+            {
+              "columnname": "financial_status",
+              "aggregate": "count",
+              "alias": "unpaid_orders",
+              "operator": "=",
+              "value": "pending"
+            }, 
+            {
+              "columnname": "fulfillment_status",
+              "aggregate": "count",
+              "alias": "unfulfilled_orders",
+              "operator": "=",
+              "value": ["unfulfilled", "partial"]
+            },
+            {
+              "columnname": "total_price",
+              "aggregate": "sum",
+              "alias": "revenue"
+            },
+            {
+              "columnname": "fulfillment_status",
+              "aggregate": "count",
+              "alias": "fulfilled_orders",
+              "operator": "=",
+              "value": "fulfilled"
+            }
+          ]
+        }
+      },
+      {
+        "type": "analytics-avg-sessions",
+        "title": "Revenue",
+        "col": {
+          "default": 12,
+          "md": 6
+        },
+        "data": {
+          "table": "order",
+          "statsDefinition": [
+            {
+              "columnname": "total_price",
+              "aggregate": "sum",
+              "alias": "revenue"
+            }, 
+            {
+              "columnname": "subtotal_price",
+              "aggregate": "sum",
+              "alias": "subtotal"
+            },
+            {
+              "columnname": "total_tax",
+              "aggregate": "sum",
+              "alias": "taxes_collected"
+            },
+            {
+              "columnname": "total_discounts",
+              "aggregate": "sum",
+              "alias": "discounts"
+            }, 
+            {
+              "columnname": "total_tip_received",
+              "aggregate": "sum",
+              "alias": "tip"
+            }
+          ]
+        }
       }
     ],
     "graphs": [     
