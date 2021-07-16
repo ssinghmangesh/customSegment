@@ -110,7 +110,7 @@
     <ecommerce-company-table
       v-else-if="graphType === 'ecommerce-company-table'"
       :fields="item.fields"
-      :table-data="data"
+      :table-data="series"
       :title="item.title"
     />
   </b-col>
@@ -927,7 +927,7 @@ export default {
         // }
       } else if (this.graphType === 'ecommerce-company-table') {
         const response = await this.$http.post('/analytics-manager/table', { ...this.item.data, filters: this.filters, ...this.range })
-        this.data = [...response.data.data]
+        this.series = [...response.data.data]
       } else if (this.graphType === 'ecommerce-transactions') {
         const response = await this.$http.post('/analytics-manager/pie-chart', { ...this.item.data, filters: this.filters, ...this.range })
         const data1 = []

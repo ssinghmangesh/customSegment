@@ -5,42 +5,40 @@
       @updateTable="updateTable"
       @updateRange="updateRange"
     />
-    <b-card>
-      <b-tabs v-model="tabIndex">
-        <b-tab title="STATS">
-          <graphs
-            :time="time"
-            :range="range"
-            :filters="filters"
-            :page-definitions="stats"
-          />
-        </b-tab>
-        <b-tab title="RAW DATA">
-          <custom-table
-            :filters="filters"
-            :time="time"
-            :range="range"
-            @applyTimer="applyTimer"
-          />
-        </b-tab>
-        <b-tab title="GRAPH">
-          <graphs
-            :time="time"
-            :filters="filters"
-            :range="range"
-            :page-definitions="graphs"
-          />
-        </b-tab>
+    <b-tabs v-model="tabIndex">
+      <b-tab title="STATS">
+        <graphs
+          :time="time"
+          :range="range"
+          :filters="filters"
+          :page-definitions="stats"
+        />
+      </b-tab>
+      <b-tab title="RAW DATA">
+        <custom-table
+          :filters="filters"
+          :time="time"
+          :range="range"
+          @applyTimer="applyTimer"
+        />
+      </b-tab>
+      <b-tab title="GRAPH">
+        <graphs
+          :time="time"
+          :filters="filters"
+          :range="range"
+          :page-definitions="graphs"
+        />
+      </b-tab>
 
-        <b-tab title="SEGMENT">
-          <segment
-            :time="time"
-            :range="range"
-            @select="select"
-          />
-        </b-tab>
-      </b-tabs>
-    </b-card>
+      <b-tab title="SEGMENT">
+        <segment
+          :time="time"
+          :range="range"
+          @select="select"
+        />
+      </b-tab>
+    </b-tabs>
   </div>
 </template>
 

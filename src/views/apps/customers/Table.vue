@@ -42,7 +42,7 @@
       right
       backdrop
       shadow
-      width="500px"
+      width="600px"
       @change="hide"
     >
       <sidebar-content
