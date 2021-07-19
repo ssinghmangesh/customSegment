@@ -28,6 +28,16 @@
     </b-card-header>
 
     <b-card-body>
+      <v-select
+        v-if="table === 'lineitems'"
+        v-model="selected"
+        class="bg-white"
+        :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
+        multiple
+        label="name"
+        :options="options"
+        @search="search"
+      />
       <vue-apex-charts
         type="line"
         height="400"
@@ -43,10 +53,12 @@ import {
   BCard, BCardBody, BCardHeader, BCardTitle, BCardSubTitle, BBadge,
 } from 'bootstrap-vue'
 import VueApexCharts from 'vue-apexcharts'
+import vSelect from 'vue-select'
 import apexChatData from './apexChartData'
 
 export default {
   components: {
+    vSelect,
     VueApexCharts,
     BCardHeader,
     BCard,
@@ -57,6 +69,10 @@ export default {
   },
   props: {
     title: {
+      type: String,
+      default: () => '',
+    },
+    table: {
       type: String,
       default: () => '',
     },
@@ -79,8 +95,42 @@ export default {
   },
   data() {
     return {
+      selected: [],
       apexChatData,
+      options: [],
+      timer: null,
     }
+  },
+  watch: {
+    selected() {
+      this.$emit('updateIdArray', this.selected)
+    },
+  },
+  created() {
+    this.update()
+  },
+  methods: {
+    search(val) {
+      const filters = {
+        relation: 'AND',
+        columnName: 'product_and_variant',
+        filterType: 'contains',
+        dataType: 'varchar',
+        values: [val],
+      }
+      if (this.timer) {
+        clearTimeout(this.timer)
+        this.timer = null
+      }
+      this.timer = setTimeout(() => this.update(filters), 500)
+    },
+    async update(filters = {}) {
+      const res = await this.$http.post('analytics-manager/table', { table: 'variantaggregate', filters, limit: '7' })
+      this.options = res.data.data.map(variant => ({
+        name: variant.product_and_variant,
+        id: variant.id,
+      }))
+    },
   },
 }
 </script>
