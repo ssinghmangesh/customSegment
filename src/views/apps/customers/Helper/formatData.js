@@ -22,7 +22,7 @@ class formatData {
       'subtotal_price', 'total_duties', 'total_amount_spent', 'total_spent', 'current_total_discounts',
       'current_total_price', 'current_subtotal_price', 'current_total_tax', 'total_outstanding', 'total_tip_received',
       'discounted_price', 'line_price', 'original_line_price', 'original_price', 'price', 'variant_price', 'compare_at_price',
-      'avg_order_price', 'compare_at_price', 'revenue', 'taxes_collected', 'total_tax_amount', 'IGST']
+      'avg_order_price', 'compare_at_price', 'revenue', 'taxes_collected', 'total_tax_amount', 'IGST', 'average_customer_lifetime', 'average_order']
     return keys.includes(key)
   }
 

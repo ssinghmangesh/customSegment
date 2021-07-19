@@ -312,6 +312,11 @@
               "alias": "customers_with_unpaid_orders",
               "operator": ">",
               "value": 0
+            },
+            {
+              "columnname": "total_amount_spent",
+              "aggregate": "avg",
+              "alias": "average_customer_lifetime"
             }
           ]
         }

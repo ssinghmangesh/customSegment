@@ -305,7 +305,7 @@
         },
         "data": {
           "table": "variantaggregate",
-          "columnname": "title",
+          "columnname": "product_and_variant",
           "orderByDirection": "desc",
           "limit": "5",
           "startdate": "2000-01-01 11:49:40.765997+05:30",
@@ -325,7 +325,7 @@
         },
         "data": {
           "table": "variantaggregate",
-          "columnname": "title",
+          "columnname": "product_and_variant",
           "orderByDirection": "desc",
           "limit": "5",
           "startdate": "2000-01-01 11:49:40.765997+05:30",
@@ -345,7 +345,7 @@
         },
         "data": {
           "table": "variantaggregate",
-          "columnname": "title",
+          "columnname": "product_and_variant",
           "limit": "5",
           "startdate": "2000-01-01 11:49:40.765997+05:30",
           "enddate": "2021-07-15 11:49:40.765997+05:30",
@@ -356,7 +356,26 @@
         }
       }
     ],
-    "graphs": [],
+    "graphs": [
+      {
+        "type": "apex-line-chart",
+        "title": "Quantity Sold",
+        "graphCatergory": "line",
+        "col": {
+          "default": 12,
+          "md": 12
+        },
+        "curve": "smooth",
+        "data": [{
+          "table": "lineitems",
+          "groupBykey": "date",
+          "statsDefinition": {
+            "aggregate": "count",
+            "columnname": "variant_id"
+          }
+        }]
+      }
+    ],
     "segments": []
 
   }

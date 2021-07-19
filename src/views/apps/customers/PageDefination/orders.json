@@ -214,6 +214,11 @@
               "alias": "unfulfilled_orders",
               "operator": "=",
               "value": ["unfulfilled", "partial"]
+            },
+            {
+              "columnname": "total_price",
+              "aggregate": "avg",
+              "alias": "average_order"
             }
           ]
         }
