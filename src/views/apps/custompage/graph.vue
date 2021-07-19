@@ -25,7 +25,9 @@
       :title="item.title"
       :subtitle="item.subtitle"
       :change="10"
+      :table="item.data[0].table"
       :data="lineChart"
+      @updateIdArray="updateIdArray"
     />
     <apex-bar-chart
       v-else-if="graphType === 'apex-bar-chart'"
@@ -231,6 +233,7 @@ export default {
       colors: [],
       total: '',
       interval: null,
+      idArray: [],
     }
   },
   computed: {
@@ -636,6 +639,7 @@ export default {
               show: false,
             },
           },
+          offsetX: 0,
           xaxis: {
             type: 'datetime',
           },
@@ -903,6 +907,10 @@ export default {
     this.update()
   },
   methods: {
+    updateIdArray(val) {
+      this.idArray = [...val]
+      this.update()
+    },
     async update() {
       this.data = {}
       this.series = []
@@ -917,17 +925,26 @@ export default {
         })
       } else if (this.graphType === 'apex-line-chart') {
         /* eslint-disable */
-        for (let i = 0; i < this.item.data.length; i++) {
-          const response = await this.$http.post('/analytics-manager/line-graph', { ...this.item.data[i], filters: this.filters, ...this.range })
-            const data = response.data.data.current.map(value => ({
-              x: value.x,
-              y: value.y,
-            }))
-            this.series.push({
-              name: this.formatter.snakeCaseToNormalText(this.item.data[i].statsDefinition.columnname),
-              type: this.item.graphCatergory,
-              data,
-            })
+        if(this.item.data[0].table === 'lineitems'){
+          const response = await this.$http.post('/analytics-manager/line-graph-specific', { ...this.item.data[0], filters: this.filters, ...this.range, idArray: this.idArray, columnname: 'variant_id'  })
+          this.series = response.data.data.current.map(value => ({
+              data: value.data.map(item => ({ x: item.x.slice(0,10), y: item.y})),
+              name: value.name,
+              type: this.item.graphCategory,
+          }))
+       } else {
+          for (let i = 0; i < this.item.data.length; i++) {
+              const response = await this.$http.post('/analytics-manager/line-graph', { ...this.item.data[i], filters: this.filters, ...this.range })
+              const data = response.data.data.current.map(value => ({
+                x: value.x,
+                y: value.y,
+              }))
+              this.series.push({
+                name: this.formatter.snakeCaseToNormalText(this.item.data[i].statsDefinition.columnname),
+                type: this.item.graphCatergory,
+                data,
+              })
+          }
         }
         // if (response.data.data.previous) {
         //   data = response.data.data.previous.map(value => ({
