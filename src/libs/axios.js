@@ -11,7 +11,7 @@ const axiosIns = axios.create({
   baseURL: 'https://cs-service.herokuapp.com/',
   // baseURL: 'http://localhost:3000/',
 })
-https://cs-service.herokuapp.com/
+
 Vue.prototype.$http = axiosIns
 
 export default axiosIns
