@@ -20,15 +20,26 @@
       >
         <div class="d-flex justify-content-end">
           <b-button
+            v-if="type === 'customers'"
+            class="mr-1"
+            variant="primary"
+            :disabled="loading"
+            @click="() => sync(segment)"
+          >
+            Sync
+          </b-button>
+          <b-button
             v-if="!segment.default"
             class="mr-1"
             variant="danger"
+            :disabled="loading"
             @click="() => openModal(segment.segment_id)"
           >
             Delete Segment
           </b-button>
           <b-button
             variant="primary"
+            :disabled="loading"
             @click="() => select(segment.filters)"
           >
             Apply Filter
@@ -79,6 +90,7 @@ export default {
   data() {
     return {
       segmentId: '',
+      loading: false,
     }
   },
   computed: {
@@ -119,6 +131,17 @@ export default {
     },
     removeSegmentId() {
       this.segmentId = ''
+    },
+    async sync(val) {
+      this.loading = true
+      try {
+        await this.$http.post('/klaviyo-manager/sync', {
+          segment: val,
+        })
+        this.loading = false
+      } catch {
+        this.loading = false
+      }
     },
   },
 }

@@ -431,6 +431,7 @@
     "segments": [
       {
         "title": "Lead",
+        "segment_id": 133563,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -448,6 +449,7 @@
       },
       {
         "title": "One Time Customer",
+        "segment_id": 133562,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -465,6 +467,7 @@
       },
       {
         "title": "Repeat Customer",
+        "segment_id": 133561,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -482,6 +485,7 @@
       },
       {
         "title": "Loyal Customer",
+        "segment_id": 133568,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -499,6 +503,7 @@
       },
       {
         "title": "Risky Customer",
+        "segment_id": 133569,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -517,6 +522,7 @@
       {
         "title": "Active Weekly",
         "default": true,
+        "segment_id": 133567,
         "filters": {
           "relation": "AND",
           "conditions": [
@@ -533,6 +539,7 @@
       },
       {
         "title": "Active Monthly",
+        "segment_id": 133566,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -550,6 +557,7 @@
       },
       {
         "title": "At Risk",
+        "segment_id": 133564,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -567,6 +575,7 @@
       },
       {
         "title": "Discount Lover",
+        "segment_id": 13356,
         "default": true,
         "filters": {
           "relation": "AND",
@@ -584,6 +593,7 @@
       },
       {
         "title": "Wholesale Buyer",
+        "segment_id": 5264789,
         "default": true,
         "filters": {
           "relation": "AND",
