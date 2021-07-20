@@ -30,4 +30,9 @@ export default [
     icon: 'LinkIcon',
     route: 'connect-store',
   },
+  {
+    title: 'Integrations',
+    icon: 'LinkIcon',
+    route: 'integrations',
+  },
 ]

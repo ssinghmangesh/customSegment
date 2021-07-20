@@ -19,4 +19,9 @@ export default [
     name: 'connect-store',
     component: () => import('@/views/apps/ConnectStore/ConnectStore.vue'),
   },
+  {
+    path: '/integrations',
+    name: 'integrations',
+    component: () => import('@/views/apps/integrations/Integration.vue'),
+  },
 ]
