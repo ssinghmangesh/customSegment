@@ -274,7 +274,7 @@ export default {
     }
   },
   async created() {
-    const socket = io('https://custom-segment-socket.herokuapp.com/workspace')
+    const socket = io('https://cs-socket-service.herokuapp.com//workspace')
     socket.on('connect', () => {
       socket.emit('workspaceId', 56788582584)
     })
