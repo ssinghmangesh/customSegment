@@ -148,6 +148,18 @@
         "dataType": "numeric"
       },
       {
+        "title": "Discount Lover",
+        "name": "discount_lover",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
+        "title": "Wholesale Buyer",
+        "name": "wholesale_buyer",
+        "type": "number",
+        "dataType": "numeric"
+      },
+      {
         "title": "First Order At",
         "name": "first_order_at",
         "type": "timestamptz",
@@ -498,6 +510,91 @@
               "title": "Last Order At",
               "type": "timestamptz",
               "values": [30, ""]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Active Weekly",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "last_seen",
+              "dataType": "timestamptz",
+              "filterType": "greater_than",
+              "title": "Last Seen",
+              "type": "timestamptz",
+              "values": [7, ""]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Active Monthly",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "last_seen",
+              "dataType": "timestamptz",
+              "filterType": "greater_than",
+              "title": "Last Seen",
+              "type": "timestamptz",
+              "values": [30, ""]
+            }
+          ]
+        }
+      },
+      {
+        "title": "At Risk",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "last_seen",
+              "dataType": "timestamptz",
+              "filterType": "less_than",
+              "title": "Last Seen",
+              "type": "timestamptz",
+              "values": [60, ""]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Discount Lover",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "discount_lover",
+              "dataType": "numeric",
+              "filterType": "greater_than",
+              "title": "Discount Lover",
+              "type": "number",
+              "values": ["80", ""]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Wholesale Buyer",
+        "default": true,
+        "filters": {
+          "relation": "AND",
+          "conditions": [
+            {
+              "columnName": "wholesale_buyer",
+              "dataType": "numeric",
+              "filterType": "greater_than",
+              "title": "Wholesale Buyer",
+              "type": "number",
+              "values": ["5", ""]
             }
           ]
         }
