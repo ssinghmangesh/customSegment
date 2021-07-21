@@ -80,7 +80,7 @@
           {{ data[1].key }}: {{ data[1].value }}
         </b-card-text>
         <b-progress
-          value="50"
+          :value="series[0].data[0]"
           max="100"
           height="6px"
         />
@@ -93,7 +93,7 @@
           {{ data[2].key }}: {{ data[2].value }}
         </b-card-text>
         <b-progress
-          value="60"
+          :value="series[0].data[1]"
           max="100"
           height="6px"
           variant="warning"
@@ -104,7 +104,7 @@
           {{ data[3].key }}: {{ data[3].value }}
         </b-card-text>
         <b-progress
-          value="70"
+          :value="series[0].data[2]"
           max="100"
           height="6px"
           variant="danger"
@@ -116,7 +116,7 @@
           {{ data[4].key }}: {{ data[4].value }}
         </b-card-text>
         <b-progress
-          value="90"
+          :value="series[0].data[3]"
           max="100"
           variant="success"
           height="6px"
@@ -182,12 +182,10 @@ export default {
             },
           },
           colors: [
-            '#ebf0f7',
-            '#ebf0f7',
             $themeColors.primary,
-            '#ebf0f7',
-            '#ebf0f7',
-            '#ebf0f7',
+            $themeColors.warning,
+            $themeColors.danger,
+            $themeColors.success,
           ],
           plotOptions: {
             bar: {
@@ -206,12 +204,22 @@ export default {
       },
       series: [
         {
-          name: 'Sessions',
-          data: [75, 125, 225, 175, 125, 75, 25],
+          name: ['Subtotal', 'taxes'],
+          data: [0, 0, 0, 0],
         },
       ],
       lastDays: ['Last 28 Days', 'Last Month', 'Last Year'],
     }
+  },
+  watch: {
+    data() {
+      console.log(this.data[3].value, this.data[0].value, this.data[3].value / this.data[0].value)
+      this.series = [
+        {
+          data: this.data.slice(1).map(item => ((item.value / this.data[0].value) * 100).toFixed(1)),
+        },
+      ]
+    },
   },
   methods: {
     kFormatter,
