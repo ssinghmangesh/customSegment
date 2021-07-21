@@ -1,7 +1,7 @@
 <template>
   <b-card
     v-if="data"
-    class="card-transaction"
+    class="card-transaction card-transaction-height"
     no-body
   >
     <b-card-header>
@@ -100,3 +100,8 @@ export default {
   },
 }
 </script>
+<style>
+.card-transaction-height {
+  height: calc(100% - 2rem);
+}
+</style>

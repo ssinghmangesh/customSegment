@@ -19,6 +19,14 @@ export const getIcon = (key) => {
         return 'ThumbsDownIcon'
     } else if(key === 'cancelled_orders') {
         return 'ThumbsDownIcon'
+    } else if(key === 'taxes_collected') {
+        return 'ActivityIcon'
+    } else if(key === 'discounts'){
+        return 'BarChartIcon'
+    } else if(key === 'refended_orders'){
+        return 'TrelloIcon'
+    } else if(key === 'discounts'){
+        return 'BarChartIcon'
     }
 
     

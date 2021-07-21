@@ -4,7 +4,8 @@
       <b-col
         v-for="(integration, index) in integrations"
         :key="index"
-        cols="4"
+        :cols="12"
+        :md="4"
       >
         <b-card
           :title="integration.title"
