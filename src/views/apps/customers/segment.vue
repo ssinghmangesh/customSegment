@@ -58,6 +58,9 @@
       @hidden="hidden">
       <span>{{ error }}</span>
     </b-toast>
+    <sync
+      :selected="selected"
+    />
   </b-card>
 </template>
 
@@ -66,10 +69,12 @@ import { BToast, BCard, BButton } from 'bootstrap-vue'
 import AppCollapse from '@core/components/app-collapse/AppCollapse.vue'
 import AppCollapseItem from '@core/components/app-collapse/AppCollapseItem.vue'
 import Graph from '@/views/apps/custompage/graph.vue'
+import sync from './sync.vue'
 import { pageDefination } from './PageDefination/index'
 
 export default {
   components: {
+    sync,
     BToast,
     BCard,
     AppCollapse,
@@ -91,6 +96,7 @@ export default {
     return {
       segmentId: '',
       loading: false,
+      selected: null,
     }
   },
   computed: {
@@ -133,15 +139,8 @@ export default {
       this.segmentId = ''
     },
     async sync(val) {
-      this.loading = true
-      try {
-        await this.$http.post('/klaviyo-manager/sync', {
-          segment: val,
-        })
-        this.loading = false
-      } catch {
-        this.loading = false
-      }
+      this.selected = val
+      this.$bvModal.show('sync')
     },
   },
 }
