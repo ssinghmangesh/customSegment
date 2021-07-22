@@ -89,7 +89,6 @@ export default {
     },
     async created() {
         let res = await this.$http.post('/user-manager/workspace/fetch');
-        console.log(res);
         if (res.data.data.Item.klaviyoData) {
             this.options.push('Klaviyo')
         }

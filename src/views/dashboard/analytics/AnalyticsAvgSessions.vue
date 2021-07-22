@@ -213,7 +213,6 @@ export default {
   },
   watch: {
     data() {
-      console.log(this.data[3].value, this.data[0].value, this.data[3].value / this.data[0].value)
       this.series = [
         {
           data: this.data.slice(1).map(item => ((item.value / this.data[0].value) * 100).toFixed(1)),
