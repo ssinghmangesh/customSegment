@@ -14,6 +14,13 @@
           :page-definitions="stats"
         />
       </b-tab>
+      <b-tab title="SEGMENT">
+        <segment
+          :time="time"
+          :range="range"
+          @select="select"
+        />
+      </b-tab>
       <b-tab title="RAW DATA">
         <custom-table
           :filters="filters"
@@ -28,14 +35,6 @@
           :filters="filters"
           :range="range"
           :page-definitions="graphs"
-        />
-      </b-tab>
-
-      <b-tab title="SEGMENT">
-        <segment
-          :time="time"
-          :range="range"
-          @select="select"
         />
       </b-tab>
     </b-tabs>

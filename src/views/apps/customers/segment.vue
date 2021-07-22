@@ -65,7 +65,9 @@
 </template>
 
 <script>
-import { BToast, BCard, BButton } from 'bootstrap-vue'
+import {
+  BToast, BCard, BButton,
+} from 'bootstrap-vue'
 import AppCollapse from '@core/components/app-collapse/AppCollapse.vue'
 import AppCollapseItem from '@core/components/app-collapse/AppCollapseItem.vue'
 import Graph from '@/views/apps/custompage/graph.vue'
