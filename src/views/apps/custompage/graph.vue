@@ -1015,7 +1015,7 @@ export default {
         Object.keys(res.data.data).forEach(key => {
           data1.push({
             key: this.formatter.snakeCaseToNormalText(key),
-            value: this.formatter.transform({ key, value: res.data.data[key] }),
+            value: Number(res.data.data[key]),
           })
         })
         this.series = [...data1]

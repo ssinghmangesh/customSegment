@@ -162,8 +162,8 @@ export default {
   methods: {
     processDateRange(output) {
       const data = {
-        startDate: (new Date(output[0]).toISOString()),
-        endDate: (new Date(output[1]).toISOString()),
+        startdate: (new Date(output[0]).toISOString()),
+        enddate: (new Date(output[1]).toISOString()),
       }
       this.$emit('updateRange', data)
     },
