@@ -45,8 +45,7 @@ axiosIns.interceptors.response.use(response => response, err => {
     }
     originalRequest._retry = true;
     isRefreshing = true;
-    
-    console.log('retry');
+
     return new Promise(function(resolve, reject) {
         axios
             .post('https://cs-service.herokuapp.com/refresh', {
