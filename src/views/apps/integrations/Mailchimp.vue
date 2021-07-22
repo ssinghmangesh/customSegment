@@ -11,9 +11,10 @@
       <b-button
         variant="outline-primary"
         class="w-100"
+        :disabled="connected"
         @click="() => openModal()"
       >
-        Connect
+        {{ connected ? 'Connected': 'Connect' }}
       </b-button>
     </b-card>
 
@@ -27,6 +28,7 @@
         Mailchimp
       </p>
       <b-button
+        :disabled="loading"
         @click="signin"
       >
         Connect
@@ -47,10 +49,17 @@ import {BCard, BButton, BCardText, BCardHeader, BModal } from 'bootstrap-vue'
         BButton,
         BModal,
     },
+    props: {
+      connected: {
+        type: Boolean,
+        default: () => false
+      },
+    },
     data() {
         return {
             loading: false,
             error: null,
+            win: null,
         }
     },
     methods: {
@@ -61,14 +70,22 @@ import {BCard, BButton, BCardText, BCardHeader, BModal } from 'bootstrap-vue'
             this.$bvModal.hide('klaviyo')
         },
         signin() {
-            // window.removeEventListener('message', receiveMessage);
-            const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100';
-            
-            windowObjectReference = window.open('http://localhost:3000/auth/mailchimp', 'name', strWindowFeatures);
-
-   // add the listener for receiving a message from the popup
-            // window.addEventListener('message', event => receiveMessage(event), false);
+          window.location.replace('https://cs-service.herokuapp.com/auth/mailchimp')
         },
+    },
+    async created() {
+      const code = this.$route.query.code
+      if(code) {
+        this.loading = true
+        this.$bvModal.show('mailchimp')
+        await this.$http.post('/oauth/mailchimp/connect', {
+          code
+        })
+        this.$router.replace({'query': null});
+        this.$bvModal.hide('mailchimp')
+        this.loading = false
+        this.$emit('update')
+      }
     }
  }
  </script>

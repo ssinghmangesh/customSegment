@@ -4,12 +4,18 @@
       <b-col
         cols="3"
       >
-        <klaviyo />
+        <klaviyo
+          :connected="integrations.includes('Klaviyo')"
+          @update="update"
+        />
       </b-col>
       <b-col
         cols="3"
       >
-        <mailchimp />
+        <mailchimp
+          :connected="integrations.includes('Mailchimp')"
+          @update="update"
+        />
       </b-col>
     </b-row>
   </div>
@@ -28,5 +34,24 @@ import Mailchimp from './Mailchimp.vue'
         BCol,
         Mailchimp,
     },
+    data() {
+      return {
+        integrations: [],
+      }
+    },
+    methods: {
+      async update() {
+        let res = await this.$http.post('/user-manager/workspace/fetch');
+        if (res.data.data.Item.klaviyoData) {
+            this.integrations.push('Klaviyo')
+        }
+        if (res.data.data.Item.mailchimpData) {
+            this.integrations.push('Mailchimp')
+        }
+      }
+    },
+    created() {
+      this.update()
+    }
  }
  </script>
