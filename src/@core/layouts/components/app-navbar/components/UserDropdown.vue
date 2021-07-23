@@ -140,7 +140,8 @@ export default {
     }
   },
   methods: {
-    logout() {
+    async logout() {
+      await this.$http.post('/auth-manager/logout')
       localStorage.removeItem('workspaceId')
       localStorage.removeItem('workspaceName')
       localStorage.removeItem('userId')

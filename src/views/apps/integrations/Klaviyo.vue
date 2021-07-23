@@ -11,9 +11,10 @@
       <b-button
         variant="outline-primary"
         class="w-100"
+        :disabled="connected"
         @click="() => openModal()"
       >
-        Connect
+        {{ connected ? 'Connected': 'Connect' }}
       </b-button>
     </b-card>
 
@@ -94,6 +95,12 @@ import { BForm, BFormGroup, BFormInput, BCard, BButton, BCardText, BCardHeader, 
         BButton,
         BModal,
     },
+    props: {
+      connected: {
+        type: Boolean,
+        default: () => false
+      },
+    },
     data() {
         return {
             publicKey: '',
@@ -115,6 +122,7 @@ import { BForm, BFormGroup, BFormInput, BCard, BButton, BCardText, BCardHeader, 
                     privateKey: this.privateKey
                 })
                 this.$bvModal.hide('klaviyo')
+                this.$emit('update')
             }catch{
                 this.error = 'Cannot Connect'
             }
