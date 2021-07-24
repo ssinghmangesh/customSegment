@@ -61,8 +61,11 @@ axiosIns.interceptors.response.use(response => response, err => {
             .catch(err => {
                 processQueue(null);
                 // store.dispatch(showMessage({ message: 'Expired Token' }));
-
                 reject(err);
+                localStorage.removeItem('userId')
+                // html = document.getElementById("login").innerHTML
+                window.location.replace('/login')
+                // window.location.assign('/login')
             })
             .then(() => {
                 isRefreshing = false;
