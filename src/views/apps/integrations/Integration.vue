@@ -19,6 +19,15 @@
           @update="update"
         />
       </b-col>
+      <b-col
+        md="4"
+        sm="6"
+      >
+        <drip
+          :connected="integrations.includes('Drip')"
+          @update="update"
+        />
+      </b-col>
     </b-row>
   </div>
 </template>
@@ -28,6 +37,7 @@
 import Klaviyo from './Klaviyo.vue'
 import { BRow, BCol } from 'bootstrap-vue'
 import Mailchimp from './Mailchimp.vue'
+import Drip from './Drip.vue'
 
  export default {
     components: {
@@ -35,6 +45,7 @@ import Mailchimp from './Mailchimp.vue'
         BRow,
         BCol,
         Mailchimp,
+        Drip
     },
     data() {
       return {
@@ -50,6 +61,9 @@ import Mailchimp from './Mailchimp.vue'
         }
         if (res.data.data.Item.mailchimpData && Object.keys(res.data.data.Item.mailchimpData).length !== 0) {
             this.integrations = [ ...this.integrations, 'Mailchimp']
+        }
+        if (res.data.data.Item.dripData && Object.keys(res.data.data.Item.dripData).length !== 0) {
+            this.integrations = [ ...this.integrations, 'Drip']
         }
       }
     },
