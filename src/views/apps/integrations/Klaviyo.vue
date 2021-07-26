@@ -1,5 +1,35 @@
 <template>
   <div>
+    <b-modal
+      id="klaviyo-delete"
+      title="Integraions"
+      centered
+      :hide-footer="true"
+    >
+      <p class="fs-3">
+        Do you want to disconnect Klaviyo.
+      </p>
+      <p>
+        <small
+          class="text-danger"
+        >
+          {{ error }}
+        </small>
+      </p>
+      <b-button
+        class="mr-1"
+        variant="success"
+        size="sm"
+        :disabled="loading"
+        @click="disconnect"
+      >Yes</b-button>
+      <b-button
+        :disabled="loading"
+        size="sm"
+        @click="$bvModal.hide('klaviyo-delete')"
+      >No</b-button>
+    </b-modal>
+
     <b-card
       title="Klaviyo"
     >
@@ -11,7 +41,6 @@
       <b-button
         variant="outline-primary"
         class="w-100"
-        :disabled="connected"
         @click="() => openModal()"
       >
         {{ connected ? 'Connected': 'Connect' }}
@@ -20,7 +49,7 @@
 
     <b-modal
       id="klaviyo"
-      title="Integraions"
+      title="Integrations"
       centered
       :hide-footer="true"
     >
@@ -83,6 +112,7 @@
 <script>
 /*eslint-disable*/
 import { BForm, BFormGroup, BFormInput, BCard, BButton, BCardText, BCardHeader, BModal } from 'bootstrap-vue'
+import { disconnect } from 'echarts/lib/echarts'
 
  export default {
     components: {
@@ -111,7 +141,22 @@ import { BForm, BFormGroup, BFormInput, BCard, BButton, BCardText, BCardHeader, 
     },
     methods: {
         openModal() {
+          if(this.connected) {
+            this.$bvModal.show('klaviyo-delete')
+          }else{
             this.$bvModal.show('klaviyo')
+          }
+        },
+        async disconnect() {
+          this.loading = true
+            try{
+                await this.$http.post('/klaviyo-manager/workspace/delete')
+                this.$bvModal.hide('klaviyo-delete')
+                this.$emit('update')
+            }catch{
+                this.error = 'Cannot Disconnect'
+            }
+            this.loading=false
         },
         async onSubmit(event) {
             event.preventDefault()

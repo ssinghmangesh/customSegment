@@ -2,7 +2,8 @@
   <div>
     <b-row>
       <b-col
-        cols="3"
+        md="4"
+        sm="6"
       >
         <klaviyo
           :connected="integrations.includes('Klaviyo')"
@@ -10,7 +11,8 @@
         />
       </b-col>
       <b-col
-        cols="3"
+        md="4"
+        sm="6"
       >
         <mailchimp
           :connected="integrations.includes('Mailchimp')"
@@ -41,12 +43,13 @@ import Mailchimp from './Mailchimp.vue'
     },
     methods: {
       async update() {
+        this.integrations = []
         let res = await this.$http.post('/user-manager/workspace/fetch');
-        if (res.data.data.Item.klaviyoData) {
-            this.integrations.push('Klaviyo')
+        if (res.data.data.Item.klaviyoData && Object.keys(res.data.data.Item.klaviyoData).length !== 0) {
+            this.integrations = [ ...this.integrations, 'Klaviyo']
         }
-        if (res.data.data.Item.mailchimpData) {
-            this.integrations.push('Mailchimp')
+        if (res.data.data.Item.mailchimpData && Object.keys(res.data.data.Item.mailchimpData).length !== 0) {
+            this.integrations = [ ...this.integrations, 'Mailchimp']
         }
       }
     },

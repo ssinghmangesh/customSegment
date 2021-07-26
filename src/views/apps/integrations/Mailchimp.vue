@@ -1,5 +1,34 @@
 <template>
   <div>
+    <b-modal
+      id="mailchimp-delete"
+      title="Integraions"
+      centered
+      :hide-footer="true"
+    >
+      <p class="fs-3">
+        Do you want to disconnect Klaviyo.
+      </p>
+      <p>
+        <small
+          class="text-danger"
+        >
+          {{ error }}
+        </small>
+      </p>
+      <b-button
+        class="mr-1"
+        variant="success"
+        size="sm"
+        :disabled="loading"
+        @click="disconnect"
+      >Yes</b-button>
+      <b-button
+        :disabled="loading"
+        size="sm"
+        @click="$bvModal.hide('mailchimp-delete')"
+      >No</b-button>
+    </b-modal>
     <b-card
       title="Mailchimp"
     >
@@ -11,7 +40,6 @@
       <b-button
         variant="outline-primary"
         class="w-100"
-        :disabled="connected"
         @click="() => openModal()"
       >
         {{ connected ? 'Connected': 'Connect' }}
@@ -64,13 +92,28 @@ import {BCard, BButton, BCardText, BCardHeader, BModal } from 'bootstrap-vue'
     },
     methods: {
         openModal() {
+          if(this.connected){
+            this.$bvModal.show('mailchimp-delete')
+          }else{
             this.$bvModal.show('mailchimp')
+          }
         },
         onCancel() {
             this.$bvModal.hide('klaviyo')
         },
         signin() {
           window.location.replace('https://cs-service.herokuapp.com/auth/mailchimp')
+        },
+        async disconnect() {
+          this.loading = true
+            try{
+                await this.$http.post('/mailchimp-manager/workspace/delete')
+                this.$bvModal.hide('mailchimp-delete')
+                this.$emit('update')
+            }catch{
+                this.error = 'Cannot Disconnect'
+            }
+            this.loading=false
         },
     },
     async created() {
