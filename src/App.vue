@@ -111,14 +111,15 @@ export default {
   async created() {
     if (localStorage.getItem('userId') === null) {
       this.$router.push('/login')
-    }
-    this.loading = true
-    try {
-      this.$store.commit('segment/getSegments')
-      this.$store.commit('workspace/getWorkspaces')
-      this.loading = false
-    } catch {
-      this.loading = false
+    } else {
+      this.loading = true
+      try {
+        this.$store.commit('segment/getSegments')
+        this.$store.commit('workspace/getWorkspaces')
+        this.loading = false
+      } catch {
+        this.loading = false
+      }
     }
   },
 }
