@@ -89,14 +89,14 @@ export default {
     },
     async created() {
         let res = await this.$http.post('/user-manager/workspace/fetch');
-        if (res.data.data.Item.klaviyoData) {
+        if (res.data.data.Item.klaviyoData && Object.keys(res.data.data.Item.klaviyoData).length !== 0) {
             this.options.push('Klaviyo')
         }
-        if (res.data.data.Item.mailchimpData) {
-            this.options.push('Mailchimp')
-        }
-        res = await this.$http.post('/mailchimp-manager/audience/fetch-all');
-        this.audiences = res.data.data
+        if (res.data.data.Item.mailchimpData && Object.keys(res.data.data.Item.mailchimpData).length !== 0) {
+          this.options.push('Mailchimp')
+          res = await this.$http.post('/mailchimp-manager/audience/fetch-all');
+          this.audiences = res.data.data
+          }
 
     },
     methods: {
