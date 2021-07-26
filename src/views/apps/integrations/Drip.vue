@@ -1,13 +1,13 @@
 <template>
   <div>
     <b-modal
-      id="mailchimp-delete"
+      id="drip-delete"
       title="Integraions"
       centered
       :hide-footer="true"
     >
       <p class="fs-3">
-        Do you want to disconnect Mailchimp.
+        Do you want to disconnect Drip.
       </p>
       <p>
         <small
@@ -26,16 +26,16 @@
       <b-button
         :disabled="loading"
         size="sm"
-        @click="$bvModal.hide('mailchimp-delete')"
+        @click="$bvModal.hide('drip-delete')"
       >No</b-button>
     </b-modal>
     <b-card
-      title="Mailchimp"
+      title="Drip"
     >
       <b-card-text
         class="px-2"
       >
-        Automatically sync your customer segments into Mailchimp and start building some marketing flows.
+        Create and automate ecommerce campaigns with pre-built, customizable templates.
       </b-card-text>
       <b-button
         variant="outline-primary"
@@ -47,13 +47,13 @@
     </b-card>
 
     <b-modal
-      id="mailchimp"
+      id="drip"
       title="Integraions"
       centered
       :hide-footer="true"
     >
       <p class="h3">
-        Mailchimp
+        Drip
       </p>
       <b-button
         :disabled="loading"
@@ -93,19 +93,19 @@ import {BCard, BButton, BCardText, BCardHeader, BModal } from 'bootstrap-vue'
     methods: {
         openModal() {
           if(this.connected){
-            this.$bvModal.show('mailchimp-delete')
+            this.$bvModal.show('drip-delete')
           }else{
-            this.$bvModal.show('mailchimp')
+            this.$bvModal.show('drip')
           }
         },
         signin() {
-          window.location.replace('https://cs-service.herokuapp.com/auth/mailchimp')
+          window.location.replace('https://cs-service.herokuapp.com/auth/drip')
         },
         async disconnect() {
           this.loading = true
             try{
-                await this.$http.post('/mailchimp-manager/workspace/delete')
-                this.$bvModal.hide('mailchimp-delete')
+                await this.$http.post('/drip-manager/workspace/delete')
+                this.$bvModal.hide('drip-delete')
                 this.$emit('update')
             }catch{
                 this.error = 'Cannot Disconnect'
@@ -116,14 +116,14 @@ import {BCard, BButton, BCardText, BCardHeader, BModal } from 'bootstrap-vue'
     async created() {
       const code = this.$route.query.code
       const integration = this.$route.query.integration
-      if(integration === 'mailchimp' && code) {
+      if(integration === 'drip' && code) {
         this.loading = true
-        this.$bvModal.show('mailchimp')
-        await this.$http.post('/oauth/mailchimp/connect', {
+        this.$bvModal.show('drip')
+        await this.$http.post('/oauth/drip/connect', {
           code
         })
         this.$router.replace({'query': null});
-        this.$bvModal.hide('mailchimp')
+        this.$bvModal.hide('drip')
         this.loading = false
         this.$emit('update')
       }

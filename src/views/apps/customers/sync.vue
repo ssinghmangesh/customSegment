@@ -4,6 +4,7 @@
     title="Sync"
     centered
     :hide-footer="true"
+    @hidden="hidden"
   >
     <b-form @submit="sync">
 
@@ -37,20 +38,24 @@
 
       <b-button
         :disabled="loading"
+        class="mr-1"
         @click="() => $bvModal.hide('sync')"
       >Cancel</b-button>
       <b-button
         type="submit"
         variant="primary"
         :disabled="loading"
-      >Submit</b-button>
+      >
+        <b-spinner v-if="loading" small />
+        {{ !loading ? 'Submit' : '' }}
+      </b-button>
     </b-form>
   </b-modal>
 </template>
 
 <script>
 /*eslint-disable*/
-import { BModal, BForm, BFormGroup, BFormSelect, BButton } from 'bootstrap-vue'
+import { BModal, BForm, BFormGroup, BFormSelect, BButton, BSpinner } from 'bootstrap-vue'
 import { methods } from 'vue-echarts';
 
 export default {
@@ -60,6 +65,7 @@ export default {
         BFormGroup,
         BFormSelect,
         BButton,
+        BSpinner,
     },
     props: {
         selected: {
@@ -89,17 +95,23 @@ export default {
     },
     async created() {
         let res = await this.$http.post('/user-manager/workspace/fetch');
-        if (res.data.data.Item.klaviyoData) {
+        if (res.data.data.Item.klaviyoData && Object.keys(res.data.data.Item.klaviyoData).length !== 0) {
             this.options.push('Klaviyo')
         }
-        if (res.data.data.Item.mailchimpData) {
-            this.options.push('Mailchimp')
+        if (res.data.data.Item.mailchimpData && Object.keys(res.data.data.Item.mailchimpData).length !== 0) {
+          this.options.push('Mailchimp')
+          res = await this.$http.post('/mailchimp-manager/audience/fetch-all');
+          this.audiences = res.data.data
         }
-        res = await this.$http.post('/mailchimp-manager/audience/fetch-all');
-        this.audiences = res.data.data
+        if (res.data.data.Item.dripData && Object.keys(res.data.data.Item.dripData).length !== 0) {
+            this.options.push('Drip')
+        }
 
     },
     methods: {
+        hidden() {
+          this.integration = null
+        },
         async sync(event) {
             event.preventDefault()
             this.loading = true
@@ -112,6 +124,10 @@ export default {
                     await this.$http.post('/mailchimp-manager/sync', {
                         segment: this.selected,
                         audienceId: this.audience
+                    })
+                } else if(this.integration === 'Drip') {
+                    await this.$http.post('drip-manager/sync', {
+                        segment: this.selected,
                     })
                 }
                 this.$bvModal.hide('sync')
