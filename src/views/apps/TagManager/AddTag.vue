@@ -24,9 +24,10 @@
           id="when"
           v-model="when"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-          label="title"
+          label="text"
+          :reduce="option => option.value"
           multiple
-          :options="andOrOption"
+          :options="whenOption"
           class="select-size-lg"
         />
       </b-form-group>
@@ -134,6 +135,7 @@ import TypeHandler from '../customers/TypeHandler/TypeHandler.vue'
 import SelectedFilters from '../customers/SelectedFilters/SelectedFilters.vue'
 import { pageDefination } from '../customers/PageDefination/index'
 import { when } from '@vueuse/shared'
+import triggerPoints from './TriggerPoints'
 // import AddTitle from './AddTitle.vue'
 
 export default {
@@ -173,6 +175,9 @@ export default {
     }
   },
   computed: {
+    whenOption() {
+      return triggerPoints[this.type]
+    },
     filters() {
       return this.selectedFilters
     },
