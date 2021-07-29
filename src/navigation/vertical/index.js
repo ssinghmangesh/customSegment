@@ -41,7 +41,8 @@ import setting from './setting'
 // import chartsAndMaps from './charts-and-maps'
 // import uiElements from './ui-elements'
 // import formAndTable from './forms-and-table'
+import tagmanager from './tagmanager'
 
 // Array of sections
 // export default [...customers, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]
-export default [...mainRoute, ...setting]
+export default [...mainRoute, ...tagmanager, ...setting]
