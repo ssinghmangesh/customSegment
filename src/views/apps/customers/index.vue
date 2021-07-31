@@ -21,7 +21,7 @@
           @select="select"
         />
       </b-tab>
-      <b-tab title="RAW DATA">
+      <b-tab title="TABLE">
         <custom-table
           :filters="filters"
           :time="time"

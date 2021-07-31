@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "text": "When order is created",
+        "value": "orderCreated"
+    },
+    {
+        "text": "When order is cancelled",
+        "value": "orderCancelled"
+    },
+    {
+        "text": "When order is refunded",
+        "value": "orderRefunded"
+    },
+    {
+        "text": "When order is fulfilled",
+        "value": "orderFulfilled"
+    }
+]

@@ -76,7 +76,7 @@
         required
       ></b-form-input>
     </b-form-group>
-    <b-form-group
+    <!-- <b-form-group
       label="Else:"
       label-for="else"
       class="mb-0 mt-1"
@@ -85,7 +85,7 @@
         id="else"
         v-model="Else"
       ></b-form-input>
-    </b-form-group>
+    </b-form-group> -->
       
       <!-- <b-form-input
         id="input-lg"

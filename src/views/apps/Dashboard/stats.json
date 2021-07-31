@@ -1,0 +1,30 @@
+[
+    {
+        "type": "statistics",
+        "title": "Store Metrics",
+        "col": {
+          "default": 12,
+          "md": 12
+        },
+        "data": {
+            "table": "customeraggregate",
+            "statsDefinition": [
+              {
+                "columnname": "*",
+                "aggregate": "count",
+                "alias": "customers"
+              },
+              {
+                "columnname": "total_order_count",
+                "aggregate": "sum",
+                "alias": "orders"
+              },
+              {
+                "columnname": "total_amount_spent",
+                "aggregate": "avg",
+                "alias": "average_customer_lifetime_value"
+              }
+            ]
+          }
+    }
+]
