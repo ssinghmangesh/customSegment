@@ -28,6 +28,14 @@
           @update="update"
         />
       </b-col>
+      <b-col
+        md="4"
+        sm="6"
+      >
+        <shopify
+          :connected="integrations.includes('Shopify')"
+        />
+      </b-col>
     </b-row>
   </div>
 </template>
@@ -38,6 +46,7 @@ import Klaviyo from './Klaviyo.vue'
 import { BRow, BCol } from 'bootstrap-vue'
 import Mailchimp from './Mailchimp.vue'
 import Drip from './Drip.vue'
+import Shopify from './Shopify.vue'
 
  export default {
     components: {
@@ -45,7 +54,8 @@ import Drip from './Drip.vue'
         BRow,
         BCol,
         Mailchimp,
-        Drip
+        Drip,
+        Shopify,
     },
     data() {
       return {
@@ -64,6 +74,9 @@ import Drip from './Drip.vue'
         }
         if (res.data.data.Item.dripData && Object.keys(res.data.data.Item.dripData).length !== 0) {
             this.integrations = [ ...this.integrations, 'Drip']
+        }
+        if (localStorage.getItem('workspaceId')){
+          this.integrations = [ ...this.integrations, 'Shopify' ]
         }
       }
     },

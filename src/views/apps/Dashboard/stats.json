@@ -23,6 +23,11 @@
                 "columnname": "total_amount_spent",
                 "aggregate": "avg",
                 "alias": "average_customer_lifetime_value"
+              },
+              {
+                "columnname": "total_order_count",
+                "aggregate": "avg",
+                "alias": "orders_per_customer"
               }
             ]
           }

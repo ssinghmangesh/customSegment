@@ -2,7 +2,7 @@
   <b-card>
     <small class="text-danger">{{ error }}</small>
     <b-row>
-      <b-col sm="4">
+      <b-col sm="6">
         <b-form-input
           id="input-live"
           v-model="store"
