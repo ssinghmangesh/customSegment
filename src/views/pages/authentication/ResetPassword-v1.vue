@@ -17,7 +17,7 @@
           Reset Password 🔒
         </b-card-title>
         <b-card-text class="mb-2">
-          You are setting a password for {{ $route.query.user_id }}
+          You are setting a password for {{ userEmail }}
         </b-card-text>
 
         <!-- form -->
@@ -111,7 +111,7 @@
         </validation-observer>
 
         <p class="text-center mt-2">
-          <b-link :to="{name:'auth-login-v1'}">
+          <b-link :to="{name:'auth-login'}">
             <feather-icon icon="ChevronLeftIcon" /> Back to login
           </b-link>
         </p>
@@ -169,6 +169,13 @@ export default {
       return this.password2FieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
     },
   },
+  async created() {
+    const { token } = this.$route.query
+    const res = await this.$http.post('/auth-manager/verify', {
+      token,
+    })
+    this.userEmail = res.data.email
+  },
   methods: {
     togglePassword1Visibility() {
       this.password1FieldType = this.password1FieldType === 'password' ? 'text' : 'password'
@@ -178,7 +185,7 @@ export default {
     },
     async validationForm() {
       await this.$http.post('/auth-manager/set-password', {
-        userId: this.$route.query.user_id,
+        userId: this.userEmail,
         password: this.password,
       })
       this.$router.push('/login')
