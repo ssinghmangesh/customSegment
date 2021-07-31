@@ -47,7 +47,7 @@
             </b-form-group>
 
             <!-- password -->
-            <b-form-group
+            <!-- <b-form-group
               label="Password"
               label-for="password"
             >
@@ -79,7 +79,7 @@
                 </b-input-group>
                 <small class="text-danger">{{ errors[0] }}</small>
               </validation-provider>
-            </b-form-group>
+            </b-form-group> -->
 
             <!-- checkbox -->
             <b-form-group>
@@ -99,7 +99,11 @@
               block
               type="submit"
             >
-              Sign up
+              <b-spinner
+                v-if="loading"
+                small
+              />
+              <span v-else>Sign up</span>
             </b-button>
           </b-form>
         </validation-observer>
@@ -155,7 +159,7 @@
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
   BCard, BLink, BCardTitle, BCardText, BForm,
-  BButton, BFormInput, BFormGroup, BInputGroup, BInputGroupAppend, BFormCheckbox,
+  BButton, BFormInput, BFormGroup, BFormCheckbox, BSpinner,
 } from 'bootstrap-vue'
 import VuexyLogo from '@core/layouts/components/Logo.vue'
 import { required, email } from '@validations'
@@ -174,12 +178,13 @@ export default {
     BButton,
     BFormInput,
     BFormGroup,
-    BInputGroup,
-    BInputGroupAppend,
+    // BInputGroup,
+    // BInputGroupAppend,
     BFormCheckbox,
     // validations
     ValidationProvider,
     ValidationObserver,
+    BSpinner,
   },
   mixins: [togglePasswordVisibility],
   data() {
@@ -188,6 +193,7 @@ export default {
       password: '',
       status: '',
       error: '',
+      loading: false,
 
       // validation rules
       required,
@@ -201,17 +207,16 @@ export default {
   },
   methods: {
     async validationForm() {
+      this.loading = true
       try {
         await this.$http.post('/auth-manager/check-for-register', {
           userId: this.regEmail,
-          password: this.password,
         })
-        localStorage.setItem('userId', this.regEmail)
-        localStorage.setItem('userData', JSON.stringify({ userId: this.regEmail }))
-        this.$router.push('/connect')
+        this.error = 'Verification link has been sent to your email'
       } catch (err) {
         this.error = err.response.data
       }
+      this.loading = false
     },
   },
 }
