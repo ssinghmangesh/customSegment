@@ -22,5 +22,11 @@ export default [
         route: 'tags-products',
         path: '/tags/product',
     },
+    {
+        title: 'Draft Order',
+        icon: 'MailIcon',
+        route: 'tags-draftorders',
+        path: '/tags/draftorders',
+    },
   ]
   

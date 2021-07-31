@@ -1,9 +1,11 @@
 import customers from './customers.json'
 import orders from './orders.json'
-import products from './product.json'
+import product from './product.json'
+import draftorders from './draftorder.json'
 
 export default {
   customers,
   orders,
-  products,
+  product,
+  draftorders,
 }

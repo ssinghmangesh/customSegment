@@ -42,7 +42,7 @@ import setting from './setting'
 // import uiElements from './ui-elements'
 // import formAndTable from './forms-and-table'
 import tagmanager from './tagmanager'
-
+import dashboard from './customdashboard'
 // Array of sections
 // export default [...customers, ...appsAndPages, ...uiElements, ...formAndTable, ...chartsAndMaps, ...others]
-export default [...mainRoute, ...tagmanager, ...setting]
+export default [...dashboard, ...mainRoute, ...tagmanager, ...setting]
