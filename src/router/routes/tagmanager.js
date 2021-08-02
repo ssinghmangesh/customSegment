@@ -3,7 +3,7 @@ export default [
     {
       path: '/tags/:type',
       name: 'tags',
-      component: () => import('@/views/apps/tagmanager/index.vue'),
+      component: () => import('@/views/apps/tags/index.vue'),
     },
   ]
   
