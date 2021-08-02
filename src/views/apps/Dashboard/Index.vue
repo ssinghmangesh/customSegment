@@ -9,7 +9,7 @@
 
 <script>
 /* eslint-disable */
-import Graphs from '@/views/apps/custompage/devashish.vue'
+import Graphs from '@/views/apps/segments1/devashish.vue'
 import stats from './stats.json'
 
 export default {

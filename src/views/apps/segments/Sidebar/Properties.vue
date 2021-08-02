@@ -21,7 +21,7 @@ import {
   BCard,
   BCardText,
 } from 'bootstrap-vue'
-import formatData from '@/views/apps/customers/Helper/formatData'
+import formatData from '@/views/apps/segments/Helper/formatData'
 // const formatData = require('../Helper/formData')
 
 export default {

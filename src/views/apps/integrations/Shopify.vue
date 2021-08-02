@@ -68,7 +68,7 @@
 /*eslint-disable*/
 import { BForm, BFormGroup, BFormInput, BCard, BButton, BCardText, BCardHeader, BModal } from 'bootstrap-vue'
 import { disconnect } from 'echarts/lib/echarts'
-import ConnectStore from '../ConnectStore/ConnectStore.vue'
+import ConnectStore from '../connectstore/ConnectStore.vue'
 
  export default {
     components: {

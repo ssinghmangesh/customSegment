@@ -46,7 +46,7 @@ import {
   BTabs, BTab,
   // BCard,
 } from 'bootstrap-vue'
-import Graphs from '@/views/apps/custompage/devashish.vue'
+import Graphs from '@/views/apps/segments1/devashish.vue'
 import add from './add.vue'
 import CustomTable from './Table.vue'
 import Segment from './segment.vue'

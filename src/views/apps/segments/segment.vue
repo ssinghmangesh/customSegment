@@ -70,7 +70,7 @@ import {
 } from 'bootstrap-vue'
 import AppCollapse from '@core/components/app-collapse/AppCollapse.vue'
 import AppCollapseItem from '@core/components/app-collapse/AppCollapseItem.vue'
-import Graph from '@/views/apps/custompage/graph.vue'
+import Graph from '@/views/apps/segments1/graph.vue'
 import sync from './sync.vue'
 import { pageDefination } from './PageDefination/index'
 

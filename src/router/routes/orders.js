@@ -7,6 +7,6 @@ export default [
   {
     path: '/apps/orders/add',
     name: 'add-orders-segment',
-    component: () => import('@/views/apps/customers/add.vue'),
+    component: () => import('@/views/apps/segments/add.vue'),
   },
 ]

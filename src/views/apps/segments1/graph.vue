@@ -154,8 +154,8 @@ import EcommerceCompanyTable from '@/views/dashboard/ecommerce/EcommerceCompanyT
 import AnalyticsSupportTracker from '@/views/dashboard/analytics/AnalyticsSupportTracker.vue'
 import AnalyticsAvgSessions from '@/views/dashboard/analytics/AnalyticsAvgSessions.vue'
 // import Vue from 'vue'
-import formatData from '@/views/apps/customers/Helper/formatData'
-import { getIcon } from '@/views/apps/customers/Helper/globalMethods'
+import formatData from '@/views/apps/segments/Helper/formatData'
+import { getIcon } from '@/views/apps/segments/Helper/globalMethods'
 
 const chartColors = {
   column: {

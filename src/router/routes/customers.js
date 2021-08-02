@@ -2,12 +2,12 @@ export default [
   {
     path: '/apps/:type',
     name: 'apps-customer',
-    component: () => import('@/views/apps/customers/index.vue'),
+    component: () => import('@/views/apps/segments/index.vue'),
   },
   {
-    path: '/apps/customers/add',
+    path: '/apps/segments/add',
     name: 'add-customers-segment',
-    component: () => import('@/views/apps/customers/add.vue'),
+    component: () => import('@/views/apps/segments/add.vue'),
   },
   {
     path: '/sync',
@@ -17,7 +17,7 @@ export default [
   {
     path: '/connect',
     name: 'connect-store',
-    component: () => import('@/views/apps/ConnectStore/ConnectStore.vue'),
+    component: () => import('@/views/apps/connectstore/ConnectStore.vue'),
   },
   {
     path: '/integrations',
