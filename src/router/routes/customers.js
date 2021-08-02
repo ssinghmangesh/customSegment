@@ -17,7 +17,7 @@ export default [
   {
     path: '/connect',
     name: 'connect-store',
-    component: () => import('@/views/apps/connectstore/ConnectStore.vue'),
+    component: () => import('@/views/apps/onboarding/index.vue'),
   },
   {
     path: '/integrations',
