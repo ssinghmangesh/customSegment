@@ -115,14 +115,14 @@
           </b-link>
         </b-card-text>
 
-        <div class="divider my-2">
+        <!-- <div class="divider my-2">
           <div class="divider-text">
             or
           </div>
-        </div>
+        </div> -->
 
         <!-- social buttons -->
-        <div class="auth-footer-btn d-flex justify-content-center">
+        <!-- <div class="auth-footer-btn d-flex justify-content-center">
           <b-button
             variant="facebook"
             href="javascript:void(0)"
@@ -147,7 +147,7 @@
           >
             <feather-icon icon="GithubIcon" />
           </b-button>
-        </div>
+        </div> -->
       </b-card>
     <!-- /Register v1 -->
     </div>
