@@ -227,7 +227,7 @@ export default {
           if (res.data.current_workspace) {
             localStorage.setItem('workspaceId', res.data.current_workspace.workspaceId)
             localStorage.setItem('workspaceName', res.data.current_workspace.workspaceName)
-            window.location.replace('/apps/customers')
+            window.location.replace('/')
           } else {
             this.$router.push('/connect')
           }

@@ -141,11 +141,11 @@ export default {
   },
   methods: {
     async logout() {
-      await this.$http.post('/auth-manager/logout')
       localStorage.removeItem('workspaceId')
       localStorage.removeItem('workspaceName')
       localStorage.removeItem('userId')
       localStorage.removeItem('userData')
+      await this.$http.post('/auth-manager/logout')
       this.$router.push({ name: 'auth-login' })
     },
   },

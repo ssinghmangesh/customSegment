@@ -1,7 +1,8 @@
 <template>
   <b-card class="mb-4">
-    <div class="d-flex justify-content-end mb-2">
+    <div class="d-flex justify-content-end row mb-2">
       <Calendar
+        class="col-sm-4 cs-calender"
         element-name="doubleRangePicker"
         type="double"
         :format="format"
@@ -9,7 +10,7 @@
       />
     </div>
     <b-card-text class="row">
-      <b-form-group class="col-sm-3">
+      <b-form-group class="col-sm-3" v-if="selectedFilters.length">
         <v-select
           v-model="andOr"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
@@ -18,7 +19,7 @@
           class="select-size-lg"
         />
       </b-form-group>
-      <b-form-group class="col-sm-3">
+      <b-form-group class="col-sm-3" v-if="selectedFilters.length">
         <v-select
           v-model="incEcl"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
@@ -27,7 +28,7 @@
           class="select-size-lg"
         />
       </b-form-group>
-      <b-form-group class="col-sm-6">
+      <b-form-group :class="{'col-sm-6':  selectedFilters.length, 'col-sm-12':  !selectedFilters.length}">
         <v-select
           v-model="searchQuery"
           :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
@@ -223,12 +224,9 @@ export default {
 </script>
 <style lang="scss" >
 @import '@core/scss/vue/libs/vue-good-table.scss';
+.cs-calender {
+  .dr-input {
+    width: 100%;
+  }
+}
 </style>
-// ,
-//       {
-//         title: 'Payment Status',
-//         name: 'payment_status',
-//         type: 'dropdown',
-//         dataType: 'varchar[]',
-//         options: ['Paid', 'Pending', 'Refunded'],
-//       }
