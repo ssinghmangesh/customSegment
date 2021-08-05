@@ -9,6 +9,7 @@
       <!-- <b-card-text class="font-small-2 mr-25 mb-0">
         Updated 13 month ago
       </b-card-text> -->
+      <span @click="$emit('refresh')"><feather-icon class="mr-1" icon="RefreshCwIcon" /></span>
     </b-card-header>
     <ContentLoader v-if="!data.length">
       <rect x="16" y="0" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
