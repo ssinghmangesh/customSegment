@@ -10,7 +10,15 @@
         Updated 13 month ago
       </b-card-text> -->
     </b-card-header>
-    <b-card-body class="statistics-body">
+    <ContentLoader v-if="!data.length">
+      <rect x="16" y="0" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="20" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="40" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="60" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="80" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="100" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+    </ContentLoader>
+    <b-card-body v-else class="statistics-body">
       <b-row>
         <b-col
           v-for="item in data"
@@ -53,6 +61,7 @@
 import {
   BCard, BCardHeader, BCardTitle, BCardText, BCardBody, BRow, BCol, BMedia, BMediaAside, BAvatar, BMediaBody,
 } from 'bootstrap-vue'
+import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components: {
@@ -67,6 +76,7 @@ export default {
     BAvatar,
     BMediaAside,
     BMediaBody,
+    ContentLoader,
   },
   props: {
     title: {
