@@ -7,7 +7,7 @@
         <b-link class="brand-logo">
           <vuexy-logo />
           <h2 class="brand-text text-primary ml-1">
-            Segment Custom
+            Custom Segment
           </h2>
         </b-link>
 
@@ -40,12 +40,48 @@
                   v-model="regEmail"
                   :state="errors.length > 0 ? false:null"
                   name="register-email"
+                  :disabled="page !== 1"
                   placeholder="john@example.com"
                 />
                 <small class="text-danger">{{ errors[0] }}</small>
               </validation-provider>
             </b-form-group>
 
+            <b-form-group
+              v-if="page === 2"
+              label="OTP"
+              label-for="otp"
+            >
+              <b-form-input
+                id="otp"
+                v-model="otp"
+                placeholder="Enter OTP"
+              />
+            </b-form-group>
+            <b-form-group
+              v-if="page === 3"
+              label="Enter Password"
+              label-for="password"
+            >
+              <b-form-input
+                id="password"
+                v-model="password"
+                type="password"
+                placeholder="Enter password"
+              />
+            </b-form-group>
+            <b-form-group
+              v-if="page === 3"
+              label="Confirm Password"
+              label-for="confirm-password"
+            >
+              <b-form-input
+                id="confirm-password"
+                v-model="confirmPassword"
+                type="password"
+                placeholder="Confirm password"
+              />
+            </b-form-group>
             <!-- password -->
             <!-- <b-form-group
               label="Password"
@@ -82,7 +118,7 @@
             </b-form-group> -->
 
             <!-- checkbox -->
-            <b-form-group>
+            <!-- <b-form-group>
               <b-form-checkbox
                 id="register-privacy-policy"
                 v-model="status"
@@ -91,10 +127,11 @@
                 I agree to
                 <b-link>privacy policy & terms</b-link>
               </b-form-checkbox>
-            </b-form-group>
+            </b-form-group> -->
 
             <!-- submit button -->
             <b-button
+              v-if="page === 1"
               variant="primary"
               block
               type="submit"
@@ -103,7 +140,47 @@
                 v-if="loading"
                 small
               />
-              <span v-else>Sign up</span>
+              <span v-else>Send Otp</span>
+            </b-button>
+            <div
+              v-if="page === 2"
+              class="d-flex flex-row justify-content-center"
+            >
+              <b-button
+                class="mr-1"
+                variant="primary"
+                :disabled="loading"
+                @click="validationForm"
+              >
+                <b-spinner
+                  v-if="loading === 'otp'"
+                  small
+                />
+                <span v-else>Resend Otp</span>
+              </b-button>
+              <b-button
+                variant="success"
+                :disabled="loading || otp.length === 0"
+                @click="verifyOtp"
+              >
+                <b-spinner
+                  v-if="loading === 'verify'"
+                  small
+                />
+                <span v-else>Verify</span>
+              </b-button>
+            </div>
+            <b-button
+              v-if="page === 3"
+              variant="success"
+              :disabled="loading"
+              @click="register"
+            >
+              <b-spinner
+                v-if="loading"
+                small
+              />
+              <span v-else>Register</span>
             </b-button>
           </b-form>
         </validation-observer>
@@ -159,7 +236,7 @@
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import {
   BCard, BLink, BCardTitle, BCardText, BForm,
-  BButton, BFormInput, BFormGroup, BFormCheckbox, BSpinner,
+  BButton, BFormInput, BFormGroup, BSpinner,
 } from 'bootstrap-vue'
 import VuexyLogo from '@core/layouts/components/Logo.vue'
 import { required, email } from '@validations'
@@ -180,7 +257,7 @@ export default {
     BFormGroup,
     // BInputGroup,
     // BInputGroupAppend,
-    BFormCheckbox,
+    // BFormCheckbox,
     // validations
     ValidationProvider,
     ValidationObserver,
@@ -194,10 +271,12 @@ export default {
       status: '',
       error: '',
       loading: false,
-
+      page: 1,
       // validation rules
       required,
       email,
+      otp: '',
+      confiemPassword: '',
     }
   },
   computed: {
@@ -207,14 +286,51 @@ export default {
   },
   methods: {
     async validationForm() {
+      this.loading = 'otp'
+      try {
+        await this.$http.post('/auth-manager/send-otp', {
+          userId: this.regEmail,
+        })
+        this.error = 'Otp has been sent to your email'
+        this.page = 2
+      } catch (err) {
+        this.error = err.response.data
+      }
+      this.loading = false
+    },
+    async verifyOtp() {
+      this.error = null
+      this.loading = 'verify'
+      try {
+        await this.$http.post('/auth-manager/verify-otp', {
+          userId: this.regEmail,
+          otp: this.otp,
+        })
+        this.page = 3
+      } catch (err) {
+        this.error = 'Invalid OTP'
+      }
+      this.loading = false
+    },
+    async register() {
+      this.error = null
+      if (this.password.length < 8) {
+        this.error = 'Password must contain 8 characters'
+        return
+      }
+      if (this.password !== this.confirmPassword) {
+        this.error = 'Passwords don\'t match'
+        return
+      }
       this.loading = true
       try {
         await this.$http.post('/auth-manager/check-for-register', {
           userId: this.regEmail,
+          password: this.password,
         })
-        this.error = 'Verification link has been sent to your email'
+        this.$router.push('/login')
       } catch (err) {
-        this.error = err.response.data
+        this.error = 'Something Went Wrong'
       }
       this.loading = false
     },
