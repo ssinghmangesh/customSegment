@@ -229,4 +229,8 @@ export default {
     width: 100%;
   }
 }
+.daterange {
+  display: flex;
+  justify-content: flex-end;
+}
 </style>
