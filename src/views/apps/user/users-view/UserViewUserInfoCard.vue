@@ -1,7 +1,15 @@
 <template>
   <b-card>
+    <ContentLoader v-if="!userData.user_id">
+      <rect x="16" y="0" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="20" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="40" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="60" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="80" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+      <rect x="16" y="100" rx="3" ry="3" width="calc(100% - 32px)" height="10" />
+    </ContentLoader>
 
-    <b-row>
+    <b-row v-else>
 
       <!-- User Info: Left col -->
       <b-col
@@ -83,7 +91,7 @@
               {{ userData.role }}
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <th class="pb-50">
               <feather-icon
                 icon="FlagIcon"
@@ -106,7 +114,7 @@
             <td>
               {{ userData.contact }}
             </td>
-          </tr>
+          </tr> -->
         </table>
       </b-col>
     </b-row>
@@ -118,11 +126,12 @@ import {
   BCard, BButton, BAvatar, BRow, BCol,
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
+import { ContentLoader } from 'vue-content-loader'
 import useUsersList from '../users-list/useUsersList'
 
 export default {
   components: {
-    BCard, BButton, BRow, BCol, BAvatar,
+    BCard, BButton, BRow, BCol, BAvatar, ContentLoader,
   },
   props: {
     userData: {
