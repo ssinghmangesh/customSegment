@@ -7,6 +7,7 @@
       v-if="graphType === 'statistics'"
       :data="series"
       :title="item.title"
+      @refresh="update"
     />
     <apex-line-area-chart
       v-else-if="graphType === 'apex-line-area-chart'"

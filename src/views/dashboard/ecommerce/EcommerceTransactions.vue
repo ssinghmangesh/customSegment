@@ -34,6 +34,14 @@
     </b-card-header>
 
     <b-card-body>
+      <ContentLoader v-if="!data.length">
+        <rect x="0" y="0" rx="3" ry="3" width="100%" height="10" />
+        <rect x="0" y="20" rx="3" ry="3" width="100% " height="10" />
+        <rect x="0" y="40" rx="3" ry="3" width="100%" height="10" />
+        <rect x="0" y="60" rx="3" ry="3" width="100%" height="10" />
+        <rect x="0" y="80" rx="3" ry="3" width="100%" height="10" />
+        <rect x="0" y="100" rx="3" ry="3" width="100%" height="10" />
+      </ContentLoader>
       <div
         v-for="transaction in data"
         :key="transaction.mode"
@@ -74,6 +82,7 @@
 import {
   BCard, BCardHeader, BCardTitle, BCardBody, BMediaBody, BMedia, BMediaAside, BAvatar, BDropdown, BDropdownItem,
 } from 'bootstrap-vue'
+import { ContentLoader } from 'vue-content-loader'
 
 export default {
   components: {
@@ -87,6 +96,7 @@ export default {
     BAvatar,
     BDropdown,
     BDropdownItem,
+    ContentLoader,
   },
   props: {
     title: {

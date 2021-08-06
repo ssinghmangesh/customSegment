@@ -2,6 +2,7 @@
   <EcommerceStatistics
     :title="title"
     :data="data"
+    @refresh="$emit('refresh')"
   />
 </template>
 <script>
