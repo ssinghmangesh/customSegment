@@ -24,4 +24,9 @@ export default [
     name: 'integrations',
     component: () => import('@/views/apps/integrations/Integration.vue'),
   },
+  {
+    path: '/join',
+    name: 'join',
+    component: () => import('@/views/apps/join/Index.vue'),
+  },
 ]
