@@ -6,7 +6,7 @@
   >
     <b-card-header>
       <b-card-title>{{ title }}</b-card-title>
-
+      <span @click="$emit('refresh')"><feather-icon icon="RefreshCwIcon" /></span>
       <b-dropdown
         variant="link"
         no-caret
