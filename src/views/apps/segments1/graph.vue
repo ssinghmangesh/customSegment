@@ -109,6 +109,7 @@
       v-else-if="graphType === 'ecommerce-transactions'"
       :title="item.title"
       :data="data.transactionData"
+      @refresh="update"
     />
     <ecommerce-company-table
       v-else-if="graphType === 'ecommerce-company-table'"

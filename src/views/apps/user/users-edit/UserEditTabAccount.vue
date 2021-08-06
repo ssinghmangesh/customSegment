@@ -359,7 +359,8 @@ export default {
       formData.append('role', this.role);
       formData.append('company', this.company);
       formData.append('username', this.username);
-      await this.$http.post('/user-manager/user/edit', formData)
+      const res = await this.$http.post('/user-manager/user/edit', formData)
+      localStorage.setItem('userData', JSON.stringify(res.data.data))
       this.loading = false
     },
     updateSrc(file) {
