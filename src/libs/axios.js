@@ -12,8 +12,8 @@ const axiosIns = axios.create({
     'x-workspace-id': localStorage.getItem('workspaceId'),
     'x-workspace-name': localStorage.getItem('workspaceName'),
   },
-  baseURL: 'https://cs-service.herokuapp.com/',
-  // baseURL: 'http://localhost:3000/',
+  // baseURL: 'https://cs-service.herokuapp.com/',
+  baseURL: 'http://localhost:3000/',
   withCredentials: true,
 })
 
@@ -48,7 +48,7 @@ axiosIns.interceptors.response.use(response => response, err => {
 
     return new Promise(function(resolve, reject) {
         axios
-            .post('https://cs-service.herokuapp.com/refresh', {
+            .post('http://localhost:3000/refresh', {
                 refreshToken: "fooToken"}, {
                   withCredentials: true
                 })

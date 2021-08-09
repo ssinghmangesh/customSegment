@@ -138,6 +138,22 @@
           :order="row"
         />
       </b-tab>
+      <b-tab
+        v-if="type === 'customers'"
+        title="Aggregate"
+      >
+        <CustomerAggregate
+          :customer="row"
+        />
+      </b-tab>
+      <b-tab
+        v-if="type === 'variantaggregate'"
+        title="Aggregate"
+      >
+        <variant-aggregate
+          :variant="row"
+        />
+      </b-tab>
     </b-tabs>
   </b-card>
 </template>
@@ -163,11 +179,15 @@ import CustomerTagManager from './Sidebar/CustomerTagManager.vue'
 import OrderTagManager from './Sidebar/OrderTagManager.vue'
 import DraftOrderTagManager from './Sidebar/DraftOrderTagManager.vue'
 import ProductTagManager from './Sidebar/ProductTagManager.vue'
+import CustomerAggregate from './Sidebar/CustomerAggregate.vue'
+import VariantAggregate from './Sidebar/VariantAggregate.vue'
 
 export default {
   components: {
     BCard,
     BTabs,
+    VariantAggregate,
+    CustomerAggregate,
     CustomerTagManager,
     OrderTagManager,
     ProductTagManager,
