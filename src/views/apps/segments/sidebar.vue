@@ -106,13 +106,37 @@
           :cart="row"
         />
       </b-tab>
-      <b-tab>
-        <b-card-text>
-          Chocolate croissant cupcake croissant jelly donut. Cheesecake toffee apple pie chocolate bar biscuit tart croissant. Lemon drops danish cookie. Oat cake macaroon icing tart lollipop cookie sweet bear claw.
-        </b-card-text>
-        <b-card-text>
-          Carrot cake dragée chocolate. Lemon drops ice cream wafer gummies dragée. Chocolate bar liquorice cheesecake cookie chupa chups marshmallow oat cake biscuit. Dessert toffee fruitcake ice cream powder tootsie roll cake.
-        </b-card-text>
+      <b-tab
+        v-if="type === 'customers'"
+        title="Tag Manager"
+      >
+        <CustomerTagManager
+          :customer="row"
+        />
+      </b-tab>
+      <b-tab
+        v-if="type === 'orders'"
+        title="Tag Manager"
+      >
+        <order-tag-manager
+          :order="row"
+        />
+      </b-tab>
+      <b-tab
+        v-if="type === 'variantaggregate'"
+        title="Tag Manager"
+      >
+        <product-tag-manager
+          :variant="row"
+        />
+      </b-tab>
+      <b-tab
+        v-if="type === 'draftorders'"
+        title="Tag Manager"
+      >
+        <draft-order-tag-manager
+          :order="row"
+        />
       </b-tab>
     </b-tabs>
   </b-card>
@@ -120,7 +144,7 @@
 
 <script>
 import {
-  BTabs, BTab, BCardText, BCard,
+  BTabs, BTab, BCard,
 } from 'bootstrap-vue'
 import Properties from './Sidebar/Properties.vue'
 import Timeline from './Sidebar/Timeline.vue'
@@ -135,12 +159,19 @@ import ProductRecommendations from './Sidebar/ProductRecommendations.vue'
 import Notifications from './Sidebar/Notifications.vue'
 import OrderRefund from './Sidebar/OrderRefund.vue'
 import OrderTransaction from './Sidebar/OrderTransaction.vue'
+import CustomerTagManager from './Sidebar/CustomerTagManager.vue'
+import OrderTagManager from './Sidebar/OrderTagManager.vue'
+import DraftOrderTagManager from './Sidebar/DraftOrderTagManager.vue'
+import ProductTagManager from './Sidebar/ProductTagManager.vue'
 
 export default {
   components: {
     BCard,
     BTabs,
-    BCardText,
+    CustomerTagManager,
+    OrderTagManager,
+    ProductTagManager,
+    DraftOrderTagManager,
     BTab,
     Properties,
     Timeline,
